@@ -2,4 +2,7 @@
     <!-- Util -->
     <string name="app_name">TurnAround</string>
     <string name="binding_error">Binding not initialized to reference the view.</string>
+
+    <!-- Intro -->
+    <string name="intro_img_desc">턴어라운드 로고</string>
 </resources>
