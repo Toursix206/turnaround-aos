@@ -1,3 +1,5 @@
 <resources>
+    <!-- Util -->
     <string name="app_name">TurnAround</string>
+    <string name="binding_error">Binding not initialized to reference the view.</string>
 </resources>
