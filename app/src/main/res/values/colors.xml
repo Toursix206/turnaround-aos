@@ -20,4 +20,5 @@
     <color name="turnaround_gray_8">#6b6b71</color>
     <color name="turnaround_gray_9">#3c3c3e</color>
     <color name="turnaround_gray_10">#1c1c1e</color>
+    <color name="turnaround_gray_dot">#333333</color>
 </resources>

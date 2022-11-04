@@ -96,4 +96,7 @@ dependencies {
 
     // Lottie
     implementation "com.airbnb.android:lottie:5.0.3"
+
+    // ViewPager Dot Indicator
+    implementation "com.tbuonomo:dotsindicator:4.3"
 }
