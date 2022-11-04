@@ -1,3 +1,28 @@
 <resources>
+    <!-- Util -->
     <string name="app_name">TurnAround</string>
+    <string name="binding_error">Binding not initialized to reference the view.</string>
+
+    <!-- Intro -->
+    <string name="intro_img_desc">턴어라운드 로고</string>
+
+    <!-- Tutorial -->
+    <string name="tutorial_img_desc">튜토리얼 이미지</string>
+    <string name="tutorial_next_img_desc">다음 튜토리얼</string>
+    <string name="tutorial_1">지금 바로 내 방을 닮은\n방타버스로 입주하세요.</string>
+    <string name="tutorial_2">집에서 하는 활동을 인증하고\n방타버스를 성장시켜요!</string>
+    <string name="tutorial_3">활동에 필요한 키트를\n활동 시간 전까지 준비해 드릴게요.</string>
+
+    <!-- SignUp -->
+    <string name="sign_up_title">프로필과 닉네임을\n알려주세요.</string>
+    <string name="sign_up_profile">프로필</string>
+    <string name="sign_up_profile_1_img_desc">회원가입 프로필 사진 1</string>
+    <string name="sign_up_profile_2_img_desc">회원가입 프로필 사진 2</string>
+    <string name="sign_up_profile_3_img_desc">회원가입 프로필 사진 3</string>
+    <string name="sign_up_nickname">닉네임</string>
+    <string name="sign_up_cancel_nickname_img_desc">닉네임 입력 취소</string>
+    <string name="sign_up_nickname_hint">닉네임을 입력해주세요</string>
+    <string name="sign_up_done">가입하기</string>
+    <string name="sign_up_exist_nickname">중복된 닉네임이 존재합니다.</string>
+    <string name="sign_up_valid_nickname">인증완료</string>
 </resources>

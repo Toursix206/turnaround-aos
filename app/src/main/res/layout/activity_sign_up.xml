@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.signup.SignUpActivity">
+
+        <TextView
+            android:id="@+id/tv_sign_up_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/sign_up_title"
+            android:textAppearance="@style/h2_bold"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/sign_up_profile"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_title" />
+
+        <ImageView
+            android:id="@+id/iv_sign_up_profile_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/sign_up_profile_1_img_desc"
+            android:src="@drawable/img_profile_character_1"
+            app:layout_constraintEnd_toStartOf="@id/iv_sign_up_profile_2"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_profile" />
+
+        <ImageView
+            android:id="@+id/iv_sign_up_profile_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/sign_up_profile_2_img_desc"
+            android:src="@drawable/img_profile_character_2"
+            app:layout_constraintEnd_toStartOf="@id/iv_sign_up_profile_3"
+            app:layout_constraintStart_toEndOf="@id/iv_sign_up_profile_1"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_profile" />
+
+        <ImageView
+            android:id="@+id/iv_sign_up_profile_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="26dp"
+            android:contentDescription="@string/sign_up_profile_3_img_desc"
+            android:src="@drawable/img_profile_character_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_sign_up_profile_2"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_profile" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/sign_up_nickname"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_sign_up_profile_1" />
+
+        <View
+            android:id="@+id/view_sign_up_nickname"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_gray1_rect_fill_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sign_up_nickname" />
+
+        <Button
+            android:id="@+id/btn_sign_up_nickname_check_duplicate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/turnaround_gray_9"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp"
+            android:stateListAnimator="@null"
+            android:text="중복확인"
+            android:textAppearance="@style/body2_regular"
+            android:textColor="@color/turnaround_white"
+            app:cornerRadius="33dp"
+            app:layout_constraintBottom_toBottomOf="@id/view_sign_up_nickname"
+            app:layout_constraintEnd_toEndOf="@id/view_sign_up_nickname"
+            app:layout_constraintTop_toTopOf="@id/view_sign_up_nickname" />
+
+        <ImageButton
+            android:id="@+id/btn_sign_up_nickname_x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+            android:contentDescription="@string/sign_up_cancel_nickname_img_desc"
+            android:src="@drawable/ic_sign_up_x"
+            app:layout_constraintBottom_toBottomOf="@id/view_sign_up_nickname"
+            app:layout_constraintEnd_toStartOf="@id/btn_sign_up_nickname_check_duplicate"
+            app:layout_constraintTop_toTopOf="@id/view_sign_up_nickname" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@null"
+            android:hint="@string/sign_up_nickname_hint"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_10"
+            android:textColorHint="@color/turnaround_gray_7"
+            app:layout_constraintBottom_toBottomOf="@id/view_sign_up_nickname"
+            app:layout_constraintEnd_toStartOf="@id/btn_sign_up_nickname_x"
+            app:layout_constraintStart_toStartOf="@id/view_sign_up_nickname"
+            app:layout_constraintTop_toTopOf="@id/view_sign_up_nickname" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_exist_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/sign_up_exist_nickname"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_red"
+            app:layout_constraintEnd_toEndOf="@id/view_sign_up_nickname"
+            app:layout_constraintStart_toStartOf="@id/view_sign_up_nickname"
+            app:layout_constraintTop_toBottomOf="@id/view_sign_up_nickname" />
+
+        <TextView
+            android:id="@+id/tv_sign_up_valid_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/sign_up_valid_nickname"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_blue"
+            app:layout_constraintEnd_toEndOf="@id/view_sign_up_nickname"
+            app:layout_constraintStart_toStartOf="@id/view_sign_up_nickname"
+            app:layout_constraintTop_toBottomOf="@id/view_sign_up_nickname" />
+
+        <Button
+            android:id="@+id/btn_sign_up_done"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:backgroundTint="@color/turnaround_gray_10"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingVertical="16dp"
+            android:stateListAnimator="@null"
+            android:text="@string/sign_up_done"
+            android:textAppearance="@style/body2_regular"
+            android:textColor="@color/turnaround_white"
+            app:cornerRadius="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

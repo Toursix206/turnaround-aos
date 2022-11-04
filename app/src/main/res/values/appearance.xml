@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="h1_bold">
+        <item name="android:fontFamily">@font/pretendard_family</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">22dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+    </style>
+
+    <style name="h1_semi_bold">
+        <item name="android:fontFamily">@font/pretendard_semi_bold_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">22dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+    </style>
+
+    <style name="h2_bold">
+        <item name="android:fontFamily">@font/pretendard_family</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:lineSpacingExtra">10dp</item>
+    </style>
+
+    <style name="h2_semi_bold">
+        <item name="android:fontFamily">@font/pretendard_semi_bold_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:lineSpacingExtra">10dp</item>
+    </style>
+
+    <style name="sub_headline_bold">
+        <item name="android:fontFamily">@font/pretendard_family</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+    </style>
+
+    <style name="sub_headline_semi_bold">
+        <item name="android:fontFamily">@font/pretendard_semi_bold_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+    </style>
+
+    <style name="body1_semi_bold">
+        <item name="android:fontFamily">@font/pretendard_semi_bold_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+    </style>
+
+    <style name="body1_regular">
+        <item name="android:fontFamily">@font/pretendard_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+    </style>
+
+    <style name="body2_semi_bold">
+        <item name="android:fontFamily">@font/pretendard_semi_bold_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+    </style>
+
+    <style name="body2_regular">
+        <item name="android:fontFamily">@font/pretendard_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+    </style>
+
+    <style name="caption_semi_bold">
+        <item name="android:fontFamily">@font/pretendard_semi_bold_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="caption_regular">
+        <item name="android:fontFamily">@font/pretendard_family</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+</resources>
