@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="turnaround_point">#905cff</color>
+    <color name="turnaround_black">#000000</color>
+    <color name="turnaround_white">#FFFFFF</color>
+    <color name="turnaround_gray_1">#f8f8fa</color>
+    <color name="turnaround_gray_2">#f2f2f7</color>
+    <color name="turnaround_gray_3">#e5e5ea</color>
+    <color name="turnaround_gray_4">#d1d1d6</color>
+    <color name="turnaround_gray_5">#c7c7cc</color>
+    <color name="turnaround_gray_6">#aeaeb2</color>
+    <color name="turnaround_gray_7">#aeaeb2</color>
+    <color name="turnaround_gray_8">#6b6b71</color>
+    <color name="turnaround_gray_9">#3c3c3e</color>
+    <color name="turnaround_gray_10">#1c1c1e</color>
 </resources>
