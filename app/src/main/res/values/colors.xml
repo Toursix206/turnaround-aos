@@ -10,6 +10,8 @@
     <color name="turnaround_point">#905cff</color>
     <color name="turnaround_black">#000000</color>
     <color name="turnaround_white">#FFFFFF</color>
+    <color name="turnaround_red">#FF5555</color>
+    <color name="turnaround_blue">#377BFF</color>
     <color name="turnaround_gray_1">#f8f8fa</color>
     <color name="turnaround_gray_2">#f2f2f7</color>
     <color name="turnaround_gray_3">#e5e5ea</color>

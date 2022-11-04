@@ -10,12 +10,12 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
         applicationId "org.android.turnaround"
         minSdk 26
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0.0"
 
@@ -42,8 +42,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
@@ -76,7 +76,7 @@ dependencies {
 
     // ViewModel
     implementation "androidx.fragment:fragment-ktx:1.5.4"
-    implementation 'androidx.activity:activity-ktx:1.6.1'
+    implementation 'androidx.activity:activity-ktx:1.5.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
     // Coroutine
