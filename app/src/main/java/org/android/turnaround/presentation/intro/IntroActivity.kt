@@ -26,15 +26,18 @@ class IntroActivity : AppCompatActivity() {
     private fun initIsUserCollector() {
         repeatOnStarted {
             viewModel.isUser.collect { isUser ->
-                Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                    val intent = if (isUser) {
-                        Intent(this, MainActivity::class.java)
-                    } else {
-                        Intent(this, TutorialActivity::class.java)
-                    }
-                    startActivity(intent)
-                    finish()
-                }, 2000)
+                Handler(Looper.getMainLooper()).postDelayed(
+                    Runnable {
+                        val intent = if (isUser) {
+                            Intent(this, MainActivity::class.java)
+                        } else {
+                            Intent(this, TutorialActivity::class.java)
+                        }
+                        startActivity(intent)
+                        finish()
+                    },
+                    2000
+                )
             }
         }
     }

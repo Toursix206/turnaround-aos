@@ -17,6 +17,5 @@ class IntroViewModel @Inject constructor(
 
     fun checkIsUser() {
         _isUser.value = authRepository.checkIsUser()
-        //viewModelScope.launch { _isUser.emit(authRepository.checkIsUser()) }
     }
 }

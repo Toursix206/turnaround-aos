@@ -28,7 +28,6 @@ class TutorialViewModel @Inject constructor(
     val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
             Timber.e(error, "kakao 로그인 실패")
-
         } else if (token != null) {
             Timber.d("kakao 로그인 성공 ${token.accessToken}")
             authRepository.initKakaoToken(token.accessToken)
