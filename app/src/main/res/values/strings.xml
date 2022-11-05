@@ -23,7 +23,7 @@
     <string name="sign_up_profile_3_img_desc">회원가입 프로필 사진 3</string>
     <string name="sign_up_nickname">닉네임</string>
     <string name="sign_up_cancel_nickname_img_desc">닉네임 입력 취소</string>
-    <string name="sign_up_nickname_hint">닉네임을 입력해주세요</string>
+    <string name="sign_up_nickname_hint">최대 8자 이내로 입력해주세요</string>
     <string name="sign_up_done">가입하기</string>
     <string name="sign_up_exist_nickname">중복된 닉네임이 존재합니다.</string>
     <string name="sign_up_valid_nickname">인증완료</string>

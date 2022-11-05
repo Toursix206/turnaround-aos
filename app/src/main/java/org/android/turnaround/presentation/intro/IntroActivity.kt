@@ -21,6 +21,6 @@ class IntroActivity : AppCompatActivity() {
             val intent = Intent(this, TutorialActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 2000)
     }
 }
