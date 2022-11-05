@@ -15,5 +15,4 @@ object RepositoryModule {
     @Singleton
     fun providesAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository =
         authRepositoryImpl
-
 }

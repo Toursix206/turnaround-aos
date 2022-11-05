@@ -1,4 +1,4 @@
-package org.android.turnaround.data.local
+package org.android.turnaround.data.local.datasource
 
 import android.content.SharedPreferences
 import androidx.core.content.edit

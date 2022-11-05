@@ -23,6 +23,9 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             if (viewModel.isNicknameValid.value) {
                 viewModel.resetIsNicknameValid()
             }
+            if (viewModel.isNicknameDuplicate.value) {
+                viewModel.resetIsNicknameDuplicate()
+            }
         }
     }
 }

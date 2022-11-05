@@ -177,7 +177,7 @@
             android:text="@string/sign_up_exist_nickname"
             android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_red"
-            android:visibility="gone"
+            android:visibility="@{vm.isNicknameDuplicate ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_sign_up_nickname" />
