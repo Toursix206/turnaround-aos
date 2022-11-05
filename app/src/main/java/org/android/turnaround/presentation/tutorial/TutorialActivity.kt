@@ -1,5 +1,6 @@
 package org.android.turnaround.presentation.tutorial
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -7,6 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.data.remote.service.KakaoLoginService
 import org.android.turnaround.databinding.ActivityTutorialBinding
+import org.android.turnaround.presentation.signup.SignUpActivity
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.extension.repeatOnStarted
 import javax.inject.Inject
@@ -23,8 +25,9 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
         binding.vm = viewModel
         initTutorialViewPager()
         initTutorialViewPagerSelectedListener()
-        initSkipClickListener()
         initKakaoLoginClickListener()
+        initCurrentTutorialCollector()
+        initIsSuccessKakaoLogin()
     }
 
     private fun initTutorialViewPager() {
@@ -42,7 +45,13 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
         })
     }
 
-    private fun initSkipClickListener() {
+    private fun initKakaoLoginClickListener() {
+        binding.btnTutorialKakaoLogin.setOnClickListener {
+            kakaoLoginService.startKakaoLogin(viewModel.kakaoLoginCallback)
+        }
+    }
+
+    private fun initCurrentTutorialCollector() {
         repeatOnStarted {
             viewModel.currentTutorial.collect { currentTutorial ->
                 binding.vpTutorial.currentItem = currentTutorial
@@ -50,9 +59,14 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
         }
     }
 
-    private fun initKakaoLoginClickListener() {
-        binding.btnTutorialKakaoLogin.setOnClickListener {
-            kakaoLoginService.startKakaoLogin(viewModel.kakaoLoginCallback)
+    private fun initIsSuccessKakaoLogin() {
+        repeatOnStarted {
+            viewModel.isSuccessKakaoLogin.collect { isSuccess ->
+                if (isSuccess) {
+                    startActivity(Intent(this, SignUpActivity::class.java))
+                    finish()
+                }
+            }
         }
     }
 
