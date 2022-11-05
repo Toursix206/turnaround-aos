@@ -7,7 +7,7 @@
 
         <variable
             name="tutorial"
-            type="org.android.turnaround.presentation.tutorial.Tutorial" />
+            type="org.android.turnaround.domain.entity.Tutorial" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

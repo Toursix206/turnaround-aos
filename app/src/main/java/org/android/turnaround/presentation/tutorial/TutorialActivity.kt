@@ -8,7 +8,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.data.remote.service.KakaoLoginService
 import org.android.turnaround.databinding.ActivityTutorialBinding
+import org.android.turnaround.domain.entity.Tutorial
 import org.android.turnaround.presentation.signup.SignUpActivity
+import org.android.turnaround.presentation.tutorial.apdater.TutorialAdapter
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.extension.repeatOnStarted
 import javax.inject.Inject

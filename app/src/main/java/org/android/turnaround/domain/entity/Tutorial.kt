@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.tutorial
+package org.android.turnaround.domain.entity
 
 data class Tutorial(
     val id: Int,

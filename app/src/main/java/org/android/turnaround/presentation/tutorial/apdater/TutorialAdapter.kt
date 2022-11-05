@@ -1,10 +1,11 @@
-package org.android.turnaround.presentation.tutorial
+package org.android.turnaround.presentation.tutorial.apdater
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.android.turnaround.databinding.ItemTutorialBinding
+import org.android.turnaround.domain.entity.Tutorial
 import org.android.turnaround.util.ItemDiffCallback
 
 class TutorialAdapter : ListAdapter<Tutorial, TutorialAdapter.TutorialViewHolder>(tutorialDiffUtil) {
