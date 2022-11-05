@@ -73,7 +73,10 @@ class SignUpViewModel @Inject constructor(
     fun postSignUp() {
         viewModelScope.launch {
             authRepository.postSignUp(nickname = nickname.value, profileType = selectedProfile.value.name)
-                .onSuccess { _isSuccessSignUp.emit(true) }
+                .onSuccess { response ->
+                    authRepository.initTurnAroundToken(response.token)
+                    _isSuccessSignUp.emit(true)
+                }
                 .onFailure {
                     Timber.d(it.message)
                 }
