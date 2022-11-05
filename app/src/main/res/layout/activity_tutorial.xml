@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.tutorial.TutorialViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +24,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="16dp"
             android:drawablePadding="6dp"
+            android:onClick="@{()->vm.initCurrentTutorial(2)}"
             android:paddingVertical="10dp"
             android:text="@string/tutorial_skip"
             android:textAppearance="@style/body1_semi_bold"
@@ -56,11 +62,13 @@
             app:selectedDotColor="@color/turnaround_gray_dot" />
 
         <ImageButton
+            android:id="@+id/btn_tutorial_kakao_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:contentDescription="@string/tutorial_next_img_desc"
+            android:contentDescription="@string/tutorial_kakao_login"
             android:src="@drawable/ic_kakao_login"
+            android:visibility="@{vm.currentTutorial == 2 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,11 +76,14 @@
             app:layout_constraintVertical_bias="0.45" />
 
         <ImageButton
+            android:id="@+id/btn_tutorial_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/tutorial_next_img_desc"
+            android:onClick="@{()->vm.nextCurrentTutorial()}"
             android:src="@drawable/ic_tutorial_arrow"
+            android:visibility="@{vm.currentTutorial != 2 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
