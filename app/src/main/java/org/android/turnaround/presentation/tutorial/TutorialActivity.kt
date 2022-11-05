@@ -10,11 +10,12 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initTutorialAdapter()
+        initTutorialViewPager()
     }
 
-    private fun initTutorialAdapter() {
+    private fun initTutorialViewPager() {
         binding.vpTutorial.adapter = tutorialAdapter
+        binding.dotsTutorial.attachTo(binding.vpTutorial)
         tutorialAdapter.submitList(tutorialItems)
     }
 
