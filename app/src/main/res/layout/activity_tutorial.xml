@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.tutorial.TutorialViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,10 +17,27 @@
         android:layout_height="match_parent"
         tools:context=".presentation.tutorial.TutorialActivity">
 
+        <TextView
+            android:id="@+id/tv_tutorial_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="6dp"
+            android:onClick="@{()->vm.initCurrentTutorial(2)}"
+            android:paddingVertical="10dp"
+            android:text="@string/tutorial_skip"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_point"
+            app:drawableEndCompat="@drawable/ic_tutorial_skip_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_tutorial"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.53"
@@ -40,11 +62,13 @@
             app:selectedDotColor="@color/turnaround_gray_dot" />
 
         <ImageButton
+            android:id="@+id/btn_tutorial_kakao_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:contentDescription="@string/tutorial_next_img_desc"
+            android:contentDescription="@string/tutorial_kakao_login_img_desc"
             android:src="@drawable/ic_kakao_login"
+            android:visibility="@{vm.currentTutorial == 2 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,11 +76,14 @@
             app:layout_constraintVertical_bias="0.45" />
 
         <ImageButton
+            android:id="@+id/btn_tutorial_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/tutorial_next_img_desc"
+            android:onClick="@{()->vm.nextCurrentTutorial()}"
             android:src="@drawable/ic_tutorial_arrow"
+            android:visibility="@{vm.currentTutorial != 2 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
