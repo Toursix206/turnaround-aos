@@ -7,6 +7,7 @@
     <string name="intro_img_desc">턴어라운드 로고</string>
 
     <!-- Tutorial -->
+    <string name="tutorial_skip">SKIP</string>
     <string name="tutorial_img_desc">튜토리얼 이미지</string>
     <string name="tutorial_next_img_desc">다음 튜토리얼</string>
     <string name="tutorial_1">지금 바로 내 방을 닮은\n방타버스로 입주하세요.</string>

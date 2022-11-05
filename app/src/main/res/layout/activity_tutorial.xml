@@ -12,6 +12,21 @@
         android:layout_height="match_parent"
         tools:context=".presentation.tutorial.TutorialActivity">
 
+        <TextView
+            android:id="@+id/tv_tutorial_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="6dp"
+            android:paddingVertical="10dp"
+            android:text="@string/tutorial_skip"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_point"
+            app:drawableEndCompat="@drawable/ic_tutorial_skip_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_tutorial"
             android:layout_width="match_parent"
