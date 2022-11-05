@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import org.android.turnaround.R
 import org.android.turnaround.presentation.tutorial.TutorialActivity
 
-
 class IntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

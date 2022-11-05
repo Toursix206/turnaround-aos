@@ -3,12 +3,18 @@ package org.android.turnaround.presentation.tutorial
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
+import org.android.turnaround.data.remote.service.KakaoLoginService
 import org.android.turnaround.databinding.ActivityTutorialBinding
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.extension.repeatOnStarted
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activity_tutorial) {
+    @Inject
+    lateinit var kakaoLoginService: KakaoLoginService
     private val viewModel by viewModels<TutorialViewModel>()
     private val tutorialAdapter = TutorialAdapter()
 
@@ -18,6 +24,7 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
         initTutorialViewPager()
         initTutorialViewPagerSelectedListener()
         initSkipClickListener()
+        initKakaoLoginClickListener()
     }
 
     private fun initTutorialViewPager() {
@@ -40,6 +47,12 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
             viewModel.currentTutorial.collect { currentTutorial ->
                 binding.vpTutorial.currentItem = currentTutorial
             }
+        }
+    }
+
+    private fun initKakaoLoginClickListener() {
+        binding.btnTutorialKakaoLogin.setOnClickListener {
+            kakaoLoginService.startKakaoLogin(viewModel.kakaoLoginCallback)
         }
     }
 
