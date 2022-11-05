@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="org.android.turnaround.domain.entity.ProfileType" />
+
         <variable
             name="vm"
             type="org.android.turnaround.presentation.signup.SignUpViewModel" />
@@ -51,8 +53,8 @@
             android:layout_marginStart="26dp"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/sign_up_profile_1_img_desc"
-            android:onClick="@{()->vm.initSelectedProfile(0)}"
-            android:src="@{vm.selectedProfile == 0 ? @drawable/img_profile_character_1_selected : @drawable/img_profile_character_1}"
+            android:onClick="@{()->vm.initSelectedProfile(ProfileType.ONE)}"
+            android:src="@{vm.selectedProfile == ProfileType.ONE ? @drawable/img_profile_character_1_selected : @drawable/img_profile_character_1}"
             app:layout_constraintEnd_toStartOf="@id/iv_sign_up_profile_2"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +68,8 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/sign_up_profile_2_img_desc"
-            android:onClick="@{()->vm.initSelectedProfile(1)}"
-            android:src="@{vm.selectedProfile == 1 ? @drawable/img_profile_character_2_selected : @drawable/img_profile_character_2}"
+            android:onClick="@{()->vm.initSelectedProfile(ProfileType.TWO)}"
+            android:src="@{vm.selectedProfile == ProfileType.TWO ? @drawable/img_profile_character_2_selected : @drawable/img_profile_character_2}"
             app:layout_constraintEnd_toStartOf="@id/iv_sign_up_profile_3"
             app:layout_constraintStart_toEndOf="@id/iv_sign_up_profile_1"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_profile"
@@ -81,8 +83,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="26dp"
             android:contentDescription="@string/sign_up_profile_3_img_desc"
-            android:onClick="@{()->vm.initSelectedProfile(2)}"
-            android:src="@{vm.selectedProfile == 2 ? @drawable/img_profile_character_3_selected : @drawable/img_profile_character_3}"
+            android:onClick="@{()->vm.initSelectedProfile(ProfileType.THREE)}"
+            android:src="@{vm.selectedProfile == ProfileType.THREE ? @drawable/img_profile_character_3_selected : @drawable/img_profile_character_3}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_sign_up_profile_2"
             app:layout_constraintTop_toBottomOf="@id/tv_sign_up_profile"
@@ -208,6 +210,7 @@
             android:insetBottom="0dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
+            android:onClick="@{()->vm.postSignUp()}"
             android:paddingVertical="16dp"
             android:stateListAnimator="@null"
             android:text="@string/sign_up_done"
