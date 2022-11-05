@@ -6,6 +6,7 @@ import androidx.core.widget.addTextChangedListener
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivitySignUpBinding
+import org.android.turnaround.util.KeyBoardUtil
 import org.android.turnaround.util.binding.BindingActivity
 
 @AndroidEntryPoint
@@ -15,7 +16,14 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
+        initEditTextClearFocus()
         initNicknameChangeListener()
+    }
+
+    private fun initEditTextClearFocus() {
+        binding.layoutSignUp.setOnClickListener {
+            KeyBoardUtil.hide(this)
+        }
     }
 
     private fun initNicknameChangeListener() {
