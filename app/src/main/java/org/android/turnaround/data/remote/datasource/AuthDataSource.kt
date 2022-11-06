@@ -1,7 +1,10 @@
 package org.android.turnaround.data.remote.datasource
 
+import org.android.turnaround.data.remote.entity.request.LoginRequest
 import org.android.turnaround.data.remote.entity.request.NicknameValidRequest
 import org.android.turnaround.data.remote.entity.request.SignUpRequest
+import org.android.turnaround.data.remote.entity.response.BaseResponse
+import org.android.turnaround.data.remote.entity.response.LoginResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
 import org.android.turnaround.data.remote.service.AuthService
 import javax.inject.Inject
@@ -17,6 +20,15 @@ class AuthDataSource @Inject constructor(
             SignUpRequest(
                 nickname = nickname,
                 profileType = profileType,
+                fcmToken = fcmToken,
+                socialType = socialType,
+                token = token
+            )
+        )
+
+    suspend fun postLogin(fcmToken: String, socialType: String, token: String): BaseResponse<LoginResponse> =
+        authService.postLogin(
+            LoginRequest(
                 fcmToken = fcmToken,
                 socialType = socialType,
                 token = token

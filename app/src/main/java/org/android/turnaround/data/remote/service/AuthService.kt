@@ -1,8 +1,10 @@
 package org.android.turnaround.data.remote.service
 
+import org.android.turnaround.data.remote.entity.request.LoginRequest
 import org.android.turnaround.data.remote.entity.request.NicknameValidRequest
 import org.android.turnaround.data.remote.entity.request.SignUpRequest
 import org.android.turnaround.data.remote.entity.response.BaseResponse
+import org.android.turnaround.data.remote.entity.response.LoginResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
 import org.android.turnaround.data.remote.entity.response.SignUpResponse
 import retrofit2.http.Body
@@ -18,4 +20,9 @@ interface AuthService {
     suspend fun postSignUp(
         @Body body: SignUpRequest
     ): BaseResponse<SignUpResponse>
+
+    @POST("/v1/auth/login")
+    suspend fun postLogin(
+        @Body body: LoginRequest
+    ): BaseResponse<LoginResponse>
 }

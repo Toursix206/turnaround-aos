@@ -9,10 +9,15 @@ import org.android.turnaround.R
 import org.android.turnaround.data.remote.service.KakaoLoginService
 import org.android.turnaround.databinding.ActivityTutorialBinding
 import org.android.turnaround.domain.entity.Tutorial
+import org.android.turnaround.presentation.main.MainActivity
 import org.android.turnaround.presentation.signup.SignUpActivity
+import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.DUPLICATE_LOGIN
+import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.NOT_USER
+import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.NOT_VALID_SOCIAL_TOKEN
 import org.android.turnaround.presentation.tutorial.apdater.TutorialAdapter
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.extension.repeatOnStarted
+import org.android.turnaround.util.showToast
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -29,7 +34,8 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
         initTutorialViewPagerSelectedListener()
         initKakaoLoginClickListener()
         initCurrentTutorialCollector()
-        initIsSuccessKakaoLogin()
+        initIsSuccessKakaoLoginCollector()
+        initSuccessLoginCollector()
     }
 
     private fun initTutorialViewPager() {
@@ -61,12 +67,35 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
         }
     }
 
-    private fun initIsSuccessKakaoLogin() {
+    private fun initIsSuccessKakaoLoginCollector() {
         repeatOnStarted {
             viewModel.isSuccessKakaoLogin.collect { isSuccess ->
                 if (isSuccess) {
-                    startActivity(Intent(this, SignUpActivity::class.java))
+                    viewModel.postLogin()
+                }
+            }
+        }
+    }
+
+    private fun initSuccessLoginCollector() {
+        repeatOnStarted {
+            viewModel.isSuccessLogin.collect { isSuccess ->
+                if (isSuccess) {
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
+                } else {
+                    when (viewModel.failLoginStatusCode) {
+                        NOT_VALID_SOCIAL_TOKEN -> {
+                            showToast(getString(R.string.not_valid_social_token_error))
+                        }
+                        NOT_USER -> {
+                            startActivity(Intent(this, SignUpActivity::class.java))
+                            finish()
+                        }
+                        DUPLICATE_LOGIN -> {
+                            // TODO 강제로그아웃 팝업 띄우는 로직 실행
+                        }
+                    }
                 }
             }
         }

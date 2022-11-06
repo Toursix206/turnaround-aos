@@ -2,6 +2,7 @@
     <!-- Util -->
     <string name="app_name">TurnAround</string>
     <string name="binding_error">Binding not initialized to reference the view.</string>
+    <string name="null_point_exception">NullPointException occurs..</string>
 
     <!-- Intro -->
     <string name="intro_img_desc">턴어라운드 로고</string>
@@ -14,6 +15,7 @@
     <string name="tutorial_1">지금 바로 내 방을 닮은\n방타버스로 입주하세요.</string>
     <string name="tutorial_2">집에서 하는 활동을 인증하고\n방타버스를 성장시켜요!</string>
     <string name="tutorial_3">활동에 필요한 키트를\n활동 시간 전까지 준비해 드릴게요.</string>
+    <string name="not_valid_social_token_error">소셜로그인에 실패했습니다.</string>
 
     <!-- SignUp -->
     <string name="sign_up_title">프로필과 닉네임을\n알려주세요.</string>
