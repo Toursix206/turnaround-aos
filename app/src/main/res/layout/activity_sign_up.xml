@@ -206,6 +206,8 @@
             android:layout_marginHorizontal="22dp"
             android:layout_marginBottom="12dp"
             android:backgroundTint="@{vm.isNicknameValid ? @color/turnaround_gray_10 : @color/turnaround_gray_4}"
+            android:clickable="@{vm.isNicknameValid ? true : false}"
+            android:enabled="@{vm.isNicknameValid ? true : false}"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:minWidth="0dp"
