@@ -1,4 +1,4 @@
-package org.android.turnaround.util
+package org.android.turnaround
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,7 +8,6 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import org.android.turnaround.R
 import org.android.turnaround.presentation.intro.IntroActivity
 import timber.log.Timber
 

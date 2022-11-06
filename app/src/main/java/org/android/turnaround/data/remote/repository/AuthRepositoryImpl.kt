@@ -17,10 +17,12 @@ class AuthRepositoryImpl @Inject constructor(
         localAuthPrefDataSource.accessToken.isNotBlank()
 
     override fun initFcmToken(isInitFcmToken: (Boolean) -> Unit) {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            localAuthPrefDataSource.fcmToken = task.result
-            isInitFcmToken(true)
-        })
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(
+            OnCompleteListener { task ->
+                localAuthPrefDataSource.fcmToken = task.result
+                isInitFcmToken(true)
+            }
+        )
     }
 
     override fun initKakaoToken(kakaoToken: String, isInitKakaoToken: (Boolean) -> Unit) {
