@@ -122,4 +122,9 @@ dependencies {
 
     // ViewPager Dot Indicator
     implementation "com.tbuonomo:dotsindicator:4.3"
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 }
