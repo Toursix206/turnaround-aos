@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.repository.AuthRepository
+import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -24,6 +25,12 @@ class TutorialViewModel @Inject constructor(
 
     private val _isSuccessKakaoLogin = MutableSharedFlow<Boolean>()
     val isSuccessKakaoLogin: SharedFlow<Boolean> = _isSuccessKakaoLogin.asSharedFlow()
+
+    private val _isSuccessLogin = MutableSharedFlow<Boolean>()
+    val isSuccessLogin: SharedFlow<Boolean> = _isSuccessLogin.asSharedFlow()
+
+    var failLoginStatusCode: Int = -1
+        private set
 
     val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
@@ -41,5 +48,29 @@ class TutorialViewModel @Inject constructor(
 
     fun nextCurrentTutorial() {
         if (currentTutorial.value < 2) _currentTutorial.value++
+    }
+
+    fun postLogin() {
+        viewModelScope.launch {
+            authRepository.postLogin()
+                .onSuccess { _isSuccessLogin.emit(true) }
+                .onFailure { throwable ->
+                    Timber.d(throwable.message)
+                    if (throwable is HttpException) {
+                        when (throwable.code()) {
+                            NOT_VALID_SOCIAL_TOKEN -> failLoginStatusCode = NOT_VALID_SOCIAL_TOKEN
+                            NOT_USER -> failLoginStatusCode = NOT_USER
+                            DUPLICATE_LOGIN -> failLoginStatusCode = DUPLICATE_LOGIN
+                        }
+                    }
+                    _isSuccessLogin.emit(false)
+                }
+        }
+    }
+
+    companion object {
+        const val NOT_VALID_SOCIAL_TOKEN = 401
+        const val NOT_USER = 404
+        const val DUPLICATE_LOGIN = 409
     }
 }

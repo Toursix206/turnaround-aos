@@ -60,12 +60,12 @@ class SignUpViewModel @Inject constructor(
                     Timber.d(it.toString())
                 }
                 .onFailure { throwable ->
+                    Timber.d(throwable.message)
                     if (throwable is HttpException) {
                         when (throwable.code()) {
                             DUPLICATE_NICKNAME -> _isNicknameDuplicate.value = true
                         }
                     }
-                    Timber.d(throwable.message)
                 }
         }
     }

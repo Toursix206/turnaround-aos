@@ -2,6 +2,7 @@ package org.android.turnaround.data.remote.repository
 
 import org.android.turnaround.data.local.datasource.LocalAuthPrefDataSource
 import org.android.turnaround.data.remote.datasource.AuthDataSource
+import org.android.turnaround.domain.entity.Login
 import org.android.turnaround.domain.entity.SignUp
 import org.android.turnaround.domain.entity.Token
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class AuthRepositoryImpl @Inject constructor(
     override fun initKakaoToken(kakaoToken: String) {
         localAuthPrefDataSource.socialType = SOCIAL_TYPE_KAKAO
         localAuthPrefDataSource.kakaoToken = kakaoToken
-        // TODO 추후 fcmToken 불러와야함.
+        // TODO 추후 fcmToken 불러온 후 따로 저장하는 로직 필요
         localAuthPrefDataSource.fcmToken = "dummyFCMToken"
     }
 
@@ -43,6 +44,17 @@ class AuthRepositoryImpl @Inject constructor(
             )
         }.map { response ->
             response.data.toSignUp()
+        }
+
+    override suspend fun postLogin(): Result<Login> =
+        kotlin.runCatching {
+            authDataSource.postLogin(
+                fcmToken = localAuthPrefDataSource.fcmToken,
+                socialType = localAuthPrefDataSource.socialType,
+                token = localAuthPrefDataSource.kakaoToken
+            )
+        }.map { response ->
+            response.data.toLogin()
         }
 
     companion object {
