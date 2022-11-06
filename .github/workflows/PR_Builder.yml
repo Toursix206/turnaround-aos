@@ -28,6 +28,14 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Create Google-Services.json
+      env:
+          GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
+      run: |
+          touch ./app/google-services.json
+          echo $GOOGLE_SERVICES >> ./app/google-services.json
+          cat ./app/google-services.json
+
     - name: Create Local Properties
       run: touch local.properties
 
