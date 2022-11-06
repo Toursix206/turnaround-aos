@@ -1,5 +1,7 @@
 package org.android.turnaround.data.remote.repository
 
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import org.android.turnaround.data.local.datasource.LocalAuthPrefDataSource
 import org.android.turnaround.data.remote.datasource.AuthDataSource
 import org.android.turnaround.domain.entity.Login
@@ -14,11 +16,17 @@ class AuthRepositoryImpl @Inject constructor(
     override fun checkIsUser(): Boolean =
         localAuthPrefDataSource.accessToken.isNotBlank()
 
-    override fun initKakaoToken(kakaoToken: String) {
+    override fun initFcmToken(isInitFcmToken: (Boolean) -> Unit) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            localAuthPrefDataSource.fcmToken = task.result
+            isInitFcmToken(true)
+        })
+    }
+
+    override fun initKakaoToken(kakaoToken: String, isInitKakaoToken: (Boolean) -> Unit) {
         localAuthPrefDataSource.socialType = SOCIAL_TYPE_KAKAO
         localAuthPrefDataSource.kakaoToken = kakaoToken
-        // TODO 추후 fcmToken 불러온 후 따로 저장하는 로직 필요
-        localAuthPrefDataSource.fcmToken = "dummyFCMToken"
+        isInitKakaoToken(true)
     }
 
     override fun initTurnAroundToken(token: Token) {

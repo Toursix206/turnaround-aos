@@ -34,7 +34,7 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
         initTutorialViewPagerSelectedListener()
         initKakaoLoginClickListener()
         initCurrentTutorialCollector()
-        initIsSuccessKakaoLoginCollector()
+        initIsReadyToLoginCollector()
         initSuccessLoginCollector()
     }
 
@@ -67,10 +67,10 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
         }
     }
 
-    private fun initIsSuccessKakaoLoginCollector() {
+    private fun initIsReadyToLoginCollector() {
         repeatOnStarted {
-            viewModel.isSuccessKakaoLogin.collect { isSuccess ->
-                if (isSuccess) {
+            viewModel.isReadyToLogin.collect { isReady ->
+                if (isReady) {
                     viewModel.postLogin()
                 }
             }
