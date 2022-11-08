@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -35,16 +36,19 @@ class TurnAroundMessagingService : FirebaseMessagingService() {
                 .setContentTitle(remoteMessage.data["title"].toString())
                 .setContentText(remoteMessage.data["body"].toString())
                 .setContentIntent(pendingIntent)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setAutoCancel(true)
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val channelId = getString(R.string.app_name)
-        val channelName = getString(R.string.app_name)
-        val channelImportance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(channelId, channelName, channelImportance)
-        notificationManager.createNotificationChannel(channel)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = getString(R.string.app_name)
+            val channelName = getString(R.string.app_name)
+            val channelImportance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(channelId, channelName, channelImportance)
+            notificationManager.createNotificationChannel(channel)
+        }
 
         notificationManager.notify(alarmId, builder.build())
     }
