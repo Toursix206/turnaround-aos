@@ -58,7 +58,10 @@ class TutorialViewModel @Inject constructor(
     fun postLogin() {
         viewModelScope.launch {
             authRepository.postLogin()
-                .onSuccess { _isSuccessLogin.emit(true) }
+                .onSuccess { response ->
+                    authRepository.initTurnAroundToken(response.token)
+                    _isSuccessLogin.emit(true)
+                }
                 .onFailure { throwable ->
                     Timber.d(throwable.message)
                     if (throwable is HttpException) {
