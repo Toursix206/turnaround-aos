@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.repository.AuthRepository
 import retrofit2.HttpException
@@ -23,8 +24,12 @@ class TutorialViewModel @Inject constructor(
     private val _currentTutorial = MutableStateFlow(0)
     val currentTutorial: StateFlow<Int> = _currentTutorial.asStateFlow()
 
-    private val _isSuccessKakaoLogin = MutableSharedFlow<Boolean>()
-    val isSuccessKakaoLogin: SharedFlow<Boolean> = _isSuccessKakaoLogin.asSharedFlow()
+    private val isSuccessKakaoLogin = MutableStateFlow(false)
+
+    private val isSuccessInitFcmToken = MutableStateFlow(false)
+
+    val isReadyToLogin =
+        combine(isSuccessKakaoLogin, isSuccessInitFcmToken) { kakaoLogin, fcmToken -> kakaoLogin && fcmToken }
 
     private val _isSuccessLogin = MutableSharedFlow<Boolean>()
     val isSuccessLogin: SharedFlow<Boolean> = _isSuccessLogin.asSharedFlow()
@@ -37,8 +42,8 @@ class TutorialViewModel @Inject constructor(
             Timber.e(error, "kakao 로그인 실패")
         } else if (token != null) {
             Timber.d("kakao 로그인 성공 ${token.accessToken}")
-            authRepository.initKakaoToken(token.accessToken)
-            viewModelScope.launch { _isSuccessKakaoLogin.emit(true) }
+            authRepository.initKakaoToken(token.accessToken) { isSuccessKakaoLogin.value = true }
+            authRepository.initFcmToken { isInit -> isSuccessInitFcmToken.value = isInit }
         }
     }
 
@@ -53,7 +58,10 @@ class TutorialViewModel @Inject constructor(
     fun postLogin() {
         viewModelScope.launch {
             authRepository.postLogin()
-                .onSuccess { _isSuccessLogin.emit(true) }
+                .onSuccess { response ->
+                    authRepository.initTurnAroundToken(response.token)
+                    _isSuccessLogin.emit(true)
+                }
                 .onFailure { throwable ->
                     Timber.d(throwable.message)
                     if (throwable is HttpException) {
