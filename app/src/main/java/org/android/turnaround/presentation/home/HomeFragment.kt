@@ -15,11 +15,14 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         super.onViewCreated(view, savedInstanceState)
 
         initHomeActivityAdapter()
+        showTodoStartBottomSheet()
     }
 
     private fun initHomeActivityAdapter() {
         with(binding.vpHomeTodo) {
-            adapter = TodoAdapter().apply {
+            adapter = TodoAdapter(
+                showBottomSheet = { _ -> showTodoStartBottomSheet() }
+            ).apply {
                 val testList = listOf<Todo>(
                     NoTodo("민영"),
                     TodoWhite("침대", "졸리다", "10시까지", R.drawable.ic_home_broom),
@@ -33,6 +36,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 setShowSideItems(pageMargin, pagerOffset)
             }
         }
+    }
+
+    private fun showTodoStartBottomSheet() {
+        TodoStartBottomSheet().show(parentFragmentManager, this.javaClass.name)
     }
 
     private fun ViewPager2.setShowSideItems(pageMarginPx: Float, offsetPx: Float) {

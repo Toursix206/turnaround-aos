@@ -9,7 +9,9 @@ import org.android.turnaround.databinding.ItemTodoPurpleBinding
 import org.android.turnaround.databinding.ItemTodoWhiteBinding
 import org.android.turnaround.domain.entity.*
 
-class TodoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TodoAdapter(
+    private val showBottomSheet: (Unit) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val todoList = mutableListOf<Todo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -60,28 +62,29 @@ class TodoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyItemRangeInserted(items.size, items.size)
     }
 
-    class NoTodoViewHolder(private val binding: ItemNoTodoBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class NoTodoViewHolder(private val binding: ItemNoTodoBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: NoTodo) {
             binding.todo = todo
             binding.executePendingBindings()
         }
     }
 
-    class TodoWhiteViewHolder(private val binding: ItemTodoWhiteBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodoWhiteViewHolder(private val binding: ItemTodoWhiteBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: TodoWhite) {
             binding.todo = todo
             binding.executePendingBindings()
         }
     }
 
-    class TodoBlackViewHolder(private val binding: ItemTodoBlackBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodoBlackViewHolder(private val binding: ItemTodoBlackBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: TodoBlack) {
             binding.todo = todo
+            binding.viewTodoBlack.setOnClickListener { showBottomSheet(Unit) }
             binding.executePendingBindings()
         }
     }
 
-    class TodoPurpleViewHolder(private val binding: ItemTodoPurpleBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodoPurpleViewHolder(private val binding: ItemTodoPurpleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: TodoPurple) {
             binding.todo = todo
             binding.executePendingBindings()
