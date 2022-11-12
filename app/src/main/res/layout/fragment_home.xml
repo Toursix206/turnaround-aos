@@ -165,10 +165,17 @@
             app:layout_constraintTop_toBottomOf="@id/tv_home_room_indicator_1" />
 
         <TextView
+            android:id="@+id/tv_home_show_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="-30dp"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="30dp"
             android:text="@string/home_view_more"
+            android:textAlignment="center"
             android:textAppearance="@style/body2_regular"
+            app:layout_constraintBottom_toBottomOf="@id/iv_home_arrow"
             app:layout_constraintEnd_toEndOf="@id/iv_home_arrow"
             app:layout_constraintEnd_toStartOf="@id/iv_home_arrow"
             app:layout_constraintTop_toTopOf="@id/iv_home_arrow" />

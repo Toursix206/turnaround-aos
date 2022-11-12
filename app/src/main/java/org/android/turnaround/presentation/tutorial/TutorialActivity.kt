@@ -30,6 +30,7 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
+        startActivity(Intent(this, MainActivity::class.java))
         initTutorialViewPager()
         initTutorialViewPagerSelectedListener()
         initKakaoLoginClickListener()

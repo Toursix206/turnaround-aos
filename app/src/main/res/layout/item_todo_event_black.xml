@@ -12,14 +12,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
+        android:layout_marginVertical="5dp">
 
         <View
             android:id="@+id/view_todo_black"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/shape_gray10_rect_fill_16"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

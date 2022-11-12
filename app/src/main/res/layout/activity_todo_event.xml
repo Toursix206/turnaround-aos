@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="todoList"
+            type="org.android.turnaround.domain.entity.TodoList" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/turnaround_gray_1"
+        tools:context=".presentation.todoevent.TodoEventActivity">
+
+        <ImageView
+            android:id="@+id/tv_todo_event_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo_event_img_back_desc"
+            android:padding="16dp"
+            android:src="@drawable/ic_todo_event_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_todo_event_tool_bar_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:text="@string/todo_event_tool_bar_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/body1_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_todo_event_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo_event_img_alarm_desc"
+            android:paddingVertical="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="9dp"
+            android:src="@drawable/ic_todo_event_alarm"
+            app:layout_constraintEnd_toStartOf="@id/iv_todo_event_setting"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_todo_event_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo_event_img_setting_desc"
+            android:paddingVertical="16dp"
+            android:paddingStart="9dp"
+            android:paddingEnd="16dp"
+            android:src="@drawable/ic_todo_event_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_todo_event_broom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo_event_img_broom_desc"
+            android:src="@drawable/img_todo_event_broom"
+            app:layout_constraintBottom_toTopOf="@id/guideline_todo_event"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_todo_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/tv_todo_event_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/todo_event_no_todo"
+            android:textAlignment="center"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_todo_event_broom" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_todo_event_go_activity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/turnaround_gray_10"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingVertical="16dp"
+            android:stateListAnimator="@null"
+            android:text="@string/todo_event_go_activity"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_white"
+            app:cornerRadius="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_event_desc" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_event_tool_bar_title">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:id="@+id/tv_todo_event_header_success"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/todo_event_todo_success"
+                    android:textAppearance="@style/sub_headline_bold"
+                    android:visibility="@{ todoList.successTodosCnt > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginEnd="22dp"
+                    android:text="@{String.valueOf(todoList.successTodosCnt) + '개'}"
+                    android:textAppearance="@style/body2_semi_bold"
+                    android:visibility="@{ todoList.successTodosCnt > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_todo_event_header_success"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="2개" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_todo_event_success"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_todo_event_header_success"
+                    tools:listitem="@layout/item_todo_event_white" />
+
+                <TextView
+                    android:id="@+id/tv_todo_event_header_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/todo_event_todo_today"
+                    android:textAppearance="@style/sub_headline_bold"
+                    android:visibility="@{ todoList.todayTodosCnt > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_todo_event_success" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginEnd="22dp"
+                    android:text="@{String.valueOf(todoList.todayTodosCnt) + '개'}"
+                    android:textAppearance="@style/body2_semi_bold"
+                    android:visibility="@{ todoList.todayTodosCnt > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_todo_event_header_today"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="2개" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_todo_event_today"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_todo_event_header_today"
+                    tools:listitem="@layout/item_todo_event_white" />
+
+                <TextView
+                    android:id="@+id/tv_todo_event_header_this_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/todo_event_todo_this_week"
+                    android:textAppearance="@style/sub_headline_bold"
+                    android:visibility="@{ todoList.thisWeekTodosCnt > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_todo_event_today" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginEnd="22dp"
+                    android:text="@{String.valueOf(todoList.thisWeekTodosCnt) + '개'}"
+                    android:textAppearance="@style/body2_semi_bold"
+                    android:visibility="@{ todoList.thisWeekTodosCnt > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_todo_event_header_this_week"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="2개" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_todo_event_this_week"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_todo_event_header_this_week"
+                    tools:listitem="@layout/item_todo_event_white" />
+
+                <TextView
+                    android:id="@+id/tv_todo_event_header_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/todo_event_todo_next"
+                    android:textAppearance="@style/sub_headline_bold"
+                    android:visibility="@{ todoList.nextTodosCnt > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_todo_event_this_week" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginEnd="22dp"
+                    android:text="@{String.valueOf(todoList.nextTodosCnt) + '개'}"
+                    android:textAppearance="@style/body2_semi_bold"
+                    android:visibility="@{ todoList.nextTodosCnt > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_todo_event_header_next"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="2개" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_todo_event_next"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_todo_event_header_next"
+                    tools:listitem="@layout/item_todo_event_white" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

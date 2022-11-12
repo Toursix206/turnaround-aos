@@ -7,7 +7,7 @@
 
         <variable
             name="todo"
-            type="org.android.turnaround.domain.entity.TodoWhite" />
+            type="org.android.turnaround.domain.entity.Todo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/shape_gray2_rect_fill_4"
             android:paddingVertical="2dp"
-            android:text="@{todo.category}"
+            android:text="@{todo.activityCategory}"
             android:textAlignment="center"
             android:textAppearance="@style/caption_semi_bold"
             app:layout_constraintStart_toStartOf="@id/view_todo_white"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="@{todo.title}"
+            android:text="@{todo.activityName}"
             android:textAppearance="@style/body1_semi_bold"
             app:layout_constraintStart_toStartOf="@id/tv_todo_category"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_category"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="12dp"
-            android:text="@{todo.timeInfo}"
+            android:text="@{todo.leftTime}"
             android:textAppearance="@style/body2_regular"
             app:layout_constraintBottom_toBottomOf="@id/view_todo_white"
             app:layout_constraintStart_toStartOf="@id/tv_todo_title"
@@ -67,11 +67,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="15dp"
-            app:imageResource="@{todo.image}"
+            android:src="@drawable/img_todo_bedding"
             app:layout_constraintBottom_toBottomOf="@id/view_todo_white"
             app:layout_constraintEnd_toEndOf="@id/view_todo_white"
             app:layout_constraintTop_toTopOf="@id/view_todo_white"
-            tools:src="@mipmap/ic_launcher" />
+            tools:src="@drawable/img_todo_bedding" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

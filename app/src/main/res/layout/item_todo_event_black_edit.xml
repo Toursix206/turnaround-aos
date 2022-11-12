@@ -12,14 +12,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
+        android:layout_marginVertical="5dp">
 
         <View
             android:id="@+id/view_todo_black"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="158dp"
             android:background="@drawable/shape_gray10_rect_fill_16"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -52,14 +54,14 @@
             tools:text="밀린 이불 빨래" />
 
         <TextView
+            android:id="@+id/tv_todo_start_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="12dp"
-            android:text="지금 시작하세요!"
+            android:text="@{todo.leftTime}"
             android:textAppearance="@style/body2_regular"
             android:textColor="@color/turnaround_white"
-            app:layout_constraintBottom_toBottomOf="@id/view_todo_black"
             app:layout_constraintStart_toStartOf="@id/tv_todo_title"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_title"
             tools:text="8시 30 분까지" />
@@ -70,10 +72,44 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="15dp"
             app:imageResource="@{todo.categoryImage}"
-            app:layout_constraintBottom_toBottomOf="@id/view_todo_black"
             app:layout_constraintEnd_toEndOf="@id/view_todo_black"
             app:layout_constraintTop_toTopOf="@id/view_todo_black"
             tools:src="@drawable/img_todo_bedding" />
+
+        <TextView
+            android:id="@+id/tv_todo_remove"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_gray8_rect_line_4"
+            android:paddingVertical="9dp"
+            android:text="일정 삭제"
+            android:textAlignment="center"
+            android:textAppearance="@style/body2_semi_bold"
+            android:textColor="@color/turnaround_white"
+            app:layout_constraintBottom_toBottomOf="@id/view_todo_black"
+            app:layout_constraintEnd_toStartOf="@id/tv_todo_change_time"
+            app:layout_constraintStart_toStartOf="@id/tv_todo_start_now"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_now" />
+
+        <TextView
+            android:id="@+id/tv_todo_change_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_gray8_rect_line_4"
+            android:paddingVertical="9dp"
+            android:text="예약 시간 변경"
+            android:textAlignment="center"
+            android:textAppearance="@style/body2_semi_bold"
+            android:textColor="@color/turnaround_white"
+            app:layout_constraintBottom_toBottomOf="@id/view_todo_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_todo_remove"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_now" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

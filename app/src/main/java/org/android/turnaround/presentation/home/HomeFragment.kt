@@ -1,40 +1,46 @@
 package org.android.turnaround.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.viewpager2.widget.ViewPager2
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentHomeBinding
 import org.android.turnaround.domain.entity.*
 import org.android.turnaround.presentation.home.adapter.TodoAdapter
+import org.android.turnaround.presentation.todoevent.TodoEventActivity
 import org.android.turnaround.util.binding.BindingFragment
 
+@AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initHomeActivityAdapter()
-        showTodoStartBottomSheet()
+        initTvShowMoreClickListener()
     }
 
     private fun initHomeActivityAdapter() {
         with(binding.vpHomeTodo) {
             adapter = TodoAdapter(
+                nickname = "민영",
                 showBottomSheet = { _ -> showTodoStartBottomSheet() }
             ).apply {
-                val testList = listOf<Todo>(
-                    NoTodo("민영"),
-                    TodoWhite("침대", "졸리다", "10시까지", R.drawable.ic_home_broom),
-                    TodoBlack("침대", "자야죠", R.drawable.ic_main_my),
-                    TodoPurple("화장실", "청소는 실어", R.drawable.ic_home_broom)
-                )
+                val testList = listOf<Todo>()
                 submitHomeActivityList(testList)
 
                 val pageMargin = resources.getDimension(R.dimen.vp_home_page_margin)
                 val pagerOffset = resources.getDimension(R.dimen.vp_home_pager_offset)
                 setShowSideItems(pageMargin, pagerOffset)
             }
+        }
+    }
+
+    private fun initTvShowMoreClickListener() {
+        binding.tvHomeShowMore.setOnClickListener {
+            startActivity(Intent(requireActivity(), TodoEventActivity::class.java))
         }
     }
 
