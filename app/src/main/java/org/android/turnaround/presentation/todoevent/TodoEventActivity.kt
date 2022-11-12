@@ -37,11 +37,11 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
 
         binding.todoList = TodoList(
             listOf(todoWhite, todoWhite), 2,
-            listOf(todoPurple, ), 1,
+            listOf(todoPurple), 1,
             listOf(todoWhite, todoWhite), 2,
-            listOf(todoBlack, ), 1,
+            listOf(todoBlack), 1,
         )
-        initTodoSuccessAdapter(listOf(todoPurple, ))
+        initTodoSuccessAdapter(listOf(todoPurple))
         initTodoTodayAdapter(listOf(todoBlack))
         initTodoThisWeekAdapter(listOf(todoWhite, todoWhite))
         initTodoNextAdapter(listOf(todoWhite, todoWhite))
@@ -75,7 +75,7 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         binding.rvTodoEventNext.adapter = TodoEventAdapter(
             showBottomSheet = { _ -> showTodoStartBottomSheet() }
         ).apply {
-            submitTodoEventList(todoList )
+            submitTodoEventList(todoList)
         }
     }
 

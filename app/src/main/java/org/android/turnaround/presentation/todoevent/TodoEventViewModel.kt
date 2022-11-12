@@ -4,18 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.android.turnaround.data.remote.repository.AuthRepository
 import org.android.turnaround.data.remote.repository.TodoRepository
-import org.android.turnaround.domain.entity.ProfileType
-import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoList
-import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
 
