@@ -11,6 +11,8 @@ data class TodoList(
     val todayTodosCnt: Int
 )
 
+sealed class TodoEvent
+
 data class Todo(
     val activityCategory: String,
     val activityName: String,
@@ -19,4 +21,9 @@ data class Todo(
     val todoStatus: String,
     val categoryName: String,
     val categoryImage: Int
-)
+) : TodoEvent()
+
+data class TodoHeader(
+    val title: String,
+    val count: Int
+) : TodoEvent()

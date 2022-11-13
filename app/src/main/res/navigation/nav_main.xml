@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="org.android.turnaround.presentation.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_todoEventFragment"
+            app:destination="@id/todoEventFragment" />
+    </fragment>
     <fragment
         android:id="@+id/roomFragment"
         android:name="org.android.turnaround.presentation.room.RoomFragment"
@@ -25,4 +29,9 @@
         android:name="org.android.turnaround.presentation.my.MyFragment"
         android:label="MyFragment"
         tools:layout="@layout/fragment_my" />
+    <fragment
+        android:id="@+id/todoEventFragment"
+        android:name="org.android.turnaround.presentation.todoevent.TodoEventFragment"
+        android:label="TodoEventFragment"
+        tools:layout="@layout/fragment_todo_event"/>
 </navigation>

@@ -1,24 +1,25 @@
 package org.android.turnaround.presentation.todoevent
 
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.view.View
+import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
-import org.android.turnaround.databinding.ActivityTodoEventBinding
+import org.android.turnaround.databinding.FragmentTodoEventBinding
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoList
 import org.android.turnaround.presentation.home.TodoStartBottomSheet
 import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
-import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.extension.repeatOnStarted
 import timber.log.Timber
 
 @AndroidEntryPoint
-class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.activity_todo_event) {
+class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fragment_todo_event) {
     private val viewModel by viewModels<TodoEventViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initTodoListCollector()
 
@@ -35,44 +36,18 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
             1, "PURPLE", categoryName = "화장실1", R.drawable.img_todo_restroom
         )
 
-        binding.todoList = TodoList(
+        val list = TodoList(
             listOf(todoWhite, todoWhite), 2,
-            listOf(todoPurple), 1,
+            listOf(todoPurple, todoPurple, todoPurple), 3,
             listOf(todoWhite, todoWhite), 2,
             listOf(todoBlack), 1,
         )
-        initTodoSuccessAdapter(listOf(todoPurple))
-        initTodoTodayAdapter(listOf(todoBlack))
-        initTodoThisWeekAdapter(listOf(todoWhite, todoWhite))
-        initTodoNextAdapter(listOf(todoWhite, todoWhite))
+        initTodoEventAdapter(list)
     }
 
-    private fun initTodoSuccessAdapter(todoList: List<Todo>) {
-        binding.rvTodoEventSuccess.adapter = TodoEventAdapter(
-            showBottomSheet = { _ -> showTodoStartBottomSheet() }
-        ).apply {
-            submitTodoEventList(todoList)
-        }
-    }
-
-    private fun initTodoTodayAdapter(todoList: List<Todo>) {
-        binding.rvTodoEventToday.adapter = TodoEventAdapter(
-            showBottomSheet = { _ -> showTodoStartBottomSheet() }
-        ).apply {
-            submitTodoEventList(todoList)
-        }
-    }
-
-    private fun initTodoThisWeekAdapter(todoList: List<Todo>) {
-        binding.rvTodoEventThisWeek.adapter = TodoEventAdapter(
-            showBottomSheet = { _ -> showTodoStartBottomSheet() }
-        ).apply {
-            submitTodoEventList(todoList)
-        }
-    }
-
-    private fun initTodoNextAdapter(todoList: List<Todo>) {
-        binding.rvTodoEventNext.adapter = TodoEventAdapter(
+    private fun initTodoEventAdapter(todoList: TodoList) {
+        binding.rvTodoEvent.adapter = TodoEventAdapter(
+            context = requireContext(),
             showBottomSheet = { _ -> showTodoStartBottomSheet() }
         ).apply {
             submitTodoEventList(todoList)
@@ -80,7 +55,7 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
     }
 
     private fun showTodoStartBottomSheet() {
-        TodoStartBottomSheet().show(supportFragmentManager, this.javaClass.name)
+        TodoStartBottomSheet().show(parentFragmentManager, this.javaClass.name)
     }
 
     private fun initTodoListCollector() {

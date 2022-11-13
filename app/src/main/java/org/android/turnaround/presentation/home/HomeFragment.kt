@@ -1,8 +1,8 @@
 package org.android.turnaround.presentation.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.core.view.ViewCompat
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
@@ -10,7 +10,6 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentHomeBinding
 import org.android.turnaround.domain.entity.*
 import org.android.turnaround.presentation.home.adapter.TodoAdapter
-import org.android.turnaround.presentation.todoevent.TodoEventActivity
 import org.android.turnaround.util.binding.BindingFragment
 
 @AndroidEntryPoint
@@ -40,7 +39,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initTvShowMoreClickListener() {
         binding.tvHomeShowMore.setOnClickListener {
-            startActivity(Intent(requireActivity(), TodoEventActivity::class.java))
+            findNavController().navigate(R.id.action_homeFragment_to_todoEventFragment)
         }
     }
 
