@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/turnaround_gray_1"
+        tools:context=".presentation.todoevent.TodoEventFragment">
+
+        <ImageView
+            android:id="@+id/tv_todo_event_edit_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo_event_img_back_desc"
+            android:padding="16dp"
+            android:src="@drawable/ic_todo_event_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_todo_event_edit_tool_bar_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:text="@string/todo_event_edit_tool_bar_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/body1_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_todo_event_edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/turnaround_gray_1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_event_edit_tool_bar_title"
+            tools:listitem="@layout/item_todo_event_white" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
