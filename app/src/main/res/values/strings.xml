@@ -34,4 +34,19 @@
     <string name="sign_up_exist_nickname">중복된 닉네임이 존재합니다.</string>
     <string name="sign_up_valid_nickname">인증완료</string>
     <string name="sign_up_nickname_valid_check">중복확인</string>
+
+    <!-- Room -->
+    <string name="room_top_info_room_type">방 종류</string>
+    <string name="room_top_info_furniture_count">가구 수</string>
+    <string name="room_brush_img_desc">빗자루</string>
+    <string name="room_brush_count_text">개</string>
+    <string name="room_score_img_desc">방 점수</string>
+    <string name="room_score_text">점</string>
+    <string name="room_wall_img_desc">방타버스 벽</string>
+    <string name="room_desk_img_desc">방타버스 책상</string>
+    <string name="room_window_img_desc">방타버스 창문</string>
+    <string name="room_bed_img_desc">방타버스 침대</string>
+    <string name="room_brush_desk_img_desc">방타버스 책상 빗자루</string>
+    <string name="room_brush_window_img_desc">방타버스 창문 빗자루</string>
+    <string name="room_brush_bed_img_desc">방타버스 침대 빗자루</string>
 </resources>
