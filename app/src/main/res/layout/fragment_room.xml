@@ -5,12 +5,17 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.room.RoomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:background="@color/turnaround_gray_1"
+        android:background="@color/turnaround_gray_1"
         tools:context=".presentation.room.RoomFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,6 +84,7 @@
             android:id="@+id/layout_room_roomtaverse"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:onClick="@{()->vm.initAllRoomFurniture()}"
             app:layout_constraintBottom_toTopOf="@id/layout_room_brush_count"
             app:layout_constraintTop_toBottomOf="@id/layout_room_info">
 
@@ -143,6 +149,7 @@
                     android:id="@+id/view_room_window"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:onClick="@{()->vm.initShowWindowBrush()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="percent"
@@ -163,7 +170,7 @@
                     android:background="@null"
                     android:contentDescription="@string/room_brush_window_img_desc"
                     android:src="@drawable/ic_roomtaverse_brush"
-                    android:visibility="invisible"
+                    android:visibility="@{vm.showWindowBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_window"
                     app:layout_constraintEnd_toEndOf="@id/view_room_window"
                     app:layout_constraintStart_toStartOf="@id/view_room_window" />
@@ -172,6 +179,7 @@
                     android:id="@+id/view_room_bed"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:onClick="@{()->vm.initShowBedBrush()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="percent"
@@ -192,7 +200,7 @@
                     android:background="@null"
                     android:contentDescription="@string/room_brush_bed_img_desc"
                     android:src="@drawable/ic_roomtaverse_brush"
-                    android:visibility="invisible"
+                    android:visibility="@{vm.showBedBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_bed"
                     app:layout_constraintEnd_toEndOf="@id/view_room_bed"
                     app:layout_constraintStart_toStartOf="@id/view_room_bed" />
@@ -201,6 +209,7 @@
                     android:id="@+id/view_room_desk"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:onClick="@{()->vm.initShowDeskBrush()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="percent"
@@ -221,7 +230,7 @@
                     android:background="@null"
                     android:contentDescription="@string/room_brush_desk_img_desc"
                     android:src="@drawable/ic_roomtaverse_brush"
-                    android:visibility="invisible"
+                    android:visibility="@{vm.showDeskBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_desk"
                     app:layout_constraintEnd_toEndOf="@id/view_room_desk"
                     app:layout_constraintStart_toStartOf="@id/view_room_desk" />
