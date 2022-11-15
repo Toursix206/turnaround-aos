@@ -70,6 +70,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo_event_img_broom_desc"
             android:src="@drawable/img_todo_event_broom"
+            android:visibility="@{vm.isTodoExist ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/guideline_todo_event"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -89,15 +90,38 @@
             android:text="@string/todo_event_no_todo"
             android:textAlignment="center"
             android:textAppearance="@style/body1_regular"
+            android:visibility="@{vm.isTodoExist ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_todo_event_broom" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_todo_event_go_activity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/turnaround_gray_10"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingVertical="16dp"
+            android:stateListAnimator="@null"
+            android:text="@string/todo_event_go_activity"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_white"
+            android:visibility="@{vm.isTodoExist ? View.VISIBLE : View.INVISIBLE}"
+            app:cornerRadius="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_event_desc" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_todo_event"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/turnaround_gray_1"
+            android:visibility="@{vm.isTodoExist ? View.INVISIBLE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

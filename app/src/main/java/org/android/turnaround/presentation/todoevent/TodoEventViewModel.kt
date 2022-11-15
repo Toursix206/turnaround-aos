@@ -14,6 +14,8 @@ import javax.inject.Inject
 class TodoEventViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
+    private val _isTodoExist = MutableStateFlow(false)
+    val isTodoExist: StateFlow<Boolean> = _isTodoExist.asStateFlow()
 
     private val _todoList = MutableSharedFlow<TodoList>()
     val todoList: SharedFlow<TodoList> = _todoList.asSharedFlow()
@@ -27,6 +29,10 @@ class TodoEventViewModel @Inject constructor(
             todoRepository.getTodoList()
                 .onSuccess {
                     _todoList.emit(it)
+
+                    if (it.todayTodosCnt + it.thisWeekTodosCnt + it.nextTodosCnt + it.nextTodosCnt <= 0) {
+                        _isTodoExist.value = true
+                    }
                 }
                 .onFailure { throwable ->
                     Timber.d(throwable.message)
