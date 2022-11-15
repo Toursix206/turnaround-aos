@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="org.android.turnaround.domain.entity.FurnitureType" />
+
         <variable
             name="vm"
             type="org.android.turnaround.presentation.room.RoomViewModel" />
@@ -89,6 +91,15 @@
             app:layout_constraintTop_toBottomOf="@id/layout_room_info">
 
             <ImageView
+                android:id="@+id/iv_room_background_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_wall_img_desc"
+                android:src="@drawable/ic_roomtaverse_background_shadow"
+                app:layout_constraintTop_toTopOf="@id/iv_room_wall" />
+
+            <ImageView
                 android:id="@+id/iv_room_wall"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -102,6 +113,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_bed"
+                cleanScore="@{vm.bedScore}"
+                furnitureType="@{FurnitureType.BED}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -114,6 +127,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_window"
+                cleanScore="@{vm.windowScore}"
+                furnitureType="@{FurnitureType.WINDOW}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -126,6 +141,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_desk"
+                cleanScore="@{vm.deskScore}"
+                furnitureType="@{FurnitureType.DESK}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -169,6 +186,7 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_window_img_desc"
+                    android:onClick="@{()->vm.initWindowScore()}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showWindowBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_window"
@@ -199,6 +217,7 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_bed_img_desc"
+                    android:onClick="@{()->vm.initBedScore()}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showBedBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_bed"
@@ -229,6 +248,7 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_desk_img_desc"
+                    android:onClick="@{()->vm.initDeskScore()}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showDeskBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_desk"

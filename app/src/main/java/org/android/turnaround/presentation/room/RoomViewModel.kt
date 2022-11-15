@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.android.turnaround.domain.entity.CleanScore
 
 class RoomViewModel : ViewModel() {
     private val _clickedWindow = MutableSharedFlow<Boolean>()
@@ -29,10 +30,19 @@ class RoomViewModel : ViewModel() {
     private val _showBedBrush = MutableStateFlow(false)
     val showBedBrush: StateFlow<Boolean> = _showBedBrush.asStateFlow()
 
+    private val _windowScore = MutableStateFlow(CleanScore.MOST_DIRTY)
+    val windowScore: StateFlow<CleanScore> = _windowScore.asStateFlow()
+
+    private val _bedScore = MutableStateFlow(CleanScore.MOST_DIRTY)
+    val bedScore: StateFlow<CleanScore> = _bedScore.asStateFlow()
+
+    private val _deskScore = MutableStateFlow(CleanScore.MOST_DIRTY)
+    val deskScore: StateFlow<CleanScore> = _deskScore.asStateFlow()
+
     fun initAllRoomFurniture() {
         _showWindowBrush.value = false
-        _showDeskBrush.value = false
         _showBedBrush.value = false
+        _showDeskBrush.value = false
     }
 
     fun initShowWindowBrush() {
@@ -54,5 +64,24 @@ class RoomViewModel : ViewModel() {
         initAllRoomFurniture()
         _showDeskBrush.value = newShow
         viewModelScope.launch { _clickedDesk.emit(true) }
+    }
+
+    private fun getNewCleanScore(oldScore: CleanScore): CleanScore =
+        when (oldScore) {
+            CleanScore.MOST_CLEAN -> CleanScore.MOST_CLEAN
+            CleanScore.MOST_DIRTY -> CleanScore.SO_SO
+            CleanScore.SO_SO -> CleanScore.MOST_CLEAN
+        }
+
+    fun initWindowScore() {
+        _windowScore.value = getNewCleanScore(windowScore.value)
+    }
+
+    fun initBedScore() {
+        _bedScore.value = getNewCleanScore(bedScore.value)
+    }
+
+    fun initDeskScore() {
+        _deskScore.value = getNewCleanScore(deskScore.value)
     }
 }
