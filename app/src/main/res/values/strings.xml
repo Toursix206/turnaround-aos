@@ -42,4 +42,11 @@
     <string name="room_brush_count_text">개</string>
     <string name="room_score_img_desc">방 점수</string>
     <string name="room_score_text">점</string>
+    <string name="room_wall_img_desc">방타버스 벽</string>
+    <string name="room_desk_img_desc">방타버스 책상</string>
+    <string name="room_window_img_desc">방타버스 창문</string>
+    <string name="room_bed_img_desc">방타버스 침대</string>
+    <string name="room_brush_desk_img_desc">방타버스 책상 빗자루</string>
+    <string name="room_brush_window_img_desc">방타버스 창문 빗자루</string>
+    <string name="room_brush_bed_img_desc">방타버스 침대 빗자루</string>
 </resources>

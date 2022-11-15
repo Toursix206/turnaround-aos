@@ -76,6 +76,161 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_room_roomtaverse"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/layout_room_brush_count"
+            app:layout_constraintTop_toBottomOf="@id/layout_room_info">
+
+            <ImageView
+                android:id="@+id/iv_room_wall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_wall_img_desc"
+                android:src="@drawable/ic_roomtaverse_wall"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_room_bed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_bed_img_desc"
+                android:src="@drawable/ic_roomtaverse_bed_1"
+                app:layout_constraintBottom_toBottomOf="@id/iv_room_wall"
+                app:layout_constraintEnd_toEndOf="@id/iv_room_wall"
+                app:layout_constraintStart_toStartOf="@id/iv_room_wall"
+                app:layout_constraintTop_toTopOf="@id/iv_room_wall" />
+
+            <ImageView
+                android:id="@+id/iv_room_window"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_window_img_desc"
+                android:src="@drawable/ic_roomtaverse_window_1"
+                app:layout_constraintBottom_toBottomOf="@id/iv_room_wall"
+                app:layout_constraintEnd_toEndOf="@id/iv_room_wall"
+                app:layout_constraintStart_toStartOf="@id/iv_room_wall"
+                app:layout_constraintTop_toTopOf="@id/iv_room_wall" />
+
+            <ImageView
+                android:id="@+id/iv_room_desk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_desk_img_desc"
+                android:src="@drawable/ic_roomtaverse_desk_1"
+                app:layout_constraintBottom_toBottomOf="@id/iv_room_wall"
+                app:layout_constraintEnd_toEndOf="@id/iv_room_wall"
+                app:layout_constraintStart_toStartOf="@id/iv_room_wall"
+                app:layout_constraintTop_toTopOf="@id/iv_room_wall" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_room_touch"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_room_wall"
+                app:layout_constraintEnd_toEndOf="@id/iv_room_wall"
+                app:layout_constraintStart_toStartOf="@id/iv_room_wall"
+                app:layout_constraintTop_toTopOf="@id/iv_room_wall">
+
+                <View
+                    android:id="@+id/view_room_window"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.23"
+                    app:layout_constraintHorizontal_bias="0.26"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.30"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.24"
+                    tools:background="#80000000" />
+
+                <ImageButton
+                    android:id="@+id/btn_room_window_brush"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-20dp"
+                    android:background="@null"
+                    android:contentDescription="@string/room_brush_window_img_desc"
+                    android:src="@drawable/ic_roomtaverse_brush"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@id/view_room_window"
+                    app:layout_constraintEnd_toEndOf="@id/view_room_window"
+                    app:layout_constraintStart_toStartOf="@id/view_room_window" />
+
+                <View
+                    android:id="@+id/view_room_bed"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.27"
+                    app:layout_constraintHorizontal_bias="0.65"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.62"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.35"
+                    tools:background="#80000000" />
+
+                <ImageButton
+                    android:id="@+id/btn_room_bed_brush"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-20dp"
+                    android:background="@null"
+                    android:contentDescription="@string/room_brush_bed_img_desc"
+                    android:src="@drawable/ic_roomtaverse_brush"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@id/view_room_bed"
+                    app:layout_constraintEnd_toEndOf="@id/view_room_bed"
+                    app:layout_constraintStart_toStartOf="@id/view_room_bed" />
+
+                <View
+                    android:id="@+id/view_room_desk"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_default="percent"
+                    app:layout_constraintHeight_percent="0.26"
+                    app:layout_constraintHorizontal_bias="0.19"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.66"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.30"
+                    tools:background="#80000000" />
+
+                <ImageButton
+                    android:id="@+id/btn_room_desk_brush"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="-20dp"
+                    android:background="@null"
+                    android:contentDescription="@string/room_brush_desk_img_desc"
+                    android:src="@drawable/ic_roomtaverse_brush"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@id/view_room_desk"
+                    app:layout_constraintEnd_toEndOf="@id/view_room_desk"
+                    app:layout_constraintStart_toStartOf="@id/view_room_desk" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_room_progressbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
