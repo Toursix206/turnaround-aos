@@ -58,4 +58,7 @@
     <string name="todo_event_todo_this_week">이번주 활동</string>
     <string name="todo_event_todo_next">다음 활동</string>
 
+    <!-- To-do Event Edit -->
+    <string name="todo_event_edit_tool_bar_title">활동 편집</string>
+
 </resources>

@@ -44,4 +44,3 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
         }
     }
 }
-

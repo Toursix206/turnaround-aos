@@ -6,6 +6,10 @@
     <data>
 
         <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.todoevent.TodoEventViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

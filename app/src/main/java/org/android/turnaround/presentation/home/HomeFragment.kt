@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
@@ -14,11 +15,13 @@ import org.android.turnaround.util.binding.BindingFragment
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+    private val viewModel by viewModels<HomeViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initHomeActivityAdapter()
-        initTvShowMoreClickListener()
+        initTodoEventEventClickListener()
     }
 
     private fun initHomeActivityAdapter() {
@@ -37,7 +40,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }
     }
 
-    private fun initTvShowMoreClickListener() {
+    private fun initTodoEventEventClickListener() {
         binding.tvHomeShowMore.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_todoEventFragment)
         }
