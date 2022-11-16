@@ -2,6 +2,7 @@ package org.android.turnaround.presentation.room
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -9,9 +10,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.android.turnaround.data.remote.repository.RoomRepository
 import org.android.turnaround.domain.entity.CleanLevel
+import javax.inject.Inject
 
-class RoomViewModel : ViewModel() {
+@HiltViewModel
+class RoomViewModel @Inject constructor(
+    private val roomRepository: RoomRepository
+) : ViewModel() {
     private val _clickedWindow = MutableSharedFlow<Boolean>()
     val clickedWindow: SharedFlow<Boolean> = _clickedWindow.asSharedFlow()
 

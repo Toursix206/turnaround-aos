@@ -6,12 +6,14 @@ import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentRoomBinding
 import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.extension.repeatOnStarted
 
+@AndroidEntryPoint
 class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room) {
     private val viewModel by viewModels<RoomViewModel>()
     private var windowScaleAnimator: Animator? = null
