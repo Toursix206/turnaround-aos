@@ -14,23 +14,23 @@ object BindingAdapters {
             when (furnitureType) {
                 FurnitureType.WINDOW -> {
                     when (cleanScore) {
-                        CleanScore.MOST_CLEAN -> R.drawable.ic_roomtaverse_window_1
-                        CleanScore.SO_SO -> R.drawable.ic_roomtaverse_window_2
-                        CleanScore.MOST_DIRTY -> R.drawable.ic_roomtaverse_window_3
+                        CleanScore.CLEAN -> R.drawable.ic_roomtaverse_window_1
+                        CleanScore.DIRTY -> R.drawable.ic_roomtaverse_window_2
+                        CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_window_3
                     }
                 }
                 FurnitureType.BED -> {
                     when (cleanScore) {
-                        CleanScore.MOST_CLEAN -> R.drawable.ic_roomtaverse_bed_1
-                        CleanScore.SO_SO -> R.drawable.ic_roomtaverse_bed_2
-                        CleanScore.MOST_DIRTY -> R.drawable.ic_roomtaverse_bed_3
+                        CleanScore.CLEAN -> R.drawable.ic_roomtaverse_bed_1
+                        CleanScore.DIRTY -> R.drawable.ic_roomtaverse_bed_2
+                        CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_bed_3
                     }
                 }
                 FurnitureType.DESK -> {
                     when (cleanScore) {
-                        CleanScore.MOST_CLEAN -> R.drawable.ic_roomtaverse_desk_1
-                        CleanScore.SO_SO -> R.drawable.ic_roomtaverse_desk_2
-                        CleanScore.MOST_DIRTY -> R.drawable.ic_roomtaverse_desk_3
+                        CleanScore.CLEAN -> R.drawable.ic_roomtaverse_desk_1
+                        CleanScore.DIRTY -> R.drawable.ic_roomtaverse_desk_2
+                        CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_desk_3
                     }
                 }
             }

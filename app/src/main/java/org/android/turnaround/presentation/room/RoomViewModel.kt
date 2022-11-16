@@ -30,13 +30,20 @@ class RoomViewModel : ViewModel() {
     private val _showBedBrush = MutableStateFlow(false)
     val showBedBrush: StateFlow<Boolean> = _showBedBrush.asStateFlow()
 
-    private val _windowScore = MutableStateFlow(CleanScore.MOST_DIRTY)
+    var windowStartScore = CleanScore.VERY_DIRTY
+        private set
+    var bedStartScore = CleanScore.VERY_DIRTY
+        private set
+    var deskStartScore = CleanScore.VERY_DIRTY
+        private set
+
+    private val _windowScore = MutableStateFlow(windowStartScore)
     val windowScore: StateFlow<CleanScore> = _windowScore.asStateFlow()
 
-    private val _bedScore = MutableStateFlow(CleanScore.MOST_DIRTY)
+    private val _bedScore = MutableStateFlow(bedStartScore)
     val bedScore: StateFlow<CleanScore> = _bedScore.asStateFlow()
 
-    private val _deskScore = MutableStateFlow(CleanScore.MOST_DIRTY)
+    private val _deskScore = MutableStateFlow(deskStartScore)
     val deskScore: StateFlow<CleanScore> = _deskScore.asStateFlow()
 
     fun initAllRoomFurniture() {
@@ -68,9 +75,9 @@ class RoomViewModel : ViewModel() {
 
     private fun getNewCleanScore(oldScore: CleanScore): CleanScore =
         when (oldScore) {
-            CleanScore.MOST_CLEAN -> CleanScore.MOST_CLEAN
-            CleanScore.MOST_DIRTY -> CleanScore.SO_SO
-            CleanScore.SO_SO -> CleanScore.MOST_CLEAN
+            CleanScore.CLEAN -> CleanScore.CLEAN
+            CleanScore.VERY_DIRTY -> CleanScore.DIRTY
+            CleanScore.DIRTY -> CleanScore.CLEAN
         }
 
     fun initWindowScore() {

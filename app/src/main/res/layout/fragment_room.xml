@@ -113,7 +113,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_bed"
-                cleanScore="@{vm.bedScore}"
+                cleanScore="@{vm.bedStartScore}"
                 furnitureType="@{FurnitureType.BED}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_window"
-                cleanScore="@{vm.windowScore}"
+                cleanScore="@{vm.windowStartScore}"
                 furnitureType="@{FurnitureType.WINDOW}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_desk"
-                cleanScore="@{vm.deskScore}"
+                cleanScore="@{vm.deskStartScore}"
                 furnitureType="@{FurnitureType.DESK}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

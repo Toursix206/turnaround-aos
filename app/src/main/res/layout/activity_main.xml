@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:background="@color/turnaround_gray_1"
+        android:background="@color/turnaround_gray_1"
         tools:context=".presentation.main.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
