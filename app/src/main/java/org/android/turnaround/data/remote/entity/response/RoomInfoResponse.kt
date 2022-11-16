@@ -1,7 +1,9 @@
 package org.android.turnaround.data.remote.entity.response
 
 import com.google.gson.annotations.SerializedName
+import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.domain.entity.Furniture
+import org.android.turnaround.domain.entity.FurnitureType
 import org.android.turnaround.domain.entity.RoomInfo
 
 data class RoomInfoResponse(
@@ -20,8 +22,8 @@ data class RoomInfoResponse(
             level = this.level,
             furnitureList = this.furnitureList.map { furniture ->
                 Furniture(
-                    furnitureCleanLevel = furniture.furnitureCleanLevel,
-                    furnitureName = furniture.furnitureName,
+                    furnitureCleanLevel = CleanLevel.valueOf(furniture.furnitureCleanLevel),
+                    furnitureName = FurnitureType.valueOf(furniture.furnitureName),
                     furnitureId = furniture.furnitureId,
                     isCleanable = furniture.isCleanable
                 )

@@ -12,7 +12,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.repository.RoomRepository
 import org.android.turnaround.domain.entity.CleanLevel
+import org.android.turnaround.domain.entity.Furniture
+import org.android.turnaround.domain.entity.FurnitureType
 import org.android.turnaround.domain.entity.RoomInfo
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -100,5 +103,36 @@ class RoomViewModel @Inject constructor(
 
     fun initTableLevel() {
         _tableLevel.value = getNewCleanLevel(tableLevel.value)
+    }
+
+    fun getRoomInfo() {
+        viewModelScope.launch {
+            roomRepository.getRoomInfo()
+                .onSuccess { response ->
+                    _roomInfo.value = response
+                    initFurnitureInfo(response.furnitureList)
+                }
+                .onFailure { Timber.d(it.message.toString()) }
+        }
+    }
+
+    private fun initFurnitureInfo(furnitureList: List<Furniture>) {
+        for (furniture in furnitureList) {
+            when (furniture.furnitureName) {
+                FurnitureType.BASIC_WALL -> continue
+                FurnitureType.BASIC_WINDOW -> {
+                    windowStartLevel = furniture.furnitureCleanLevel
+                    _windowLevel.value = furniture.furnitureCleanLevel
+                }
+                FurnitureType.BASIC_BED -> {
+                    bedStartLevel = furniture.furnitureCleanLevel
+                    _bedLevel.value = furniture.furnitureCleanLevel
+                }
+                FurnitureType.BASIC_TABLE -> {
+                    tableStartLevel = furniture.furnitureCleanLevel
+                    _tableLevel.value = furniture.furnitureCleanLevel
+                }
+            }
+        }
     }
 }
