@@ -1,5 +1,5 @@
 package org.android.turnaround.domain.entity
 
 enum class FurnitureType {
-    WINDOW, BED, DESK
+    BASIC_WINDOW, BASIC_BED, BASIC_TABLE
 }

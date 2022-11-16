@@ -18,13 +18,13 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
     private val viewModel by viewModels<RoomViewModel>()
     private var windowScaleAnimator: Animator? = null
     private var bedScaleAnimator: Animator? = null
-    private var deskScaleAnimator: Animator? = null
+    private var tableScaleAnimator: Animator? = null
     private var windowCleanFadeOutAnimator: Animator? = null
     private var bedCleanFadeOutAnimator: Animator? = null
-    private var deskCleanFadeOutAnimator: Animator? = null
+    private var tableCleanFadeOutAnimator: Animator? = null
     private var windowCleanFadeInAnimator: Animator? = null
     private var bedCleanFadeInAnimator: Animator? = null
-    private var deskCleanFadeInAnimator: Animator? = null
+    private var tableCleanFadeInAnimator: Animator? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,13 +39,13 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         super.onDestroyView()
         windowScaleAnimator = null
         bedScaleAnimator = null
-        deskScaleAnimator = null
+        tableScaleAnimator = null
         windowCleanFadeOutAnimator = null
         bedCleanFadeOutAnimator = null
-        deskCleanFadeOutAnimator = null
+        tableCleanFadeOutAnimator = null
         windowCleanFadeInAnimator = null
         bedCleanFadeInAnimator = null
-        deskCleanFadeInAnimator = null
+        tableCleanFadeInAnimator = null
     }
 
     private fun initRoomAssetsScaleAnimator() {
@@ -61,11 +61,11 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         ).apply {
             setTarget(binding.ivRoomBed)
         }
-        deskScaleAnimator = AnimatorInflater.loadAnimator(
+        tableScaleAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale
         ).apply {
-            setTarget(binding.ivRoomDesk)
+            setTarget(binding.ivRoomTable)
         }
     }
 
@@ -134,34 +134,34 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             })
         }
 
-        deskCleanFadeInAnimator = AnimatorInflater.loadAnimator(
+        tableCleanFadeInAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale_fade_in
         ).apply {
-            setTarget(binding.ivRoomDesk)
+            setTarget(binding.ivRoomTable)
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    binding.btnRoomDeskBrush.isClickable = true
+                    binding.btnRoomTableBrush.isClickable = true
                 }
             })
         }
 
-        deskCleanFadeOutAnimator = AnimatorInflater.loadAnimator(
+        tableCleanFadeOutAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale_fade_out
         ).apply {
-            setTarget(binding.ivRoomDesk)
+            setTarget(binding.ivRoomTable)
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator?) {
                     super.onAnimationStart(animation)
-                    binding.btnRoomDeskBrush.isClickable = false
+                    binding.btnRoomTableBrush.isClickable = false
                 }
 
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    initIvDeskResource()
-                    deskCleanFadeInAnimator?.start()
+                    initIvTableResource()
+                    tableCleanFadeInAnimator?.start()
                 }
             })
         }
@@ -187,12 +187,12 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         )
     }
 
-    private fun initIvDeskResource() {
-        binding.ivRoomDesk.setImageResource(
-            when (viewModel.deskLevel.value) {
-                CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_desk_1
-                CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_desk_2
-                CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_desk_3
+    private fun initIvTableResource() {
+        binding.ivRoomTable.setImageResource(
+            when (viewModel.tableLevel.value) {
+                CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_table_1
+                CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_table_2
+                CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_table_3
             }
         )
     }
@@ -209,8 +209,8 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             }
         }
         repeatOnStarted {
-            viewModel.clickedDesk.collect {
-                deskScaleAnimator?.start()
+            viewModel.clickedTable.collect {
+                tableScaleAnimator?.start()
             }
         }
     }
@@ -227,8 +227,8 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             }
         }
         repeatOnStarted {
-            viewModel.deskLevel.collect {
-                deskCleanFadeOutAnimator?.start()
+            viewModel.tableLevel.collect {
+                tableCleanFadeOutAnimator?.start()
             }
         }
     }

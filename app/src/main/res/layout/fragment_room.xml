@@ -114,7 +114,7 @@
             <ImageView
                 android:id="@+id/iv_room_bed"
                 cleanLevel="@{vm.bedStartLevel}"
-                furnitureType="@{FurnitureType.BED}"
+                furnitureType="@{FurnitureType.BASIC_BED}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -128,7 +128,7 @@
             <ImageView
                 android:id="@+id/iv_room_window"
                 cleanLevel="@{vm.windowStartLevel}"
-                furnitureType="@{FurnitureType.WINDOW}"
+                furnitureType="@{FurnitureType.BASIC_WINDOW}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -140,14 +140,14 @@
                 app:layout_constraintTop_toTopOf="@id/iv_room_wall" />
 
             <ImageView
-                android:id="@+id/iv_room_desk"
-                cleanLevel="@{vm.deskStartLevel}"
-                furnitureType="@{FurnitureType.DESK}"
+                android:id="@+id/iv_room_table"
+                cleanLevel="@{vm.tableStartLevel}"
+                furnitureType="@{FurnitureType.BASIC_TABLE}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/room_desk_img_desc"
-                android:src="@drawable/ic_roomtaverse_desk_1"
+                android:contentDescription="@string/room_table_img_desc"
+                android:src="@drawable/ic_roomtaverse_table_1"
                 app:layout_constraintBottom_toBottomOf="@id/iv_room_wall"
                 app:layout_constraintEnd_toEndOf="@id/iv_room_wall"
                 app:layout_constraintStart_toStartOf="@id/iv_room_wall"
@@ -225,10 +225,10 @@
                     app:layout_constraintStart_toStartOf="@id/view_room_bed" />
 
                 <View
-                    android:id="@+id/view_room_desk"
+                    android:id="@+id/view_room_table"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:onClick="@{()->vm.initShowDeskBrush()}"
+                    android:onClick="@{()->vm.initShowTableBrush()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="percent"
@@ -242,18 +242,18 @@
                     tools:background="#80000000" />
 
                 <ImageButton
-                    android:id="@+id/btn_room_desk_brush"
+                    android:id="@+id/btn_room_table_brush"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
-                    android:contentDescription="@string/room_brush_desk_img_desc"
-                    android:onClick="@{()->vm.initDeskLevel()}"
+                    android:contentDescription="@string/room_brush_table_img_desc"
+                    android:onClick="@{()->vm.initTableLevel()}"
                     android:src="@drawable/ic_roomtaverse_brush"
-                    android:visibility="@{vm.showDeskBrush == true ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintBottom_toTopOf="@id/view_room_desk"
-                    app:layout_constraintEnd_toEndOf="@id/view_room_desk"
-                    app:layout_constraintStart_toStartOf="@id/view_room_desk" />
+                    android:visibility="@{vm.showTableBrush == true ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toTopOf="@id/view_room_table"
+                    app:layout_constraintEnd_toEndOf="@id/view_room_table"
+                    app:layout_constraintStart_toStartOf="@id/view_room_table" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

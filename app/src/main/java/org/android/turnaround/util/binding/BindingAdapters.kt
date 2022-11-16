@@ -12,25 +12,25 @@ object BindingAdapters {
     fun ImageView.initFurniture(cleanLevel: CleanLevel, furnitureType: FurnitureType) {
         setImageResource(
             when (furnitureType) {
-                FurnitureType.WINDOW -> {
+                FurnitureType.BASIC_WINDOW -> {
                     when (cleanLevel) {
                         CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_window_1
                         CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_window_2
                         CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_window_3
                     }
                 }
-                FurnitureType.BED -> {
+                FurnitureType.BASIC_BED -> {
                     when (cleanLevel) {
                         CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_bed_1
                         CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_bed_2
                         CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_bed_3
                     }
                 }
-                FurnitureType.DESK -> {
+                FurnitureType.BASIC_TABLE -> {
                     when (cleanLevel) {
-                        CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_desk_1
-                        CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_desk_2
-                        CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_desk_3
+                        CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_table_1
+                        CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_table_2
+                        CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_table_3
                     }
                 }
             }

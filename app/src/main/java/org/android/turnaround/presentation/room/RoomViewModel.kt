@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.repository.RoomRepository
 import org.android.turnaround.domain.entity.CleanLevel
+import org.android.turnaround.domain.entity.RoomInfo
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,8 +22,8 @@ class RoomViewModel @Inject constructor(
     private val _clickedWindow = MutableSharedFlow<Boolean>()
     val clickedWindow: SharedFlow<Boolean> = _clickedWindow.asSharedFlow()
 
-    private val _clickedDesk = MutableSharedFlow<Boolean>()
-    val clickedDesk: SharedFlow<Boolean> = _clickedDesk.asSharedFlow()
+    private val _clickedTable = MutableSharedFlow<Boolean>()
+    val clickedTable: SharedFlow<Boolean> = _clickedTable.asSharedFlow()
 
     private val _clickedBed = MutableSharedFlow<Boolean>()
     val clickedBed: SharedFlow<Boolean> = _clickedBed.asSharedFlow()
@@ -30,8 +31,8 @@ class RoomViewModel @Inject constructor(
     private val _showWindowBrush = MutableStateFlow(false)
     val showWindowBrush: StateFlow<Boolean> = _showWindowBrush.asStateFlow()
 
-    private val _showDeskBrush = MutableStateFlow(false)
-    val showDeskBrush: StateFlow<Boolean> = _showDeskBrush.asStateFlow()
+    private val _showTableBrush = MutableStateFlow(false)
+    val showTableBrush: StateFlow<Boolean> = _showTableBrush.asStateFlow()
 
     private val _showBedBrush = MutableStateFlow(false)
     val showBedBrush: StateFlow<Boolean> = _showBedBrush.asStateFlow()
@@ -40,7 +41,7 @@ class RoomViewModel @Inject constructor(
         private set
     var bedStartLevel = CleanLevel.VERY_DIRTY
         private set
-    var deskStartLevel = CleanLevel.VERY_DIRTY
+    var tableStartLevel = CleanLevel.VERY_DIRTY
         private set
 
     private val _windowLevel = MutableStateFlow(windowStartLevel)
@@ -49,13 +50,16 @@ class RoomViewModel @Inject constructor(
     private val _bedLevel = MutableStateFlow(bedStartLevel)
     val bedLevel: StateFlow<CleanLevel> = _bedLevel.asStateFlow()
 
-    private val _deskLevel = MutableStateFlow(deskStartLevel)
-    val deskLevel: StateFlow<CleanLevel> = _deskLevel.asStateFlow()
+    private val _tableLevel = MutableStateFlow(tableStartLevel)
+    val tableLevel: StateFlow<CleanLevel> = _tableLevel.asStateFlow()
+
+    private val _roomInfo = MutableStateFlow(RoomInfo())
+    val roomInfo: StateFlow<RoomInfo> = _roomInfo.asStateFlow()
 
     fun initAllRoomFurniture() {
         _showWindowBrush.value = false
         _showBedBrush.value = false
-        _showDeskBrush.value = false
+        _showTableBrush.value = false
     }
 
     fun initShowWindowBrush() {
@@ -72,11 +76,11 @@ class RoomViewModel @Inject constructor(
         viewModelScope.launch { _clickedBed.emit(true) }
     }
 
-    fun initShowDeskBrush() {
-        val newShow = !requireNotNull(showDeskBrush.value)
+    fun initShowTableBrush() {
+        val newShow = !requireNotNull(showTableBrush.value)
         initAllRoomFurniture()
-        _showDeskBrush.value = newShow
-        viewModelScope.launch { _clickedDesk.emit(true) }
+        _showTableBrush.value = newShow
+        viewModelScope.launch { _clickedTable.emit(true) }
     }
 
     private fun getNewCleanLevel(oldLevel: CleanLevel): CleanLevel =
@@ -94,7 +98,7 @@ class RoomViewModel @Inject constructor(
         _bedLevel.value = getNewCleanLevel(bedLevel.value)
     }
 
-    fun initDeskLevel() {
-        _deskLevel.value = getNewCleanLevel(deskLevel.value)
+    fun initTableLevel() {
+        _tableLevel.value = getNewCleanLevel(tableLevel.value)
     }
 }
