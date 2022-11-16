@@ -5,12 +5,19 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="org.android.turnaround.domain.entity.FurnitureType" />
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.room.RoomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:background="@color/turnaround_gray_1"
+        android:background="@color/turnaround_gray_1"
         tools:context=".presentation.room.RoomFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,8 +86,18 @@
             android:id="@+id/layout_room_roomtaverse"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:onClick="@{()->vm.initAllRoomFurniture()}"
             app:layout_constraintBottom_toTopOf="@id/layout_room_brush_count"
             app:layout_constraintTop_toBottomOf="@id/layout_room_info">
+
+            <ImageView
+                android:id="@+id/iv_room_background_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_wall_img_desc"
+                android:src="@drawable/ic_roomtaverse_background_shadow"
+                app:layout_constraintTop_toTopOf="@id/iv_room_wall" />
 
             <ImageView
                 android:id="@+id/iv_room_wall"
@@ -96,6 +113,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_bed"
+                cleanScore="@{vm.bedStartScore}"
+                furnitureType="@{FurnitureType.BED}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -108,6 +127,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_window"
+                cleanScore="@{vm.windowStartScore}"
+                furnitureType="@{FurnitureType.WINDOW}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -120,6 +141,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_desk"
+                cleanScore="@{vm.deskStartScore}"
+                furnitureType="@{FurnitureType.DESK}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -143,6 +166,7 @@
                     android:id="@+id/view_room_window"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:onClick="@{()->vm.initShowWindowBrush()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="percent"
@@ -162,8 +186,9 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_window_img_desc"
+                    android:onClick="@{()->vm.initWindowScore()}"
                     android:src="@drawable/ic_roomtaverse_brush"
-                    android:visibility="invisible"
+                    android:visibility="@{vm.showWindowBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_window"
                     app:layout_constraintEnd_toEndOf="@id/view_room_window"
                     app:layout_constraintStart_toStartOf="@id/view_room_window" />
@@ -172,6 +197,7 @@
                     android:id="@+id/view_room_bed"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:onClick="@{()->vm.initShowBedBrush()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="percent"
@@ -191,8 +217,9 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_bed_img_desc"
+                    android:onClick="@{()->vm.initBedScore()}"
                     android:src="@drawable/ic_roomtaverse_brush"
-                    android:visibility="invisible"
+                    android:visibility="@{vm.showBedBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_bed"
                     app:layout_constraintEnd_toEndOf="@id/view_room_bed"
                     app:layout_constraintStart_toStartOf="@id/view_room_bed" />
@@ -201,6 +228,7 @@
                     android:id="@+id/view_room_desk"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:onClick="@{()->vm.initShowDeskBrush()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHeight_default="percent"
@@ -220,8 +248,9 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_desk_img_desc"
+                    android:onClick="@{()->vm.initDeskScore()}"
                     android:src="@drawable/ic_roomtaverse_brush"
-                    android:visibility="invisible"
+                    android:visibility="@{vm.showDeskBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_desk"
                     app:layout_constraintEnd_toEndOf="@id/view_room_desk"
                     app:layout_constraintStart_toStartOf="@id/view_room_desk" />
@@ -246,7 +275,7 @@
                 android:id="@+id/tv_room_level"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lev.1"
+                android:text="Lv.1"
                 android:textAppearance="@style/body2_semi_bold"
                 android:textColor="@color/turnaround_white"
                 app:layout_constraintBottom_toBottomOf="parent"
