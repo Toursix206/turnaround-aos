@@ -113,7 +113,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_bed"
-                cleanScore="@{vm.bedStartScore}"
+                cleanLevel="@{vm.bedStartLevel}"
                 furnitureType="@{FurnitureType.BED}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_window"
-                cleanScore="@{vm.windowStartScore}"
+                cleanLevel="@{vm.windowStartLevel}"
                 furnitureType="@{FurnitureType.WINDOW}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_desk"
-                cleanScore="@{vm.deskStartScore}"
+                cleanLevel="@{vm.deskStartLevel}"
                 furnitureType="@{FurnitureType.DESK}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_window_img_desc"
-                    android:onClick="@{()->vm.initWindowScore()}"
+                    android:onClick="@{()->vm.initWindowLevel()}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showWindowBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_window"
@@ -217,7 +217,7 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_bed_img_desc"
-                    android:onClick="@{()->vm.initBedScore()}"
+                    android:onClick="@{()->vm.initBedLevel()}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showBedBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_bed"
@@ -248,7 +248,7 @@
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
                     android:contentDescription="@string/room_brush_desk_img_desc"
-                    android:onClick="@{()->vm.initDeskScore()}"
+                    android:onClick="@{()->vm.initDeskLevel()}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showDeskBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_desk"

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.android.turnaround.domain.entity.CleanScore
+import org.android.turnaround.domain.entity.CleanLevel
 
 class RoomViewModel : ViewModel() {
     private val _clickedWindow = MutableSharedFlow<Boolean>()
@@ -30,21 +30,21 @@ class RoomViewModel : ViewModel() {
     private val _showBedBrush = MutableStateFlow(false)
     val showBedBrush: StateFlow<Boolean> = _showBedBrush.asStateFlow()
 
-    var windowStartScore = CleanScore.VERY_DIRTY
+    var windowStartLevel = CleanLevel.VERY_DIRTY
         private set
-    var bedStartScore = CleanScore.VERY_DIRTY
+    var bedStartLevel = CleanLevel.VERY_DIRTY
         private set
-    var deskStartScore = CleanScore.VERY_DIRTY
+    var deskStartLevel = CleanLevel.VERY_DIRTY
         private set
 
-    private val _windowScore = MutableStateFlow(windowStartScore)
-    val windowScore: StateFlow<CleanScore> = _windowScore.asStateFlow()
+    private val _windowLevel = MutableStateFlow(windowStartLevel)
+    val windowLevel: StateFlow<CleanLevel> = _windowLevel.asStateFlow()
 
-    private val _bedScore = MutableStateFlow(bedStartScore)
-    val bedScore: StateFlow<CleanScore> = _bedScore.asStateFlow()
+    private val _bedLevel = MutableStateFlow(bedStartLevel)
+    val bedLevel: StateFlow<CleanLevel> = _bedLevel.asStateFlow()
 
-    private val _deskScore = MutableStateFlow(deskStartScore)
-    val deskScore: StateFlow<CleanScore> = _deskScore.asStateFlow()
+    private val _deskLevel = MutableStateFlow(deskStartLevel)
+    val deskLevel: StateFlow<CleanLevel> = _deskLevel.asStateFlow()
 
     fun initAllRoomFurniture() {
         _showWindowBrush.value = false
@@ -73,22 +73,22 @@ class RoomViewModel : ViewModel() {
         viewModelScope.launch { _clickedDesk.emit(true) }
     }
 
-    private fun getNewCleanScore(oldScore: CleanScore): CleanScore =
-        when (oldScore) {
-            CleanScore.CLEAN -> CleanScore.CLEAN
-            CleanScore.VERY_DIRTY -> CleanScore.DIRTY
-            CleanScore.DIRTY -> CleanScore.CLEAN
+    private fun getNewCleanLevel(oldLevel: CleanLevel): CleanLevel =
+        when (oldLevel) {
+            CleanLevel.CLEAN -> CleanLevel.CLEAN
+            CleanLevel.VERY_DIRTY -> CleanLevel.DIRTY
+            CleanLevel.DIRTY -> CleanLevel.CLEAN
         }
 
-    fun initWindowScore() {
-        _windowScore.value = getNewCleanScore(windowScore.value)
+    fun initWindowLevel() {
+        _windowLevel.value = getNewCleanLevel(windowLevel.value)
     }
 
-    fun initBedScore() {
-        _bedScore.value = getNewCleanScore(bedScore.value)
+    fun initBedLevel() {
+        _bedLevel.value = getNewCleanLevel(bedLevel.value)
     }
 
-    fun initDeskScore() {
-        _deskScore.value = getNewCleanScore(deskScore.value)
+    fun initDeskLevel() {
+        _deskLevel.value = getNewCleanLevel(deskLevel.value)
     }
 }

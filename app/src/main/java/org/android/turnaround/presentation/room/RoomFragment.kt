@@ -8,7 +8,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentRoomBinding
-import org.android.turnaround.domain.entity.CleanScore
+import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.extension.repeatOnStarted
 
@@ -30,7 +30,7 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         initRoomAssetsScaleAnimator()
         initCleanAnimator()
         initClickedAssetsCollector()
-        initCleanScoreCollector()
+        initCleanLevelCollector()
     }
 
     override fun onDestroyView() {
@@ -167,30 +167,30 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
     private fun initIvWindowResource() {
         binding.ivRoomWindow.setImageResource(
-            when (viewModel.windowScore.value) {
-                CleanScore.CLEAN -> R.drawable.ic_roomtaverse_window_1
-                CleanScore.DIRTY -> R.drawable.ic_roomtaverse_window_2
-                CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_window_3
+            when (viewModel.windowLevel.value) {
+                CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_window_1
+                CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_window_2
+                CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_window_3
             }
         )
     }
 
     private fun initIvBedResource() {
         binding.ivRoomBed.setImageResource(
-            when (viewModel.bedScore.value) {
-                CleanScore.CLEAN -> R.drawable.ic_roomtaverse_bed_1
-                CleanScore.DIRTY -> R.drawable.ic_roomtaverse_bed_2
-                CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_bed_3
+            when (viewModel.bedLevel.value) {
+                CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_bed_1
+                CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_bed_2
+                CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_bed_3
             }
         )
     }
 
     private fun initIvDeskResource() {
         binding.ivRoomDesk.setImageResource(
-            when (viewModel.deskScore.value) {
-                CleanScore.CLEAN -> R.drawable.ic_roomtaverse_desk_1
-                CleanScore.DIRTY -> R.drawable.ic_roomtaverse_desk_2
-                CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_desk_3
+            when (viewModel.deskLevel.value) {
+                CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_desk_1
+                CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_desk_2
+                CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_desk_3
             }
         )
     }
@@ -213,19 +213,19 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         }
     }
 
-    private fun initCleanScoreCollector() {
+    private fun initCleanLevelCollector() {
         repeatOnStarted {
-            viewModel.windowScore.collect {
+            viewModel.windowLevel.collect {
                 windowCleanFadeOutAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.bedScore.collect {
+            viewModel.bedLevel.collect {
                 bedCleanFadeOutAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.deskScore.collect {
+            viewModel.deskLevel.collect {
                 deskCleanFadeOutAnimator?.start()
             }
         }
