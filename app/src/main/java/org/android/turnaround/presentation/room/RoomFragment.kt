@@ -71,7 +71,15 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         windowCleanFadeInAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale_fade_in
-        ).apply { setTarget(binding.ivRoomWindow) }
+        ).apply {
+            setTarget(binding.ivRoomWindow)
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    binding.btnRoomWindowBrush.isClickable = true
+                }
+            })
+        }
 
         windowCleanFadeOutAnimator = AnimatorInflater.loadAnimator(
             context,
@@ -79,6 +87,11 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         ).apply {
             setTarget(binding.ivRoomWindow)
             addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    binding.btnRoomWindowBrush.isClickable = false
+                }
+
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
                     initIvWindowResource()
@@ -90,7 +103,15 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         bedCleanFadeInAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale_fade_in
-        ).apply { setTarget(binding.ivRoomBed) }
+        ).apply {
+            setTarget(binding.ivRoomBed)
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    binding.btnRoomBedBrush.isClickable = true
+                }
+            })
+        }
 
         bedCleanFadeOutAnimator = AnimatorInflater.loadAnimator(
             context,
@@ -98,6 +119,11 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         ).apply {
             setTarget(binding.ivRoomBed)
             addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    binding.btnRoomBedBrush.isClickable = false
+                }
+
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
                     initIvBedResource()
@@ -109,7 +135,15 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         deskCleanFadeInAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale_fade_in
-        ).apply { setTarget(binding.ivRoomDesk) }
+        ).apply {
+            setTarget(binding.ivRoomDesk)
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    binding.btnRoomDeskBrush.isClickable = true
+                }
+            })
+        }
 
         deskCleanFadeOutAnimator = AnimatorInflater.loadAnimator(
             context,
@@ -117,6 +151,11 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         ).apply {
             setTarget(binding.ivRoomDesk)
             addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    binding.btnRoomDeskBrush.isClickable = false
+                }
+
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
                     initIvDeskResource()
