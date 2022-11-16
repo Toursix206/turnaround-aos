@@ -5,6 +5,7 @@ data class RoomInfo(
     val cleanScore: Int = -1,
     val experience: Int = -1,
     val level: Int = -1,
+    val furnitureCount: Int = -1,
     val furnitureList: List<Furniture> = emptyList()
 )
 

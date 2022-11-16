@@ -20,6 +20,7 @@ data class RoomInfoResponse(
             cleanScore = this.cleanScore,
             experience = this.experience,
             level = this.level,
+            furnitureCount = furnitureList.size - 1,
             furnitureList = this.furnitureList.map { furniture ->
                 Furniture(
                     furnitureCleanLevel = CleanLevel.valueOf(furniture.furnitureCleanLevel),

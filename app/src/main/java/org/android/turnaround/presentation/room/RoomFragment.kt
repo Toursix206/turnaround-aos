@@ -29,7 +29,7 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
-        viewModel.getRoomInfo()
+        viewModel.getRoom()
         initRoomAssetsScaleAnimator()
         initCleanAnimator()
         initClickedAssetsCollector()

@@ -114,7 +114,7 @@ class RoomViewModel @Inject constructor(
         _tableLevel.value = getNewCleanLevel(tableLevel.value)
     }
 
-    fun getRoomInfo() {
+    fun getRoom() {
         viewModelScope.launch {
             roomRepository.getRoomInfo()
                 .onSuccess { response ->
