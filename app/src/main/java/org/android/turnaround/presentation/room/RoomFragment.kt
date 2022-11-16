@@ -38,6 +38,7 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.resetIsSuccessGetRoomInfo()
         windowScaleAnimator = null
         bedScaleAnimator = null
         tableScaleAnimator = null
@@ -79,7 +80,7 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    binding.btnRoomWindowBrush.isClickable = true
+                    if (viewModel.windowCleanable.value) binding.btnRoomWindowBrush.isClickable = true
                 }
             })
         }
@@ -111,7 +112,7 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    binding.btnRoomBedBrush.isClickable = true
+                    if (viewModel.bedCleanable.value) binding.btnRoomBedBrush.isClickable = true
                 }
             })
         }
@@ -143,7 +144,7 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    binding.btnRoomTableBrush.isClickable = true
+                    if (viewModel.tableCleanable.value) binding.btnRoomTableBrush.isClickable = true
                 }
             })
         }
@@ -200,18 +201,18 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
     private fun initClickedAssetsCollector() {
         repeatOnStarted {
-            viewModel.clickedWindow.collect {
-                windowScaleAnimator?.start()
+            viewModel.clickedWindow.collect { isClicked ->
+                if (isClicked) windowScaleAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.clickedBed.collect {
-                bedScaleAnimator?.start()
+            viewModel.clickedBed.collect { isClicked ->
+                if (isClicked) bedScaleAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.clickedTable.collect {
-                tableScaleAnimator?.start()
+            viewModel.clickedTable.collect { isClicked ->
+                if (isClicked) tableScaleAnimator?.start()
             }
         }
     }
@@ -219,18 +220,26 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
     private fun initCleanLevelCollector() {
         repeatOnStarted {
             viewModel.windowLevel.collect {
-                windowCleanFadeOutAnimator?.start()
+                if (viewModel.isSuccessGetRoomInfo.value) windowCleanFadeOutAnimator?.start()
             }
         }
         repeatOnStarted {
             viewModel.bedLevel.collect {
-                bedCleanFadeOutAnimator?.start()
+                if (viewModel.isSuccessGetRoomInfo.value) bedCleanFadeOutAnimator?.start()
             }
         }
         repeatOnStarted {
             viewModel.tableLevel.collect {
-                tableCleanFadeOutAnimator?.start()
+                if (viewModel.isSuccessGetRoomInfo.value) tableCleanFadeOutAnimator?.start()
             }
         }
+//
+//        repeatOnStarted {
+//            viewModel.isSuccessGetRoomInfo.collect { isSuccess ->
+//                if (isSuccess) {
+//
+//                }
+//            }
+//        }
     }
 }

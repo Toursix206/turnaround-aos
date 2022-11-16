@@ -40,24 +40,33 @@ class RoomViewModel @Inject constructor(
     private val _showBedBrush = MutableStateFlow(false)
     val showBedBrush: StateFlow<Boolean> = _showBedBrush.asStateFlow()
 
-    var windowStartLevel = CleanLevel.VERY_DIRTY
-        private set
-    var bedStartLevel = CleanLevel.VERY_DIRTY
-        private set
-    var tableStartLevel = CleanLevel.VERY_DIRTY
-        private set
-
-    private val _windowLevel = MutableStateFlow(windowStartLevel)
+    private val _windowLevel = MutableStateFlow(CleanLevel.CLEAN)
     val windowLevel: StateFlow<CleanLevel> = _windowLevel.asStateFlow()
 
-    private val _bedLevel = MutableStateFlow(bedStartLevel)
+    private val _bedLevel = MutableStateFlow(CleanLevel.CLEAN)
     val bedLevel: StateFlow<CleanLevel> = _bedLevel.asStateFlow()
 
-    private val _tableLevel = MutableStateFlow(tableStartLevel)
+    private val _tableLevel = MutableStateFlow(CleanLevel.CLEAN)
     val tableLevel: StateFlow<CleanLevel> = _tableLevel.asStateFlow()
+
+    private val _windowCleanable = MutableStateFlow(false)
+    val windowCleanable: StateFlow<Boolean> = _windowCleanable.asStateFlow()
+
+    private val _bedCleanable = MutableStateFlow(false)
+    val bedCleanable: StateFlow<Boolean> = _bedCleanable.asStateFlow()
+
+    private val _tableCleanable = MutableStateFlow(false)
+    val tableCleanable: StateFlow<Boolean> = _tableCleanable.asStateFlow()
+
+    private val _isSuccessGetRoomInfo = MutableStateFlow(false)
+    val isSuccessGetRoomInfo: StateFlow<Boolean> = _isSuccessGetRoomInfo.asStateFlow()
 
     private val _roomInfo = MutableStateFlow(RoomInfo())
     val roomInfo: StateFlow<RoomInfo> = _roomInfo.asStateFlow()
+
+    fun resetIsSuccessGetRoomInfo() {
+        _isSuccessGetRoomInfo.value = false
+    }
 
     fun initAllRoomFurniture() {
         _showWindowBrush.value = false
@@ -68,21 +77,21 @@ class RoomViewModel @Inject constructor(
     fun initShowWindowBrush() {
         val newShow = !requireNotNull(showWindowBrush.value)
         initAllRoomFurniture()
-        _showWindowBrush.value = newShow
+        if (windowCleanable.value) _showWindowBrush.value = newShow
         viewModelScope.launch { _clickedWindow.emit(true) }
     }
 
     fun initShowBedBrush() {
         val newShow = !requireNotNull(showBedBrush.value)
         initAllRoomFurniture()
-        _showBedBrush.value = newShow
+        if (bedCleanable.value) _showBedBrush.value = newShow
         viewModelScope.launch { _clickedBed.emit(true) }
     }
 
     fun initShowTableBrush() {
         val newShow = !requireNotNull(showTableBrush.value)
         initAllRoomFurniture()
-        _showTableBrush.value = newShow
+        if (tableCleanable.value) _showTableBrush.value = newShow
         viewModelScope.launch { _clickedTable.emit(true) }
     }
 
@@ -109,8 +118,10 @@ class RoomViewModel @Inject constructor(
         viewModelScope.launch {
             roomRepository.getRoomInfo()
                 .onSuccess { response ->
-                    _roomInfo.value = response
+                    Timber.d(response.toString())
                     initFurnitureInfo(response.furnitureList)
+                    _roomInfo.value = response
+                    _isSuccessGetRoomInfo.value = true
                 }
                 .onFailure { Timber.d(it.message.toString()) }
         }
@@ -121,16 +132,16 @@ class RoomViewModel @Inject constructor(
             when (furniture.furnitureName) {
                 FurnitureType.BASIC_WALL -> continue
                 FurnitureType.BASIC_WINDOW -> {
-                    windowStartLevel = furniture.furnitureCleanLevel
                     _windowLevel.value = furniture.furnitureCleanLevel
+                    _windowCleanable.value = furniture.isCleanable
                 }
                 FurnitureType.BASIC_BED -> {
-                    bedStartLevel = furniture.furnitureCleanLevel
                     _bedLevel.value = furniture.furnitureCleanLevel
+                    _bedCleanable.value = furniture.isCleanable
                 }
                 FurnitureType.BASIC_TABLE -> {
-                    tableStartLevel = furniture.furnitureCleanLevel
                     _tableLevel.value = furniture.furnitureCleanLevel
+                    _tableCleanable.value = furniture.isCleanable
                 }
             }
         }

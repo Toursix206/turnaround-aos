@@ -87,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:onClick="@{()->vm.initAllRoomFurniture()}"
+            android:visibility="@{vm.isSuccessGetRoomInfo ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/layout_room_brush_count"
             app:layout_constraintTop_toBottomOf="@id/layout_room_info">
 
@@ -113,7 +114,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_bed"
-                cleanLevel="@{vm.bedStartLevel}"
+                cleanLevel="@{vm.bedLevel}"
                 furnitureType="@{FurnitureType.BASIC_BED}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -127,7 +128,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_window"
-                cleanLevel="@{vm.windowStartLevel}"
+                cleanLevel="@{vm.windowLevel}"
                 furnitureType="@{FurnitureType.BASIC_WINDOW}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -141,7 +142,7 @@
 
             <ImageView
                 android:id="@+id/iv_room_table"
-                cleanLevel="@{vm.tableStartLevel}"
+                cleanLevel="@{vm.tableLevel}"
                 furnitureType="@{FurnitureType.BASIC_TABLE}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -185,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
+                    android:clickable="@{vm.windowCleanable ? true : false}"
                     android:contentDescription="@string/room_brush_window_img_desc"
                     android:onClick="@{()->vm.initWindowLevel()}"
                     android:src="@drawable/ic_roomtaverse_brush"
@@ -216,6 +218,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
+                    android:clickable="@{vm.bedCleanable ? true : false}"
                     android:contentDescription="@string/room_brush_bed_img_desc"
                     android:onClick="@{()->vm.initBedLevel()}"
                     android:src="@drawable/ic_roomtaverse_brush"
@@ -247,6 +250,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
+                    android:clickable="@{vm.tableCleanable ? true : false}"
                     android:contentDescription="@string/room_brush_table_img_desc"
                     android:onClick="@{()->vm.initTableLevel()}"
                     android:src="@drawable/ic_roomtaverse_brush"
