@@ -2,11 +2,27 @@ package org.android.turnaround.util.binding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import org.android.turnaround.R
 import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.domain.entity.FurnitureType
 
 object BindingAdapters {
+    @JvmStatic
+    @BindingAdapter(value = ["imgUrl", "isCrop"], requireAll = false)
+    fun ImageView.initImage(imgUrl: String?, isCrop: Boolean?) {
+        isCrop?.let {
+            clipToOutline = it
+        }
+        imgUrl?.let {
+            Glide.with(context)
+                .load(it)
+                .placeholder(R.color.turnaround_gray_7)
+                .error(R.color.turnaround_gray_7)
+                .into(this)
+        }
+    }
+
     @JvmStatic
     @BindingAdapter(value = ["cleanLevel", "furnitureType"], requireAll = true)
     fun ImageView.initFurniture(cleanLevel: CleanLevel, furnitureType: FurnitureType) {
@@ -53,11 +69,5 @@ object BindingAdapters {
             in soSoSCore -> setImageResource(R.drawable.ic_room_room_score_so_so)
             in goodScore -> setImageResource(R.drawable.ic_room_room_score_good)
         }
-    }
-
-    @JvmStatic
-    @BindingAdapter("cropImg")
-    fun ImageView.cropImg(isCrop: Boolean) {
-        clipToOutline = isCrop
     }
 }
