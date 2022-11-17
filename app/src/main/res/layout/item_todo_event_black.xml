@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="vm"
+            type="org.android.turnaround.presentation.todoevent.TodoEventViewModel" />
+
+        <variable
             name="todo"
             type="org.android.turnaround.domain.entity.Todo" />
     </data>
@@ -14,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
-        android:layout_marginVertical="5dp">
+        android:layout_marginVertical="5dp"
+        android:onClick="@{() -> vm.setBlackTodoId(todo.todoId)}">
 
         <View
             android:id="@+id/view_todo_black"

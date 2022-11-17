@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.todoeventedit.TodoEventEditViewModel" />
+
+        <variable
+            name="todo"
+            type="org.android.turnaround.domain.entity.Todo" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <View
+            android:id="@+id/view_todo_edit"
+            android:layout_width="44dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_dfdfdf_rect_fill_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_todo_edit_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/bottom_sheet_todo_edit_title"
+            android:textAppearance="@style/sub_headline_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view_todo_edit" />
+
+        <TextView
+            android:id="@+id/tv_todo_edit_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/bottom_sheet_todo_edit_data"
+            android:textAppearance="@style/caption_semi_bold"
+            app:layout_constraintStart_toStartOf="@id/tv_todo_edit_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_title" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@string/bottom_sheet_todo_edit_date_desc"
+            android:textAppearance="@style/caption_regular"
+            android:textColor="#ff5555"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_edit_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_todo_edit_date"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_edit_date" />
+
+        <TextView
+            android:id="@+id/tv_todo_edit_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/bottom_sheet_todo_edit_duration"
+            android:textAppearance="@style/caption_semi_bold"
+            app:layout_constraintStart_toStartOf="@id/tv_todo_edit_date"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_date" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@{String.valueOf(30) + '분'}"
+            android:textAppearance="@style/caption_regular"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_edit_duration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_todo_edit_duration"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_edit_duration"
+            tools:text="30분" />
+
+        <NumberPicker
+            android:id="@+id/picker_todo_edit_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="41dp"
+            android:selectionDividerHeight="0.5dp"
+            android:theme="@style/NumberPickerStyle"
+            app:layout_constraintEnd_toStartOf="@id/picker_todo_edit_hour"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_duration"
+            tools:targetApi="q" />
+
+        <NumberPicker
+            android:id="@+id/picker_todo_edit_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:selectionDividerHeight="0.5dp"
+            app:layout_constraintBottom_toBottomOf="@id/picker_todo_edit_date"
+            app:layout_constraintEnd_toStartOf="@id/picker_todo_edit_minute"
+            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_date"
+            tools:targetApi="q" />
+
+        <NumberPicker
+            android:id="@+id/picker_todo_edit_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:selectionDividerHeight="0.5dp"
+            app:layout_constraintBottom_toBottomOf="@id/picker_todo_edit_hour"
+            app:layout_constraintEnd_toStartOf="@id/picker_todo_edit_ampm"
+            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_hour"
+            tools:targetApi="q" />
+
+        <NumberPicker
+            android:id="@+id/picker_todo_edit_ampm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="36dp"
+            android:selectionDividerHeight="0.5dp"
+            app:layout_constraintBottom_toBottomOf="@id/picker_todo_edit_minute"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_minute"
+            tools:targetApi="q" />
+
+        <View
+            android:id="@+id/view_todo_edit_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/turnaround_gray_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/picker_todo_edit_date" />
+
+        <ImageView
+            android:id="@+id/iv_todo_edit_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="19dp"
+            android:contentDescription="@string/bottom_sheet_todo_start_alarm_img_desc"
+            android:src="@drawable/ic_todo_start_alarm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_todo_edit_divider" />
+
+        <TextView
+            android:id="@+id/tv_todo_edit_alarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@string/bottom_sheet_todo_edit_alarm"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintBottom_toBottomOf="@id/iv_todo_edit_alarm"
+            app:layout_constraintStart_toEndOf="@id/iv_todo_edit_alarm"
+            app:layout_constraintTop_toTopOf="@id/iv_todo_edit_alarm" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_btn_todo_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="26dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_edit_alarm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_edit_alarm"
+            app:sb_checked_color="@color/turnaround_point"
+            app:sb_checkline_color="@color/turnaround_point"
+            app:sb_checkline_width="0dp"
+            app:sb_uncheck_color="@color/turnaround_gray_6"
+            app:sb_uncheckcircle_radius="0dp"
+            app:sb_uncheckcircle_width="0dp" />
+
+        <TextView
+            android:id="@+id/btn_todo_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_gray10_rect_fill_14"
+            android:onClick="@{() -> vm.setIsCheckedBottomSheetTodoEditBtnEvent(todo.todoId)}"
+            android:paddingVertical="16dp"
+            android:text="@string/bottom_sheet_todo_edit_btn"
+            android:textAlignment="center"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_todo_edit_alarm" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

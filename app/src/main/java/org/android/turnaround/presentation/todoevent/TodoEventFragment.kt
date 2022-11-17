@@ -7,9 +7,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentTodoEventBinding
 import androidx.navigation.fragment.findNavController
+import org.android.turnaround.domain.entity.TodoDetail
+import org.android.turnaround.presentation.home.TodoStartBottomSheet
 import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
+import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
-import org.android.turnaround.util.extension.repeatOnStarted
 
 @AndroidEntryPoint
 class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fragment_todo_event) {
@@ -19,30 +21,53 @@ class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fra
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = viewModel
-        initTodoListCollector()
-        initOpenTodoEventEEventEditClickListener()
+        initTodoListObserver()
+        initIsClickedBlackItemEventObserver()
+        initTodoDetailObserver()
+        initOpenTodoEventEventEditClickListener()
+        initBackBtnClickListener()
     }
 
-    private fun showTodoStartBottomSheet() {
-//        TodoStartBottomSheet().show(parentFragmentManager, this.javaClass.name)
-    }
-
-    private fun initTodoListCollector() {
-        repeatOnStarted {
-            viewModel.todoList.collect { todoList ->
-                binding.rvTodoEvent.adapter = TodoEventAdapter(
-                    context = requireContext(),
-                    showBottomSheet = { _ -> showTodoStartBottomSheet() }
-                ).apply {
-                    submitTodoEventList(todoList)
-                }
+    private fun initTodoListObserver() {
+        viewModel.todoList.observe(viewLifecycleOwner) {
+            binding.rvTodoEvent.adapter = TodoEventAdapter(
+                context = requireContext(),
+                viewModel = viewModel
+            ).apply {
+                submitTodoEventList(it)
             }
         }
     }
 
-    private fun initOpenTodoEventEEventEditClickListener() {
+    private fun initIsClickedBlackItemEventObserver() {
+        viewModel.isClickedBlackItemEvent.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                viewModel.getTodoDetail(it)
+            }
+        )
+    }
+
+    private fun initTodoDetailObserver() {
+        viewModel.todoDetail.observe(viewLifecycleOwner) {
+            showTodoStartBottomSheet(it)
+        }
+    }
+
+    private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
+        TodoStartBottomSheet(todoDetail).show(parentFragmentManager, this.javaClass.name)
+    }
+
+    private fun initOpenTodoEventEventEditClickListener() {
         binding.ivTodoEventSetting.setOnClickListener {
             findNavController().navigate(R.id.action_todoEventFragment_to_todoEventEditFragment)
         }
     }
+
+    private fun initBackBtnClickListener() {
+        binding.ivTodoEventBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
 }

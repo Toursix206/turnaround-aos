@@ -1,6 +1,7 @@
 package org.android.turnaround.data.remote.repository
 
 import org.android.turnaround.data.remote.datasource.TodoDataSource
+import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.domain.entity.TodoList
 import javax.inject.Inject
@@ -24,5 +25,9 @@ class TodoRepositoryImpl @Inject constructor(
 
     override suspend fun deleteTodo(todoId: Int): Result<String> =
         kotlin.runCatching { todoDataSource.deleteTodo(todoId) }
+            .map { response -> response.data }
+
+    override suspend fun putTodo(todoId: Int, body: TodoEditRequest): Result<String> =
+        kotlin.runCatching { todoDataSource.putTodo(todoId, body) }
             .map { response -> response.data }
 }

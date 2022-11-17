@@ -212,7 +212,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"
-            android:text="@string/bottom_sheet_toso_start_alarm"
+            android:text="@string/bottom_sheet_todo_start_alarm"
             android:textAppearance="@style/body1_regular"
             app:layout_constraintBottom_toBottomOf="@id/iv_todo_start_alarm"
             app:layout_constraintStart_toEndOf="@id/iv_todo_start_alarm"

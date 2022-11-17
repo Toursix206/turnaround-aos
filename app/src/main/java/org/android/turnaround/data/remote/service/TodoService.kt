@@ -1,8 +1,11 @@
 package org.android.turnaround.data.remote.service
 
+import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.data.remote.entity.response.*
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface TodoService {
@@ -14,8 +17,9 @@ interface TodoService {
 
 //    @POST("/v1/to do") // 활동 페이지 - 활동을 예약합니다.
 //
-//    @PUT("/v1/to do/{todoId}") // 활동 이벤트 페이지 - 활동 일정을 수정합니다.
-//
+    @PUT("/v1/todo/{todoId}") // 활동 이벤트 페이지 - 활동 일정을 수정합니다.
+    suspend fun putTodo(@Path("todoId") todoId: Int, @Body body: TodoEditRequest): BaseResponse<String>
+
     @DELETE("/v1/todo/{todoId}") // 활동 이벤트 페이지 - 활동 일정을 삭제합니다.
     suspend fun deleteTodo(@Path("todoId") todoId: Int): BaseResponse<String>
 //

@@ -19,7 +19,7 @@
         tools:context=".presentation.todoevent.TodoEventFragment">
 
         <ImageView
-            android:id="@+id/tv_todo_event_back"
+            android:id="@+id/iv_todo_event_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo_event_img_back_desc"

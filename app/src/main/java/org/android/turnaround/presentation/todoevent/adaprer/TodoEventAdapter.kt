@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import org.android.turnaround.R
 import org.android.turnaround.databinding.*
 import org.android.turnaround.domain.entity.*
+import org.android.turnaround.presentation.todoevent.TodoEventViewModel
 
 class TodoEventAdapter(
     private val context: Context,
-    private val showBottomSheet: (Unit) -> Unit
+    private val viewModel: TodoEventViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val todoEventList = mutableListOf<TodoEvent>()
@@ -93,11 +94,6 @@ class TodoEventAdapter(
         notifyItemRangeInserted(todoEventList.size, data.size)
     }
 
-    fun submitTodayTodoList(items: List<Todo>) {
-        todoEventList.addAll(items)
-        notifyItemRangeInserted(items.size, items.size)
-    }
-
     inner class TodoEvenHeaderViewHolder(private val binding: ItemTodoEventHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(header: TodoHeader) {
             binding.header = header
@@ -108,6 +104,7 @@ class TodoEventAdapter(
     inner class TodoEventWhiteViewHolder(private val binding: ItemTodoEventWhiteBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }
@@ -115,7 +112,7 @@ class TodoEventAdapter(
     inner class TodoEventBlackViewHolder(private val binding: ItemTodoEventBlackBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
-            binding.viewTodoBlack.setOnClickListener { showBottomSheet(Unit) }
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }

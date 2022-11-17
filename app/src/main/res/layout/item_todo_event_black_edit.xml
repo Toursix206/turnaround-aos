@@ -106,6 +106,7 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/shape_gray8_rect_line_4"
+            android:onClick="@{() -> vm.setIsCheckedEditBtnEvent(todo)}"
             android:paddingVertical="9dp"
             android:text="예약 시간 변경"
             android:textAlignment="center"

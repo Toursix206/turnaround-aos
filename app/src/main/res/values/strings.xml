@@ -85,5 +85,13 @@
     <string name="bottom_sheet_todo_start_reward_img_desc">활동 상세 보상 아이템 이미지</string>
     <string name="bottom_sheet_todo_start_reward">보상 아이템</string>
     <string name="bottom_sheet_todo_start_alarm_img_desc">활동 상세 알람 이미지</string>
-    <string name="bottom_sheet_toso_start_alarm">활동 시간 알람</string>
+    <string name="bottom_sheet_todo_start_alarm">활동 시간 알람</string>
+
+    <!-- Bottom Sheet To-do Edit -->
+    <string name="bottom_sheet_todo_edit_title">활동을 언제 시작할까요?</string>
+    <string name="bottom_sheet_todo_edit_data">날짜</string>
+    <string name="bottom_sheet_todo_edit_date_desc">2주보다 먼 미래에는 예약이 불가능 해요</string>
+    <string name="bottom_sheet_todo_edit_alarm">알림을 알려드릴까요?</string>
+    <string name="bottom_sheet_todo_edit_duration">소요 시간</string>
+    <string name="bottom_sheet_todo_edit_btn">예약 완료</string>
 </resources>

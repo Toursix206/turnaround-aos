@@ -3,12 +3,16 @@ package org.android.turnaround.presentation.todoeventedit
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentTodoEventEditBinding
+import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
+import org.android.turnaround.util.showToast
+import timber.log.Timber
 
 @AndroidEntryPoint
 class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.layout.fragment_todo_event_edit) {
@@ -20,6 +24,9 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
         initTodoListObserver()
         initIsCheckedDeleteBtnEventObserver()
         initDeleteTodoObserver()
+        initIsClickedEditBtnEventObserver()
+        initBackBtnClickListener()
+        initEditTodoObserver()
     }
 
     private fun initTodoListObserver() {
@@ -50,5 +57,31 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
 
     private fun refresh() {
         viewModel.getTodoList()
+    }
+
+    private fun initIsClickedEditBtnEventObserver() {
+        viewModel.isClickedEditBtnEvent.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                showTodoEditBottomSheet(it)
+            }
+        )
+    }
+
+    private fun initEditTodoObserver() {
+        viewModel.editTodo.observe(viewLifecycleOwner) {
+            // Todo: 토스트 띄우기
+            Timber.d("예약 후")
+        }
+    }
+
+    private fun showTodoEditBottomSheet(todo: Todo) {
+        TodoEditBottomSheet(viewModel, todo).show(parentFragmentManager, this.javaClass.name)
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.ivTodoEventEditToolBarTitle.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }
