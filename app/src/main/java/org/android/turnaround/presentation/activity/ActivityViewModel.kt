@@ -21,6 +21,10 @@ class ActivityViewModel @Inject constructor(
     private val _category = MutableStateFlow<ActivityCategory?>(null)
     val category: StateFlow<ActivityCategory?> = _category.asStateFlow()
 
+    fun initCategory(category: ActivityCategory?) {
+        _category.value = category
+    }
+
     suspend fun getActivities(): Flow<PagingData<ActivityContent>> =
         activityRepository.getActivities(category = category.value, size = ACTIVITY_LIST_SIZE)
             .cachedIn(viewModelScope)

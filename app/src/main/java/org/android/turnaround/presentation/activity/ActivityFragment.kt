@@ -3,6 +3,7 @@ package org.android.turnaround.presentation.activity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.paging.PagingData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import org.android.turnaround.R
@@ -18,12 +19,22 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.vm = viewModel
         initActivityAdapter()
-        collectActivityList()
+        initCategoryCollector()
     }
 
     private fun initActivityAdapter() {
         binding.rvActivity.adapter = activityAdapter
+    }
+
+    private fun initCategoryCollector() {
+        repeatOnStarted {
+            viewModel.category.collect {
+                activityAdapter.submitData(lifecycle, PagingData.empty())
+                collectActivityList()
+            }
+        }
     }
 
     private fun collectActivityList() {
