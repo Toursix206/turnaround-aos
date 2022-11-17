@@ -1,18 +1,18 @@
 package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.Activity
-import org.android.turnaround.domain.entity.Content
+import org.android.turnaround.domain.entity.ActivityContent
 
 data class ActivityResponse(
     val lastPage: Int,
     val nextPage: Int,
-    val contents: List<ContentEntity>
+    val contents: List<ActivityContentEntity>
 ) {
-    fun toActivity(): Activity = Activity(
+    fun toActivityContent(): Activity = Activity(
         lastPage = this.lastPage,
         nextPage = this.nextPage,
-        contents = this.contents.map { content ->
-            Content(
+        activityContents = this.contents.map { content ->
+            ActivityContent(
                 activityId = content.activityId,
                 broom = content.broom,
                 category = content.category,
@@ -26,7 +26,7 @@ data class ActivityResponse(
     )
 }
 
-data class ContentEntity(
+data class ActivityContentEntity(
     val activityId: Int,
     val broom: Int,
     val category: String,

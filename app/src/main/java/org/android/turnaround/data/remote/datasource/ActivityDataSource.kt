@@ -4,7 +4,6 @@ import org.android.turnaround.data.remote.entity.response.ActivityResponse
 import org.android.turnaround.data.remote.entity.response.BaseResponse
 import org.android.turnaround.data.remote.service.ActivityService
 import org.android.turnaround.domain.entity.ActivityCategory
-import org.android.turnaround.domain.entity.ActivityType
 import javax.inject.Inject
 
 class ActivityDataSource @Inject constructor(
@@ -13,13 +12,11 @@ class ActivityDataSource @Inject constructor(
     suspend fun getActivities(
         category: ActivityCategory? = null,
         page: Int,
-        size: Int,
-        type: ActivityType
+        size: Int
     ): BaseResponse<ActivityResponse> =
         activityService.getActivities(
             category = category,
             page = page,
-            size = size,
-            type = type,
+            size = size
         )
 }

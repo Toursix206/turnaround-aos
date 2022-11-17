@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="activity"
+            type="org.android.turnaround.domain.entity.ActivityContent" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -13,7 +13,7 @@ interface ActivityService {
         @Query("category") category: ActivityCategory? = null,
         @Query("page") page: Int,
         @Query("size") size: Int,
-        @Query("type") type: ActivityType,
+        @Query("type") type: ActivityType = ActivityType.FREE,
         @Query("sort") sort: Array<String> = arrayOf("createdAt", "DESC")
     ): BaseResponse<ActivityResponse>
 }
