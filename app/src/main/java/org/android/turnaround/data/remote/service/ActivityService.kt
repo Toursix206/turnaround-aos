@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface ActivityService {
     @GET("/v1/activities")
-    fun getActivities(
+    suspend fun getActivities(
         @Query("category") category: ActivityCategory? = null,
         @Query("page") page: Int,
         @Query("size") size: Int,

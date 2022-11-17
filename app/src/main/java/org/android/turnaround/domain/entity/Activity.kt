@@ -9,8 +9,8 @@ data class Activity(
 data class ActivityContent(
     val activityId: Int,
     val broom: Int,
-    val category: String,
-    val type: String,
+    val category: ActivityCategory,
+    val type: ActivityType,
     val name: String,
     val description: String,
     val duration: Int,

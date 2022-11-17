@@ -1,7 +1,9 @@
 package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.Activity
+import org.android.turnaround.domain.entity.ActivityCategory
 import org.android.turnaround.domain.entity.ActivityContent
+import org.android.turnaround.domain.entity.ActivityType
 
 data class ActivityResponse(
     val lastPage: Int,
@@ -15,8 +17,8 @@ data class ActivityResponse(
             ActivityContent(
                 activityId = content.activityId,
                 broom = content.broom,
-                category = content.category,
-                type = content.type,
+                category = ActivityCategory.valueOf(content.category),
+                type = ActivityType.valueOf(content.type),
                 name = content.name,
                 description = content.description,
                 duration = content.duration,
