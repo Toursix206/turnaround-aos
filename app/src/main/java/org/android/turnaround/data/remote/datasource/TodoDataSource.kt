@@ -7,4 +7,5 @@ class TodoDataSource @Inject constructor(
     private val todoService: TodoService
 ) {
     suspend fun getTodoList() = todoService.getTodoList()
+    suspend fun getTodoDetail(todoId: Int) = todoService.getTodoDetail(todoId)
 }
