@@ -28,7 +28,7 @@
             android:paddingVertical="10dp"
             android:text="@string/tutorial_skip"
             android:textAppearance="@style/body1_semi_bold"
-            android:textColor="@color/turnaround_point"
+            android:textColor="@color/turnaround_purple"
             app:drawableEndCompat="@drawable/ic_tutorial_skip_arrow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

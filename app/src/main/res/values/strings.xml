@@ -52,4 +52,29 @@
     <string name="room_small_bedroom">작은 취침 공간</string>
     <string name="room_furniture_count">%d개</string>
     <string name="room_level">Lv.%d</string>
+
+    <!-- Activity -->
+    <string name="activity_title">생산적 활동</string>
+    <string name="room_category_all_img_desc">활동 카테고리 전체</string>
+    <string name="activity_category_all">전체</string>
+    <string name="room_category_bed_img_desc">활동 카테고리 침구류</string>
+    <string name="activity_category_bed">침구류</string>
+    <string name="room_category_washing_machine_img_desc">활동 카테고리 세탁기</string>
+    <string name="activity_category_washing_machine">세탁기</string>
+    <string name="room_category_table_img_desc">활동 카테고리 책상</string>
+    <string name="activity_category_table">책상</string>
+    <string name="room_category_kitchen_img_desc">활동 카테고리 주방</string>
+    <string name="activity_category_kitchen">주방</string>
+    <string name="room_category_bathroom_img_desc">활동 카테고리 화장실</string>
+    <string name="activity_category_bathroom">화장실</string>
+    <string name="room_category_etc_img_desc">활동 카테고리 기타가구</string>
+    <string name="activity_category_etc">기타가구</string>
+    <string name="room_category_self_improvement_img_desc">활동 카테고리 자기계발</string>
+    <string name="activity_category_self_improvement">자기계발</string>
+    <string name="activity_img_desc">활동 사진</string>
+    <string name="activity_type_free">FREE</string>
+    <string name="activity_type_kit">KIT</string>
+    <string name="activity_brush">활동 후 빗자루 리워드</string>
+
+
 </resources>
