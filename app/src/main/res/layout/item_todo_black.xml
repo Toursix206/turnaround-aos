@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
-        android:onClick="@{() -> vm.resetBlackTodoId(todo.todoId)}">
+        android:onClick="@{() -> vm.setBlackTodoId(todo.todoId)}">
 
         <View
             android:id="@+id/view_todo_black"

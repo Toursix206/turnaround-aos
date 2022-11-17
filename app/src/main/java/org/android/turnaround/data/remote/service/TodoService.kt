@@ -1,6 +1,7 @@
 package org.android.turnaround.data.remote.service
 
 import org.android.turnaround.data.remote.entity.response.*
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -15,7 +16,8 @@ interface TodoService {
 //
 //    @PUT("/v1/to do/{todoId}") // 활동 이벤트 페이지 - 활동 일정을 수정합니다.
 //
-//    @DELETE("/v1/to do/{todoId}") // 활동 이벤트 페이지 - 활동 일정을 삭제합니다.
+    @DELETE("/v1/todo/{todoId}") // 활동 이벤트 페이지 - 활동 일정을 삭제합니다.
+    suspend fun deleteTodo(@Path("todoId") todoId: Int): BaseResponse<String>
 //
 //    @POST("/v1/to do/{todoId}/done") // 활동 인증 페이지 - 활동을 인증합니다.
 //

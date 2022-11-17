@@ -47,9 +47,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initIsClickedBlackItemEventObserver() {
-        viewModel.isClickedBlackItemEvent.observe(viewLifecycleOwner, EventObserver {
-            viewModel.getTodoDetail(it)
-        })
+        viewModel.isClickedBlackItemEvent.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                viewModel.getTodoDetail(it)
+            }
+        )
     }
 
     private fun initTodoDetailObserver() {

@@ -21,4 +21,8 @@ class TodoRepositoryImpl @Inject constructor(
         }.map { response ->
             response.data.toTodoDetail()
         }
+
+    override suspend fun deleteTodo(todoId: Int): Result<String> =
+        kotlin.runCatching { todoDataSource.deleteTodo(todoId) }
+            .map { response -> response.data }
 }

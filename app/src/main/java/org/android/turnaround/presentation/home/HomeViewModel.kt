@@ -50,7 +50,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun resetBlackTodoId(todoId: Int) {
+    fun setBlackTodoId(todoId: Int) {
         _isClickedBlackItemEvent.value = Event(todoId)
     }
 
@@ -64,5 +64,3 @@ class HomeViewModel @Inject constructor(
         }
     }
 }
-
-

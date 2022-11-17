@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import org.android.turnaround.R
 import org.android.turnaround.databinding.*
 import org.android.turnaround.domain.entity.*
+import org.android.turnaround.presentation.todoeventedit.TodoEventEditViewModel
 
 class TodoEventEditAdapter(
-    private val context: Context
+    private val context: Context,
+    private val viewModel: TodoEventEditViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val todoEventList = mutableListOf<TodoEvent>()
@@ -90,6 +92,7 @@ class TodoEventEditAdapter(
     inner class TodoEventWhiteEditViewHolder(private val binding: ItemTodoEventWhiteEditBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }
@@ -97,6 +100,7 @@ class TodoEventEditAdapter(
     inner class TodoEventBlackEditViewHolder(private val binding: ItemTodoEventBlackEditBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }

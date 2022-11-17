@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="vm"
+            type="org.android.turnaround.presentation.todoeventedit.TodoEventEditViewModel" />
+
+        <variable
             name="todo"
             type="org.android.turnaround.domain.entity.Todo" />
     </data>
@@ -80,9 +84,10 @@
             android:id="@+id/tv_todo_remove"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
             android:layout_marginEnd="6dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/shape_gray8_rect_line_4"
+            android:onClick="@{() -> vm.setIsCheckedDeleteBtnEvent(todo.todoId)}"
             android:paddingVertical="9dp"
             android:text="일정 삭제"
             android:textAlignment="center"
@@ -97,9 +102,9 @@
             android:id="@+id/tv_todo_change_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/shape_gray8_rect_line_4"
             android:paddingVertical="9dp"
             android:text="예약 시간 변경"

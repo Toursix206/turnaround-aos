@@ -8,4 +8,5 @@ class TodoDataSource @Inject constructor(
 ) {
     suspend fun getTodoList() = todoService.getTodoList()
     suspend fun getTodoDetail(todoId: Int) = todoService.getTodoDetail(todoId)
+    suspend fun deleteTodo(todoId: Int) = todoService.deleteTodo(todoId)
 }
