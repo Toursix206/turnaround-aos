@@ -54,4 +54,10 @@ object BindingAdapters {
             in goodScore -> setImageResource(R.drawable.ic_room_room_score_good)
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("cropImg")
+    fun ImageView.cropImg(isCrop: Boolean) {
+        clipToOutline = isCrop
+    }
 }
