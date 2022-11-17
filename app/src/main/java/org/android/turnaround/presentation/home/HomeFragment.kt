@@ -20,19 +20,24 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initHomeActivityAdapter()
+        binding.vm = viewModel
+        initHomeObserver()
         initTodoEventEventClickListener()
     }
 
-    private fun initHomeActivityAdapter() {
+    private fun initHomeObserver() {
+        viewModel.home.observe(viewLifecycleOwner) {
+            binding.home = it
+            initHomeAdapter(it.todosCnt, it.todos)
+        }
+    }
+
+    private fun initHomeAdapter(todosCnt: Int, todos: List<Todo>) {
         with(binding.vpHomeTodo) {
             adapter = TodoAdapter(
-                nickname = "민영",
                 showBottomSheet = { _ -> showTodoStartBottomSheet() }
             ).apply {
-                val testList = listOf<Todo>()
-                submitHomeActivityList(testList)
-
+                if (todosCnt > 0) submitHomeActivityList(todos)
                 val pageMargin = resources.getDimension(R.dimen.vp_home_page_margin)
                 val pagerOffset = resources.getDimension(R.dimen.vp_home_pager_offset)
                 setShowSideItems(pageMargin, pagerOffset)

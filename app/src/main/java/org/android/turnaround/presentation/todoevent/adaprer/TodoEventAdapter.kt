@@ -93,6 +93,11 @@ class TodoEventAdapter(
         notifyItemRangeInserted(todoEventList.size, data.size)
     }
 
+    fun submitTodayTodoList(items: List<Todo>) {
+        todoEventList.addAll(items)
+        notifyItemRangeInserted(items.size, items.size)
+    }
+
     inner class TodoEvenHeaderViewHolder(private val binding: ItemTodoEventHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(header: TodoHeader) {
             binding.header = header

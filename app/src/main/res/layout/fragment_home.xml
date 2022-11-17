@@ -5,9 +5,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="org.android.turnaround.presentation.home.HomeViewModel" />
+
+        <variable
+            name="home"
+            type="org.android.turnaround.domain.entity.Home" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="57dp"
+            android:text="@{home.nickname + `님`}"
             android:textAppearance="@style/sub_headline_semi_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,6 +42,7 @@
             android:background="@drawable/shape_black_rect_fill_27"
             android:paddingHorizontal="10dp"
             android:paddingVertical="2dp"
+            android:text="@{`Lev.` + String.valueOf(home.level)}"
             android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/tv_home_nickname"
@@ -71,6 +79,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:text="@{home.broom &lt; 10 ? `0` + String.valueOf(home.broom) : String.valueOf(home.broom)}"
             android:textAppearance="@style/h2_bold"
             app:layout_constraintBottom_toBottomOf="@id/view_home_broom"
             app:layout_constraintEnd_toStartOf="@id/tv_home_broom_count"
@@ -115,6 +124,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
+            android:text="@{String.valueOf(home.cleanScore)}"
             android:textAppearance="@style/h2_bold"
             app:layout_constraintBottom_toBottomOf="@id/view_home_score"
             app:layout_constraintEnd_toStartOf="@id/tv_home_score_count"
@@ -162,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
             android:layout_marginTop="10dp"
-            android:text="나의 활동(0)"
+            android:text="@{`나의 활동(` + String.valueOf(home.todosCnt) + `)`}"
             android:textAppearance="@style/sub_headline_semi_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_home_room_indicator_1" />
@@ -200,10 +210,54 @@
             android:layout_height="wrap_content"
             android:clipChildren="false"
             android:clipToPadding="false"
+            android:visibility="@{vm.isTodayTodoExist ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_home_my_activity_count" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
+            android:visibility="@{vm.isTodayTodoExist ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_home_my_activity_count">
+
+            <View
+                android:id="@+id/view_todo_white"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/shape_white_rect_fill_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="14dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_home_no_activity_shampoo"
+                app:layout_constraintBottom_toBottomOf="@id/view_todo_white"
+                app:layout_constraintStart_toStartOf="@id/view_todo_white"
+                app:layout_constraintTop_toTopOf="@id/view_todo_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="26dp"
+                android:layout_marginEnd="38dp"
+                android:text="@{home.nickname + `님! 반가워요.\n우리 집안일을 한번 해볼까요?`}"
+                android:textAppearance="@style/body1_semi_bold"
+                app:layout_constraintBottom_toBottomOf="@id/view_todo_white"
+                app:layout_constraintEnd_toEndOf="@id/view_todo_white"
+                app:layout_constraintTop_toTopOf="@id/view_todo_white"
+                tools:text="OO님! 반가워요.\n우리 집안일을 한번 해볼까요?" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

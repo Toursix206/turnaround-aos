@@ -5,5 +5,5 @@ import org.android.turnaround.domain.entity.TodoList
 
 interface TodoRepository {
     suspend fun getTodoList(): Result<TodoList>
-    suspend fun  getTodoDetail(todoId: Int): Result<TodoDetail>
+    suspend fun getTodoDetail(todoId: Int): Result<TodoDetail>
 }

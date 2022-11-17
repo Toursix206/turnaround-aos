@@ -17,7 +17,7 @@ data class TodoDetailResponse(
             broom = this.broom,
             category = this.category,
             name = this.name,
-            point= this.point,
+            point = this.point,
             rewardItem = this.rewardItem,
             type = this.type
         )
