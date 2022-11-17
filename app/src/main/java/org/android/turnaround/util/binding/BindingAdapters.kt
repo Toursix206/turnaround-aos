@@ -41,4 +41,17 @@ object BindingAdapters {
             }
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("roomScore")
+    fun ImageView.initRoomScoreEmoji(roomScore: Int) {
+        val goodScore = 61..100
+        val soSoSCore = 31..60
+        val badScore = 0..30
+        when (roomScore) {
+            in badScore -> setImageResource(R.drawable.ic_room_room_score_bad)
+            in soSoSCore -> setImageResource(R.drawable.ic_room_room_score_so_so)
+            in goodScore -> setImageResource(R.drawable.ic_room_room_score_good)
+        }
+    }
 }

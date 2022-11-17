@@ -377,15 +377,16 @@
 
             <ImageView
                 android:id="@+id/iv_room_score"
+                roomScore="@{vm.roomInfo.cleanScore}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="10dp"
                 android:contentDescription="@string/room_score_img_desc"
-                android:src="@drawable/ic_room_room_score_good"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_room_room_score_good" />
 
             <TextView
                 android:id="@+id/tv_room_score"
