@@ -10,4 +10,8 @@ class RoomRepositoryImpl @Inject constructor(
     override suspend fun getRoomInfo(): Result<RoomInfo> =
         kotlin.runCatching { roomDataSource.getRoomInfo() }
             .map { response -> response.data.toRoomInfo() }
+
+    override suspend fun putFurnitureClean(furnitureId: Int): Result<RoomInfo> =
+        kotlin.runCatching { roomDataSource.putFurnitureClean(furnitureId) }
+            .map { response -> response.data.toRoomInfo() }
 }

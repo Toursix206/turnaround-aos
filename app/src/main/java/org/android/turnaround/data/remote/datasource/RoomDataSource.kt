@@ -10,4 +10,7 @@ class RoomDataSource @Inject constructor(
 ) {
     suspend fun getRoomInfo(): BaseResponse<RoomInfoResponse> =
         roomService.getRoomInfo()
+
+    suspend fun putFurnitureClean(furnitureId: Int): BaseResponse<RoomInfoResponse> =
+        roomService.putFurnitureClean(furnitureId)
 }

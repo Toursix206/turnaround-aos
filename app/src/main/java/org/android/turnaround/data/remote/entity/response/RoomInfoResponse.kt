@@ -7,6 +7,8 @@ import org.android.turnaround.domain.entity.FurnitureType
 import org.android.turnaround.domain.entity.RoomInfo
 
 data class RoomInfoResponse(
+    @SerializedName("spaceType")
+    val roomType: String,
     val broom: Int,
     val cleanScore: Int,
     val experience: Int,
@@ -18,6 +20,7 @@ data class RoomInfoResponse(
 ) {
     fun toRoomInfo(): RoomInfo =
         RoomInfo(
+            roomType = this.roomType,
             broom = this.broom,
             cleanScore = this.cleanScore,
             experience = this.experience,

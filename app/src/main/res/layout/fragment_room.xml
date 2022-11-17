@@ -37,10 +37,9 @@
                 android:id="@+id/tv_room_top_info_room_type_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendard_bold"
                 android:text="@string/room_top_info_room_type"
+                android:textAppearance="@style/body1_bold"
                 android:textColor="@color/turnaround_gray_10"
-                android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/room_small_bedroom"
+                android:text="@{vm.roomInfo.roomType}"
                 android:textAppearance="@style/body1_regular"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="@id/tv_room_top_info_room_type_title"
@@ -61,10 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:fontFamily="@font/pretendard_bold"
                 android:text="@string/room_top_info_furniture_count"
+                android:textAppearance="@style/body1_bold"
                 android:textColor="@color/turnaround_gray_10"
-                android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_room_top_info_room_type_title" />
 
