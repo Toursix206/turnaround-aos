@@ -5,11 +5,11 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentRoomBinding
-import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.extension.repeatOnStarted
 
@@ -80,7 +80,10 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    if (viewModel.windowCleanable.value) binding.btnRoomWindowBrush.isClickable = true
+                    with(binding.btnRoomWindowBrush) {
+                        if (viewModel.window.value.isCleanable) isClickable = true
+                        else isVisible = false
+                    }
                 }
             })
         }
@@ -98,7 +101,6 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    initIvWindowResource()
                     windowCleanFadeInAnimator?.start()
                 }
             })
@@ -112,7 +114,10 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    if (viewModel.bedCleanable.value) binding.btnRoomBedBrush.isClickable = true
+                    with(binding.btnRoomBedBrush) {
+                        if (viewModel.bed.value.isCleanable) isClickable = true
+                        else isVisible = false
+                    }
                 }
             })
         }
@@ -130,7 +135,6 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    initIvBedResource()
                     bedCleanFadeInAnimator?.start()
                 }
             })
@@ -144,7 +148,10 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    if (viewModel.tableCleanable.value) binding.btnRoomTableBrush.isClickable = true
+                    with(binding.btnRoomTableBrush) {
+                        if (viewModel.table.value.isCleanable) isClickable = true
+                        else isVisible = false
+                    }
                 }
             })
         }
@@ -162,41 +169,10 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    initIvTableResource()
                     tableCleanFadeInAnimator?.start()
                 }
             })
         }
-    }
-
-    private fun initIvWindowResource() {
-        binding.ivRoomWindow.setImageResource(
-            when (viewModel.windowLevel.value) {
-                CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_window_1
-                CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_window_2
-                CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_window_3
-            }
-        )
-    }
-
-    private fun initIvBedResource() {
-        binding.ivRoomBed.setImageResource(
-            when (viewModel.bedLevel.value) {
-                CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_bed_1
-                CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_bed_2
-                CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_bed_3
-            }
-        )
-    }
-
-    private fun initIvTableResource() {
-        binding.ivRoomTable.setImageResource(
-            when (viewModel.tableLevel.value) {
-                CleanLevel.CLEAN -> R.drawable.ic_roomtaverse_table_1
-                CleanLevel.DIRTY -> R.drawable.ic_roomtaverse_table_2
-                CleanLevel.VERY_DIRTY -> R.drawable.ic_roomtaverse_table_3
-            }
-        )
     }
 
     private fun initClickedAssetsCollector() {
@@ -219,27 +195,19 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
     private fun initCleanLevelCollector() {
         repeatOnStarted {
-            viewModel.windowLevel.collect {
+            viewModel.window.collect {
                 if (viewModel.isSuccessGetRoomInfo.value) windowCleanFadeOutAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.bedLevel.collect {
+            viewModel.bed.collect {
                 if (viewModel.isSuccessGetRoomInfo.value) bedCleanFadeOutAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.tableLevel.collect {
+            viewModel.table.collect {
                 if (viewModel.isSuccessGetRoomInfo.value) tableCleanFadeOutAnimator?.start()
             }
         }
-//
-//        repeatOnStarted {
-//            viewModel.isSuccessGetRoomInfo.collect { isSuccess ->
-//                if (isSuccess) {
-//
-//                }
-//            }
-//        }
     }
 }

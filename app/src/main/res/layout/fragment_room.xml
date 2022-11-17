@@ -95,7 +95,9 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/room_wall_img_desc"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_roomtaverse_background_shadow"
+                app:layout_constraintBottom_toBottomOf="@id/iv_room_wall"
                 app:layout_constraintTop_toTopOf="@id/iv_room_wall" />
 
             <ImageView
@@ -112,8 +114,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_bed"
-                cleanLevel="@{vm.bedLevel}"
-                furnitureType="@{FurnitureType.BASIC_BED}"
+                cleanLevel="@{vm.bed.furnitureCleanLevel}"
+                furnitureType="@{vm.bed.furnitureName}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -126,8 +128,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_window"
-                cleanLevel="@{vm.windowLevel}"
-                furnitureType="@{FurnitureType.BASIC_WINDOW}"
+                cleanLevel="@{vm.window.furnitureCleanLevel}"
+                furnitureType="@{vm.window.furnitureName}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -140,8 +142,8 @@
 
             <ImageView
                 android:id="@+id/iv_room_table"
-                cleanLevel="@{vm.tableLevel}"
-                furnitureType="@{FurnitureType.BASIC_TABLE}"
+                cleanLevel="@{vm.table.furnitureCleanLevel}"
+                furnitureType="@{vm.table.furnitureName}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -184,9 +186,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
-                    android:clickable="@{vm.windowCleanable ? true : false}"
+                    android:clickable="@{vm.window.isCleanable ? true : false}"
                     android:contentDescription="@string/room_brush_window_img_desc"
-                    android:onClick="@{()->vm.initWindowLevel()}"
+                    android:onClick="@{()->vm.putFurnitureClean(vm.window.furnitureId)}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showWindowBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_window"
@@ -216,9 +218,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
-                    android:clickable="@{vm.bedCleanable ? true : false}"
+                    android:clickable="@{vm.bed.isCleanable ? true : false}"
                     android:contentDescription="@string/room_brush_bed_img_desc"
-                    android:onClick="@{()->vm.initBedLevel()}"
+                    android:onClick="@{()->vm.putFurnitureClean(vm.bed.furnitureId)}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showBedBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_bed"
@@ -248,9 +250,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="-20dp"
                     android:background="@null"
-                    android:clickable="@{vm.tableCleanable ? true : false}"
+                    android:clickable="@{vm.table.isCleanable ? true : false}"
                     android:contentDescription="@string/room_brush_table_img_desc"
-                    android:onClick="@{()->vm.initTableLevel()}"
+                    android:onClick="@{()->vm.putFurnitureClean(vm.table.furnitureId)}"
                     android:src="@drawable/ic_roomtaverse_brush"
                     android:visibility="@{vm.showTableBrush == true ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@id/view_room_table"
