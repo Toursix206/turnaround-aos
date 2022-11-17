@@ -10,8 +10,8 @@ data class RoomInfo(
 )
 
 data class Furniture(
-    val furnitureCleanLevel: CleanLevel = CleanLevel.CLEAN,
-    val furnitureName: FurnitureType = FurnitureType.BASIC_WINDOW,
     val furnitureId: Int = -1,
+    val furnitureName: FurnitureType = FurnitureType.BASIC_WINDOW,
+    val furnitureCleanLevel: CleanLevel = CleanLevel.CLEAN,
     val isCleanable: Boolean = false
 )

@@ -11,6 +11,8 @@ data class RoomInfoResponse(
     val cleanScore: Int,
     val experience: Int,
     val level: Int,
+    @SerializedName("interiorCount")
+    val furnitureCount: Int,
     @SerializedName("interiors")
     val furnitureList: List<FurnitureEntity>
 ) {
@@ -20,7 +22,7 @@ data class RoomInfoResponse(
             cleanScore = this.cleanScore,
             experience = this.experience,
             level = this.level,
-            furnitureCount = furnitureList.size - 1,
+            furnitureCount = this.furnitureCount,
             furnitureList = this.furnitureList.map { furniture ->
                 Furniture(
                     furnitureCleanLevel = CleanLevel.valueOf(furniture.furnitureCleanLevel),
@@ -33,11 +35,11 @@ data class RoomInfoResponse(
 }
 
 data class FurnitureEntity(
-    @SerializedName("interiorCleanLevel")
-    val furnitureCleanLevel: String,
-    @SerializedName("interiorName")
-    val furnitureName: String,
     @SerializedName("obtainId")
     val furnitureId: Int,
+    @SerializedName("interiorName")
+    val furnitureName: String,
+    @SerializedName("interiorCleanLevel")
+    val furnitureCleanLevel: String,
     val isCleanable: Boolean
 )
