@@ -75,4 +75,15 @@
     <string name="room_brush_desk_img_desc">방타버스 책상 빗자루</string>
     <string name="room_brush_window_img_desc">방타버스 창문 빗자루</string>
     <string name="room_brush_bed_img_desc">방타버스 침대 빗자루</string>
+
+    <!-- Bottom Sheet To-do Start -->
+    <string name="bottom_sheet_todo_start_category_img_desc">활동 상세 카테고리 이미지</string>
+    <string name="bottom_sheet_todo_start_broom_img_desc">활동 상세 빗자루 이미지</string>
+    <string name="bottom_sheet_todo_start_broom">빗자루</string>
+    <string name="bottom_sheet_todo_start_point_img_desc">활동 상세 활동 인증 이미지</string>
+    <string name="bottom_sheet_todo_start_point">활동 인증 시</string>
+    <string name="bottom_sheet_todo_start_reward_img_desc">활동 상세 보상 아이템 이미지</string>
+    <string name="bottom_sheet_todo_start_reward">보상 아이템</string>
+    <string name="bottom_sheet_todo_start_alarm_img_desc">활동 상세 알람 이미지</string>
+    <string name="bottom_sheet_toso_start_alarm">활동 시간 알람</string>
 </resources>

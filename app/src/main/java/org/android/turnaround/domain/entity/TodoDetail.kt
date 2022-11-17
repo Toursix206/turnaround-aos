@@ -6,6 +6,8 @@ data class TodoDetail(
     val category: String,
     val name: String,
     val point: Int,
-    val rewardItem: String,
-    val type: String
+    val rewardItem: String? = null,
+    val type: String,
+    val categoryName: String,
+    val categoryImage: Int
 )

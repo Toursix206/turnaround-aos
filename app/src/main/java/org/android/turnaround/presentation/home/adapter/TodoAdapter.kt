@@ -7,9 +7,10 @@ import org.android.turnaround.databinding.ItemTodoBlackBinding
 import org.android.turnaround.databinding.ItemTodoPurpleBinding
 import org.android.turnaround.databinding.ItemTodoWhiteBinding
 import org.android.turnaround.domain.entity.*
+import org.android.turnaround.presentation.home.HomeViewModel
 
 class TodoAdapter(
-    private val showBottomSheet: (Unit) -> Unit
+    private val viewModel: HomeViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val todoList = mutableListOf<Todo>()
 
@@ -66,7 +67,7 @@ class TodoAdapter(
     inner class TodoBlackViewHolder(private val binding: ItemTodoBlackBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
-            binding.viewTodoBlack.setOnClickListener { showBottomSheet(Unit) }
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }

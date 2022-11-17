@@ -8,7 +8,7 @@ data class TodoDetailResponse(
     val category: String,
     val name: String,
     val point: Int,
-    val rewardItem: String,
+    val rewardItem: String?,
     val type: String
 ) {
     fun toTodoDetail(): TodoDetail =
@@ -19,6 +19,8 @@ data class TodoDetailResponse(
             name = this.name,
             point = this.point,
             rewardItem = this.rewardItem,
-            type = this.type
+            type = this.type,
+            categoryName = toCategoryName(this.category),
+            categoryImage = toCategoryRoundImage(this.category)
         )
 }

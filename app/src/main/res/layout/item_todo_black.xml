@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="vm"
+            type="org.android.turnaround.presentation.home.HomeViewModel" />
+
+        <variable
             name="todo"
             type="org.android.turnaround.domain.entity.Todo" />
     </data>
@@ -13,7 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset">
+        android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
+        android:onClick="@{() -> vm.resetBlackTodoId(todo.todoId)}">
 
         <View
             android:id="@+id/view_todo_black"

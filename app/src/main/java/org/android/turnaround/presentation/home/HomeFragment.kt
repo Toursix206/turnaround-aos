@@ -11,6 +11,7 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentHomeBinding
 import org.android.turnaround.domain.entity.*
 import org.android.turnaround.presentation.home.adapter.TodoAdapter
+import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
 
 @AndroidEntryPoint
@@ -22,6 +23,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
         binding.vm = viewModel
         initHomeObserver()
+        initIsClickedBlackItemEventObserver()
+        initTodoDetailObserver()
         initTodoEventEventClickListener()
     }
 
@@ -34,14 +37,24 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initHomeAdapter(todosCnt: Int, todos: List<Todo>) {
         with(binding.vpHomeTodo) {
-            adapter = TodoAdapter(
-                showBottomSheet = { _ -> showTodoStartBottomSheet() }
-            ).apply {
+            adapter = TodoAdapter(viewModel).apply {
                 if (todosCnt > 0) submitHomeActivityList(todos)
                 val pageMargin = resources.getDimension(R.dimen.vp_home_page_margin)
                 val pagerOffset = resources.getDimension(R.dimen.vp_home_pager_offset)
                 setShowSideItems(pageMargin, pagerOffset)
             }
+        }
+    }
+
+    private fun initIsClickedBlackItemEventObserver() {
+        viewModel.isClickedBlackItemEvent.observe(viewLifecycleOwner, EventObserver {
+            viewModel.getTodoDetail(it)
+        })
+    }
+
+    private fun initTodoDetailObserver() {
+        viewModel.todoDetail.observe(viewLifecycleOwner) {
+            showTodoStartBottomSheet(it)
         }
     }
 
@@ -51,8 +64,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }
     }
 
-    private fun showTodoStartBottomSheet() {
-        TodoStartBottomSheet().show(parentFragmentManager, this.javaClass.name)
+    private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
+        TodoStartBottomSheet(todoDetail).show(parentFragmentManager, this.javaClass.name)
     }
 
     private fun ViewPager2.setShowSideItems(pageMarginPx: Float, offsetPx: Float) {

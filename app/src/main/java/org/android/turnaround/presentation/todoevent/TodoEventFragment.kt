@@ -25,7 +25,7 @@ class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fra
     }
 
     private fun showTodoStartBottomSheet() {
-        TodoStartBottomSheet().show(parentFragmentManager, this.javaClass.name)
+//        TodoStartBottomSheet().show(parentFragmentManager, this.javaClass.name)
     }
 
     private fun initTodoListCollector() {

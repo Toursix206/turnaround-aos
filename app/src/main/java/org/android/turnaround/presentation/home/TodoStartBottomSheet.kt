@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.android.turnaround.R
 import org.android.turnaround.databinding.BottomSheetTodoStartBinding
+import org.android.turnaround.domain.entity.TodoDetail
 
-class TodoStartBottomSheet : BottomSheetDialogFragment() {
+class TodoStartBottomSheet(val todoDetail: TodoDetail) : BottomSheetDialogFragment() {
     private var _binding: BottomSheetTodoStartBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
@@ -23,6 +24,7 @@ class TodoStartBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.todoDetail = todoDetail
         initBtnTodoStartClickListener()
     }
 
