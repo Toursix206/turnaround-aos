@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="todoDetail"
+            type="org.android.turnaround.domain.entity.TodoDetail" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <View
+            android:id="@+id/view_todo_start"
+            android:layout_width="44dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_dfdfdf_rect_fill_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_todo_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/bottom_sheet_todo_start_category_img_desc"
+            app:imageResource="@{todoDetail.categoryImage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_todo_start"
+            tools:src="@drawable/img_todo_bedding_round" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_category"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/shape_gray2_rect_fill_4"
+            android:paddingVertical="2dp"
+            android:text="@{todoDetail.categoryName}"
+            android:textAlignment="center"
+            android:textAppearance="@style/caption_semi_bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_todo_start"
+            app:layout_constraintEnd_toStartOf="@id/tv_todo_start_type"
+            app:layout_constraintTop_toTopOf="@id/iv_todo_start"
+            tools:text="침대" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_type"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="29dp"
+            android:background="@drawable/shape_gray9_rect_line_4"
+            android:paddingVertical="2dp"
+            android:text="@{todoDetail.type}"
+            android:textAlignment="center"
+            android:textAppearance="@style/caption_semi_bold"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_start_category"
+            tools:text="FREE" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{todoDetail.name}"
+            android:textAppearance="@style/sub_headline_bold"
+            app:layout_constraintStart_toStartOf="@id/iv_todo_start"
+            app:layout_constraintTop_toBottomOf="@id/iv_todo_start"
+            tools:text="팡이팡이 곰팡이" />
+
+        <ImageView
+            android:id="@+id/iv_todo_start_broom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/bottom_sheet_todo_start_broom_img_desc"
+            android:src="@drawable/ic_todo_start_broom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_title" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_broom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@string/bottom_sheet_todo_start_broom"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintBottom_toBottomOf="@id/iv_todo_start_broom"
+            app:layout_constraintEnd_toStartOf="@id/tv_todo_start_broom_num"
+            app:layout_constraintStart_toEndOf="@id/iv_todo_start_broom"
+            app:layout_constraintTop_toTopOf="@id/iv_todo_start_broom" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_broom_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="19dp"
+            android:text="@{`+` + String.valueOf(todoDetail.broom) + `획득`}"
+            android:textAppearance="@style/body1_semi_bold"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_broom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_start_broom"
+            tools:text="+2 획득" />
+
+        <ImageView
+            android:id="@+id/iv_todo_start_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:contentDescription="@string/bottom_sheet_todo_start_point_img_desc"
+            android:src="@drawable/ic_todo_start_point"
+            app:layout_constraintStart_toStartOf="@id/iv_todo_start_broom"
+            app:layout_constraintTop_toBottomOf="@id/iv_todo_start_broom" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_point"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@string/bottom_sheet_todo_start_point"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintBottom_toBottomOf="@id/iv_todo_start_point"
+            app:layout_constraintEnd_toStartOf="@id/tv_todo_start_broom_num"
+            app:layout_constraintStart_toEndOf="@id/iv_todo_start_point"
+            app:layout_constraintTop_toTopOf="@id/iv_todo_start_point" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_point_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="19dp"
+            android:text="@{`+` + String.valueOf(todoDetail.point) + `적립`}"
+            android:textAppearance="@style/body1_semi_bold"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_point"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_start_point"
+            tools:text="+2 적립" />
+
+        <ImageView
+            android:id="@+id/iv_todo_start_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:contentDescription="@string/bottom_sheet_todo_start_reward_img_desc"
+            android:src="@drawable/ic_todo_start_reward_item"
+            app:layout_constraintStart_toStartOf="@id/iv_todo_start_point"
+            app:layout_constraintTop_toBottomOf="@id/iv_todo_start_point" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_reward"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@string/bottom_sheet_todo_start_reward"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintBottom_toBottomOf="@id/iv_todo_start_reward"
+            app:layout_constraintEnd_toStartOf="@id/tv_todo_start_reward_num"
+            app:layout_constraintStart_toEndOf="@id/iv_todo_start_reward"
+            app:layout_constraintTop_toTopOf="@id/iv_todo_start_reward" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_reward_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="19dp"
+            android:text="@{todoDetail.type == null ? `Coming soon` : todoDetail.rewardItem}"
+            android:textAppearance="@style/body1_semi_bold"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_reward"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_start_reward"
+            tools:text="Coming soon" />
+
+        <View
+            android:id="@+id/view_todo_start_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="19dp"
+            android:background="@color/turnaround_gray_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_todo_start_reward" />
+
+        <ImageView
+            android:id="@+id/iv_todo_start_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="19dp"
+            android:contentDescription="@string/bottom_sheet_todo_start_alarm_img_desc"
+            android:src="@drawable/ic_todo_start_alarm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_todo_start_bottom" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_alarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@string/bottom_sheet_todo_start_alarm"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintBottom_toBottomOf="@id/iv_todo_start_alarm"
+            app:layout_constraintStart_toEndOf="@id/iv_todo_start_alarm"
+            app:layout_constraintTop_toTopOf="@id/iv_todo_start_alarm" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_btn_todo_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="26dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_alarm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_start_alarm"
+            app:sb_checked_color="@color/turnaround_purple"
+            app:sb_checkline_color="@color/turnaround_purple"
+            app:sb_checkline_width="0dp"
+            app:sb_uncheck_color="@color/turnaround_gray_6"
+            app:sb_uncheckcircle_radius="0dp"
+            app:sb_uncheckcircle_width="0dp" />
+
+        <TextView
+            android:id="@+id/tv_todo_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_todo_start_alarm"
+            tools:text="남은 시간 00:00" />
+
+        <TextView
+            android:id="@+id/btn_todo_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_gray10_rect_fill_14"
+            android:paddingVertical="16dp"
+            android:text="활동 시간이 아니지만 바로 시작하기!"
+            android:textAlignment="center"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_time" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

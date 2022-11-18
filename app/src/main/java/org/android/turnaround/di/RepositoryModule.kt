@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.android.turnaround.data.remote.repository.*
 import org.android.turnaround.data.remote.repository.ActivityRepository
 import org.android.turnaround.data.remote.repository.ActivityRepositoryImpl
 import org.android.turnaround.data.remote.repository.AuthRepository
@@ -19,6 +20,16 @@ object RepositoryModule {
     @Singleton
     fun providesAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository =
         authRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun providesTodoRepository(todoRepositoryImpl: TodoRepositoryImpl): TodoRepository =
+        todoRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun providesHomeRepository(homeRepositoryImpl: HomeRepositoryImpl): HomeRepository =
+        homeRepositoryImpl
 
     @Provides
     @Singleton

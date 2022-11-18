@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.android.turnaround.data.remote.service.ActivityService
 import org.android.turnaround.data.remote.service.AuthService
+import org.android.turnaround.data.remote.service.HomeService
+import org.android.turnaround.data.remote.service.TodoService
 import org.android.turnaround.data.remote.service.RoomService
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -17,6 +19,16 @@ object RetrofitServiceModule {
     @Singleton
     fun providesAuthService(retrofit: Retrofit): AuthService =
         retrofit.create(AuthService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesTodoService(retrofit: Retrofit): TodoService =
+        retrofit.create(TodoService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesHomeService(retrofit: Retrofit): HomeService =
+        retrofit.create(HomeService::class.java)
 
     @Provides
     @Singleton

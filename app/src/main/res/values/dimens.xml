@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="vp_home_page_margin">6dp</dimen>
+    <dimen name="vp_home_pager_offset">8dp</dimen>
+    <dimen name="vp_home_page_margin_and_offset">14dp</dimen>
+</resources>

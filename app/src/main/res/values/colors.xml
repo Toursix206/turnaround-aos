@@ -23,4 +23,6 @@
     <color name="turnaround_gray_9">#3c3c3e</color>
     <color name="turnaround_gray_10">#1c1c1e</color>
     <color name="turnaround_gray_dot">#333333</color>
+    <color name="turnaround_f5f5f5">#f5f5f5</color>
+    <color name="turnaround_dfdfdf">#dfdfdf</color>
 </resources>
