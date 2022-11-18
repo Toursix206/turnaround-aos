@@ -30,4 +30,8 @@ class TodoRepositoryImpl @Inject constructor(
     override suspend fun putTodo(todoId: Int, body: TodoEditRequest): Result<String> =
         kotlin.runCatching { todoDataSource.putTodo(todoId, body) }
             .map { response -> response.data }
+
+    override suspend fun putNotificationOff(): Result<String> =
+        kotlin.runCatching { todoDataSource.putNotificationOff() }
+            .map { response -> response.data }
 }

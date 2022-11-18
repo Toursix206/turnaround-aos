@@ -2,7 +2,7 @@ package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.TodoCategory
 import org.android.turnaround.domain.entity.TodoDetail
-import org.android.turnaround.domain.entity.TodoImageCategory
+import org.android.turnaround.domain.entity.TodoRoundImageCategory
 
 data class TodoDetailResponse(
     val activityId: Int,
@@ -23,6 +23,6 @@ data class TodoDetailResponse(
             rewardItem = this.rewardItem,
             type = this.type,
             categoryName = TodoCategory.valueOf(this.category).title,
-            categoryImage = TodoImageCategory.valueOf(this.category).res
+            categoryImage = TodoRoundImageCategory.valueOf(this.category).res
         )
 }

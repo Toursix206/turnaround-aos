@@ -9,4 +9,5 @@ interface TodoRepository {
     suspend fun getTodoDetail(todoId: Int): Result<TodoDetail>
     suspend fun deleteTodo(todoId: Int): Result<String>
     suspend fun putTodo(todoId: Int, body: TodoEditRequest): Result<String>
+    suspend fun putNotificationOff(): Result<String>
 }

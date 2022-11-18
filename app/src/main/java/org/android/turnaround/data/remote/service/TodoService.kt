@@ -29,5 +29,6 @@ interface TodoService {
 //
 //    @PUT("/v1/to do/{todoId}/reward") // 활동 이벤트 페이지 - 완료된 활동의 리워드를 받습니다.
 //
-//    @PUT("/v1/todos/notification/off") // 활동 이벤트 페이지 - 예약된 모든 활동의 알림을 끕니다.
+    @PUT("/v1/todos/notification/off") // 활동 이벤트 페이지 - 예약된 모든 활동의 알림을 끕니다.
+    suspend fun putNotificationOff(): BaseResponse<String>
 }

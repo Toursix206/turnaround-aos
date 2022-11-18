@@ -12,6 +12,7 @@ import org.android.turnaround.presentation.home.TodoStartBottomSheet
 import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
+import org.android.turnaround.util.showToast
 
 @AndroidEntryPoint
 class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fragment_todo_event) {
@@ -24,6 +25,7 @@ class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fra
         initTodoListObserver()
         initIsClickedBlackItemEventObserver()
         initTodoDetailObserver()
+        initTodoAlarmOffObserver()
         initOpenTodoEventEventEditClickListener()
         initBackBtnClickListener()
     }
@@ -51,6 +53,12 @@ class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fra
     private fun initTodoDetailObserver() {
         viewModel.todoDetail.observe(viewLifecycleOwner) {
             showTodoStartBottomSheet(it)
+        }
+    }
+
+    private fun initTodoAlarmOffObserver() {
+        viewModel.alarmOff.observe(viewLifecycleOwner) {
+            requireContext().showToast(it as String)
         }
     }
 

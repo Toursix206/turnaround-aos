@@ -45,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo_event_img_alarm_desc"
+            android:onClick="@{() -> vm.putNotificationOff()}"
             android:paddingVertical="16dp"
             android:paddingStart="16dp"
             android:paddingEnd="9dp"
