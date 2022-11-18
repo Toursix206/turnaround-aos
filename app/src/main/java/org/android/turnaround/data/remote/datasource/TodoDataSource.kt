@@ -1,7 +1,6 @@
 package org.android.turnaround.data.remote.datasource
 
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
-import org.android.turnaround.data.remote.entity.response.BaseResponse
 import org.android.turnaround.data.remote.service.TodoService
 import javax.inject.Inject
 

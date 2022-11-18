@@ -11,11 +11,12 @@ import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
-import timber.log.Timber
+import org.android.turnaround.util.showToast
 
 @AndroidEntryPoint
 class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.layout.fragment_todo_event_edit) {
     private val viewModel by viewModels<TodoEventEditViewModel>()
+    lateinit var editBottomSheet: TodoEditBottomSheet
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,6 +27,7 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
         initIsClickedEditBtnEventObserver()
         initBackBtnClickListener()
         initEditTodoObserver()
+        initEditTodoFailObserver()
     }
 
     private fun initTodoListObserver() {
@@ -69,14 +71,23 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
 
     private fun initEditTodoObserver() {
         viewModel.editTodo.observe(viewLifecycleOwner) {
+            editBottomSheet.dismiss()
             findNavController().popBackStack()
             // Todo: 토스트 띄우기
-            Timber.d("예약 후")
+            requireContext().showToast(it as String)
+        }
+    }
+
+    private fun initEditTodoFailObserver() {
+        viewModel.editTodoFail.observe(viewLifecycleOwner) {
+            // Todo: 토스트 띄우기
+            context?.showToast(it as String)
         }
     }
 
     private fun showTodoEditBottomSheet(todo: Todo) {
-        TodoEditBottomSheet(viewModel, todo).show(parentFragmentManager, this.javaClass.name)
+        editBottomSheet = TodoEditBottomSheet(viewModel, todo)
+        editBottomSheet.show(parentFragmentManager, this.javaClass.name)
     }
 
     private fun initBackBtnClickListener() {

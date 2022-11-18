@@ -93,7 +93,6 @@ class TodoEditBottomSheet(val viewModel: TodoEventEditViewModel, val todo: Todo)
             viewLifecycleOwner,
             EventObserver {
                 editTodo()
-                dismiss()
             }
         )
     }
@@ -102,9 +101,10 @@ class TodoEditBottomSheet(val viewModel: TodoEventEditViewModel, val todo: Todo)
         val date = dateList[binding.pickerTodoEditDate.value].split("/")
         val min = minList[binding.pickerTodoEditMinute.value]
         val ampm = ampmeList[binding.pickerTodoEditAmpm.value]
-        val hour = if (ampm == "PM") binding.pickerTodoEditHour.value + 12 else binding.pickerTodoEditHour.value
+        val h = if (ampm == "PM") binding.pickerTodoEditHour.value + 12 else binding.pickerTodoEditHour.value
+        val hour = if (h < 10) "0$h" else h
         val year = Calendar.getInstance().get(Calendar.YEAR)
-        val startAt = "$year-$date[0]-${date[1]}T$hour:$min:00"
+        val startAt = "$year-${date[0]}-${date[1]}T$hour:$min:00"
 
         val isCheckedAlarm = binding.switchBtnTodoEdit.isChecked
         val pushStatus = if (isCheckedAlarm) "ON" else "OFF"
