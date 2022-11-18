@@ -14,17 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
-        android:layout_marginVertical="5dp">
-
-        <View
-            android:id="@+id/view_todo_black"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/shape_purple_rect_fill_16"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/shape_purple_rect_fill_16_with_shadow">
 
         <TextView
             android:id="@+id/tv_todo_category"
@@ -37,18 +27,19 @@
             android:text="@{todo.categoryName}"
             android:textAlignment="center"
             android:textAppearance="@style/caption_semi_bold"
-            app:layout_constraintStart_toStartOf="@id/view_todo_black"
-            app:layout_constraintTop_toTopOf="@id/view_todo_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="침대" />
 
         <TextView
             android:id="@+id/tv_todo_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="@{todo.activityName}"
             android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_white"
+            app:layout_constraintEnd_toStartOf="@id/iv_todo"
             app:layout_constraintStart_toStartOf="@id/tv_todo_category"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_category"
             tools:text="밀린 이불 빨래" />
@@ -61,20 +52,21 @@
             android:text="눌러서 리워드 받기"
             android:textAppearance="@style/body2_regular"
             android:textColor="@color/turnaround_white"
-            app:layout_constraintBottom_toBottomOf="@id/view_todo_black"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_todo_title"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_title" />
 
         <ImageView
+            android:id="@+id/iv_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="15dp"
             android:src="@drawable/img_todo_bedding"
             app:imageResource="@{todo.categoryImage}"
-            app:layout_constraintBottom_toBottomOf="@id/view_todo_black"
-            app:layout_constraintEnd_toEndOf="@id/view_todo_black"
-            app:layout_constraintTop_toTopOf="@id/view_todo_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/img_todo_bedding" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

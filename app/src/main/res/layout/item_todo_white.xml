@@ -13,13 +13,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset">
+        android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
+        android:background="@drawable/shape_white_rect_fill_16_with_shadow">
 
         <View
             android:id="@+id/view_todo_white"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@drawable/shape_white_rect_fill_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,14 +41,17 @@
 
         <TextView
             android:id="@+id/tv_todo_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{todo.activityName}"
+            app:layout_constraintEnd_toStartOf="@id/iv_todo"
             android:textAppearance="@style/body1_semi_bold"
             app:layout_constraintStart_toStartOf="@id/tv_todo_category"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_category"
-            tools:text="밀린 이불 빨래" />
+            tools:text="밀린 이불 빨래빨래빨래빨래빨래빨래빨래빨래빨래빨래빨래빨래빨래" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,6 +66,7 @@
             tools:text="8시 30 분까지" />
 
         <ImageView
+            android:id="@+id/iv_todo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
