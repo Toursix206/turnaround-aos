@@ -2,6 +2,8 @@ package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.Home
 import org.android.turnaround.domain.entity.Todo
+import org.android.turnaround.domain.entity.TodoCategory
+import org.android.turnaround.domain.entity.TodoImageCategory
 
 data class HomeResponse(
     val nickname: String,
@@ -18,24 +20,16 @@ data class HomeResponse(
             broom = this.broom,
             cleanScore = this.cleanScore,
             todosCnt = this.todosCnt,
-            todos = toTodos(this.todos)
-        )
-
-    private fun toTodos(todos: List<TodoEntity>): List<Todo> {
-        val list = mutableListOf<Todo>()
-        todos.forEach {
-            list.add(
+            todos = this.todos.map { todo ->
                 Todo(
-                    activityCategory = it.activityCategory,
-                    activityName = it.activityName,
-                    leftTime = it.leftTime,
-                    todoId = it.todoId,
-                    todoStatus = it.todoStatus,
-                    categoryName = toCategoryName(it.activityCategory),
-                    categoryImage = toCategoryImage(it.activityCategory)
+                    activityCategory = todo.activityCategory,
+                    activityName = todo.activityName,
+                    leftTime = todo.leftTime,
+                    todoId = todo.todoId,
+                    todoStatus = todo.todoStatus,
+                    categoryName = TodoCategory.valueOf(todo.activityCategory).title,
+                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
                 )
-            )
-        }
-        return list
-    }
+            }
+        )
 }

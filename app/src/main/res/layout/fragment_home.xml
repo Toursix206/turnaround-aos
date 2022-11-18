@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="57dp"
-            android:text="@{home.nickname + `님`}"
+            android:text="@{home.nickname + ` 님`}"
             android:textAppearance="@style/sub_headline_semi_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

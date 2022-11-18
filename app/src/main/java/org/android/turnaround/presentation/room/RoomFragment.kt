@@ -5,45 +5,49 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentRoomBinding
-import org.android.turnaround.domain.entity.CleanScore
 import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.extension.repeatOnStarted
 
+@AndroidEntryPoint
 class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room) {
     private val viewModel by viewModels<RoomViewModel>()
     private var windowScaleAnimator: Animator? = null
     private var bedScaleAnimator: Animator? = null
-    private var deskScaleAnimator: Animator? = null
+    private var tableScaleAnimator: Animator? = null
     private var windowCleanFadeOutAnimator: Animator? = null
     private var bedCleanFadeOutAnimator: Animator? = null
-    private var deskCleanFadeOutAnimator: Animator? = null
+    private var tableCleanFadeOutAnimator: Animator? = null
     private var windowCleanFadeInAnimator: Animator? = null
     private var bedCleanFadeInAnimator: Animator? = null
-    private var deskCleanFadeInAnimator: Animator? = null
+    private var tableCleanFadeInAnimator: Animator? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
+        viewModel.getRoom()
         initRoomAssetsScaleAnimator()
         initCleanAnimator()
         initClickedAssetsCollector()
-        initCleanScoreCollector()
+        initCleanLevelCollector()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.resetIsSuccessGetRoomInfo()
         windowScaleAnimator = null
         bedScaleAnimator = null
-        deskScaleAnimator = null
+        tableScaleAnimator = null
         windowCleanFadeOutAnimator = null
         bedCleanFadeOutAnimator = null
-        deskCleanFadeOutAnimator = null
+        tableCleanFadeOutAnimator = null
         windowCleanFadeInAnimator = null
         bedCleanFadeInAnimator = null
-        deskCleanFadeInAnimator = null
+        tableCleanFadeInAnimator = null
     }
 
     private fun initRoomAssetsScaleAnimator() {
@@ -59,11 +63,11 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         ).apply {
             setTarget(binding.ivRoomBed)
         }
-        deskScaleAnimator = AnimatorInflater.loadAnimator(
+        tableScaleAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale
         ).apply {
-            setTarget(binding.ivRoomDesk)
+            setTarget(binding.ivRoomTable)
         }
     }
 
@@ -76,7 +80,10 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    binding.btnRoomWindowBrush.isClickable = true
+                    with(binding.btnRoomWindowBrush) {
+                        if (viewModel.window.value.isCleanable) isClickable = true
+                        else isVisible = false
+                    }
                 }
             })
         }
@@ -94,7 +101,6 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    initIvWindowResource()
                     windowCleanFadeInAnimator?.start()
                 }
             })
@@ -108,7 +114,10 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    binding.btnRoomBedBrush.isClickable = true
+                    with(binding.btnRoomBedBrush) {
+                        if (viewModel.bed.value.isCleanable) isClickable = true
+                        else isVisible = false
+                    }
                 }
             })
         }
@@ -126,107 +135,78 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
 
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    initIvBedResource()
                     bedCleanFadeInAnimator?.start()
                 }
             })
         }
 
-        deskCleanFadeInAnimator = AnimatorInflater.loadAnimator(
+        tableCleanFadeInAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale_fade_in
         ).apply {
-            setTarget(binding.ivRoomDesk)
+            setTarget(binding.ivRoomTable)
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    binding.btnRoomDeskBrush.isClickable = true
+                    with(binding.btnRoomTableBrush) {
+                        if (viewModel.table.value.isCleanable) isClickable = true
+                        else isVisible = false
+                    }
                 }
             })
         }
 
-        deskCleanFadeOutAnimator = AnimatorInflater.loadAnimator(
+        tableCleanFadeOutAnimator = AnimatorInflater.loadAnimator(
             context,
             R.animator.anim_scale_fade_out
         ).apply {
-            setTarget(binding.ivRoomDesk)
+            setTarget(binding.ivRoomTable)
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator?) {
                     super.onAnimationStart(animation)
-                    binding.btnRoomDeskBrush.isClickable = false
+                    binding.btnRoomTableBrush.isClickable = false
                 }
 
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    initIvDeskResource()
-                    deskCleanFadeInAnimator?.start()
+                    tableCleanFadeInAnimator?.start()
                 }
             })
         }
-    }
-
-    private fun initIvWindowResource() {
-        binding.ivRoomWindow.setImageResource(
-            when (viewModel.windowScore.value) {
-                CleanScore.CLEAN -> R.drawable.ic_roomtaverse_window_1
-                CleanScore.DIRTY -> R.drawable.ic_roomtaverse_window_2
-                CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_window_3
-            }
-        )
-    }
-
-    private fun initIvBedResource() {
-        binding.ivRoomBed.setImageResource(
-            when (viewModel.bedScore.value) {
-                CleanScore.CLEAN -> R.drawable.ic_roomtaverse_bed_1
-                CleanScore.DIRTY -> R.drawable.ic_roomtaverse_bed_2
-                CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_bed_3
-            }
-        )
-    }
-
-    private fun initIvDeskResource() {
-        binding.ivRoomDesk.setImageResource(
-            when (viewModel.deskScore.value) {
-                CleanScore.CLEAN -> R.drawable.ic_roomtaverse_desk_1
-                CleanScore.DIRTY -> R.drawable.ic_roomtaverse_desk_2
-                CleanScore.VERY_DIRTY -> R.drawable.ic_roomtaverse_desk_3
-            }
-        )
     }
 
     private fun initClickedAssetsCollector() {
         repeatOnStarted {
-            viewModel.clickedWindow.collect {
-                windowScaleAnimator?.start()
+            viewModel.clickedWindow.collect { isClicked ->
+                if (isClicked) windowScaleAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.clickedBed.collect {
-                bedScaleAnimator?.start()
+            viewModel.clickedBed.collect { isClicked ->
+                if (isClicked) bedScaleAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.clickedDesk.collect {
-                deskScaleAnimator?.start()
+            viewModel.clickedTable.collect { isClicked ->
+                if (isClicked) tableScaleAnimator?.start()
             }
         }
     }
 
-    private fun initCleanScoreCollector() {
+    private fun initCleanLevelCollector() {
         repeatOnStarted {
-            viewModel.windowScore.collect {
-                windowCleanFadeOutAnimator?.start()
+            viewModel.window.collect {
+                if (viewModel.isSuccessGetRoomInfo.value) windowCleanFadeOutAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.bedScore.collect {
-                bedCleanFadeOutAnimator?.start()
+            viewModel.bed.collect {
+                if (viewModel.isSuccessGetRoomInfo.value) bedCleanFadeOutAnimator?.start()
             }
         }
         repeatOnStarted {
-            viewModel.deskScore.collect {
-                deskCleanFadeOutAnimator?.start()
+            viewModel.table.collect {
+                if (viewModel.isSuccessGetRoomInfo.value) tableCleanFadeOutAnimator?.start()
             }
         }
     }

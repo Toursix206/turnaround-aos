@@ -69,12 +69,12 @@ class TodoEditBottomSheet(val viewModel: TodoEventEditViewModel, val todo: Todo)
 
     private fun initMinutePicker() {
         for (i in 0..59) {
-            if(i % 5 == 0) minList.add(if(i < 10) "0$i" else i.toString())
+            if (i % 5 == 0) minList.add(if (i < 10) "0$i" else i.toString())
         }
         binding.pickerTodoEditMinute.let {
             it.minValue = 0
             it.displayedValues = minList.toTypedArray()
-            it.maxValue = minList.size-1
+            it.maxValue = minList.size - 1
             it.wrapSelectorWheel = true
         }
     }
@@ -102,17 +102,16 @@ class TodoEditBottomSheet(val viewModel: TodoEventEditViewModel, val todo: Todo)
         val date = dateList[binding.pickerTodoEditDate.value].split("/")
         val min = minList[binding.pickerTodoEditMinute.value]
         val ampm = ampmeList[binding.pickerTodoEditAmpm.value]
-        val hour = if(ampm == "PM") binding.pickerTodoEditHour.value + 12 else binding.pickerTodoEditHour.value
+        val hour = if (ampm == "PM") binding.pickerTodoEditHour.value + 12 else binding.pickerTodoEditHour.value
         val year = Calendar.getInstance().get(Calendar.YEAR)
-        val startAt = "${year}-${date[0]}-${date[1]}T${hour}:${min}:00"
+        val startAt = "$year-$date[0]-${date[1]}T$hour:$min:00"
 
         val isCheckedAlarm = binding.switchBtnTodoEdit.isChecked
-        val pushStatus = if(isCheckedAlarm) "ON" else "OFF"
+        val pushStatus = if (isCheckedAlarm) "ON" else "OFF"
         val body = TodoEditRequest(
             pushStatus = pushStatus,
             startAt = startAt
         )
         viewModel.putTodo(todo.todoId, body)
     }
-
 }

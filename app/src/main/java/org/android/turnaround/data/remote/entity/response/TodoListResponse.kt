@@ -1,6 +1,8 @@
 package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.Todo
+import org.android.turnaround.domain.entity.TodoCategory
+import org.android.turnaround.domain.entity.TodoImageCategory
 import org.android.turnaround.domain.entity.TodoList
 
 data class TodoListResponse(
@@ -15,31 +17,53 @@ data class TodoListResponse(
 ) {
     fun toTodoList(): TodoList =
         TodoList(
-            nextTodos = toTodos(this.nextTodos),
+            nextTodos = this.nextTodos.map { todo ->
+                Todo(
+                    activityCategory = todo.activityCategory,
+                    activityName = todo.activityName,
+                    leftTime = todo.leftTime,
+                    todoId = todo.todoId,
+                    todoStatus = todo.todoStatus,
+                    categoryName = TodoCategory.valueOf(todo.activityCategory).title,
+                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                )
+            },
             nextTodosCnt = this.nextTodosCnt,
-            successTodos = toTodos(this.successTodos),
+            successTodos = this.successTodos.map { todo ->
+                Todo(
+                    activityCategory = todo.activityCategory,
+                    activityName = todo.activityName,
+                    leftTime = todo.leftTime,
+                    todoId = todo.todoId,
+                    todoStatus = todo.todoStatus,
+                    categoryName = TodoCategory.valueOf(todo.activityCategory).title,
+                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                )
+            },
             successTodosCnt = this.successTodosCnt,
-            thisWeekTodos = toTodos(this.thisWeekTodos),
+            thisWeekTodos = this.thisWeekTodos.map { todo ->
+                Todo(
+                    activityCategory = todo.activityCategory,
+                    activityName = todo.activityName,
+                    leftTime = todo.leftTime,
+                    todoId = todo.todoId,
+                    todoStatus = todo.todoStatus,
+                    categoryName = TodoCategory.valueOf(todo.activityCategory).title,
+                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                )
+            },
             thisWeekTodosCnt = this.thisWeekTodosCnt,
-            todayTodos = toTodos(this.todayTodos),
+            todayTodos = this.todayTodos.map { todo ->
+                Todo(
+                    activityCategory = todo.activityCategory,
+                    activityName = todo.activityName,
+                    leftTime = todo.leftTime,
+                    todoId = todo.todoId,
+                    todoStatus = todo.todoStatus,
+                    categoryName = TodoCategory.valueOf(todo.activityCategory).title,
+                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                )
+            },
             todayTodosCnt = this.todayTodosCnt
         )
-
-    private fun toTodos(todos: List<TodoEntity>): List<Todo> {
-        val list = mutableListOf<Todo>()
-        todos.forEach {
-            list.add(
-                Todo(
-                    activityCategory = it.activityCategory,
-                    activityName = it.activityName,
-                    leftTime = it.leftTime,
-                    todoId = it.todoId,
-                    todoStatus = it.todoStatus,
-                    categoryName = toCategoryName(it.activityCategory),
-                    categoryImage = toCategoryImage(it.activityCategory)
-                )
-            )
-        }
-        return list
-    }
 }

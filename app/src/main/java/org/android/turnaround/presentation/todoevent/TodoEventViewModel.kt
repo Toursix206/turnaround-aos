@@ -48,7 +48,6 @@ class TodoEventViewModel @Inject constructor(
             }
     }
 
-
     fun setBlackTodoId(todoId: Int) {
         _isClickedBlackItemEvent.value = Event(todoId)
     }

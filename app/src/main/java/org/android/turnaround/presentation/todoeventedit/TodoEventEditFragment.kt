@@ -11,7 +11,6 @@ import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
-import org.android.turnaround.util.showToast
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -70,6 +69,7 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
 
     private fun initEditTodoObserver() {
         viewModel.editTodo.observe(viewLifecycleOwner) {
+            findNavController().popBackStack()
             // Todo: 토스트 띄우기
             Timber.d("예약 후")
         }

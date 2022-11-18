@@ -69,5 +69,4 @@ class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fra
             findNavController().popBackStack()
         }
     }
-
 }

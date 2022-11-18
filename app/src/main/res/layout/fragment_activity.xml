@@ -1,22 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <import type="org.android.turnaround.domain.entity.ActivityCategory" />
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.activity.ActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/turnaround_gray_1"
         tools:context=".presentation.activity.ActivityFragment">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_acitivity_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/title_activity"
-            android:textAppearance="@style/h1_bold" />
+            android:layout_height="wrap_content"
+            android:background="@color/turnaround_white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_activity_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="center_horizontal"
+                android:paddingVertical="16dp"
+                android:text="@string/activity_title"
+                android:textAppearance="@style/body1_semi_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@+id/sv_activity_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingHorizontal="22dp"
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@id/tv_activity_title">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="14dp">
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_category_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:contentDescription="@string/room_category_all_img_desc"
+                        android:onClick="@{()->vm.initCategory((ActivityCategory) null)}"
+                        android:src="@{vm.category == null ? @drawable/ic_activity_category_all_checked : @drawable/ic_activity_category_all}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_activity_category_all_checked" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_category_all"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_category_all"
+                        android:textAppearance="@style/body2_regular"
+                        android:textColor="@color/turnaround_gray_8"
+                        app:layout_constraintEnd_toEndOf="@id/btn_activity_category_all"
+                        app:layout_constraintStart_toStartOf="@id/btn_activity_category_all"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_category_all" />
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_category_bed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:contentDescription="@string/room_category_bed_img_desc"
+                        android:onClick="@{()->vm.initCategory(ActivityCategory.BEDDING)}"
+                        android:src="@{vm.category == ActivityCategory.BEDDING ? @drawable/ic_activity_category_bed_checked : @drawable/ic_activity_category_bed}"
+                        app:layout_constraintStart_toEndOf="@id/btn_activity_category_all"
+                        app:layout_constraintTop_toTopOf="@id/btn_activity_category_all"
+                        tools:src="@drawable/ic_activity_category_bed" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_category_bed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_category_bed"
+                        android:textAppearance="@style/body2_regular"
+                        android:textColor="@color/turnaround_gray_8"
+                        app:layout_constraintEnd_toEndOf="@id/btn_activity_category_bed"
+                        app:layout_constraintStart_toStartOf="@id/btn_activity_category_bed"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_category_bed" />
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_category_washing_machine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:contentDescription="@string/room_category_washing_machine_img_desc"
+                        android:onClick="@{()->vm.initCategory(ActivityCategory.WASHER)}"
+                        android:src="@{vm.category == ActivityCategory.WASHER ? @drawable/ic_activity_category_washing_machine_checked : @drawable/ic_activity_category_washing_machine}"
+                        app:layout_constraintStart_toEndOf="@id/btn_activity_category_bed"
+                        app:layout_constraintTop_toTopOf="@id/btn_activity_category_all"
+                        tools:src="@drawable/ic_activity_category_washing_machine" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_category_washing_machine"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_category_washing_machine"
+                        android:textAppearance="@style/body2_regular"
+                        android:textColor="@color/turnaround_gray_8"
+                        app:layout_constraintEnd_toEndOf="@id/btn_activity_category_washing_machine"
+                        app:layout_constraintStart_toStartOf="@id/btn_activity_category_washing_machine"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_category_washing_machine" />
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_category_table"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:contentDescription="@string/room_category_table_img_desc"
+                        android:onClick="@{()->vm.initCategory(ActivityCategory.TABLE)}"
+                        android:src="@{vm.category == ActivityCategory.TABLE ? @drawable/ic_activity_category_table_checked : @drawable/ic_activity_category_table}"
+                        app:layout_constraintStart_toEndOf="@id/btn_activity_category_washing_machine"
+                        app:layout_constraintTop_toTopOf="@id/btn_activity_category_all"
+                        tools:src="@drawable/ic_activity_category_table" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_category_table"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_category_table"
+                        android:textAppearance="@style/body2_regular"
+                        android:textColor="@color/turnaround_gray_8"
+                        app:layout_constraintEnd_toEndOf="@id/btn_activity_category_table"
+                        app:layout_constraintStart_toStartOf="@id/btn_activity_category_table"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_category_table" />
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_category_kitchen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:contentDescription="@string/room_category_kitchen_img_desc"
+                        android:onClick="@{()->vm.initCategory(ActivityCategory.KITCHEN)}"
+                        android:src="@{vm.category == ActivityCategory.KITCHEN ? @drawable/ic_activity_category_kitchen_checked : @drawable/ic_activity_category_kitchen}"
+                        app:layout_constraintStart_toEndOf="@id/btn_activity_category_table"
+                        app:layout_constraintTop_toTopOf="@id/btn_activity_category_all"
+                        tools:src="@drawable/ic_activity_category_kitchen" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_category_kitchen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_category_kitchen"
+                        android:textAppearance="@style/body2_regular"
+                        android:textColor="@color/turnaround_gray_8"
+                        app:layout_constraintEnd_toEndOf="@id/btn_activity_category_kitchen"
+                        app:layout_constraintStart_toStartOf="@id/btn_activity_category_kitchen"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_category_kitchen" />
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_category_bathroom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:contentDescription="@string/room_category_bathroom_img_desc"
+                        android:onClick="@{()->vm.initCategory(ActivityCategory.RESTROOM)}"
+                        android:src="@{vm.category == ActivityCategory.RESTROOM ? @drawable/ic_activity_category_bathroom_checked : @drawable/ic_activity_category_bathroom}"
+                        app:layout_constraintStart_toEndOf="@id/btn_activity_category_kitchen"
+                        app:layout_constraintTop_toTopOf="@id/btn_activity_category_all"
+                        tools:src="@drawable/ic_activity_category_bathroom" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_category_bathroom"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_category_bathroom"
+                        android:textAppearance="@style/body2_regular"
+                        android:textColor="@color/turnaround_gray_8"
+                        app:layout_constraintEnd_toEndOf="@id/btn_activity_category_bathroom"
+                        app:layout_constraintStart_toStartOf="@id/btn_activity_category_bathroom"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_category_bathroom" />
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_category_etc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:contentDescription="@string/room_category_etc_img_desc"
+                        android:onClick="@{()->vm.initCategory(ActivityCategory.ETC)}"
+                        android:src="@{vm.category == ActivityCategory.ETC ? @drawable/ic_activity_category_etc_checked : @drawable/ic_activity_category_etc}"
+                        app:layout_constraintStart_toEndOf="@id/btn_activity_category_bathroom"
+                        app:layout_constraintTop_toTopOf="@id/btn_activity_category_all"
+                        tools:src="@drawable/ic_activity_category_etc" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_category_etc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_category_etc"
+                        android:textAppearance="@style/body2_regular"
+                        android:textColor="@color/turnaround_gray_8"
+                        app:layout_constraintEnd_toEndOf="@id/btn_activity_category_etc"
+                        app:layout_constraintStart_toStartOf="@id/btn_activity_category_etc"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_category_etc" />
+
+                    <ImageButton
+                        android:id="@+id/btn_activity_category_self_improvement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@null"
+                        android:contentDescription="@string/room_category_self_improvement_img_desc"
+                        android:onClick="@{()->vm.initCategory(ActivityCategory.SELF_DEVELOPMENT)}"
+                        android:src="@{vm.category == ActivityCategory.SELF_DEVELOPMENT ? @drawable/ic_activity_category_self_improvement_checked : @drawable/ic_activity_category_self_improvement}"
+                        app:layout_constraintStart_toEndOf="@id/btn_activity_category_etc"
+                        app:layout_constraintTop_toTopOf="@id/btn_activity_category_all"
+                        tools:src="@drawable/ic_activity_category_self_improvement" />
+
+                    <TextView
+                        android:id="@+id/tv_activity_category_self_improvement"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_category_self_improvement"
+                        android:textAppearance="@style/body2_regular"
+                        android:textColor="@color/turnaround_gray_8"
+                        app:layout_constraintEnd_toEndOf="@id/btn_activity_category_self_improvement"
+                        app:layout_constraintStart_toStartOf="@id/btn_activity_category_self_improvement"
+                        app:layout_constraintTop_toBottomOf="@id/btn_activity_category_self_improvement" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </HorizontalScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_activity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingVertical="15dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_acitivity_title"
+            tools:listitem="@layout/item_activity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

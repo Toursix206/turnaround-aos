@@ -20,7 +20,7 @@
             android:id="@+id/view_todo_black"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@drawable/shape_point_rect_fill_16"
+            android:background="@drawable/shape_purple_rect_fill_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

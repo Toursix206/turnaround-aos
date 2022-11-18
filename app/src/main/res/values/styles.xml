@@ -15,7 +15,7 @@
 
     <style name="NumberPickerStyle">
         <item name="android:textAppearance">@style/caption_semi_bold</item>
-        <item name="android:editTextColor">@color/turnaround_point</item>
+        <item name="android:editTextColor">@color/turnaround_purple</item>
     </style>
 
 </resources>
