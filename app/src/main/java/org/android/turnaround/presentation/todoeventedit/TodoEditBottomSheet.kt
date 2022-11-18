@@ -16,7 +16,6 @@ import java.util.*
 class TodoEditBottomSheet(val viewModel: TodoEventEditViewModel, val todo: Todo) : BottomSheetDialogFragment() {
     private var _binding: BottomSheetTodoEditBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
-
     val dateList = mutableListOf<String>()
     val minList = mutableListOf<String>()
     val ampmeList = mutableListOf<String>("PM", "AM")
@@ -43,7 +42,7 @@ class TodoEditBottomSheet(val viewModel: TodoEventEditViewModel, val todo: Todo)
 
     private fun initDatePicker() {
         val today = Calendar.getInstance()
-        val sdf = SimpleDateFormat("MM/dd")
+        val sdf = SimpleDateFormat("MM / dd")
         for (i in 0..13) {
             val millis = today.timeInMillis
             val now = Date(millis)

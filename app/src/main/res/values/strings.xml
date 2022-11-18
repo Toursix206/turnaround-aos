@@ -120,5 +120,6 @@
     <string name="bottom_sheet_todo_edit_alarm">알림을 알려드릴까요?</string>
     <string name="bottom_sheet_todo_edit_duration">소요 시간</string>
     <string name="bottom_sheet_todo_edit_btn">예약 완료</string>
+    <string name="bottom_sheet_todo_colon">:</string>
 
 </resources>
