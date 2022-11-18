@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/turnaround_gray_1"
-        tools:context=".presentation.todoevent.TodoEventFragment">
+        tools:context=".presentation.todoevent.TodoEventActivity">
 
         <ImageView
             android:id="@+id/tv_todo_event_edit_back"

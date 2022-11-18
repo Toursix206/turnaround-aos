@@ -29,25 +29,24 @@ class HomeViewModel @Inject constructor(
     private val _home = MutableLiveData<Home>()
     val home: LiveData<Home> = _home
 
-    private val _todoDetail = MutableLiveData<TodoDetail>()
-    val todoDetail: LiveData<TodoDetail> = _todoDetail
+    private val _todoDetail = MutableLiveData<Event<TodoDetail>>()
+    val todoDetail: LiveData<Event<TodoDetail>> = _todoDetail
 
     init {
         getHome()
     }
 
     private fun getHome() = viewModelScope.launch {
-        kotlin.runCatching {
-            homeRepository.getHome()
-        }.onSuccess {
-            _home.value = it.getOrNull()
+        homeRepository.getHome()
+            .onSuccess {
+                _home.value = it
 
-            if ((it.getOrNull()?.todosCnt ?: 0) <= 0) {
-                _isTodayTodoExist.value = true
+                if ((it.todosCnt) <= 0) {
+                    _isTodayTodoExist.value = true
+                }
+            }.onFailure {
+                Timber.d(it.message)
             }
-        }.onFailure {
-            Timber.d(it.message)
-        }
     }
 
     fun setBlackTodoId(todoId: Int) {
@@ -55,12 +54,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getTodoDetail(todoId: Int) = viewModelScope.launch {
-        kotlin.runCatching {
-            todoRepository.getTodoDetail(todoId)
-        }.onSuccess {
-            _todoDetail.value = it.getOrNull()
-        }.onFailure {
-            Timber.d(it.message)
-        }
+        todoRepository.getTodoDetail(todoId)
+            .onSuccess {
+                _todoDetail.value = Event(it)
+            }.onFailure {
+                Timber.d(it.message)
+            }
     }
 }

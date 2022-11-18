@@ -1,25 +1,24 @@
 package org.android.turnaround.presentation.todoeventedit
 
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
-import org.android.turnaround.databinding.FragmentTodoEventEditBinding
+import org.android.turnaround.databinding.ActivityTodoEventEditBinding
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.EventObserver
-import org.android.turnaround.util.binding.BindingFragment
+import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.showToast
 
 @AndroidEntryPoint
-class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.layout.fragment_todo_event_edit) {
+class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.layout.activity_todo_event_edit) {
     private val viewModel by viewModels<TodoEventEditViewModel>()
     lateinit var editBottomSheet: TodoEditBottomSheet
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         initTodoListObserver()
         initIsCheckedDeleteBtnEventObserver()
@@ -28,12 +27,14 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
         initBackBtnClickListener()
         initEditTodoObserver()
         initEditTodoFailObserver()
+
+        this.onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun initTodoListObserver() {
-        viewModel.todoList.observe(viewLifecycleOwner) {
+        viewModel.todoList.observe(this) {
             binding.rvTodoEventEdit.adapter = TodoEventEditAdapter(
-                context = requireContext(),
+                context = applicationContext,
                 viewModel = viewModel
             ).apply {
                 submitTodoEventEditList(it)
@@ -43,7 +44,7 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
 
     private fun initIsCheckedDeleteBtnEventObserver() {
         viewModel.isClickedDeleteBtnEvent.observe(
-            viewLifecycleOwner,
+            this,
             EventObserver {
                 viewModel.deleteTodo(it)
             }
@@ -51,7 +52,8 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
     }
 
     private fun initDeleteTodoObserver() {
-        viewModel.deleteTodo.observe(viewLifecycleOwner) {
+        viewModel.deleteTodo.observe(this) {
+            applicationContext.showToast("삭제됨! - TODO 삭제 확인 다이얼로그 추가해야함")
             refresh()
         }
     }
@@ -62,7 +64,7 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
 
     private fun initIsClickedEditBtnEventObserver() {
         viewModel.isClickedEditBtnEvent.observe(
-            viewLifecycleOwner,
+            this,
             EventObserver {
                 showTodoEditBottomSheet(it)
             }
@@ -70,29 +72,37 @@ class TodoEventEditFragment : BindingFragment<FragmentTodoEventEditBinding>(R.la
     }
 
     private fun initEditTodoObserver() {
-        viewModel.editTodo.observe(viewLifecycleOwner) {
+        viewModel.editTodo.observe(this) {
             editBottomSheet.dismiss()
-            findNavController().popBackStack()
             // Todo: 토스트 띄우기
-            requireContext().showToast(it as String)
+            applicationContext.showToast(it as String)
+            finish()
         }
     }
 
     private fun initEditTodoFailObserver() {
-        viewModel.editTodoFail.observe(viewLifecycleOwner) {
+        viewModel.editTodoFail.observe(this) {
             // Todo: 토스트 띄우기
-            context?.showToast(it as String)
+            applicationContext.showToast(it as String)
         }
     }
 
     private fun showTodoEditBottomSheet(todo: Todo) {
         editBottomSheet = TodoEditBottomSheet(viewModel, todo)
-        editBottomSheet.show(parentFragmentManager, this.javaClass.name)
+        editBottomSheet.show(supportFragmentManager, this.javaClass.name)
     }
 
     private fun initBackBtnClickListener() {
         binding.ivTodoEventEditToolBarTitle.setOnClickListener {
-            findNavController().popBackStack()
+            setResult(RESULT_OK, intent)
+            finish()
+        }
+    }
+
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            setResult(RESULT_OK, intent)
+            finish()
         }
     }
 }

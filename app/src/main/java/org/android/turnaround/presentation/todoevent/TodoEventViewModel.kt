@@ -38,7 +38,7 @@ class TodoEventViewModel @Inject constructor(
         getTodoList()
     }
 
-    private fun getTodoList() = viewModelScope.launch {
+    fun getTodoList() = viewModelScope.launch {
         todoRepository.getTodoList()
             .onSuccess {
                 _todoList.value = it
@@ -68,7 +68,7 @@ class TodoEventViewModel @Inject constructor(
     fun putNotificationOff() = viewModelScope.launch {
         todoRepository.putNotificationOff()
             .onSuccess {
-                _alarmOff.value = it
+                _alarmOff.value = "모든 알람을 껐습니다."
             }.onFailure { throwable ->
                 Timber.d(throwable.message)
                 if (throwable is HttpException) {

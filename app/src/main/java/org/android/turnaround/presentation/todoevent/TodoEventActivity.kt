@@ -1,26 +1,32 @@
 package org.android.turnaround.presentation.todoevent
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
-import org.android.turnaround.databinding.FragmentTodoEventBinding
-import androidx.navigation.fragment.findNavController
+import org.android.turnaround.databinding.ActivityTodoEventBinding
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.TodoStartBottomSheet
 import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
+import org.android.turnaround.presentation.todoeventedit.TodoEventEditActivity
 import org.android.turnaround.util.EventObserver
-import org.android.turnaround.util.binding.BindingFragment
+import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.showToast
 
 @AndroidEntryPoint
-class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fragment_todo_event) {
+class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.activity_todo_event) {
     private val viewModel by viewModels<TodoEventViewModel>()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private val todoEventEditResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            refresh()
+        }
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         binding.vm = viewModel
         initTodoListObserver()
         initIsClickedBlackItemEventObserver()
@@ -31,9 +37,9 @@ class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fra
     }
 
     private fun initTodoListObserver() {
-        viewModel.todoList.observe(viewLifecycleOwner) {
+        viewModel.todoList.observe(this) {
             binding.rvTodoEvent.adapter = TodoEventAdapter(
-                context = requireContext(),
+                context = applicationContext,
                 viewModel = viewModel
             ).apply {
                 submitTodoEventList(it)
@@ -43,7 +49,7 @@ class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fra
 
     private fun initIsClickedBlackItemEventObserver() {
         viewModel.isClickedBlackItemEvent.observe(
-            viewLifecycleOwner,
+            this,
             EventObserver {
                 viewModel.getTodoDetail(it)
             }
@@ -51,30 +57,34 @@ class TodoEventFragment : BindingFragment<FragmentTodoEventBinding>(R.layout.fra
     }
 
     private fun initTodoDetailObserver() {
-        viewModel.todoDetail.observe(viewLifecycleOwner) {
+        viewModel.todoDetail.observe(this) {
             showTodoStartBottomSheet(it)
         }
     }
 
     private fun initTodoAlarmOffObserver() {
-        viewModel.alarmOff.observe(viewLifecycleOwner) {
-            requireContext().showToast(it as String)
+        viewModel.alarmOff.observe(this) {
+            applicationContext.showToast(it as String)
         }
     }
 
     private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
-        TodoStartBottomSheet(todoDetail).show(parentFragmentManager, this.javaClass.name)
+        TodoStartBottomSheet(todoDetail).show(supportFragmentManager, this.javaClass.name)
     }
 
     private fun initOpenTodoEventEventEditClickListener() {
         binding.ivTodoEventSetting.setOnClickListener {
-            findNavController().navigate(R.id.action_todoEventFragment_to_todoEventEditFragment)
+            todoEventEditResultLauncher.launch(Intent(this, TodoEventEditActivity::class.java))
         }
     }
 
     private fun initBackBtnClickListener() {
         binding.ivTodoEventBack.setOnClickListener {
-            findNavController().popBackStack()
+            finish()
         }
+    }
+
+    private fun refresh() {
+        viewModel.getTodoList()
     }
 }

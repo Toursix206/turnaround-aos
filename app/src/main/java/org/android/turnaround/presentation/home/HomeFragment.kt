@@ -1,8 +1,8 @@
 package org.android.turnaround.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -11,8 +11,10 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentHomeBinding
 import org.android.turnaround.domain.entity.*
 import org.android.turnaround.presentation.home.adapter.TodoAdapter
+import org.android.turnaround.presentation.todoevent.TodoEventActivity
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -56,19 +58,23 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initTodoDetailObserver() {
-        viewModel.todoDetail.observe(viewLifecycleOwner) {
-            showTodoStartBottomSheet(it)
-        }
+        viewModel.todoDetail.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                showTodoStartBottomSheet(it)
+            }
+        )
     }
 
     private fun initTodoEventEventClickListener() {
         binding.tvHomeShowMore.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_todoEventFragment)
+            startActivity(Intent(requireActivity(), TodoEventActivity::class.java))
         }
     }
 
     private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
         TodoStartBottomSheet(todoDetail).show(parentFragmentManager, this.javaClass.name)
+        Timber.d("mmm ddp")
     }
 
     private fun ViewPager2.setShowSideItems(pageMarginPx: Float, offsetPx: Float) {
