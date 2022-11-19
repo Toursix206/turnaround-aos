@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/turnaround_gray_1">
+
+        <TextView
+            android:id="@+id/tv_setting_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="16dp"
+            android:text="@string/setting_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/body1_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_setting_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/setting_back_img_desc"
+            android:padding="16dp"
+            android:src="@drawable/ic_todo_event_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_setting_alarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="22dp"
+            android:text="@string/setting_alarm"
+            android:textAppearance="@style/body2_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_title" />
+
+        <TextView
+            android:id="@+id/tv_setting_alarm_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="20dp"
+            android:paddingStart="22dp"
+            android:text="@string/setting_alarm_item"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_alarm" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_setting_alarm_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_setting_alarm_item"
+            app:sb_checked_color="@color/turnaround_purple"
+            app:sb_checkline_color="@color/turnaround_purple"
+            app:sb_checkline_width="0dp"
+            app:sb_uncheck_color="@color/turnaround_gray_6"
+            app:sb_uncheckcircle_radius="0dp"
+            app:sb_uncheckcircle_width="0dp" />
+
+        <TextView
+            android:id="@+id/tv_setting_function"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="22dp"
+            android:text="@string/setting_function"
+            android:textAppearance="@style/body2_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_alarm_item" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="20dp"
+            android:paddingStart="22dp"
+            android:text="@string/setting_function_item"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_function" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

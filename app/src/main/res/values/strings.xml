@@ -132,4 +132,12 @@
     <string name="my_review">스토어 리뷰 남기기</string>
     <string name="my_setting">설정</string>
 
+    <!-- Setting -->
+    <string name="setting_title">설정</string>
+    <string name="setting_back_img_desc">뒤로가기 이미지</string>
+    <string name="setting_alarm">알림</string>
+    <string name="setting_function">기능</string>
+    <string name="setting_alarm_item">전체 푸시알림 동의</string>
+    <string name="setting_function_item">약관 및 개인정보 활용</string>
+
 </resources>
