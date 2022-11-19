@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,14 +10,232 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/turnaround_gray_2"
         tools:context=".presentation.my.MyFragment">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/title_my"
-            android:textAppearance="@style/h1_bold" />
+            android:id="@+id/tv_my_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="16dp"
+            android:text="@string/my_title"
+            android:textAlignment="center"
+            android:textAppearance="@style/body1_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_my_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/turnaround_white"
+            app:layout_constraintBottom_toBottomOf="@id/iv_my_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_title" />
+
+        <ImageView
+            android:id="@+id/iv_my_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="23dp"
+            android:contentDescription="@string/my_profile_img_desc"
+            android:src="@drawable/img_profile_character_2"
+            app:layout_constraintBottom_toBottomOf="@id/view_my_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view_my_profile" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="22dp"
+            android:textAppearance="@style/body2_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_my_profile"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_title"
+            tools:text="턴어라운드" />
+
+        <View
+            android:id="@+id/view_my_divider1"
+            android:layout_width="0dp"
+            android:layout_height=".5dp"
+            android:background="@color/turnaround_gray_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_my_profile" />
+
+        <ImageView
+            android:id="@+id/iv_my_point"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/turnaround_white"
+            android:contentDescription="@string/my_point_img_desc"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="20dp"
+            android:src="@drawable/ic_my_point"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_point"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_point" />
+
+        <TextView
+            android:id="@+id/tv_my_point"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-12dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="20dp"
+            android:text="@string/my_point"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_my_point"
+            app:layout_constraintTop_toBottomOf="@id/view_my_divider1" />
+
+        <TextView
+            pointFormat="@{2000}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:textAppearance="@style/body2_semi_bold"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_point"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_point"
+            tools:text="1,000" />
+
+        <View
+            android:id="@+id/view_my_divider2"
+            android:layout_width="0dp"
+            android:layout_height=".5dp"
+            android:background="@color/turnaround_gray_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_point" />
+
+        <ImageView
+            android:id="@+id/iv_my_inquiry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/turnaround_white"
+            android:contentDescription="@string/my_point_img_desc"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="20dp"
+            android:src="@drawable/ic_my_mail"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_inquiry"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_inquiry" />
+
+        <TextView
+            android:id="@+id/tv_my_inquiry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-12dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="20dp"
+            android:text="@string/my_inquiry"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_my_point"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_point" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:contentDescription="@string/my_right_arrow_img_desc"
+            android:src="@drawable/ic_my_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_inquiry"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_inquiry" />
+
+        <ImageView
+            android:id="@+id/iv_my_review"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/turnaround_white"
+            android:contentDescription="@string/my_point_img_desc"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="20dp"
+            android:src="@drawable/ic_my_review"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_review"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_review" />
+
+        <TextView
+            android:id="@+id/tv_my_review"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-12dp"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="20dp"
+            android:text="@string/my_review"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_my_point"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_inquiry" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:contentDescription="@string/my_right_arrow_img_desc"
+            android:src="@drawable/ic_my_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_review"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_review" />
+
+        <ImageView
+            android:id="@+id/iv_my_setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/turnaround_white"
+            android:contentDescription="@string/my_point_img_desc"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="20dp"
+            android:src="@drawable/ic_my_setting"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_setting"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_setting" />
+
+        <TextView
+            android:id="@+id/tv_my_setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-12dp"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="20dp"
+            android:text="@string/my_setting"
+            android:textAppearance="@style/body1_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_my_setting"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_review" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:contentDescription="@string/my_right_arrow_img_desc"
+            android:src="@drawable/ic_my_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_setting" />
+
+        <View
+            android:id="@+id/view_my"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/turnaround_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_setting" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
