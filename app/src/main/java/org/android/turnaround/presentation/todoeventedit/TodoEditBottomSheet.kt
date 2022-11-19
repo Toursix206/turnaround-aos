@@ -10,6 +10,7 @@ import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.databinding.BottomSheetTodoEditBinding
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.util.EventObserver
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -97,7 +98,7 @@ class TodoEditBottomSheet(val viewModel: TodoEventEditViewModel, val todo: Todo)
     }
 
     private fun editTodo() {
-        val date = dateList[binding.pickerTodoEditDate.value].split("/")
+        val date = dateList[binding.pickerTodoEditDate.value].replace(" ", "").split("/")
         val min = minList[binding.pickerTodoEditMinute.value]
         val ampm = ampmeList[binding.pickerTodoEditAmpm.value]
         val h = if (ampm == "PM") binding.pickerTodoEditHour.value + 12 else binding.pickerTodoEditHour.value
