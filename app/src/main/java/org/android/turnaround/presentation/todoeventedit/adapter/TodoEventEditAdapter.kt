@@ -45,6 +45,21 @@ class TodoEventEditAdapter(
 
     override fun getItemCount(): Int = todoEventList.size
 
+    private fun getItemPosition(todoId: Int): Int {
+        todoEventList.forEachIndexed { index, todoEvent ->
+            if (todoEvent is Todo && todoEvent.todoId == todoId) return index
+        }
+        return -1
+    }
+
+    fun deleteTodoItem(deletedTodoId: Int) {
+        val deletedTodoPosition = getItemPosition(deletedTodoId)
+        if (deletedTodoPosition != -1) {
+            todoEventList.removeAt(deletedTodoPosition)
+            notifyItemRemoved(deletedTodoPosition)
+        }
+    }
+
     override fun getItemViewType(position: Int): Int {
         return when (todoEventList[position]) {
             is TodoHeader -> VIEW_TYPE_TODO_EDIT_HEADER
