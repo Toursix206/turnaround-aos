@@ -1,6 +1,7 @@
 package org.android.turnaround.presentation.todoeventedit
 
 import android.os.Bundle
+import android.view.Gravity
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -9,6 +10,7 @@ import org.android.turnaround.databinding.ActivityTodoEventEditBinding
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.EventObserver
+import org.android.turnaround.util.TurnAroundToast
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.showToast
 
@@ -74,16 +76,13 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
     private fun initEditTodoObserver() {
         viewModel.editTodo.observe(this) {
             editBottomSheet.dismiss()
-            // Todo: 토스트 띄우기
-            applicationContext.showToast(it as String)
-            finish()
+            TurnAroundToast.showToast(this, it as String, gravity = Gravity.TOP)
         }
     }
 
     private fun initEditTodoFailObserver() {
         viewModel.editTodoFail.observe(this) {
-            // Todo: 토스트 띄우기
-            applicationContext.showToast(it as String)
+            TurnAroundToast.showToast(this, it as String, textColor = R.color.turnaround_alert, gravity = Gravity.TOP)
         }
     }
 
