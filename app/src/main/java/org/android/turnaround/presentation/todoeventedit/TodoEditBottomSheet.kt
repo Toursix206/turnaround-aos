@@ -10,7 +10,6 @@ import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.databinding.BottomSheetTodoEditBinding
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.util.EventObserver
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
