@@ -9,15 +9,14 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoEventEditBinding
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
-import org.android.turnaround.util.EventObserver
-import org.android.turnaround.util.TurnAroundToast
+import org.android.turnaround.util.*
 import org.android.turnaround.util.binding.BindingActivity
-import org.android.turnaround.util.showToast
 
 @AndroidEntryPoint
 class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.layout.activity_todo_event_edit) {
     private val viewModel by viewModels<TodoEventEditViewModel>()
     lateinit var editBottomSheet: TodoEditBottomSheet
+    private var deletedTodoId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,21 +46,24 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
     private fun initIsCheckedDeleteBtnEventObserver() {
         viewModel.isClickedDeleteBtnEvent.observe(
             this,
-            EventObserver {
-                viewModel.deleteTodo(it)
+            EventObserver { todoId ->
+                TurnAroundFragmentDialog.Builder(this)
+                    .setTitle("진짜 활동을 삭제할까요?")
+                    .setContent("실패한 활동으로 기록되지는 않아요")
+                    .setNegativeButton("아니요")
+                    .setPositiveButton("네! 삭제할게요") {
+                        deletedTodoId = todoId
+                        viewModel.deleteTodo(todoId)
+                    }
+                    .show(supportFragmentManager, this.packageCodePath)
             }
         )
     }
 
     private fun initDeleteTodoObserver() {
         viewModel.deleteTodo.observe(this) {
-            applicationContext.showToast("삭제됨! - TODO 삭제 확인 다이얼로그 추가해야함")
-            refresh()
+            (binding.rvTodoEventEdit.adapter as TodoEventEditAdapter).deleteTodoItem(deletedTodoId)
         }
-    }
-
-    private fun refresh() {
-        viewModel.getTodoList()
     }
 
     private fun initIsClickedEditBtnEventObserver() {

@@ -14,7 +14,6 @@ import org.android.turnaround.presentation.home.adapter.TodoAdapter
 import org.android.turnaround.presentation.todoevent.TodoEventActivity
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
-import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -74,7 +73,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
         TodoStartBottomSheet(todoDetail).show(parentFragmentManager, this.javaClass.name)
-        Timber.d("mmm ddp")
     }
 
     private fun ViewPager2.setShowSideItems(pageMarginPx: Float, offsetPx: Float) {
