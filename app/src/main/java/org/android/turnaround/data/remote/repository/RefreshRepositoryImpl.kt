@@ -20,4 +20,8 @@ class RefreshRepositoryImpl @Inject constructor(
                 )
             )
         }.map { response -> response.data.toRefreshToken() }
+
+    companion object {
+        const val EXPIRED_TOKEN = 401
+    }
 }

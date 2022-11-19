@@ -5,13 +5,17 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.android.turnaround.BuildConfig
 import org.android.turnaround.data.local.datasource.LocalAuthPrefDataSource
+import org.android.turnaround.data.remote.repository.RefreshRepositoryImpl.Companion.EXPIRED_TOKEN
+import org.android.turnaround.domain.repository.RefreshRepository
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -25,18 +29,42 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun providesInterceptor(localAuthPrefDataSource: LocalAuthPrefDataSource): Interceptor =
+    fun providesInterceptor(
+        refreshRepository: RefreshRepository,
+        localAuthPrefDataSource: LocalAuthPrefDataSource
+    ): Interceptor =
         Interceptor { chain ->
-            with(chain) {
-                proceed(
-                    request()
-                        .newBuilder()
-                        .addHeader(HEADER_AUTHORIZATION, localAuthPrefDataSource.accessToken)
-                        .addHeader(HEADER_OS_TYPE, OS_TYPE)
-                        .addHeader(HEADER_VERSION, BuildConfig.VERSION_NAME)
-                        .build()
-                )
+            val request = chain.request()
+            var response = chain.proceed(
+                request
+                    .newBuilder()
+                    .addHeader(HEADER_AUTHORIZATION, localAuthPrefDataSource.accessToken)
+                    .addHeader(HEADER_OS_TYPE, OS_TYPE)
+                    .addHeader(HEADER_VERSION, BuildConfig.VERSION_NAME)
+                    .build()
+            )
+            when (response.code) {
+                EXPIRED_TOKEN -> {
+                    runBlocking {
+                        refreshRepository.refreshToken()
+                            .onSuccess {
+                                response = chain.proceed(
+                                    request
+                                        .newBuilder()
+                                        .addHeader(
+                                            HEADER_AUTHORIZATION,
+                                            localAuthPrefDataSource.accessToken
+                                        )
+                                        .addHeader(HEADER_OS_TYPE, OS_TYPE)
+                                        .addHeader(HEADER_VERSION, BuildConfig.VERSION_NAME)
+                                        .build()
+                                )
+                            }
+                            .onFailure { Timber.d("토큰 갱신 실패 ${it.message}") }
+                    }
+                }
             }
+            response
         }
 
     @Provides
