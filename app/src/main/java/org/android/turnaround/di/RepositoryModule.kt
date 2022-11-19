@@ -40,4 +40,9 @@ object RepositoryModule {
     @Singleton
     fun providesActivityRepository(activityRepositoryImpl: ActivityRepositoryImpl): ActivityRepository =
         activityRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun providesUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository =
+        userRepositoryImpl
 }
