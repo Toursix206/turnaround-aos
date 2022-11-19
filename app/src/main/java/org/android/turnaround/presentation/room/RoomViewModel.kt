@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.android.turnaround.data.remote.repository.RoomRepository
+import org.android.turnaround.domain.repository.RoomRepository
 import org.android.turnaround.domain.entity.Furniture
 import org.android.turnaround.domain.entity.FurnitureType
 import org.android.turnaround.domain.entity.RoomInfo

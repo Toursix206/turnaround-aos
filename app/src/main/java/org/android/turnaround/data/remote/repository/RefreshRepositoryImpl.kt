@@ -4,6 +4,7 @@ import org.android.turnaround.data.local.datasource.LocalAuthPrefDataSource
 import org.android.turnaround.data.remote.datasource.RefreshDataSource
 import org.android.turnaround.data.remote.entity.response.TokenEntity
 import org.android.turnaround.domain.entity.RefreshToken
+import org.android.turnaround.domain.repository.RefreshRepository
 import javax.inject.Inject
 
 class RefreshRepositoryImpl @Inject constructor(

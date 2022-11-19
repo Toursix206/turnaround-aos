@@ -2,6 +2,7 @@ package org.android.turnaround.data.remote.repository
 
 import org.android.turnaround.data.remote.datasource.RoomDataSource
 import org.android.turnaround.domain.entity.RoomInfo
+import org.android.turnaround.domain.repository.RoomRepository
 import javax.inject.Inject
 
 class RoomRepositoryImpl @Inject constructor(

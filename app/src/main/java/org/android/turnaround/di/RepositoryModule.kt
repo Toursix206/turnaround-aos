@@ -5,12 +5,14 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import org.android.turnaround.data.remote.repository.*
-import org.android.turnaround.data.remote.repository.ActivityRepository
+import org.android.turnaround.domain.repository.ActivityRepository
 import org.android.turnaround.data.remote.repository.ActivityRepositoryImpl
-import org.android.turnaround.data.remote.repository.AuthRepository
+import org.android.turnaround.domain.repository.AuthRepository
 import org.android.turnaround.data.remote.repository.AuthRepositoryImpl
-import org.android.turnaround.data.remote.repository.RoomRepository
+import org.android.turnaround.domain.repository.RoomRepository
 import org.android.turnaround.data.remote.repository.RoomRepositoryImpl
+import org.android.turnaround.domain.repository.HomeRepository
+import org.android.turnaround.domain.repository.TodoRepository
 import javax.inject.Singleton
 
 @Module
