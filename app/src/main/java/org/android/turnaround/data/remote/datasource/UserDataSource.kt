@@ -7,4 +7,5 @@ class UserDataSource @Inject constructor(
     private val userService: UserService
 ) {
     suspend fun getUser() = userService.getUser()
+    suspend fun getUserSetting() = userService.getUserSetting()
 }

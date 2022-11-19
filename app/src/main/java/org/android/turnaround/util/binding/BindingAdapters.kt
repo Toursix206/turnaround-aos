@@ -4,6 +4,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.suke.widget.SwitchButton
 import org.android.turnaround.R
 import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.domain.entity.FurnitureType
@@ -93,5 +94,11 @@ object BindingAdapters {
                 }
             )
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("check")
+    fun SwitchButton.initCheck(isAgreeNotification: Boolean) {
+        isChecked = isAgreeNotification
     }
 }

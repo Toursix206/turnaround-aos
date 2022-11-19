@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.repository.UserRepository
-import org.android.turnaround.domain.entity.My
+import org.android.turnaround.domain.entity.UserSetting
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -15,17 +15,17 @@ import javax.inject.Inject
 class SettingViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
-    private val _my = MutableLiveData<My>()
-    val my: LiveData<My> = _my
+    private val _setting = MutableLiveData<UserSetting>()
+    val setting: LiveData<UserSetting> = _setting
 
     init {
-        getUser()
+        getUserSetting()
     }
 
-    private fun getUser() = viewModelScope.launch {
-        userRepository.getUser()
+    private fun getUserSetting() = viewModelScope.launch {
+        userRepository.getUserSetting()
             .onSuccess {
-                _my.value = it
+                _setting.value = it
             }.onFailure {
                 Timber.d(it.message)
             }

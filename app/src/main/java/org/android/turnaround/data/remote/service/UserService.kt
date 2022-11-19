@@ -6,4 +6,7 @@ import retrofit2.http.GET
 interface UserService {
     @GET("/v1/user")
     suspend fun getUser(): BaseResponse<MyResponse>
+
+    @GET("/v1/user/setting")
+    suspend fun getUserSetting(): BaseResponse<UserSettingResponse>
 }

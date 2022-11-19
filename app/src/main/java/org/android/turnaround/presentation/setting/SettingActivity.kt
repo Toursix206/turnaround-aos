@@ -13,5 +13,13 @@ class SettingActivity : BindingActivity<ActivitySettingBinding>(R.layout.activit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        initUserSettingObserver()
+    }
+
+    private fun initUserSettingObserver() {
+        viewModel.setting.observe(this) {
+            binding.setting = it
+        }
     }
 }
