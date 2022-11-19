@@ -1,11 +1,13 @@
 package org.android.turnaround.util.binding
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import org.android.turnaround.R
 import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.domain.entity.FurnitureType
+import java.text.DecimalFormat
 
 object BindingAdapters {
     @JvmStatic
@@ -69,5 +71,12 @@ object BindingAdapters {
             in soSoSCore -> setImageResource(R.drawable.ic_room_room_score_so_so)
             in goodScore -> setImageResource(R.drawable.ic_room_room_score_good)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("pointFormat")
+    fun TextView.applyPointFormat(point: Int) {
+        val decimalFormat = DecimalFormat("#,###")
+        text = decimalFormat.format(point)
     }
 }
