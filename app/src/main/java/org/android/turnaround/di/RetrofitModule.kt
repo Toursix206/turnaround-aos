@@ -1,20 +1,26 @@
 package org.android.turnaround.di
 
+import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.android.turnaround.BuildConfig
+import org.android.turnaround.R
 import org.android.turnaround.data.local.datasource.LocalAuthPrefDataSource
 import org.android.turnaround.data.remote.repository.RefreshRepositoryImpl.Companion.EXPIRED_REFRESH_TOKEN
 import org.android.turnaround.data.remote.repository.RefreshRepositoryImpl.Companion.EXPIRED_TOKEN
 import org.android.turnaround.domain.repository.RefreshRepository
+import org.android.turnaround.presentation.intro.IntroActivity
+import org.android.turnaround.util.showToast
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -39,6 +45,7 @@ object RetrofitModule {
     @Singleton
     @NormalType
     fun providesInterceptor(
+        @ApplicationContext context: Context,
         localPref: SharedPreferences,
         refreshRepository: RefreshRepository,
         localAuthPrefDataSource: LocalAuthPrefDataSource
@@ -79,6 +86,12 @@ object RetrofitModule {
                                                 clear()
                                                 commit()
                                             }
+                                            context.showToast(context.getString(R.string.refresh_error))
+                                            context.startActivity(
+                                                Intent(context, IntroActivity::class.java).apply {
+                                                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                                }
+                                            )
                                         }
                                     }
                                 }
@@ -96,7 +109,7 @@ object RetrofitModule {
         OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
             .addInterceptor(interceptor)
             .addInterceptor(
                 HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
