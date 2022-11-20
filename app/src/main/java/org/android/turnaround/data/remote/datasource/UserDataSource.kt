@@ -1,5 +1,6 @@
 package org.android.turnaround.data.remote.datasource
 
+import org.android.turnaround.data.remote.entity.request.UserSettingRequest
 import org.android.turnaround.data.remote.service.UserService
 import javax.inject.Inject
 
@@ -8,4 +9,9 @@ class UserDataSource @Inject constructor(
 ) {
     suspend fun getUser() = userService.getUser()
     suspend fun getUserSetting() = userService.getUserSetting()
+    suspend fun putUserSetting(isAgreeNotification: Boolean) = userService.putUserSetting(
+        UserSettingRequest(
+            isAgreeNotification = isAgreeNotification
+        )
+    )
 }

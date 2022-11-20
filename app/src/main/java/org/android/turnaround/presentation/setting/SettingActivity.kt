@@ -15,11 +15,18 @@ class SettingActivity : BindingActivity<ActivitySettingBinding>(R.layout.activit
         super.onCreate(savedInstanceState)
 
         initUserSettingObserver()
+        initSwitchBtnCheckListener()
     }
 
     private fun initUserSettingObserver() {
         viewModel.setting.observe(this) {
             binding.setting = it
+        }
+    }
+
+    private fun initSwitchBtnCheckListener() {
+        binding.switchBtnSetting.setOnCheckedChangeListener { view, isChecked ->
+            viewModel.putUserSetting(isChecked)
         }
     }
 }

@@ -21,4 +21,11 @@ class UserRepositoryImpl @Inject constructor(
         }.map { response ->
             response.data.toUserSetting()
         }
+
+    override suspend fun putUserSetting(isAgreeNotification: Boolean): Result<String> =
+        kotlin.runCatching {
+            userDataSource.putUserSetting(isAgreeNotification)
+        }.map { response ->
+            response.data
+        }
 }

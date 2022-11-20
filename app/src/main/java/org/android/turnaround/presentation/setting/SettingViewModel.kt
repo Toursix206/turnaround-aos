@@ -30,4 +30,11 @@ class SettingViewModel @Inject constructor(
                 Timber.d(it.message)
             }
     }
+
+    fun putUserSetting(isAgreeNotification: Boolean) = viewModelScope.launch {
+        userRepository.putUserSetting(isAgreeNotification)
+            .onFailure {
+                Timber.d(it.message)
+            }
+    }
 }
