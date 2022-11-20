@@ -20,6 +20,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -30,8 +31,13 @@ object RetrofitModule {
     private const val HEADER_VERSION = "TurnaroundVersion"
     private const val OS_TYPE = "AOS"
 
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class NormalType
+
     @Provides
     @Singleton
+    @NormalType
     fun providesInterceptor(
         localPref: SharedPreferences,
         refreshRepository: RefreshRepository,
@@ -85,7 +91,8 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(interceptor: Interceptor): OkHttpClient =
+    @NormalType
+    fun providesOkHttpClient(@NormalType interceptor: Interceptor): OkHttpClient =
         OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
@@ -98,7 +105,8 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit =
+    @NormalType
+    fun providesRetrofit(@NormalType okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(BuildConfig.HOST_URI)
             .client(okHttpClient)
