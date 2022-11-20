@@ -1,4 +1,4 @@
-package org.android.turnaround.data.remote.repository
+package org.android.turnaround.domain.repository
 
 import org.android.turnaround.domain.entity.Login
 import org.android.turnaround.domain.entity.SignUp

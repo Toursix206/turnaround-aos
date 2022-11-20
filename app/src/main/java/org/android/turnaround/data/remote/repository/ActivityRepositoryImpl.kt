@@ -8,6 +8,7 @@ import org.android.turnaround.data.remote.datasource.ActivityDataSource
 import org.android.turnaround.data.remote.pagingsource.ActivityPagingSource
 import org.android.turnaround.domain.entity.ActivityCategory
 import org.android.turnaround.domain.entity.ActivityContent
+import org.android.turnaround.domain.repository.ActivityRepository
 import javax.inject.Inject
 
 class ActivityRepositoryImpl @Inject constructor(

@@ -5,7 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.android.turnaround.data.remote.repository.AuthRepository
+import org.android.turnaround.domain.repository.AuthRepository
 import javax.inject.Inject
 
 @HiltViewModel

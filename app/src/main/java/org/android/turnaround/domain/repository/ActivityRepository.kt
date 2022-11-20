@@ -1,4 +1,4 @@
-package org.android.turnaround.data.remote.repository
+package org.android.turnaround.domain.repository
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow

@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
-import org.android.turnaround.data.remote.repository.AuthRepository
+import org.android.turnaround.domain.repository.AuthRepository
 import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
