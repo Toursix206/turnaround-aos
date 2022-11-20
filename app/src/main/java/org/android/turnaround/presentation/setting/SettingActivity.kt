@@ -16,6 +16,7 @@ class SettingActivity : BindingActivity<ActivitySettingBinding>(R.layout.activit
 
         initUserSettingObserver()
         initSwitchBtnCheckListener()
+        initBackBtnClickListener()
     }
 
     private fun initUserSettingObserver() {
@@ -27,6 +28,12 @@ class SettingActivity : BindingActivity<ActivitySettingBinding>(R.layout.activit
     private fun initSwitchBtnCheckListener() {
         binding.switchBtnSetting.setOnCheckedChangeListener { view, isChecked ->
             viewModel.putUserSetting(isChecked)
+        }
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.ivSettingBack.setOnClickListener {
+            finish()
         }
     }
 }
