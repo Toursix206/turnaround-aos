@@ -6,9 +6,7 @@ import org.android.turnaround.data.remote.entity.request.SignUpRequest
 import org.android.turnaround.data.remote.entity.response.BaseResponse
 import org.android.turnaround.data.remote.entity.response.LoginResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
-import org.android.turnaround.data.remote.entity.response.RefreshTokenResponse
 import org.android.turnaround.data.remote.entity.response.SignUpResponse
-import org.android.turnaround.data.remote.entity.response.TokenEntity
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -27,9 +25,4 @@ interface AuthService {
     suspend fun postLogin(
         @Body body: LoginRequest
     ): BaseResponse<LoginResponse>
-
-    @POST("/v1/auth/refresh")
-    suspend fun postRefreshToken(
-        @Body body: TokenEntity
-    ): BaseResponse<RefreshTokenResponse>
 }

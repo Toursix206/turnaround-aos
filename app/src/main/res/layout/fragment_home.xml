@@ -42,7 +42,7 @@
             android:background="@drawable/shape_black_rect_fill_27"
             android:paddingHorizontal="10dp"
             android:paddingVertical="2dp"
-            android:text="@{`Lev.` + String.valueOf(home.level)}"
+            android:text="@{`Lv.` + String.valueOf(home.level)}"
             android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/tv_home_nickname"
