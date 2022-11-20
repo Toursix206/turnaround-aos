@@ -1,5 +1,6 @@
 package org.android.turnaround.di
 
+import android.content.SharedPreferences
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -11,8 +12,10 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.android.turnaround.BuildConfig
 import org.android.turnaround.data.local.datasource.LocalAuthPrefDataSource
+import org.android.turnaround.data.remote.repository.RefreshRepositoryImpl.Companion.EXPIRED_REFRESH_TOKEN
 import org.android.turnaround.data.remote.repository.RefreshRepositoryImpl.Companion.EXPIRED_TOKEN
 import org.android.turnaround.domain.repository.RefreshRepository
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
@@ -30,6 +33,7 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun providesInterceptor(
+        localPref: SharedPreferences,
         refreshRepository: RefreshRepository,
         localAuthPrefDataSource: LocalAuthPrefDataSource
     ): Interceptor =
@@ -60,7 +64,19 @@ object RetrofitModule {
                                         .build()
                                 )
                             }
-                            .onFailure { Timber.d("토큰 갱신 실패 ${it.message}") }
+                            .onFailure { throwable ->
+                                Timber.d("토큰 갱신 실패 ${throwable.message}")
+                                if (throwable is HttpException) {
+                                    when (throwable.code()) {
+                                        EXPIRED_REFRESH_TOKEN -> {
+                                            with(localPref.edit()) {
+                                                clear()
+                                                commit()
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                     }
                 }
             }
