@@ -78,7 +78,7 @@
             android:insetBottom="0dp"
             android:paddingVertical="14dp"
             android:stateListAnimator="@null"
-            android:text="@{warning.cancel}"
+            android:text="@{warning.confirm}"
             android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/turnaround_white"
             app:cornerRadius="10dp"
