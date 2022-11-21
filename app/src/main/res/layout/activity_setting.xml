@@ -104,6 +104,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_function" />
 
+        <View
+            android:id="@+id/view_setting"
+            android:layout_width="1dp"
+            android:layout_height="14dp"
+            android:layout_marginBottom="28dp"
+            android:background="@color/turnaround_gray_6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_setting_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/setting_logout"
+            android:textAppearance="@style/caption_regular"
+            android:textColor="@color/turnaround_gray_6"
+            app:layout_constraintBottom_toBottomOf="@id/view_setting"
+            app:layout_constraintEnd_toStartOf="@id/view_setting"
+            app:layout_constraintTop_toTopOf="@id/view_setting" />
+
+        <TextView
+            android:id="@+id/tv_setting_withdrawal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/setting_withdrawal"
+            android:textAppearance="@style/caption_regular"
+            android:textColor="@color/turnaround_gray_6"
+            app:layout_constraintBottom_toBottomOf="@id/view_setting"
+            app:layout_constraintStart_toEndOf="@id/view_setting"
+            app:layout_constraintTop_toTopOf="@id/view_setting" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
