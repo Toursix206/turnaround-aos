@@ -3,11 +3,45 @@
     <string name="app_name">TurnAround</string>
     <string name="binding_error">Binding not initialized to reference the view.</string>
     <string name="null_point_exception">NullPointException occurs..</string>
+    <string name="null_point_exception_detail_two_item">NullPointException occurs - %s : %s, %s : %s</string>
     <string name="title_home">홈</string>
     <string name="title_room">방타버스</string>
     <string name="title_activity">활동</string>
     <string name="title_my">마이</string>
     <string name="refresh_error">자동로그인이 만료되었습니다. 다시 로그인해주시기 바랍니다.</string>
+
+    <!-- WarningDialog -->
+    <string name="null_point_exception_warning_dialog_argument">"WarningDialogFragment에 필요한 arguments에 안들어옴"</string>
+
+    <string name="warning_delete_activity_title">진짜 활동을 삭제할까요?</string>
+    <string name="warning_delete_activity_desc">실패한 활동으로 기록되지는 않아요</string>
+    <string name="warning_delete_activity_cancel">아니요</string>
+    <string name="warning_delete_activity_confirm">네! 삭제할게요</string>
+
+    <string name="warning_cancel_activity_title">활동 취소</string>
+    <string name="warning_cancel_activity_desc">지금까지 진행한 STEP이 초기화 돼요.\n활동을 취소하실 건가요?</string>
+    <string name="warning_cancel_activity_cancel">아니요</string>
+    <string name="warning_cancel_activity_confirm">네</string>
+
+    <string name="warning_take_photo_again_title">다시 촬영</string>
+    <string name="warning_take_photo_again_desc">활동 인증 사진을\n다시 촬영하실 건가요?</string>
+    <string name="warning_take_photo_again_cancel">아니오</string>
+    <string name="warning_take_photo_again_confirm">네</string>
+
+    <string name="warning_skip_review_title">리뷰 작성을 건너 뛰실 건가요?</string>
+    <string name="warning_skip_review_desc">리뷰는 [마이페이지 -> 나의리뷰] 에서\n작성하실 수 있어요!</string>
+    <string name="warning_skip_review_cancel">아니요</string>
+    <string name="warning_skip_review_confirm">네</string>
+
+    <string name="warning_cancel_review_title">작성 취소</string>
+    <string name="warning_cancel_review_desc">작성 중인 내용이 삭제돼요.\n리뷰 작성을 취소하실 건가요?</string>
+    <string name="warning_cancel_review_cancel">아니요</string>
+    <string name="warning_cancel_review_confirm">네</string>
+
+    <string name="warning_withdraw_title">정말 떠나실려구요?</string>
+    <string name="warning_withdraw_desc">방타버스와 함께 성장한\n당신의 생산적인 삶을 응원합니다</string>
+    <string name="warning_withdraw_cancel">네, 떠날게요</string>
+    <string name="warning_withdraw_confirm">아니요</string>
 
     <!-- Intro -->
     <string name="intro_img_desc">턴어라운드 로고</string>
