@@ -108,6 +108,47 @@
             app:layout_constraintTop_toBottomOf="@id/pb_todo_guide"
             tools:background="@color/turnaround_gray_3" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_todo_guide_tool_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_todo_guide_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/ic_tool_tip_bottom"
+                app:layout_constraintEnd_toEndOf="@id/btn_todo_guide_tool_tip"
+                app:layout_constraintStart_toStartOf="@id/btn_todo_guide_tool_tip"
+                app:layout_constraintTop_toBottomOf="@id/btn_todo_guide_tool_tip" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_todo_guide_tool_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/turnaround_purple"
+                android:drawableEnd="@drawable/ic_close_tool_tip"
+                android:drawablePadding="0dp"
+                android:includeFontPadding="false"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:stateListAnimator="@null"
+                android:text="@string/todo_guide_tool_tip_cheer_up"
+                android:textAppearance="@style/caption_semi_bold"
+                android:textColor="@color/turnaround_white"
+                app:cornerRadius="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_todo_guide_next"
             android:layout_width="0dp"

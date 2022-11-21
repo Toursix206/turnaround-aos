@@ -192,5 +192,6 @@
     <string name="todo_guide_close_img_desc">닫기 버튼</string>
     <string name="todo_guide_step">STEP 0%d</string>
     <string name="todo_guide_img_desc">가이드 사진</string>
+    <string name="todo_guide_tool_tip_cheer_up">한단계 남았어요! 힘내서 활동을 완료해보세요!</string>
 
 </resources>
