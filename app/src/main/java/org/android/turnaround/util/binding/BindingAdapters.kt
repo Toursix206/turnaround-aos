@@ -4,9 +4,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.suke.widget.SwitchButton
 import org.android.turnaround.R
 import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.domain.entity.FurnitureType
+import org.android.turnaround.domain.entity.ProfileType
 import java.text.DecimalFormat
 
 object BindingAdapters {
@@ -78,5 +80,25 @@ object BindingAdapters {
     fun TextView.applyPointFormat(point: Int) {
         val decimalFormat = DecimalFormat("#,###")
         text = decimalFormat.format(point)
+    }
+
+    @JvmStatic
+    @BindingAdapter("userProfile")
+    fun ImageView.initUserProfile(type: ProfileType? = ProfileType.ONE) {
+        type?.let {
+            setImageResource(
+                when (type) {
+                    ProfileType.ONE -> R.drawable.img_profile_character_1
+                    ProfileType.TWO -> R.drawable.img_profile_character_2
+                    ProfileType.THREE -> R.drawable.img_profile_character_3
+                }
+            )
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("check")
+    fun SwitchButton.initCheck(isAgreeNotification: Boolean) {
+        isChecked = isAgreeNotification
     }
 }

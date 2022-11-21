@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.android.turnaround.data.remote.service.*
 import org.android.turnaround.data.remote.service.ActivityService
 import org.android.turnaround.data.remote.service.AuthService
 import org.android.turnaround.data.remote.service.HomeService
@@ -45,4 +46,9 @@ object RetrofitServiceModule {
     @Singleton
     fun providesActivityService(@RetrofitModule.NormalType retrofit: Retrofit): ActivityService =
         retrofit.create(ActivityService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesUserService(@RetrofitModule.NormalType retrofit: Retrofit): UserService =
+        retrofit.create(UserService::class.java)
 }

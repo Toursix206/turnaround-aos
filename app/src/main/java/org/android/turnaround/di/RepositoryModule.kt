@@ -4,18 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.android.turnaround.data.remote.repository.ActivityRepositoryImpl
-import org.android.turnaround.data.remote.repository.AuthRepositoryImpl
-import org.android.turnaround.data.remote.repository.HomeRepositoryImpl
-import org.android.turnaround.data.remote.repository.RefreshRepositoryImpl
-import org.android.turnaround.data.remote.repository.RoomRepositoryImpl
-import org.android.turnaround.data.remote.repository.TodoRepositoryImpl
-import org.android.turnaround.domain.repository.ActivityRepository
-import org.android.turnaround.domain.repository.AuthRepository
-import org.android.turnaround.domain.repository.HomeRepository
-import org.android.turnaround.domain.repository.RefreshRepository
-import org.android.turnaround.domain.repository.RoomRepository
-import org.android.turnaround.domain.repository.TodoRepository
+import org.android.turnaround.data.remote.repository.*
+import org.android.turnaround.domain.repository.*
 import javax.inject.Singleton
 
 @Module
@@ -50,4 +40,9 @@ object RepositoryModule {
     @Singleton
     fun providesActivityRepository(activityRepositoryImpl: ActivityRepositoryImpl): ActivityRepository =
         activityRepositoryImpl
+
+    @Provides
+    @Singleton
+    fun providesUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository =
+        userRepositoryImpl
 }
