@@ -3,7 +3,6 @@ package org.android.turnaround.data.remote.entity.response
 import org.android.turnaround.domain.entity.Home
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoCategory
-import org.android.turnaround.domain.entity.TodoImageCategory
 
 data class HomeResponse(
     val nickname: String,
@@ -29,7 +28,7 @@ data class HomeResponse(
                     todoStatus = todo.todoStatus,
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
                 )
             }
         )

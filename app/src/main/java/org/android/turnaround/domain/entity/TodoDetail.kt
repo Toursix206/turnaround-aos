@@ -9,5 +9,7 @@ data class TodoDetail(
     val rewardItem: String? = null,
     val type: String,
     val categoryName: String,
-    val categoryImage: Int
+    val categoryImage: Int,
+    val leftTime: String,
+    val isAfterStartAt: Boolean
 )
