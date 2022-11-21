@@ -7,6 +7,7 @@ import org.android.turnaround.data.remote.datasource.AuthDataSource
 import org.android.turnaround.domain.entity.Login
 import org.android.turnaround.domain.entity.SignUp
 import org.android.turnaround.domain.entity.Token
+import org.android.turnaround.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(

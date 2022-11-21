@@ -4,6 +4,7 @@ import org.android.turnaround.data.remote.datasource.TodoDataSource
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.domain.entity.TodoList
+import org.android.turnaround.domain.repository.TodoRepository
 import javax.inject.Inject
 
 class TodoRepositoryImpl @Inject constructor(

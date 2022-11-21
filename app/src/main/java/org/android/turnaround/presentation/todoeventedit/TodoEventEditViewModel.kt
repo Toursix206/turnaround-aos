@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
-import org.android.turnaround.data.remote.repository.TodoRepository
+import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoList
 import org.android.turnaround.util.Event

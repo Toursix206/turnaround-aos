@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import org.android.turnaround.data.remote.repository.HomeRepository
-import org.android.turnaround.data.remote.repository.TodoRepository
+import org.android.turnaround.domain.repository.HomeRepository
+import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.domain.entity.Home
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.util.Event

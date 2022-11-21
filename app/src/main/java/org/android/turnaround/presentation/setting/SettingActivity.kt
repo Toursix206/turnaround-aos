@@ -26,7 +26,7 @@ class SettingActivity : BindingActivity<ActivitySettingBinding>(R.layout.activit
     }
 
     private fun initSwitchBtnCheckListener() {
-        binding.switchBtnSetting.setOnCheckedChangeListener { view, isChecked ->
+        binding.switchBtnSetting.setOnCheckedChangeListener { _, isChecked ->
             viewModel.putUserSetting(isChecked)
         }
     }
