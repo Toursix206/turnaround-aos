@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="todoDetail"
             type="org.android.turnaround.domain.entity.TodoDetail" />
@@ -238,6 +240,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="29dp"
+            android:text="@{todoDetail.leftTime}"
+            android:visibility="@{todoDetail.isAfterStartAt ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_todo_start_alarm"
@@ -252,14 +256,15 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/shape_gray10_rect_fill_14"
             android:paddingVertical="16dp"
-            android:text="활동 시간이 아니지만 바로 시작하기!"
+            android:text="@{todoDetail.isAfterStartAt ? @string/bottom_sheet_todo_start_btn_true : @string/bottom_sheet_todo_start_btn_false}"
             android:textAlignment="center"
             android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_time" />
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_time"
+            tools:text="@string/bottom_sheet_todo_start_btn_false" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
