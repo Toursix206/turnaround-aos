@@ -5,18 +5,29 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import org.android.turnaround.domain.entity.UserSetting
+import org.android.turnaround.domain.repository.AuthRepository
 import org.android.turnaround.domain.repository.UserRepository
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class SettingViewModel @Inject constructor(
+    private val authRepository: AuthRepository,
     private val userRepository: UserRepository
 ) : ViewModel() {
     private val _setting = MutableLiveData<UserSetting>()
     val setting: LiveData<UserSetting> = _setting
+
+    private val _isSuccessLogout = MutableSharedFlow<Boolean>()
+    val isSuccessLogout: SharedFlow<Boolean> = _isSuccessLogout.asSharedFlow()
+
+    private val _isSuccessWithdraw = MutableSharedFlow<Boolean>()
+    val isSuccessWithdraw: SharedFlow<Boolean> = _isSuccessWithdraw.asSharedFlow()
 
     init {
         getUserSetting()
@@ -36,5 +47,27 @@ class SettingViewModel @Inject constructor(
             .onFailure {
                 Timber.d(it.message)
             }
+    }
+
+    fun postLogout() {
+        viewModelScope.launch {
+            authRepository.postLogout()
+                .onSuccess {
+                    authRepository.clearLocalPref()
+                    _isSuccessLogout.emit(true)
+                }
+                .onFailure { Timber.d(it.message.toString()) }
+        }
+    }
+
+    fun deleteUser() {
+        viewModelScope.launch {
+            authRepository.deleteUser()
+                .onSuccess {
+                    authRepository.clearLocalPref()
+                    _isSuccessWithdraw.emit(true)
+                }
+                .onFailure { Timber.d(it.message.toString()) }
+        }
     }
 }
