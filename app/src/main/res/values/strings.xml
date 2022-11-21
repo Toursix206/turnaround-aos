@@ -188,4 +188,9 @@
     <string name="start_todo_start_img_dessc">활동 시작 이미지</string>
     <string name="start_todo_done_img_dessc">활동 완료 이미지</string>
 
+    <!-- TodoGuide -->
+    <string name="todo_guide_close_img_desc">닫기 버튼</string>
+    <string name="todo_guide_step">STEP 0%d</string>
+    <string name="todo_guide_img_desc">가이드 사진</string>
+
 </resources>

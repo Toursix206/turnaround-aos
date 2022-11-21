@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_todo_guide"
+            isCrop="@{true}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/shape_white_rect_fill_16"
+            android:contentDescription="@string/todo_guide_img_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_start_todo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
