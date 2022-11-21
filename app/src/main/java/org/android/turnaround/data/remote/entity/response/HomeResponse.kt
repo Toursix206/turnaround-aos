@@ -27,6 +27,7 @@ data class HomeResponse(
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
                     todoStatus = todo.todoStatus,
+                    duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
                     categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
                 )

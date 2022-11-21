@@ -78,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:text="@{String.valueOf(30) + '분'}"
+            android:text="@{String.valueOf(todo.duration) + '분'}"
             android:textAppearance="@style/caption_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/tv_todo_edit_duration"
