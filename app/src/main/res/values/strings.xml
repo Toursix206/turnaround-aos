@@ -181,4 +181,11 @@
     <string name="settings_logout_toast">로그아웃되었습니다.</string>
     <string name="withdraw_toast">탈퇴되었습니다.</string>
 
+    <!-- StartTodo -->
+    <string name="start_todo_close_img_desc">닫기 버튼</string>
+    <string name="start_todo_start">시작</string>
+    <string name="start_todo_done">오늘의 활동 인증하기!</string>
+    <string name="start_todo_start_img_dessc">활동 시작 이미지</string>
+    <string name="start_todo_done_img_dessc">활동 완료 이미지</string>
+
 </resources>
