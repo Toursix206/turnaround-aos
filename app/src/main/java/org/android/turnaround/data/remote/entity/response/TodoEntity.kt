@@ -5,5 +5,6 @@ data class TodoEntity(
     val activityName: String,
     val leftTime: String,
     val todoId: Int,
-    val todoStatus: String
+    val todoStatus: String,
+    val duration: Int
 )

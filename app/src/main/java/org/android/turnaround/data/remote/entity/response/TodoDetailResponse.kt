@@ -2,7 +2,6 @@ package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.TodoCategory
 import org.android.turnaround.domain.entity.TodoDetail
-import org.android.turnaround.domain.entity.TodoRoundImageCategory
 
 data class TodoDetailResponse(
     val activityId: Int,
@@ -11,7 +10,9 @@ data class TodoDetailResponse(
     val name: String,
     val point: Int,
     val rewardItem: String?,
-    val type: String
+    val type: String,
+    val leftTime: String,
+    val isAfterStartAt: Boolean
 ) {
     fun toTodoDetail(): TodoDetail =
         TodoDetail(
@@ -23,6 +24,8 @@ data class TodoDetailResponse(
             rewardItem = this.rewardItem,
             type = this.type,
             categoryName = TodoCategory.valueOf(this.category).title,
-            categoryImage = TodoRoundImageCategory.valueOf(this.category).res
+            categoryImage = TodoCategory.valueOf(this.category).roundImgRes,
+            leftTime = this.leftTime,
+            isAfterStartAt = this.isAfterStartAt
         )
 }

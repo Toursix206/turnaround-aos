@@ -113,6 +113,8 @@
     <string name="bottom_sheet_todo_start_reward">보상 아이템</string>
     <string name="bottom_sheet_todo_start_alarm_img_desc">활동 상세 알람 이미지</string>
     <string name="bottom_sheet_todo_start_alarm">활동 시간 알람</string>
+    <string name="bottom_sheet_todo_start_btn_true">활동 시작하기!</string>
+    <string name="bottom_sheet_todo_start_btn_false">활동 시간이 아니지만 바로 시작하기!</string>
 
     <!-- Bottom Sheet To-do Edit -->
     <string name="bottom_sheet_todo_edit_title">활동을 언제 시작할까요?</string>

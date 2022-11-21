@@ -2,7 +2,6 @@ package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoCategory
-import org.android.turnaround.domain.entity.TodoImageCategory
 import org.android.turnaround.domain.entity.TodoList
 
 data class TodoListResponse(
@@ -24,8 +23,9 @@ data class TodoListResponse(
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
                     todoStatus = todo.todoStatus,
+                    duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
                 )
             },
             nextTodosCnt = this.nextTodosCnt,
@@ -36,8 +36,9 @@ data class TodoListResponse(
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
                     todoStatus = todo.todoStatus,
+                    duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
                 )
             },
             successTodosCnt = this.successTodosCnt,
@@ -48,8 +49,9 @@ data class TodoListResponse(
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
                     todoStatus = todo.todoStatus,
+                    duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
                 )
             },
             thisWeekTodosCnt = this.thisWeekTodosCnt,
@@ -60,8 +62,9 @@ data class TodoListResponse(
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
                     todoStatus = todo.todoStatus,
+                    duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoImageCategory.valueOf(todo.activityCategory).res
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
                 )
             },
             todayTodosCnt = this.todayTodosCnt
