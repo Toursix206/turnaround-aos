@@ -26,6 +26,9 @@ class SettingViewModel @Inject constructor(
     private val _isSuccessLogout = MutableSharedFlow<Boolean>()
     val isSuccessLogout: SharedFlow<Boolean> = _isSuccessLogout.asSharedFlow()
 
+    private val _isSuccessWithdraw = MutableSharedFlow<Boolean>()
+    val isSuccessWithdraw: SharedFlow<Boolean> = _isSuccessWithdraw.asSharedFlow()
+
     init {
         getUserSetting()
     }
@@ -52,6 +55,17 @@ class SettingViewModel @Inject constructor(
                 .onSuccess {
                     authRepository.clearLocalPref()
                     _isSuccessLogout.emit(true)
+                }
+                .onFailure { Timber.d(it.message.toString()) }
+        }
+    }
+
+    fun deleteUser() {
+        viewModelScope.launch {
+            authRepository.deleteUser()
+                .onSuccess {
+                    authRepository.clearLocalPref()
+                    _isSuccessWithdraw.emit(true)
                 }
                 .onFailure { Timber.d(it.message.toString()) }
         }

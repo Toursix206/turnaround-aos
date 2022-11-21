@@ -45,4 +45,6 @@ class AuthDataSource @Inject constructor(
         )
 
     suspend fun postLogout(): NoDataResponse = authService.postLogout()
+
+    suspend fun deleteUser(): NoDataResponse = authService.deleteUser()
 }

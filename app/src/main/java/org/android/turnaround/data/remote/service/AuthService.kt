@@ -8,6 +8,7 @@ import org.android.turnaround.data.remote.entity.response.LoginResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
 import org.android.turnaround.data.remote.entity.response.SignUpResponse
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.POST
 
 interface AuthService {
@@ -28,4 +29,7 @@ interface AuthService {
 
     @POST("/v1/auth/logout")
     suspend fun postLogout(): NoDataResponse
+
+    @DELETE("/v1/user")
+    suspend fun deleteUser(): NoDataResponse
 }

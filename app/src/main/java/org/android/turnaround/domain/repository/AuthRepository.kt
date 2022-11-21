@@ -14,4 +14,5 @@ interface AuthRepository {
     suspend fun postSignUp(nickname: String, profileType: String): Result<SignUp>
     suspend fun postLogin(): Result<Login>
     suspend fun postLogout(): Result<Boolean>
+    suspend fun deleteUser(): Result<Boolean>
 }

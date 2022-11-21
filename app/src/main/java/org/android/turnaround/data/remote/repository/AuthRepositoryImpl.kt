@@ -77,6 +77,11 @@ class AuthRepositoryImpl @Inject constructor(
             authDataSource.postLogout()
         }.map { response -> response.success }
 
+    override suspend fun deleteUser(): Result<Boolean> =
+        kotlin.runCatching {
+            authDataSource.deleteUser()
+        }.map { response -> response.success }
+
     companion object {
         const val SOCIAL_TYPE_KAKAO = "KAKAO"
     }
