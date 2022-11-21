@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/turnaround_gray_1"
+        tools:context=".presentation.start_todo.StartTodoActivity">
+
+        <ImageButton
+            android:id="@+id/btn_start_todo_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@string/start_todo_close_img_desc"
+            android:padding="16dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_start_todo_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/turnaround_gray_10"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingVertical="16dp"
+            android:stateListAnimator="@null"
+            android:text="@string/start_todo_start"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_white"
+            app:cornerRadius="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_start_todo_done"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/turnaround_gray_10"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingVertical="16dp"
+            android:stateListAnimator="@null"
+            android:text="@string/start_todo_done"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_white"
+            app:cornerRadius="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_start_todo_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginBottom="35dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/start_todo_start_img_dessc"
+            android:src="@drawable/ic_start_todo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.46" />
+
+        <ImageView
+            android:id="@+id/iv_start_todo_done"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginBottom="35dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/start_todo_start_img_dessc"
+            android:src="@drawable/ic_done_todo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.46" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
