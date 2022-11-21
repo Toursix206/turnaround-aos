@@ -1,5 +1,6 @@
 package org.android.turnaround.data.remote.datasource
 
+import android.content.SharedPreferences
 import org.android.turnaround.data.remote.entity.request.LoginRequest
 import org.android.turnaround.data.remote.entity.request.NicknameValidRequest
 import org.android.turnaround.data.remote.entity.request.SignUpRequest
@@ -10,8 +11,16 @@ import org.android.turnaround.data.remote.service.AuthService
 import javax.inject.Inject
 
 class AuthDataSource @Inject constructor(
-    private val authService: AuthService
+    private val authService: AuthService,
+    private val localPrefs: SharedPreferences
 ) {
+    fun clearLocalPref() {
+        with(localPrefs.edit()) {
+            clear()
+            commit()
+        }
+    }
+
     suspend fun postNicknameValid(nickname: String): NoDataResponse =
         authService.postNicknameValid(NicknameValidRequest(nickname = nickname))
 
@@ -34,4 +43,6 @@ class AuthDataSource @Inject constructor(
                 token = token
             )
         )
+
+    suspend fun postLogout(): NoDataResponse = authService.postLogout()
 }

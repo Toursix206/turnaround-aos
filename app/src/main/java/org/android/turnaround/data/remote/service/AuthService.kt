@@ -25,4 +25,7 @@ interface AuthService {
     suspend fun postLogin(
         @Body body: LoginRequest
     ): BaseResponse<LoginResponse>
+
+    @POST("/v1/auth/logout")
+    suspend fun postLogout(): NoDataResponse
 }

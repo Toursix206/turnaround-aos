@@ -37,6 +37,10 @@ class AuthRepositoryImpl @Inject constructor(
         localAuthPrefDataSource.refreshToken = token.refreshToken
     }
 
+    override fun clearLocalPref() {
+        authDataSource.clearLocalPref()
+    }
+
     override suspend fun postNicknameValid(nickname: String): Result<Boolean> =
         kotlin.runCatching { authDataSource.postNicknameValid(nickname) }
             .map { response -> response.success }
@@ -67,6 +71,11 @@ class AuthRepositoryImpl @Inject constructor(
         }.map { response ->
             response.data.toLogin()
         }
+
+    override suspend fun postLogout(): Result<Boolean> =
+        kotlin.runCatching {
+            authDataSource.postLogout()
+        }.map { response -> response.success }
 
     companion object {
         const val SOCIAL_TYPE_KAKAO = "KAKAO"
