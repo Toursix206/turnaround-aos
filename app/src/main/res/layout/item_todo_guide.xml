@@ -3,6 +3,9 @@
 
     <data>
 
+        <variable
+            name="imgUrl"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,6 +14,7 @@
 
         <ImageView
             android:id="@+id/iv_todo_guide"
+            imgUrl="@{imgUrl}"
             isCrop="@{true}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
