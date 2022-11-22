@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.todo_guide.TodoGuideViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,151 +29,308 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_todo_guide_step"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:background="@drawable/shape_gray10_rect_fill_30"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="3dp"
-            android:text="@{@string/todo_guide_step(1)}"
-            android:textAppearance="@style/body2_semi_bold"
-            android:textColor="@color/turnaround_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/todo_guide_step" />
-
-        <TextView
-            android:id="@+id/tv_todo_guide_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="30dp"
-            android:gravity="center_horizontal"
-            android:text="Step Title"
-            android:textAppearance="@style/sub_headline_bold"
-            android:textColor="@color/turnaround_gray_10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_guide_step" />
-
-        <TextView
-            android:id="@+id/tv_todo_guide_desc"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:text="Step Desc"
-            android:textAppearance="@style/body2_regular"
-            android:textColor="@color/turnaround_gray_9"
-            app:layout_constraintBottom_toTopOf="@id/pb_todo_guide"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_guide_title" />
-
-        <ProgressBar
-            android:id="@+id/pb_todo_guide"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="0dp"
-            android:layout_height="14dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="8dp"
-            android:max="100"
-            android:progress="25"
-            android:progressDrawable="@drawable/progress_todo_guide"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_todo_guide_progress"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.318" />
-
-        <TextView
-            android:id="@+id/tv_todo_guide_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:text="1/4"
-            android:textAppearance="@style/body2_semi_bold"
-            android:textColor="@color/turnaround_gray_10"
-            app:layout_constraintBottom_toBottomOf="@id/pb_todo_guide"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/pb_todo_guide" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_todo_guide"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_todo_guide_next"
-            app:layout_constraintTop_toBottomOf="@id/pb_todo_guide"
-            tools:background="@color/turnaround_gray_3" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_todo_guide_tool_tip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_todo_guide_next"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <View
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginTop="-10dp"
-                android:background="@drawable/ic_tool_tip_bottom"
-                app:layout_constraintEnd_toEndOf="@id/btn_todo_guide_tool_tip"
-                app:layout_constraintStart_toStartOf="@id/btn_todo_guide_tool_tip"
-                app:layout_constraintTop_toBottomOf="@id/btn_todo_guide_tool_tip" />
+            android:id="@+id/layout_todo_guide_start"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{!vm.isDoingTodo &amp;&amp; vm.currentStep != vm.guides.size() ? View.VISIBLE : View.INVISIBLE}"
+            tools:visibility="invisible">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_todo_guide_tool_tip"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_todo_guide_start"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/turnaround_purple"
-                android:drawableEnd="@drawable/ic_close_tool_tip"
-                android:drawablePadding="0dp"
-                android:includeFontPadding="false"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/turnaround_gray_10"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:minHeight="0dp"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
+                android:onClick="@{()->vm.initIsDoingTodo(true)}"
+                android:paddingVertical="16dp"
                 android:stateListAnimator="@null"
-                android:text="@string/todo_guide_tool_tip_cheer_up"
-                android:textAppearance="@style/caption_semi_bold"
+                android:text="@string/todo_guide_start"
+                android:textAppearance="@style/body1_semi_bold"
                 android:textColor="@color/turnaround_white"
-                app:cornerRadius="40dp"
+                app:cornerRadius="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_todo_guide_start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginBottom="35dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo_guide_start_img_dessc"
+                android:src="@drawable/ic_todo_guide_start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.46" />
+
+            <TextView
+                android:id="@+id/tv_todo_guide_start_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="50dp"
+                android:gravity="center_horizontal"
+                android:text="@{vm.activityName}"
+                android:textAppearance="@style/h2_bold"
+                android:textColor="@color/turnaround_gray_10"
+                app:layout_constraintEnd_toEndOf="@id/iv_todo_guide_start"
+                app:layout_constraintStart_toStartOf="@id/iv_todo_guide_start"
+                app:layout_constraintTop_toTopOf="@id/iv_todo_guide_start" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_todo_guide_next"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="22dp"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/turnaround_white"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:paddingVertical="16dp"
-            android:stateListAnimator="@null"
-            android:text="1단계 완료"
-            android:textAppearance="@style/body1_semi_bold"
-            android:textColor="@color/turnaround_gray_10"
-            app:cornerRadius="14dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:strokeColor="@color/turnaround_gray_10"
-            app:strokeWidth="1dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_todo_guide_done"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{!vm.isDoingTodo &amp;&amp; vm.currentStep == vm.guides.size() ? View.VISIBLE : View.INVISIBLE}"
+            tools:visibility="invisible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_todo_guide_done"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/turnaround_gray_10"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingVertical="16dp"
+                android:stateListAnimator="@null"
+                android:text="@string/todo_guide_done"
+                android:textAppearance="@style/body1_semi_bold"
+                android:textColor="@color/turnaround_white"
+                app:cornerRadius="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_todo_guide_done"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginBottom="35dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo_guide_done_img_dessc"
+                android:src="@drawable/ic_todo_guide_done"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.46" />
+
+            <TextView
+                android:id="@+id/tv_todo_guide_done_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="50dp"
+                android:gravity="center_horizontal"
+                android:text="@string/todo_guide_done_title"
+                android:textAppearance="@style/h2_bold"
+                android:textColor="@color/turnaround_gray_10"
+                app:layout_constraintEnd_toEndOf="@id/iv_todo_guide_done"
+                app:layout_constraintStart_toStartOf="@id/iv_todo_guide_done"
+                app:layout_constraintTop_toTopOf="@id/iv_todo_guide_done" />
+
+            <TextView
+                android:id="@+id/tv_todo_guide_done_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_horizontal"
+                android:text="@string/todo_guide_done_desc"
+                android:textAppearance="@style/body1_regular"
+                android:textColor="@color/turnaround_gray_10"
+                app:layout_constraintEnd_toEndOf="@id/iv_todo_guide_done"
+                app:layout_constraintStart_toStartOf="@id/iv_todo_guide_done"
+                app:layout_constraintTop_toBottomOf="@id/tv_todo_guide_done_title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_todo_guide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{vm.isDoingTodo ? View.VISIBLE : View.INVISIBLE}">
+
+            <TextView
+                android:id="@+id/tv_todo_guide_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:background="@drawable/shape_gray10_rect_fill_30"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="@{@string/todo_guide_step(vm.currentStep)}"
+                android:textAppearance="@style/body2_semi_bold"
+                android:textColor="@color/turnaround_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/todo_guide_step" />
+
+            <TextView
+                android:id="@+id/tv_todo_guide_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:text="@{vm.guides[vm.currentStep-1].title}"
+                android:textAppearance="@style/sub_headline_bold"
+                android:textColor="@color/turnaround_gray_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_todo_guide_step" />
+
+            <TextView
+                android:id="@+id/tv_todo_guide_desc"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                android:text="@{vm.guides[vm.currentStep-1].content}"
+                android:textAppearance="@style/body2_regular"
+                android:textColor="@color/turnaround_gray_9"
+                app:layout_constraintBottom_toTopOf="@id/pb_todo_guide"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_todo_guide_title" />
+
+            <ProgressBar
+                android:id="@+id/pb_todo_guide"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="8dp"
+                android:max="@{vm.guides.size()}"
+                android:progress="@{vm.currentStep}"
+                android:progressDrawable="@drawable/progress_todo_guide"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_todo_guide_progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.318" />
+
+            <TextView
+                android:id="@+id/tv_todo_guide_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:text="@{@string/todo_guide_progress_count(vm.currentStep, vm.guides.size())}"
+                android:textAppearance="@style/body2_semi_bold"
+                android:textColor="@color/turnaround_gray_10"
+                app:layout_constraintBottom_toBottomOf="@id/pb_todo_guide"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/pb_todo_guide" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_todo_guide"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_todo_guide_next"
+                app:layout_constraintTop_toBottomOf="@id/pb_todo_guide"
+                tools:background="@color/turnaround_gray_3" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_todo_guide_tool_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:visibility="@{vm.currentStep == vm.guides.size()-1 ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@id/btn_todo_guide_next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <View
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="-10dp"
+                    android:background="@drawable/ic_tool_tip_bottom"
+                    app:layout_constraintEnd_toEndOf="@id/view_todo_guide_background"
+                    app:layout_constraintStart_toStartOf="@id/view_todo_guide_background"
+                    app:layout_constraintTop_toBottomOf="@id/view_todo_guide_background" />
+
+                <View
+                    android:id="@+id/view_todo_guide_background"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/shape_purple_rect_fill_40"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_todo_guide_tool_tip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_todo_guide_tool_tip" />
+
+                <TextView
+                    android:id="@+id/tv_todo_guide_tool_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:paddingVertical="5dp"
+                    android:text="@string/todo_guide_tool_tip_cheer_up"
+                    android:textAppearance="@style/caption_semi_bold"
+                    android:textColor="@color/turnaround_white"
+                    app:layout_constraintEnd_toStartOf="@id/btn_todo_guide_close_tool_tip"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btn_todo_guide_close_tool_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:contentDescription="@string/todo_guide_close_tool_tip_img_desc"
+                    android:paddingVertical="5dp"
+                    android:paddingStart="2dp"
+                    android:paddingEnd="8dp"
+                    android:src="@drawable/ic_close_tool_tip"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_todo_guide_tool_tip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_todo_guide_tool_tip"
+                    app:layout_constraintTop_toTopOf="@id/tv_todo_guide_tool_tip" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_todo_guide_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/turnaround_white"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="@{()->vm.initNextStep()}"
+                android:paddingVertical="16dp"
+                android:stateListAnimator="@null"
+                android:text="@{vm.currentStep == vm.guides.size() ? @string/todo_guide_next_btn_last_text(vm.currentStep) : @string/todo_guide_next_btn_text(vm.currentStep)}"
+                android:textAppearance="@style/body1_semi_bold"
+                android:textColor="@color/turnaround_gray_10"
+                app:cornerRadius="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:strokeColor="@color/turnaround_gray_10"
+                app:strokeWidth="1dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

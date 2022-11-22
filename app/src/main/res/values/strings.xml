@@ -181,17 +181,20 @@
     <string name="settings_logout_toast">로그아웃되었습니다.</string>
     <string name="withdraw_toast">탈퇴되었습니다.</string>
 
-    <!-- StartTodo -->
-    <string name="start_todo_close_img_desc">닫기 버튼</string>
-    <string name="start_todo_start">시작</string>
-    <string name="start_todo_done">오늘의 활동 인증하기!</string>
-    <string name="start_todo_start_img_dessc">활동 시작 이미지</string>
-    <string name="start_todo_done_img_dessc">활동 완료 이미지</string>
-
     <!-- TodoGuide -->
+    <string name="todo_guide_start">시작</string>
+    <string name="todo_guide_start_img_dessc">활동 시작 이미지</string>
+    <string name="todo_guide_done">오늘의 활동 인증하기!</string>
+    <string name="todo_guide_done_img_dessc">활동 완료 이미지</string>
+    <string name="todo_guide_done_title">활동을 완료하셨나요?</string>
+    <string name="todo_guide_done_desc">진행하신 활동을 인증해보세요!</string>
     <string name="todo_guide_close_img_desc">닫기 버튼</string>
-    <string name="todo_guide_step">STEP 0%d</string>
+    <string name="todo_guide_step">STEP %d</string>
     <string name="todo_guide_img_desc">가이드 사진</string>
     <string name="todo_guide_tool_tip_cheer_up">한단계 남았어요! 힘내서 활동을 완료해보세요!</string>
+    <string name="todo_guide_close_tool_tip_img_desc">툴팁 닫기 버튼</string>
+    <string name="todo_guide_progress_count">%d/%d</string>
+    <string name="todo_guide_next_btn_text">%d단계 완료</string>
+    <string name="todo_guide_next_btn_last_text">마지막 %d단계도 완료!</string>
 
 </resources>

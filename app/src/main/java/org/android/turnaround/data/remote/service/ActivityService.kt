@@ -2,9 +2,11 @@ package org.android.turnaround.data.remote.service
 
 import org.android.turnaround.data.remote.entity.response.ActivityResponse
 import org.android.turnaround.data.remote.entity.response.BaseResponse
+import org.android.turnaround.data.remote.entity.response.TodoGuideResponse
 import org.android.turnaround.domain.entity.ActivityCategory
 import org.android.turnaround.domain.entity.ActivityType
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ActivityService {
@@ -16,4 +18,9 @@ interface ActivityService {
         @Query("type") type: ActivityType = ActivityType.FREE,
         @Query("sort") sort: Array<String> = arrayOf("createdAt", "DESC")
     ): BaseResponse<ActivityResponse>
+
+    @GET("/v1/activity/{activityId}/guide")
+    suspend fun getTodoGuide(
+        @Path("activityId") activityId: Int
+    ): BaseResponse<TodoGuideResponse>
 }
