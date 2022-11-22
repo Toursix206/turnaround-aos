@@ -24,7 +24,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
         viewModel.getTodoGuide(1)
         initGuideImgViewPager()
         initCloseBtnClickListener()
-        initToolTipCloseClickListener()
+        initCloseToolTipBtnClickListener()
         initGuidesCollector()
         initCurrentStepCollector()
     }
@@ -57,8 +57,8 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
         }
     }
 
-    private fun initToolTipCloseClickListener() {
-        binding.btnTodoGuideToolTip.setOnClickListener {
+    private fun initCloseToolTipBtnClickListener() {
+        binding.btnTodoGuideCloseToolTip.setOnClickListener {
             binding.layoutTodoGuideToolTip.visibility = View.GONE
         }
     }
