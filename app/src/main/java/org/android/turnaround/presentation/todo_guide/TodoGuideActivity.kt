@@ -1,6 +1,7 @@
 package org.android.turnaround.presentation.todo_guide
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
@@ -19,6 +20,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
         binding.vm = viewModel
         viewModel.getTodoGuide(1)
         initGuideImgViewPager()
+        initToolTipCloseClickListener()
         initGuidesCollector()
         initCurrentStepCollector()
     }
@@ -27,6 +29,12 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
         with(binding.vpTodoGuide) {
             adapter = todoGuideAdapter
             isUserInputEnabled = false
+        }
+    }
+
+    private fun initToolTipCloseClickListener() {
+        binding.btnTodoGuideToolTip.setOnClickListener {
+            binding.layoutTodoGuideToolTip.visibility = View.GONE
         }
     }
 
