@@ -16,21 +16,37 @@ import javax.inject.Inject
 class TodoGuideViewModel @Inject constructor(
     private val activityRepository: ActivityRepository
 ) : ViewModel() {
-    private val _currentStep = MutableStateFlow(1)
+    private val _isDoingTodo = MutableStateFlow(false)
+    val isDoingTodo: StateFlow<Boolean> = _isDoingTodo.asStateFlow()
+
+    private val _currentStep = MutableStateFlow(0)
     val currentStep: StateFlow<Int> = _currentStep.asStateFlow()
+
+    private val _activityName = MutableStateFlow("")
+    val activityName: StateFlow<String> = _activityName.asStateFlow()
 
     private val _guides = MutableStateFlow<List<Guide>>(emptyList())
     val guides: StateFlow<List<Guide>> = _guides.asStateFlow()
 
+    fun initIsDoingTodo(isDoing: Boolean) {
+        _isDoingTodo.value = isDoing
+    }
+
     fun initNextStep() {
-        _currentStep.value = currentStep.value + 1
+        if (currentStep.value < guides.value.size) {
+            _currentStep.value = currentStep.value + 1
+        } else {
+            _isDoingTodo.value = false
+        }
     }
 
     fun getTodoGuide(activityId: Int) {
         viewModelScope.launch {
             activityRepository.getTodoGuide(activityId)
                 .onSuccess { response ->
+                    _activityName.value = response.name
                     _guides.value = response.guides
+                    _currentStep.value = 1
                 }
                 .onFailure { Timber.d(it.message.toString()) }
         }

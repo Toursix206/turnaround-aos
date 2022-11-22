@@ -22,7 +22,7 @@
             android:background="@drawable/shape_white_rect_fill_16"
             android:contentDescription="@string/todo_guide_img_desc"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_start_todo" />
+            android:src="@drawable/ic_todo_guide_start" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
