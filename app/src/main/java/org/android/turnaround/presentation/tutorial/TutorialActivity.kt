@@ -16,6 +16,9 @@ import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.
 import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.NOT_VALID_SOCIAL_TOKEN
 import org.android.turnaround.presentation.tutorial.apdater.TutorialAdapter
 import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.dialog.ConfirmClickListener
+import org.android.turnaround.util.dialog.WarningDialogFragment
+import org.android.turnaround.util.dialog.WarningType
 import org.android.turnaround.util.extension.repeatOnStarted
 import org.android.turnaround.util.showToast
 import javax.inject.Inject
@@ -93,7 +96,18 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
                             finish()
                         }
                         DUPLICATE_LOGIN -> {
-                            // TODO 강제로그아웃 팝업 띄우는 로직 실행
+                            WarningDialogFragment().apply {
+                                arguments = Bundle().apply {
+                                    putSerializable(
+                                        WarningDialogFragment.WARNING_TYPE,
+                                        WarningType.WARNING_DUPLICATE_LOGIN
+                                    )
+                                    putParcelable(
+                                        WarningDialogFragment.CONFIRM_ACTION,
+                                        ConfirmClickListener(confirmAction = { })
+                                    )
+                                }
+                            }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
                         }
                     }
                 }

@@ -55,12 +55,18 @@ class TutorialViewModel @Inject constructor(
         if (currentTutorial.value < 2) _currentTutorial.value++
     }
 
+    private fun resetIsReadyToLogin() {
+        isSuccessKakaoLogin.value = false
+        isSuccessInitFcmToken.value = false
+    }
+
     fun postLogin() {
         viewModelScope.launch {
             authRepository.postLogin()
                 .onSuccess { response ->
                     authRepository.initTurnAroundToken(response.token)
                     _isSuccessLogin.emit(true)
+                    resetIsReadyToLogin()
                 }
                 .onFailure { throwable ->
                     Timber.d(throwable.message)
@@ -72,6 +78,7 @@ class TutorialViewModel @Inject constructor(
                         }
                     }
                     _isSuccessLogin.emit(false)
+                    resetIsReadyToLogin()
                 }
         }
     }
