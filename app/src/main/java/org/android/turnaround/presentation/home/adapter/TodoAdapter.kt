@@ -45,10 +45,9 @@ class TodoAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (todoList[position].todoStatus) {
-            TodoType.WHITE.type -> VIEW_TYPE_TODO_WHITE
-            TodoType.BLACK.type -> VIEW_TYPE_TODO_BLACK
-            TodoType.PURPLE.type -> VIEW_TYPE_TODO_PURPLE
-            else -> VIEW_TYPE_TODO_WHITE
+            TodoType.WHITE -> VIEW_TYPE_TODO_WHITE
+            TodoType.BLACK -> VIEW_TYPE_TODO_BLACK
+            TodoType.PURPLE -> VIEW_TYPE_TODO_PURPLE
         }
     }
 
