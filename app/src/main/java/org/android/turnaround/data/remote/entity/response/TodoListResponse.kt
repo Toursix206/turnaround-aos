@@ -3,6 +3,7 @@ package org.android.turnaround.data.remote.entity.response
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoCategory
 import org.android.turnaround.domain.entity.TodoList
+import org.android.turnaround.domain.entity.TodoType
 
 data class TodoListResponse(
     val nextTodos: List<TodoEntity>,
@@ -22,7 +23,7 @@ data class TodoListResponse(
                     activityName = todo.activityName,
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
-                    todoStatus = todo.todoStatus,
+                    todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
                     categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
@@ -35,7 +36,7 @@ data class TodoListResponse(
                     activityName = todo.activityName,
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
-                    todoStatus = todo.todoStatus,
+                    todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
                     categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
@@ -48,7 +49,7 @@ data class TodoListResponse(
                     activityName = todo.activityName,
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
-                    todoStatus = todo.todoStatus,
+                    todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
                     categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
@@ -61,7 +62,7 @@ data class TodoListResponse(
                     activityName = todo.activityName,
                     leftTime = todo.leftTime,
                     todoId = todo.todoId,
-                    todoStatus = todo.todoStatus,
+                    todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
                     categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes

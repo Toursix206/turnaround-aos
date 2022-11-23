@@ -65,8 +65,8 @@ class TodoEventEditAdapter(
             is TodoHeader -> VIEW_TYPE_TODO_EDIT_HEADER
             is Todo -> {
                 return when ((todoEventList[position] as Todo).todoStatus) {
-                    TodoType.WHITE.type -> VIEW_TYPE_TODO_EDIT_WHITE
-                    TodoType.BLACK.type -> VIEW_TYPE_TODO_EDIT_BLACK
+                    TodoType.WHITE -> VIEW_TYPE_TODO_EDIT_WHITE
+                    TodoType.BLACK -> VIEW_TYPE_TODO_EDIT_BLACK
                     else -> VIEW_TYPE_TODO_EDIT_WHITE
                 }
             }

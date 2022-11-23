@@ -31,6 +31,7 @@
             android:text="@{todo.categoryName}"
             android:textAlignment="center"
             android:textAppearance="@style/caption_semi_bold"
+            android:textColor="@color/turnaround_gray_9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="침대" />
@@ -72,42 +73,57 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/img_todo_bedding" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/tv_todo_remove"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
             android:layout_marginEnd="6dp"
-            android:background="@drawable/shape_gray8_rect_line_4"
+            android:backgroundTint="@color/turnaround_gray_9"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
             android:onClick="@{() -> vm.setIsCheckedDeleteBtnEvent(todo.todoId)}"
             android:paddingVertical="9dp"
+            android:stateListAnimator="@null"
             android:text="일정 삭제"
-            android:textAlignment="center"
             android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/turnaround_white"
+            app:cornerRadius="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_todo_change_time"
             app:layout_constraintStart_toStartOf="@id/tv_todo_start_now"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_now" />
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_now"
+            app:strokeColor="@color/turnaround_gray_8"
+            app:strokeWidth="1dp" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/tv_todo_change_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
             android:layout_marginStart="6dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/shape_gray8_rect_line_4"
+            android:backgroundTint="@color/turnaround_gray_9"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
             android:onClick="@{() -> vm.setIsCheckedEditBtnEvent(todo)}"
             android:paddingVertical="9dp"
+            android:stateListAnimator="@null"
             android:text="예약 시간 변경"
             android:textAlignment="center"
             android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/turnaround_white"
+            app:cornerRadius="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_todo_remove"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_now" />
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_start_now"
+            app:strokeColor="@color/turnaround_gray_8"
+            app:strokeWidth="1dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

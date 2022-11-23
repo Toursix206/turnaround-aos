@@ -17,14 +17,8 @@ class MyFragment : BindingFragment<FragmentMyBinding>(R.layout.fragment_my) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initMyObserver()
+        binding.vm = viewModel
         initStartSettingBtnClickListener()
-    }
-
-    private fun initMyObserver() {
-        viewModel.my.observe(viewLifecycleOwner) {
-            binding.my = it
-        }
     }
 
     private fun initStartSettingBtnClickListener() {

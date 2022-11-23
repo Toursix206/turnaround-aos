@@ -40,6 +40,7 @@
             android:text="@{todo.categoryName}"
             android:textAlignment="center"
             android:textAppearance="@style/caption_semi_bold"
+            android:textColor="@color/turnaround_gray_9"
             app:layout_constraintStart_toStartOf="@id/view_todo_black"
             app:layout_constraintTop_toTopOf="@id/view_todo_black"
             tools:text="침대" />

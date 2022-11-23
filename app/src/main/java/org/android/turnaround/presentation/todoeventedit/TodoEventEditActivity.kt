@@ -11,6 +11,9 @@ import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.*
 import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.dialog.ConfirmClickListener
+import org.android.turnaround.util.dialog.WarningDialogFragment
+import org.android.turnaround.util.dialog.WarningType
 
 @AndroidEntryPoint
 class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.layout.activity_todo_event_edit) {
@@ -47,15 +50,24 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
         viewModel.isClickedDeleteBtnEvent.observe(
             this,
             EventObserver { todoId ->
-                TurnAroundFragmentDialog.Builder(this)
-                    .setTitle("진짜 활동을 삭제할까요?")
-                    .setContent("실패한 활동으로 기록되지는 않아요")
-                    .setNegativeButton("아니요")
-                    .setPositiveButton("네! 삭제할게요") {
-                        deletedTodoId = todoId
-                        viewModel.deleteTodo(todoId)
+                WarningDialogFragment().apply {
+                    arguments = Bundle().apply {
+                        putSerializable(
+                            WarningDialogFragment.WARNING_TYPE,
+                            WarningType.WARNING_DELETE_ACTIVITY
+                        )
+                        putParcelable(
+                            WarningDialogFragment.CONFIRM_ACTION,
+                            ConfirmClickListener(
+                                id = todoId,
+                                confirmActionWithId = { id ->
+                                    deletedTodoId = id
+                                    viewModel.deleteTodo(id)
+                                }
+                            )
+                        )
                     }
-                    .show(supportFragmentManager, this.packageCodePath)
+                }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
             }
         )
     }
