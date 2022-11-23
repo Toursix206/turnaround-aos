@@ -72,6 +72,17 @@ class AuthRepositoryImpl @Inject constructor(
             response.data.toLogin()
         }
 
+    override suspend fun postForceLogin(): Result<Login> =
+        kotlin.runCatching {
+            authDataSource.postForceLogin(
+                fcmToken = localAuthPrefDataSource.fcmToken,
+                socialType = localAuthPrefDataSource.socialType,
+                token = localAuthPrefDataSource.kakaoToken
+            )
+        }.map { response ->
+            response.data.toLogin()
+        }
+
     override suspend fun postLogout(): Result<Boolean> =
         kotlin.runCatching {
             authDataSource.postLogout()

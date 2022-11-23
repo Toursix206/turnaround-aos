@@ -55,6 +55,11 @@ class TutorialViewModel @Inject constructor(
         if (currentTutorial.value < 2) _currentTutorial.value++
     }
 
+    private fun resetIsReadyToLogin() {
+        isSuccessKakaoLogin.value = false
+        isSuccessInitFcmToken.value = false
+    }
+
     fun postLogin() {
         viewModelScope.launch {
             authRepository.postLogin()
@@ -72,6 +77,28 @@ class TutorialViewModel @Inject constructor(
                         }
                     }
                     _isSuccessLogin.emit(false)
+                    resetIsReadyToLogin()
+                }
+        }
+    }
+
+    fun postForceLogin() {
+        viewModelScope.launch {
+            authRepository.postForceLogin()
+                .onSuccess { response ->
+                    authRepository.initTurnAroundToken(response.token)
+                    _isSuccessLogin.emit(true)
+                }
+                .onFailure { throwable ->
+                    Timber.d(throwable.message)
+                    if (throwable is HttpException) {
+                        when (throwable.code()) {
+                            NOT_VALID_SOCIAL_TOKEN -> failLoginStatusCode = NOT_VALID_SOCIAL_TOKEN
+                            NOT_USER -> failLoginStatusCode = NOT_USER
+                        }
+                    }
+                    _isSuccessLogin.emit(false)
+                    resetIsReadyToLogin()
                 }
         }
     }
