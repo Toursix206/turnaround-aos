@@ -79,6 +79,7 @@
     <string name="home_img_smile_desc">홈 점수 이미지</string>
     <string name="home_img_room_desc">홈 방 이미지</string>
     <string name="home_img_view_more_desc">홈 더보기 아이콘</string>
+    <string name="home_no_todo_img_desc">활동 0개 이미지</string>
 
     <!-- To-do Event -->
     <string name="todo_event_img_back_desc">뒤로가기 이미지</string>

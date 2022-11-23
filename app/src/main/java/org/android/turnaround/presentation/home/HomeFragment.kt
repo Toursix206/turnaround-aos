@@ -31,7 +31,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initHomeObserver() {
         viewModel.home.observe(viewLifecycleOwner) {
-            binding.home = it
             initHomeAdapter(it.todosCnt, it.todos)
         }
     }

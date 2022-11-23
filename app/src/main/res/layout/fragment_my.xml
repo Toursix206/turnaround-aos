@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="my"
-            type="org.android.turnaround.domain.entity.My" />
+            name="vm"
+            type="org.android.turnaround.presentation.my.MyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +41,7 @@
 
         <ImageView
             android:id="@+id/iv_my_profile"
-            userProfile="@{my.profileType}"
+            userProfile="@{vm.my.profileType}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
@@ -59,7 +59,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="29dp"
             android:layout_marginEnd="22dp"
-            android:text="@{my.nickname}"
+            android:text="@{vm.my.nickname}"
             android:textAppearance="@style/body2_semi_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_my_profile"
@@ -103,7 +103,7 @@
             app:layout_constraintTop_toBottomOf="@id/view_my_divider1" />
 
         <TextView
-            pointFormat="@{my.point}"
+            pointFormat="@{vm.my.point}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="22dp"
