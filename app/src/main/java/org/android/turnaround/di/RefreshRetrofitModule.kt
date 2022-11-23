@@ -23,6 +23,7 @@ object RefreshRetrofitModule {
     private const val HEADER_OS_TYPE = "TurnaroundOsType"
     private const val HEADER_VERSION = "TurnaroundVersion"
     private const val OS_TYPE = "AOS"
+    private const val BEARER = "Bearer "
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
@@ -39,10 +40,7 @@ object RefreshRetrofitModule {
             var response = chain.proceed(
                 request
                     .newBuilder()
-                    .addHeader(
-                        HEADER_AUTHORIZATION,
-                        localAuthPrefDataSource.accessToken
-                    )
+                    .addHeader(HEADER_AUTHORIZATION, BEARER + localAuthPrefDataSource.accessToken)
                     .addHeader(HEADER_OS_TYPE, OS_TYPE)
                     .addHeader(HEADER_VERSION, BuildConfig.VERSION_NAME)
                     .build()
