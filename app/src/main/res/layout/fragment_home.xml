@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/turnaround_f5f5f5"
+        android:background="@color/turnaround_gray_1"
         tools:context=".presentation.home.HomeFragment">
 
         <TextView
@@ -251,11 +251,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="14dp"
                 android:layout_marginStart="8dp"
+                android:contentDescription="@string/home_no_todo_img_desc"
                 android:src="@drawable/ic_home_no_activity_shampoo"
                 app:layout_constraintBottom_toBottomOf="@id/view_todo_white"
                 app:layout_constraintStart_toStartOf="@id/view_todo_white"
-                app:layout_constraintTop_toTopOf="@id/view_todo_white"
-                android:contentDescription="@string/home_no_todo_img_desc" />
+                app:layout_constraintTop_toTopOf="@id/view_todo_white" />
 
             <TextView
                 android:layout_width="wrap_content"
