@@ -44,6 +44,15 @@ class AuthDataSource @Inject constructor(
             )
         )
 
+    suspend fun postForceLogin(fcmToken: String, socialType: String, token: String): BaseResponse<LoginResponse> =
+        authService.postForceLogin(
+            LoginRequest(
+                fcmToken = fcmToken,
+                socialType = socialType,
+                token = token
+            )
+        )
+
     suspend fun postLogout(): NoDataResponse = authService.postLogout()
 
     suspend fun deleteUser(): NoDataResponse = authService.deleteUser()

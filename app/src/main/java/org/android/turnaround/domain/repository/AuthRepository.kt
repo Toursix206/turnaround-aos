@@ -13,6 +13,7 @@ interface AuthRepository {
     suspend fun postNicknameValid(nickname: String): Result<Boolean>
     suspend fun postSignUp(nickname: String, profileType: String): Result<SignUp>
     suspend fun postLogin(): Result<Login>
+    suspend fun postForceLogin(): Result<Login>
     suspend fun postLogout(): Result<Boolean>
     suspend fun deleteUser(): Result<Boolean>
 }

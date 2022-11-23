@@ -104,7 +104,7 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
                                     )
                                     putParcelable(
                                         WarningDialogFragment.CONFIRM_ACTION,
-                                        ConfirmClickListener(confirmAction = { })
+                                        ConfirmClickListener(confirmAction = { viewModel.postForceLogin() })
                                     )
                                 }
                             }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)

@@ -10,7 +10,6 @@ import org.android.turnaround.data.remote.entity.response.SignUpResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.POST
-
 interface AuthService {
     @POST("/v1/user/nickname/check")
     suspend fun postNicknameValid(
@@ -24,6 +23,11 @@ interface AuthService {
 
     @POST("/v1/auth/login")
     suspend fun postLogin(
+        @Body body: LoginRequest
+    ): BaseResponse<LoginResponse>
+
+    @POST("/v1/auth/login/force")
+    suspend fun postForceLogin(
         @Body body: LoginRequest
     ): BaseResponse<LoginResponse>
 

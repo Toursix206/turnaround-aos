@@ -66,7 +66,6 @@ class TutorialViewModel @Inject constructor(
                 .onSuccess { response ->
                     authRepository.initTurnAroundToken(response.token)
                     _isSuccessLogin.emit(true)
-                    resetIsReadyToLogin()
                 }
                 .onFailure { throwable ->
                     Timber.d(throwable.message)
@@ -75,6 +74,27 @@ class TutorialViewModel @Inject constructor(
                             NOT_VALID_SOCIAL_TOKEN -> failLoginStatusCode = NOT_VALID_SOCIAL_TOKEN
                             NOT_USER -> failLoginStatusCode = NOT_USER
                             DUPLICATE_LOGIN -> failLoginStatusCode = DUPLICATE_LOGIN
+                        }
+                    }
+                    _isSuccessLogin.emit(false)
+                    resetIsReadyToLogin()
+                }
+        }
+    }
+
+    fun postForceLogin() {
+        viewModelScope.launch {
+            authRepository.postForceLogin()
+                .onSuccess { response ->
+                    authRepository.initTurnAroundToken(response.token)
+                    _isSuccessLogin.emit(true)
+                }
+                .onFailure { throwable ->
+                    Timber.d(throwable.message)
+                    if (throwable is HttpException) {
+                        when (throwable.code()) {
+                            NOT_VALID_SOCIAL_TOKEN -> failLoginStatusCode = NOT_VALID_SOCIAL_TOKEN
+                            NOT_USER -> failLoginStatusCode = NOT_USER
                         }
                     }
                     _isSuccessLogin.emit(false)
