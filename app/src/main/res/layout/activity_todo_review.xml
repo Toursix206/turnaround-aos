@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/turnaround_gray_1"
+        tools:context=".presentation.todo_review.TodoReviewActivity">
+
+        <TextView
+            android:id="@+id/tv_todo_review_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/todo_review_title"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_todo_review_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:text="@string/todo_review_skip"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_purple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_review_title" />
+
+        <ImageView
+            android:id="@+id/iv_todo_review"
+            imgUrl="@{`imgURl`}"
+            isCrop="@{true}"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/shape_white_rect_fill_10"
+            android:contentDescription="@string/todo_review_img_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_review_title" />
+
+        <TextView
+            android:id="@+id/tv_todo_review_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="2022.11.23"
+            android:textAppearance="@style/body2_regular"
+            android:textColor="@color/turnaround_gray_6"
+            app:layout_constraintBottom_toBottomOf="@id/iv_todo_review"
+            app:layout_constraintStart_toEndOf="@id/iv_todo_review" />
+
+        <TextView
+            android:id="@+id/tv_todo_review_activity_name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="4dp"
+            android:text="시험공부가 저절로 잘되는\n책상정리 꿀팁!"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintBottom_toTopOf="@id/tv_todo_review_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_todo_review_date"
+            app:layout_constraintTop_toTopOf="@id/iv_todo_review" />
+
+        <TextView
+            android:id="@+id/tv_todo_review_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="4dp"
+            android:text="@{@string/tv_todo_review_rating(2)}"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintEnd_toStartOf="@id/rb_todo_review"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_todo_review" />
+
+        <RatingBar
+            android:id="@+id/rb_todo_review"
+            style="@style/CustomRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="22dp"
+            android:isIndicator="false"
+            android:minHeight="0dp"
+            android:numStars="5"
+            android:rating="2"
+            android:stepSize="1"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_review_rating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_todo_review_rating" />
+
+        <View
+            android:id="@+id/view_todo_review"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/turnaround_gray_4"
+            app:layout_constraintTop_toBottomOf="@id/rb_todo_review" />
+
+        <TextView
+            android:id="@+id/tv_todo_review_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/todo_review_question"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_todo_review" />
+
+        <TextView
+            android:id="@+id/tv_todo_review_question_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/todo_review_question_desc"
+            android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_10"
+            app:layout_constraintBottom_toBottomOf="@id/tv_todo_review_question"
+            app:layout_constraintStart_toEndOf="@id/tv_todo_review_question" />
+
+        <EditText
+            android:id="@+id/et_todo_review"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_white_rect_fill_16"
+            android:gravity="start"
+            android:hint="@string/todo_review_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="500"
+            android:paddingHorizontal="14dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="40dp"
+            android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_10"
+            android:textColorHint="@color/turnaround_gray_6"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_review_question" />
+
+        <TextView
+            android:id="@+id/tv_todo_review_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="14dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/todo_review_count"
+            android:textAppearance="@style/body2_regular"
+            android:textColor="@color/turnaround_gray_6"
+            app:layout_constraintBottom_toBottomOf="@id/et_todo_review"
+            app:layout_constraintEnd_toEndOf="@id/et_todo_review" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_todo_review_done"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/turnaround_gray_10"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingVertical="16dp"
+            android:stateListAnimator="@null"
+            android:text="@string/todo_review_done"
+            android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_white"
+            app:cornerRadius="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_todo_review_tool_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_todo_review_done"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/ic_tool_tip_bottom"
+                app:layout_constraintEnd_toEndOf="@id/view_todo_review_background"
+                app:layout_constraintStart_toStartOf="@id/view_todo_review_background"
+                app:layout_constraintTop_toBottomOf="@id/view_todo_review_background" />
+
+            <View
+                android:id="@+id/view_todo_review_background"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/shape_purple_rect_fill_40"
+                app:layout_constraintBottom_toBottomOf="@id/tv_todo_review_tool_tip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_todo_review_tool_tip" />
+
+            <TextView
+                android:id="@+id/tv_todo_review_tool_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:paddingVertical="5dp"
+                android:text="@string/todo_review_tool_tip"
+                android:textAppearance="@style/caption_semi_bold"
+                android:textColor="@color/turnaround_white"
+                app:layout_constraintEnd_toStartOf="@id/btn_todo_review_close_tool_tip"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_todo_review_close_tool_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="@string/close_tool_tip_img_desc"
+                android:paddingVertical="5dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="8dp"
+                android:src="@drawable/ic_close_tool_tip"
+                app:layout_constraintBottom_toBottomOf="@id/tv_todo_review_tool_tip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_todo_review_tool_tip"
+                app:layout_constraintTop_toTopOf="@id/tv_todo_review_tool_tip" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

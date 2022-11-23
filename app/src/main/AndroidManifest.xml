@@ -18,6 +18,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.todo_review.TodoReviewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.todo_certificate.TodoCertificateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".presentation.todo_guide.TodoGuideActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
