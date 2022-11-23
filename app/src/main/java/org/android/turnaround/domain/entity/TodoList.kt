@@ -18,7 +18,7 @@ data class Todo(
     val activityName: String,
     val leftTime: String,
     val todoId: Int,
-    val todoStatus: String,
+    val todoStatus: TodoType,
     val duration: Int,
     val categoryName: String,
     val categoryImage: Int
