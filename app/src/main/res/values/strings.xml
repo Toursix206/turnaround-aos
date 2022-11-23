@@ -10,6 +10,7 @@
     <string name="title_my">마이</string>
     <string name="refresh_error">자동로그인이 만료되었습니다. 다시 로그인해주시기 바랍니다.</string>
     <string name="close_img_desc">닫기 버튼</string>
+    <string name="close_tool_tip_img_desc">툴팁 닫기 버튼</string>
 
     <!-- WarningDialog -->
     <string name="null_point_exception_warning_dialog_argument">"WarningDialogFragment에 필요한 arguments에 안들어옴"</string>
@@ -203,7 +204,6 @@
     <string name="todo_guide_step">STEP %d</string>
     <string name="todo_guide_img_desc">가이드 사진</string>
     <string name="todo_guide_tool_tip_cheer_up">한단계 남았어요! 힘내서 활동을 완료해보세요!</string>
-    <string name="todo_guide_close_tool_tip_img_desc">툴팁 닫기 버튼</string>
     <string name="todo_guide_progress_count">%d/%d</string>
     <string name="todo_guide_next_btn_text">%d단계 완료</string>
     <string name="todo_guide_next_btn_last_text">마지막 %d단계도 완료!</string>
@@ -215,5 +215,17 @@
     <string name="todo_certificate_tool_tip">활동 인증을 해야 성공으로 간주해요!</string>
     <string name="todo_certificate_img_desc">활동 인증 사진</string>
     <string name="todo_certificate_take_photo_again">다시 찍기</string>
+
+    <!-- TodoReview -->
+    <string name="todo_review_title">활동 리뷰</string>
+    <string name="todo_review_skip">건너뛰기</string>
+    <string name="todo_review_img_desc">활동 인증 사진</string>
+    <string name="tv_todo_review_rating">별점 등록 (%d/5)</string>
+    <string name="todo_review_question">오늘의 활동은 어떠셨나요?</string>
+    <string name="todo_review_question_desc">(10자 이상)</string>
+    <string name="todo_review_hint">사진과 함께 리뷰를 작성하면 터닝포인트\n적립가능! 활동 후 솔직한 경험을 말해주세요.</string>
+    <string name="todo_review_tool_tip">리뷰 작성 시 %d 포인트 증정!</string>
+    <string name="todo_review_done">작성완료</string>
+    <string name="todo_review_count">%d/500</string>
 
 </resources>

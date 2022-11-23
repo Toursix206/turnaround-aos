@@ -85,22 +85,22 @@
                 android:layout_height="18dp"
                 android:layout_marginTop="-10dp"
                 android:background="@drawable/ic_tool_tip_bottom"
-                app:layout_constraintEnd_toEndOf="@id/view_todo_guide_background"
-                app:layout_constraintStart_toStartOf="@id/view_todo_guide_background"
-                app:layout_constraintTop_toBottomOf="@id/view_todo_guide_background" />
+                app:layout_constraintEnd_toEndOf="@id/view_todo_certificate_background"
+                app:layout_constraintStart_toStartOf="@id/view_todo_certificate_background"
+                app:layout_constraintTop_toBottomOf="@id/view_todo_certificate_background" />
 
             <View
-                android:id="@+id/view_todo_guide_background"
+                android:id="@+id/view_todo_certificate_background"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/shape_purple_rect_fill_40"
-                app:layout_constraintBottom_toBottomOf="@id/tv_todo_guide_tool_tip"
+                app:layout_constraintBottom_toBottomOf="@id/tv_todo_certificate_tool_tip"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_todo_guide_tool_tip" />
+                app:layout_constraintTop_toTopOf="@id/tv_todo_certificate_tool_tip" />
 
             <TextView
-                android:id="@+id/tv_todo_guide_tool_tip"
+                android:id="@+id/tv_todo_certificate_tool_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -108,25 +108,25 @@
                 android:text="@string/todo_certificate_tool_tip"
                 android:textAppearance="@style/caption_semi_bold"
                 android:textColor="@color/turnaround_white"
-                app:layout_constraintEnd_toStartOf="@id/btn_todo_guide_close_tool_tip"
+                app:layout_constraintEnd_toStartOf="@id/btn_todo_certificate_close_tool_tip"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/btn_todo_guide_close_tool_tip"
+                android:id="@+id/btn_todo_certificate_close_tool_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:contentDescription="@string/todo_guide_close_tool_tip_img_desc"
+                android:contentDescription="@string/close_tool_tip_img_desc"
                 android:paddingVertical="5dp"
                 android:paddingStart="2dp"
                 android:paddingEnd="8dp"
                 android:src="@drawable/ic_close_tool_tip"
-                app:layout_constraintBottom_toBottomOf="@id/tv_todo_guide_tool_tip"
+                app:layout_constraintBottom_toBottomOf="@id/tv_todo_certificate_tool_tip"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_todo_guide_tool_tip"
-                app:layout_constraintTop_toTopOf="@id/tv_todo_guide_tool_tip" />
+                app:layout_constraintStart_toEndOf="@id/tv_todo_certificate_tool_tip"
+                app:layout_constraintTop_toTopOf="@id/tv_todo_certificate_tool_tip" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

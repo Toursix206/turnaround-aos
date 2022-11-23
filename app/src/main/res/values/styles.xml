@@ -26,4 +26,8 @@
         <item name="android:lineSpacingExtra">8dp</item>
     </style>
 
+    <style name="CustomRatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/layer_rating</item>
+    </style>
+
 </resources>
