@@ -25,6 +25,7 @@
             android:text="@string/my_title"
             android:textAlignment="center"
             android:textAppearance="@style/body1_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,6 +62,7 @@
             android:layout_marginEnd="22dp"
             android:text="@{vm.my.nickname}"
             android:textAppearance="@style/body2_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_my_profile"
             app:layout_constraintTop_toBottomOf="@id/tv_my_title"
@@ -98,6 +100,7 @@
             android:paddingVertical="20dp"
             android:text="@string/my_point"
             android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_my_point"
             app:layout_constraintTop_toBottomOf="@id/view_my_divider1" />
@@ -108,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="22dp"
             android:textAppearance="@style/body2_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/tv_my_point"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_my_point"
@@ -132,6 +136,7 @@
             android:paddingStart="56dp"
             android:text="@string/my_inquiry"
             android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_point" />
@@ -167,6 +172,7 @@
             android:paddingStart="56dp"
             android:text="@string/my_review"
             android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_inquiry" />
@@ -203,6 +209,7 @@
             android:paddingStart="56dp"
             android:text="@string/my_setting"
             android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_review" />

@@ -39,6 +39,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/bottom_sheet_todo_edit_title"
             android:textAppearance="@style/sub_headline_bold"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/view_todo_edit" />
 
@@ -49,6 +50,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/bottom_sheet_todo_edit_data"
             android:textAppearance="@style/caption_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="@id/tv_todo_edit_title"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_title" />
 
@@ -71,6 +73,7 @@
             android:layout_marginTop="6dp"
             android:text="@string/bottom_sheet_todo_edit_duration"
             android:textAppearance="@style/caption_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="@id/tv_todo_edit_date"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_date" />
 
@@ -186,6 +189,7 @@
             android:layout_marginHorizontal="6dp"
             android:text="@string/bottom_sheet_todo_edit_alarm"
             android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/iv_todo_edit_alarm"
             app:layout_constraintStart_toEndOf="@id/iv_todo_edit_alarm"
             app:layout_constraintTop_toTopOf="@id/iv_todo_edit_alarm" />
