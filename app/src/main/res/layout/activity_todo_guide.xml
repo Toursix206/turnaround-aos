@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:contentDescription="@string/todo_guide_close_img_desc"
+            android:contentDescription="@string/close_img_desc"
             android:padding="16dp"
             android:src="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
