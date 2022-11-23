@@ -2,14 +2,20 @@
 <resources>
 
     <style name="BottomNavigationViewTextStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="BottomNavigationViewTextStyle.Selected" parent="Widget.Design.BottomNavigationView">
         <item name="android:fontFamily">@font/pretendard_semi_bold_family</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">12dp</item>
         <item name="android:lineSpacingExtra">4dp</item>
     </style>
 
-    <style name="AppModalStyle"
-        parent="Widget.Design.BottomSheet.Modal">
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/shape_white_rect_fill_24</item>
     </style>
 
