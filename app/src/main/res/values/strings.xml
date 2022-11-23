@@ -43,6 +43,16 @@
     <string name="warning_withdraw_cancel">네, 떠날게요</string>
     <string name="warning_withdraw_confirm">아니요</string>
 
+    <string name="warning_notification_title">활동 알람을 보내드릴까요?</string>
+    <string name="warning_notification_desc">활동 알람은 언제든지\n[내정보 -> 설정]에서 변경가능해요</string>
+    <string name="warning_notification_cancel">아니요</string>
+    <string name="warning_notification_confirm">네! 동의할래요</string>
+
+    <string name="warning_duplicate_login_title">다른 기기에서 로그인 중이에요</string>
+    <string name="warning_duplicate_login_desc">다른 기기에서 로그아웃 하고\n현재 기기에서 로그인 할까요?</string>
+    <string name="warning_duplicate_login_cancel">아니요</string>
+    <string name="warning_duplicate_login_confirm">네</string>
+
     <!-- Intro -->
     <string name="intro_img_desc">턴어라운드 로고</string>
 

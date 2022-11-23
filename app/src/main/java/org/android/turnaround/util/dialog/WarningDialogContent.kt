@@ -56,4 +56,20 @@ data class WarningDialogContent(
             cancel = context.getString(R.string.warning_withdraw_cancel),
             confirm = context.getString(R.string.warning_withdraw_confirm)
         )
+
+    fun getWarningNotification(context: Context): WarningDialogContent =
+        WarningDialogContent(
+            title = context.getString(R.string.warning_notification_title),
+            desc = context.getString(R.string.warning_notification_desc),
+            cancel = context.getString(R.string.warning_notification_cancel),
+            confirm = context.getString(R.string.warning_notification_confirm)
+        )
+
+    fun getWarningDuplicateLogin(context: Context): WarningDialogContent =
+        WarningDialogContent(
+            title = context.getString(R.string.warning_duplicate_login_title),
+            desc = context.getString(R.string.warning_duplicate_login_desc),
+            cancel = context.getString(R.string.warning_duplicate_login_cancel),
+            confirm = context.getString(R.string.warning_duplicate_login_confirm)
+        )
 }

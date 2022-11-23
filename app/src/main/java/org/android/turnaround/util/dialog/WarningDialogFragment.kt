@@ -41,6 +41,8 @@ class WarningDialogFragment : DialogFragment() {
                 WarningType.WARNING_SKIP_REVIEW -> WarningDialogContent().getWarningSkipReview(requireContext())
                 WarningType.WARNING_CANCEL_REVIEW -> WarningDialogContent().getWarningCancelReview(requireContext())
                 WarningType.WARNING_WITHDRAW -> WarningDialogContent().getWarningWithdraw(requireContext())
+                WarningType.WARNING_NOTIFICATION -> WarningDialogContent().getWarningNotification(requireContext())
+                WarningType.WARNING_DUPLICATE_LOGIN -> WarningDialogContent().getWarningDuplicateLogin(requireContext())
             }
         }
     }
