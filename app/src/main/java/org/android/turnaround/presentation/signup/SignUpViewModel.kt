@@ -86,9 +86,13 @@ class SignUpViewModel @Inject constructor(
 
     fun putSetting(isAgreeNotification: Boolean) {
         viewModelScope.launch {
-            authRepository.putUserSetting(isAgreeNotification)
-                .onSuccess { _isSuccessPutSetting.emit(true) }
-                .onFailure { Timber.d(it.message) }
+            if (isAgreeNotification) {
+                _isSuccessPutSetting.emit(true)
+            } else {
+                authRepository.putUserSetting(isAgreeNotification)
+                    .onSuccess { _isSuccessPutSetting.emit(true) }
+                    .onFailure { Timber.d(it.message) }
+            }
         }
     }
 
