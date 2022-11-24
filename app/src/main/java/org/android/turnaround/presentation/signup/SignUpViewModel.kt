@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.android.turnaround.domain.repository.AuthRepository
 import org.android.turnaround.domain.entity.ProfileType
+import org.android.turnaround.domain.repository.AuthRepository
 import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
@@ -22,6 +22,9 @@ class SignUpViewModel @Inject constructor(
 ) : ViewModel() {
     private val _isSuccessSignUp = MutableSharedFlow<Boolean>()
     val isSuccessSignUp: SharedFlow<Boolean> = _isSuccessSignUp.asSharedFlow()
+
+    private val _isSuccessPutSetting = MutableSharedFlow<Boolean>()
+    val isSuccessPutSetting: SharedFlow<Boolean> = _isSuccessPutSetting.asSharedFlow()
 
     private val _isNicknameValid = MutableStateFlow(false)
     val isNicknameValid: StateFlow<Boolean> = _isNicknameValid.asStateFlow()
@@ -77,9 +80,15 @@ class SignUpViewModel @Inject constructor(
                     authRepository.initTurnAroundToken(response.token)
                     _isSuccessSignUp.emit(true)
                 }
-                .onFailure {
-                    Timber.d(it.message)
-                }
+                .onFailure { Timber.d(it.message) }
+        }
+    }
+
+    fun putSetting(isAgreeNotification: Boolean) {
+        viewModelScope.launch {
+            authRepository.putUserSetting(isAgreeNotification)
+                .onSuccess { _isSuccessPutSetting.emit(true) }
+                .onFailure { Timber.d(it.message) }
         }
     }
 
