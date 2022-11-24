@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoEventEditBinding
-import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.TurnAroundToast
@@ -83,7 +82,7 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
         viewModel.isClickedEditBtnEvent.observe(
             this,
             EventObserver {
-                showTodoEditBottomSheet(it)
+                showTodoEditBottomSheet()
             }
         )
     }
@@ -101,8 +100,8 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
         }
     }
 
-    private fun showTodoEditBottomSheet(todo: Todo) {
-        editBottomSheet = TodoEditBottomSheet(viewModel, todo)
+    private fun showTodoEditBottomSheet() {
+        editBottomSheet = TodoEditBottomSheet()
         editBottomSheet.show(supportFragmentManager, this.javaClass.name)
     }
 

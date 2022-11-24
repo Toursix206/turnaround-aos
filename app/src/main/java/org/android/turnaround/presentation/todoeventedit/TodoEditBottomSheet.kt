@@ -4,21 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.android.turnaround.R
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.databinding.BottomSheetTodoEditBinding
-import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.util.EventObserver
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
-class TodoEditBottomSheet(val viewModel: TodoEventEditViewModel, val todo: Todo) : BottomSheetDialogFragment() {
-    private var _binding: BottomSheetTodoEditBinding? = null
+class TodoEditBottomSheet : BottomSheetDialogFragment() {
     val binding get() = _binding ?: error(getString(R.string.binding_error))
-    val dateList = mutableListOf<String>()
-    val minList = mutableListOf<String>()
-    val ampmeList = mutableListOf<String>("PM", "AM")
+    private val viewModel by activityViewModels<TodoEventEditViewModel>()
+    private var _binding: BottomSheetTodoEditBinding? = null
+    private val todo = requireNotNull(viewModel.isClickedEditBtnEvent.value).peekContent()
+    private val dateList = mutableListOf<String>()
+    private val minList = mutableListOf<String>()
+    private val ampmeList = mutableListOf<String>("PM", "AM")
 
     override fun onCreateView(
         inflater: LayoutInflater,
