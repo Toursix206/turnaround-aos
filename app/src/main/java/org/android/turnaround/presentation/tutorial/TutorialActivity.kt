@@ -16,7 +16,7 @@ import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.
 import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.NOT_VALID_SOCIAL_TOKEN
 import org.android.turnaround.presentation.tutorial.apdater.TutorialAdapter
 import org.android.turnaround.util.binding.BindingActivity
-import org.android.turnaround.util.dialog.ConfirmClickListener
+import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
 import org.android.turnaround.util.extension.repeatOnStarted
@@ -104,7 +104,7 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
                                     )
                                     putParcelable(
                                         WarningDialogFragment.CONFIRM_ACTION,
-                                        ConfirmClickListener(confirmAction = { viewModel.postForceLogin() })
+                                        DialogBtnClickListener(clickAction = { viewModel.postForceLogin() })
                                     )
                                 }
                             }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)

@@ -9,9 +9,10 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoEventEditBinding
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
-import org.android.turnaround.util.*
+import org.android.turnaround.util.EventObserver
+import org.android.turnaround.util.TurnAroundToast
 import org.android.turnaround.util.binding.BindingActivity
-import org.android.turnaround.util.dialog.ConfirmClickListener
+import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
 
@@ -58,9 +59,9 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
                         )
                         putParcelable(
                             WarningDialogFragment.CONFIRM_ACTION,
-                            ConfirmClickListener(
+                            DialogBtnClickListener(
                                 id = todoId,
-                                confirmActionWithId = { id ->
+                                clickActionWithId = { id ->
                                     deletedTodoId = id
                                     viewModel.deleteTodo(id)
                                 }

@@ -51,10 +51,14 @@ class WarningDialogFragment : DialogFragment() {
         binding.btnWarningCancel.setOnClickListener {
             val warningType = arguments?.get(WARNING_TYPE)
                 ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
-            if (warningType as WarningType == WarningType.WARNING_WITHDRAW) {
-                arguments?.getParcelable<ConfirmClickListener>(CONFIRM_ACTION)?.onConfirmClick()
-                    ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
+            when (warningType) {
+                WarningType.WARNING_WITHDRAW, WarningType.WARNING_NOTIFICATION -> {
+                    arguments?.getParcelable<DialogBtnClickListener>(CANCEL_ACTION)?.onConfirmClick()
+                        ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
+                }
+                else -> {}
             }
+
             dismiss()
         }
     }
@@ -63,9 +67,12 @@ class WarningDialogFragment : DialogFragment() {
         binding.btnWarningConfirm.setOnClickListener {
             val warningType = arguments?.get(WARNING_TYPE)
                 ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
-            if (warningType as WarningType != WarningType.WARNING_WITHDRAW) {
-                arguments?.getParcelable<ConfirmClickListener>(CONFIRM_ACTION)?.onConfirmClick()
-                    ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
+            when (warningType) {
+                WarningType.WARNING_WITHDRAW -> {}
+                else -> {
+                    arguments?.getParcelable<DialogBtnClickListener>(CONFIRM_ACTION)?.onConfirmClick()
+                        ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
+                }
             }
             dismiss()
         }
@@ -75,5 +82,6 @@ class WarningDialogFragment : DialogFragment() {
         const val DIALOG_WARNING = "warningDialog"
         const val WARNING_TYPE = "warningType"
         const val CONFIRM_ACTION = "confirmAction"
+        const val CANCEL_ACTION = "cancelAction"
     }
 }
