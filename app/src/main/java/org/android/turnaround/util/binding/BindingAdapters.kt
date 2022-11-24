@@ -9,6 +9,7 @@ import org.android.turnaround.R
 import org.android.turnaround.domain.entity.CleanLevel
 import org.android.turnaround.domain.entity.FurnitureType
 import org.android.turnaround.domain.entity.ProfileType
+import org.android.turnaround.domain.entity.TodoPushType
 import java.text.DecimalFormat
 
 object BindingAdapters {
@@ -100,5 +101,11 @@ object BindingAdapters {
     @BindingAdapter("check")
     fun SwitchButton.initCheck(isAgreeNotification: Boolean) {
         isChecked = isAgreeNotification
+    }
+
+    @JvmStatic
+    @BindingAdapter("checkPushState")
+    fun SwitchButton.initPushState(pushState: TodoPushType) {
+        isChecked = pushState == TodoPushType.ON
     }
 }

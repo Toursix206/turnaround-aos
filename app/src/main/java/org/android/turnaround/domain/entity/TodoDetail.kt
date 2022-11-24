@@ -6,6 +6,7 @@ data class TodoDetail(
     val category: String,
     val name: String,
     val point: Int,
+    val pushStatus: TodoPushType = TodoPushType.ON,
     val rewardItem: String? = null,
     val type: String,
     val categoryName: String,
