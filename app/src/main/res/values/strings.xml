@@ -83,15 +83,20 @@
     <string name="sign_up_nickname_valid_check">중복확인</string>
 
     <!-- Home -->
+    <string name="home_nickname">%s 님</string>
+    <string name="home_level">Lv.%d</string>
+    <string name="home_num_format">0%d</string>
     <string name="home_broom_count">개</string>
     <string name="home_score_count">점</string>
     <string name="home_room_desc">작은방</string>
     <string name="home_view_more">더보기</string>
+    <string name="home_todo_count">나의 활동(%d)</string>
     <string name="home_img_broom_desc">홈 빗자루 이미지</string>
     <string name="home_img_smile_desc">홈 점수 이미지</string>
     <string name="home_img_room_desc">홈 방 이미지</string>
     <string name="home_img_view_more_desc">홈 더보기 아이콘</string>
     <string name="home_no_todo_img_desc">활동 0개 이미지</string>
+    <string name="home_no_todo">%s님! 반가워요.\n우리 집안일을 한번 해볼까요?</string>
 
     <!-- To-do Event -->
     <string name="todo_event_img_back_desc">뒤로가기 이미지</string>
