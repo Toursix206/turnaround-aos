@@ -16,4 +16,5 @@ interface AuthRepository {
     suspend fun postForceLogin(): Result<Login>
     suspend fun postLogout(): Result<Boolean>
     suspend fun deleteUser(): Result<Boolean>
+    suspend fun putUserSetting(isAgreeNotification: Boolean): Result<Boolean>
 }

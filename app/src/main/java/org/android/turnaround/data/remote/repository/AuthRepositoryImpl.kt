@@ -4,6 +4,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import org.android.turnaround.data.local.datasource.LocalAuthPrefDataSource
 import org.android.turnaround.data.remote.datasource.AuthDataSource
+import org.android.turnaround.data.remote.datasource.UserDataSource
 import org.android.turnaround.domain.entity.Login
 import org.android.turnaround.domain.entity.SignUp
 import org.android.turnaround.domain.entity.Token
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val localAuthPrefDataSource: LocalAuthPrefDataSource,
-    private val authDataSource: AuthDataSource
+    private val authDataSource: AuthDataSource,
+    private val userDataSource: UserDataSource
 ) : AuthRepository {
     override fun checkIsUser(): Boolean =
         localAuthPrefDataSource.accessToken.isNotBlank()
@@ -91,6 +93,11 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun deleteUser(): Result<Boolean> =
         kotlin.runCatching {
             authDataSource.deleteUser()
+        }.map { response -> response.success }
+
+    override suspend fun putUserSetting(isAgreeNotification: Boolean): Result<Boolean> =
+        kotlin.runCatching {
+            userDataSource.putUserSetting(isAgreeNotification)
         }.map { response -> response.success }
 
     companion object {

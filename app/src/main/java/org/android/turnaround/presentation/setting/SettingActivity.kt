@@ -8,7 +8,7 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivitySettingBinding
 import org.android.turnaround.presentation.tutorial.TutorialActivity
 import org.android.turnaround.util.binding.BindingActivity
-import org.android.turnaround.util.dialog.ConfirmClickListener
+import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
 import org.android.turnaround.util.extension.repeatOnStarted
@@ -49,8 +49,8 @@ class SettingActivity : BindingActivity<ActivitySettingBinding>(R.layout.activit
                         WarningType.WARNING_WITHDRAW
                     )
                     putParcelable(
-                        WarningDialogFragment.CONFIRM_ACTION,
-                        ConfirmClickListener(confirmAction = { viewModel.deleteUser() })
+                        WarningDialogFragment.CANCEL_ACTION,
+                        DialogBtnClickListener(clickAction = { viewModel.deleteUser() })
                     )
                 }
             }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)

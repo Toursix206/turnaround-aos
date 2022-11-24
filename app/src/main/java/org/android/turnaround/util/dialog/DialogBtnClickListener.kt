@@ -4,16 +4,16 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class ConfirmClickListener(
+class DialogBtnClickListener(
     val id: Int = -1,
-    val confirmAction: () -> Unit = {},
-    val confirmActionWithId: (Int) -> Unit = {}
+    val clickAction: () -> Unit = {},
+    val clickActionWithId: (Int) -> Unit = {}
 ) : Parcelable {
     fun onConfirmClick() {
         if (id == -1) {
-            confirmAction()
+            clickAction()
         } else {
-            confirmActionWithId(id)
+            clickActionWithId(id)
         }
     }
 }
