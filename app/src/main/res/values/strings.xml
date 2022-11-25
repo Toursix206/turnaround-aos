@@ -100,7 +100,7 @@
 
     <!-- To-do Event -->
     <string name="todo_event_img_back_desc">뒤로가기 이미지</string>
-    <string name="todo_event_tool_bar_title">활동 이벤트</string>
+    <string name="todo_event_tool_bar_title">나의 활동</string>
     <string name="todo_event_img_setting_desc">일정 편집 버튼 이미지</string>
     <string name="todo_event_img_alarm_desc">전체 알림 끄기 이미지</string>
     <string name="todo_event_img_broom_desc">빗자루 이미지</string>

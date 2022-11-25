@@ -53,6 +53,7 @@ class TodoAdapter(
     inner class TodoWhiteViewHolder(private val binding: ItemTodoWhiteBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }
