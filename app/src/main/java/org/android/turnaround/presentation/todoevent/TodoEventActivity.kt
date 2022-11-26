@@ -13,6 +13,9 @@ import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
 import org.android.turnaround.presentation.todoeventedit.TodoEventEditActivity
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.dialog.DialogBtnClickListener
+import org.android.turnaround.util.dialog.WarningDialogFragment
+import org.android.turnaround.util.dialog.WarningType
 import org.android.turnaround.util.showToast
 
 @AndroidEntryPoint
@@ -54,6 +57,16 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
                 viewModel.getTodoDetail(it)
             }
         )
+    }
+
+    private fun initIsClickedPurpleItemEventObserver() {
+        TodoDoneDialogFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(
+                    TodoDoneDialogFragment.BROOM_COUNT, 6
+                )
+            }
+        }.show(supportFragmentManager, TodoDoneDialogFragment.DIALOG_TODO_DONE)
     }
 
     private fun initTodoDetailObserver() {
