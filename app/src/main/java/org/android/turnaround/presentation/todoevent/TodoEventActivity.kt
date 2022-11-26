@@ -32,7 +32,6 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
         initTodoListObserver()
-        initIsClickedBlackItemEventObserver()
         initTodoDetailObserver()
         initTodoAlarmOffObserver()
         initOpenTodoEventEventEditClickListener()
@@ -50,20 +49,11 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         }
     }
 
-    private fun initIsClickedBlackItemEventObserver() {
-        viewModel.isClickedBlackItemEvent.observe(
-            this,
-            EventObserver {
-                viewModel.getTodoDetail(it)
-            }
-        )
-    }
-
-    private fun initIsClickedPurpleItemEventObserver() {
+    private fun showTodoDoneDialog(broomCount: Int) {
         TodoDoneDialogFragment().apply {
             arguments = Bundle().apply {
                 putSerializable(
-                    TodoDoneDialogFragment.BROOM_COUNT, 6
+                    TodoDoneDialogFragment.BROOM_COUNT, broomCount
                 )
             }
         }.show(supportFragmentManager, TodoDoneDialogFragment.DIALOG_TODO_DONE)

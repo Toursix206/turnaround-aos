@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="vm"
+            type="org.android.turnaround.presentation.todoevent.TodoEventViewModel" />
+
+        <variable
             name="todo"
             type="org.android.turnaround.domain.entity.Todo" />
     </data>

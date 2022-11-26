@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.domain.entity.TodoList
-import org.android.turnaround.util.Event
 import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
@@ -21,9 +20,6 @@ class TodoEventViewModel @Inject constructor(
 ) : ViewModel() {
     private val _isTodoExist = MutableStateFlow(false)
     val isTodoExist: StateFlow<Boolean> = _isTodoExist.asStateFlow()
-
-    private val _isClickedBlackItemEvent = MutableLiveData<Event<Int>>()
-    val isClickedBlackItemEvent: LiveData<Event<Int>> = _isClickedBlackItemEvent
 
     private val _todoList = MutableLiveData<TodoList>()
     val todoList: LiveData<TodoList> = _todoList
@@ -50,10 +46,6 @@ class TodoEventViewModel @Inject constructor(
             .onFailure { throwable ->
                 Timber.d(throwable.message)
             }
-    }
-
-    fun setBlackTodoId(todoId: Int) {
-        _isClickedBlackItemEvent.value = Event(todoId)
     }
 
     fun getTodoDetail(todoId: Int) = viewModelScope.launch {
