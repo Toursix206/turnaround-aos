@@ -8,7 +8,9 @@ import org.android.turnaround.databinding.ItemActivityBinding
 import org.android.turnaround.domain.entity.ActivityContent
 import org.android.turnaround.util.ItemDiffCallback
 
-class ActivityPagingAdapter :
+class ActivityPagingAdapter(
+    private val onClickEvent: (Int) -> Unit = {}
+) :
     PagingDataAdapter<ActivityContent, ActivityPagingAdapter.ActivityViewHolder>(activityDiffUtil) {
     class ActivityViewHolder(
         private val binding: ItemActivityBinding

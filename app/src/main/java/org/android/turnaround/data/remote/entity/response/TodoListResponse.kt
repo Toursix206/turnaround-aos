@@ -26,7 +26,8 @@ data class TodoListResponse(
                     todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes,
+                    pushStatus = todo.pushStatus
                 )
             },
             nextTodosCnt = this.nextTodosCnt,
@@ -39,7 +40,8 @@ data class TodoListResponse(
                     todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes,
+                    pushStatus = todo.pushStatus
                 )
             },
             successTodosCnt = this.successTodosCnt,
@@ -52,7 +54,8 @@ data class TodoListResponse(
                     todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes,
+                    pushStatus = todo.pushStatus
                 )
             },
             thisWeekTodosCnt = this.thisWeekTodosCnt,
@@ -65,9 +68,20 @@ data class TodoListResponse(
                     todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes,
+                    pushStatus = todo.pushStatus
                 )
             },
             todayTodosCnt = this.todayTodosCnt
         )
 }
+
+data class TodoEntity(
+    val activityCategory: String,
+    val activityName: String,
+    val leftTime: String,
+    val todoId: Int,
+    val todoStatus: String,
+    val duration: Int,
+    val pushStatus: String
+)

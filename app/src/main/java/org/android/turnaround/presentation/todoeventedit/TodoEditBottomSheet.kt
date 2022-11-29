@@ -16,8 +16,8 @@ import java.util.Date
 
 class TodoEditBottomSheet : BottomSheetDialogFragment() {
     val binding get() = _binding ?: error(getString(R.string.binding_error))
-    private val viewModel by activityViewModels<TodoEventEditViewModel>()
     private var _binding: BottomSheetTodoEditBinding? = null
+    private val viewModel by activityViewModels<TodoEventEditViewModel>()
     private val todo = requireNotNull(viewModel.isClickedEditBtnEvent.value).peekContent()
     private val dateList = mutableListOf<String>()
     private val minList = mutableListOf<String>()
