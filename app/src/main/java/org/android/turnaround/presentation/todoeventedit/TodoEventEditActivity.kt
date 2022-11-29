@@ -11,6 +11,9 @@ import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAd
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.TurnAroundToast
 import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.bottom_sheet.TodoReserveBottomSheet
+import org.android.turnaround.util.bottom_sheet.TodoReserveContent
+import org.android.turnaround.util.bottom_sheet.TodoReserveType
 import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
@@ -18,7 +21,7 @@ import org.android.turnaround.util.dialog.WarningType
 @AndroidEntryPoint
 class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.layout.activity_todo_event_edit) {
     private val viewModel by viewModels<TodoEventEditViewModel>()
-    lateinit var editBottomSheet: TodoEditBottomSheet
+    lateinit var editBottomSheet: TodoReserveBottomSheet
     private var deletedTodoId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,8 +104,20 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
     }
 
     private fun showTodoEditBottomSheet() {
-        editBottomSheet = TodoEditBottomSheet()
-        editBottomSheet.show(supportFragmentManager, this.javaClass.name)
+        val todoReserveContent = requireNotNull(viewModel.isClickedEditBtnEvent.value).peekContent()
+        TodoReserveBottomSheet().apply {
+            arguments = Bundle().apply {
+                putSerializable(TodoReserveBottomSheet.RESERVE_TYPE, TodoReserveType.EDIT_MODE)
+                putParcelable(
+                    TodoReserveBottomSheet.RESERVE_CONTENT,
+                    TodoReserveContent(
+                        id = todoReserveContent.todoId,
+                        duration = todoReserveContent.duration,
+                        pushStatus = todoReserveContent.pushStatus
+                    )
+                )
+            }
+        }.show(supportFragmentManager, TodoReserveBottomSheet.BOTTOM_SHEET_RESERVE)
     }
 
     private fun initBackBtnClickListener() {

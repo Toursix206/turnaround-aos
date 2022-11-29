@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.todoeventedit
+package org.android.turnaround.util.bottom_sheet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +9,20 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.android.turnaround.R
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.databinding.BottomSheetTodoEditBinding
-import org.android.turnaround.util.EventObserver
+import org.android.turnaround.presentation.todoeventedit.TodoEventEditViewModel
+import org.android.turnaround.util.dialog.DialogBtnClickListener
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 
-class TodoEditBottomSheet : BottomSheetDialogFragment() {
+class TodoReserveBottomSheet : BottomSheetDialogFragment() {
     val binding get() = _binding ?: error(getString(R.string.binding_error))
     private var _binding: BottomSheetTodoEditBinding? = null
     private val viewModel by activityViewModels<TodoEventEditViewModel>()
-    private val todo = requireNotNull(viewModel.isClickedEditBtnEvent.value).peekContent()
+    private val reserveType = arguments?.get(RESERVE_TYPE)
+        ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
+    private val todoReserveContent = arguments?.getParcelable<TodoReserveContent>(RESERVE_CONTENT)
     private val dateList = mutableListOf<String>()
     private val minList = mutableListOf<String>()
     private val ampmeList = mutableListOf<String>("PM", "AM")
@@ -35,12 +39,14 @@ class TodoEditBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
-        binding.todo = todo
+        binding.reserveType = reserveType as TodoReserveType
+        binding.todoReserveContent = requireNotNull(todoReserveContent)
+        binding.switchBtnTodoEdit.isChecked = todoReserveContent.pushStatus.checked
         initDatePicker()
         initHourPicker()
         initMinutePicker()
         initAmPmPicker()
-        initIsCheckedBottomSheetTodoEditBtnEventObserver()
+        initConfirmClickListener()
     }
 
     private fun initDatePicker() {
@@ -90,13 +96,18 @@ class TodoEditBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    private fun initIsCheckedBottomSheetTodoEditBtnEventObserver() {
-        viewModel.isClickedBottomSheetTodoEditBtnEvent.observe(
-            viewLifecycleOwner,
-            EventObserver {
-                editTodo()
+    private fun initConfirmClickListener() {
+        binding.btnTodoEdit.setOnClickListener {
+            when (reserveType) {
+                TodoReserveType.CREATE_MODE -> {}
+                TodoReserveType.EDIT_MODE -> {
+                    arguments?.getParcelable<DialogBtnClickListener>(CONFIRM_ACTION)?.onConfirmClick()
+                        ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
+                    editTodo()
+                }
             }
-        )
+            dismiss()
+        }
     }
 
     private fun editTodo() {
@@ -114,6 +125,13 @@ class TodoEditBottomSheet : BottomSheetDialogFragment() {
             pushStatus = pushStatus,
             startAt = startAt
         )
-        viewModel.putTodo(todo.todoId, body)
+        viewModel.putTodo(requireNotNull(todoReserveContent).id, body)
+    }
+
+    companion object {
+        const val BOTTOM_SHEET_RESERVE = "bottomSheetReserve"
+        const val RESERVE_TYPE = "reserveType"
+        const val RESERVE_CONTENT = "reserveContent"
+        const val CONFIRM_ACTION = "confirmAction"
     }
 }

@@ -22,7 +22,7 @@ data class Todo(
     val duration: Int,
     val categoryName: String,
     val categoryImage: Int,
-    val pushStatus: String
+    val pushStatus: PushStatusType
 ) : TodoEvent()
 
 data class TodoHeader(
