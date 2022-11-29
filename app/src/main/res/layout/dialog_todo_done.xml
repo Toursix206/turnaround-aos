@@ -12,89 +12,110 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="40dp"
-        android:paddingBottom="16dp"
-        tools:background="@color/turnaround_gray_3"
+        android:layout_height="match_parent"
         tools:context=".util.dialog.WarningDialogFragment">
 
-        <TextView
-            android:id="@+id/tv_todo_done_title"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:gravity="center_horizontal"
-            android:text="활동 완료!"
-            android:textAppearance="@style/h2_bold"
-            android:textColor="@color/turnaround_gray_10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_todo_done_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="4dp"
-            android:gravity="center_horizontal"
-            android:text="성공적으로 집안일을 수행했어요!"
-            android:textAppearance="@style/body2_regular"
-            android:textColor="@color/turnaround_gray_9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_done_title" />
-
-        <ImageView
-            android:id="@+id/iv_todo_done_broom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="31dp"
-            android:src="@drawable/img_todo_event_broom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_done_desc" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_todo_done_broom"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/turnaround_purple"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:minHeight="0dp"
-            android:paddingHorizontal="32dp"
-            android:stateListAnimator="@null"
-            android:text="@{@string/dialog_todo_done_broom_format(broom)}"
-            android:textAppearance="@style/body2_semi_bold"
-            android:textColor="@color/turnaround_white"
-            app:cornerRadius="63dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_todo_done_broom"
-            tools:text="빗자루 2개" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_todo_done"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/turnaround_gray_10"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:paddingVertical="14dp"
-            android:stateListAnimator="@null"
-            android:text="리워드 받기!"
-            android:textAppearance="@style/body2_semi_bold"
-            android:textColor="@color/turnaround_white"
-            app:cornerRadius="10dp"
+            android:layout_marginHorizontal="25dp"
+            android:background="@drawable/shape_white_rect_fill_16"
+            android:paddingTop="40dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_todo_done_broom" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_todo_done_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="center_horizontal"
+                android:text="@string/todo_done_title"
+                android:textAppearance="@style/h2_bold"
+                android:textColor="@color/turnaround_gray_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_todo_done_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_horizontal"
+                android:text="@string/todo_done_desc"
+                android:textAppearance="@style/body2_regular"
+                android:textColor="@color/turnaround_gray_9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_todo_done_title" />
+
+            <ImageView
+                android:id="@+id/iv_todo_done_broom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:src="@drawable/ic_todo_done_broom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_todo_done_desc" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_todo_done_broom"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/turnaround_purple"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:paddingHorizontal="32dp"
+                android:stateListAnimator="@null"
+                android:text="@{@string/dialog_todo_done_broom_format(broom)}"
+                android:textAppearance="@style/body2_semi_bold"
+                android:textColor="@color/turnaround_white"
+                app:cornerRadius="63dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_todo_done_broom"
+                tools:text="빗자루 2개" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_todo_done"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/turnaround_gray_10"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:stateListAnimator="@null"
+                android:text="@string/todo_done_reward_btn"
+                android:textAppearance="@style/body2_semi_bold"
+                android:textColor="@color/turnaround_white"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_todo_done_broom" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="todo_done.json"
+            app:lottie_loop="false" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

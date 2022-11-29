@@ -235,5 +235,8 @@
 
     <!-- To-do Done Dialog -->
     <string name="dialog_todo_done_broom_format">빗자루 %d개</string>
+    <string name="todo_done_title">활동 완료!</string>
+    <string name="todo_done_desc">성공적으로 집안일을 수행했어요!</string>
+    <string name="todo_done_reward_btn">리워드 받기!</string>
 
 </resources>
