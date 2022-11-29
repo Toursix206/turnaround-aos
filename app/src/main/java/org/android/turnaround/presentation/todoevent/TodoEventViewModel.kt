@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.domain.entity.TodoList
-import org.android.turnaround.util.Event
+import org.android.turnaround.domain.entity.TodoReward
 import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
@@ -22,9 +22,6 @@ class TodoEventViewModel @Inject constructor(
     private val _isTodoExist = MutableStateFlow(false)
     val isTodoExist: StateFlow<Boolean> = _isTodoExist.asStateFlow()
 
-    private val _isClickedBlackItemEvent = MutableLiveData<Event<Int>>()
-    val isClickedBlackItemEvent: LiveData<Event<Int>> = _isClickedBlackItemEvent
-
     private val _todoList = MutableLiveData<TodoList>()
     val todoList: LiveData<TodoList> = _todoList
 
@@ -33,6 +30,9 @@ class TodoEventViewModel @Inject constructor(
 
     private val _alarmOff = MutableLiveData<String>()
     val alarmOff: LiveData<String> = _alarmOff
+
+    private val _todoReward = MutableLiveData<TodoReward>()
+    val todoReward: LiveData<TodoReward> = _todoReward
 
     init {
         getTodoList()
@@ -50,10 +50,6 @@ class TodoEventViewModel @Inject constructor(
             .onFailure { throwable ->
                 Timber.d(throwable.message)
             }
-    }
-
-    fun setBlackTodoId(todoId: Int) {
-        _isClickedBlackItemEvent.value = Event(todoId)
     }
 
     fun getTodoDetail(todoId: Int) = viewModelScope.launch {
@@ -76,6 +72,15 @@ class TodoEventViewModel @Inject constructor(
                         DUPLICATE_ALARM_OFF -> _alarmOff.value = "이미 모든 활동에 대한 알림이 꺼져있습니다."
                     }
                 }
+            }
+    }
+
+    fun putTodoReward(todoId: Int) = viewModelScope.launch {
+        todoRepository.putTodoReward(todoId)
+            .onSuccess {
+                _todoReward.value = it
+            }.onFailure { throwable ->
+                Timber.d(throwable.message)
             }
     }
 
