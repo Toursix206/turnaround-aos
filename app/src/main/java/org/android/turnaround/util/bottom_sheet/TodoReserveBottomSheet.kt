@@ -113,8 +113,7 @@ class TodoReserveBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun editTodo() {
-        val isCheckedAlarm = binding.switchBtnTodoEdit.isChecked
-        val pushStatus = if (isCheckedAlarm) "ON" else "OFF"
+        val pushStatus = if (binding.switchBtnTodoEdit.isChecked) PushStatusType.ON else PushStatusType.OFF
         val body = TodoEditRequest(
             pushStatus = pushStatus,
             startAt = getStartAt()
