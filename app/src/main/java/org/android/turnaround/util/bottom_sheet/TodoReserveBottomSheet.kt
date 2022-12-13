@@ -20,9 +20,10 @@ class TodoReserveBottomSheet : BottomSheetDialogFragment() {
     val binding get() = _binding ?: error(getString(R.string.binding_error))
     private var _binding: BottomSheetTodoEditBinding? = null
     private val viewModel by activityViewModels<TodoEventEditViewModel>()
-    private val reserveType = arguments?.get(RESERVE_TYPE)
-        ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
-    private val todoReserveContent = arguments?.getParcelable<TodoReserveContent>(RESERVE_CONTENT)
+    private val reserveType
+        get() = arguments?.get(RESERVE_TYPE)
+            ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
+    private val todoReserveContent get() = arguments?.getParcelable<TodoReserveContent>(RESERVE_CONTENT)
     private val dateList = mutableListOf<String>()
     private val minList = mutableListOf<String>()
     private val ampmeList = mutableListOf<String>("PM", "AM")
@@ -41,7 +42,7 @@ class TodoReserveBottomSheet : BottomSheetDialogFragment() {
         binding.vm = viewModel
         binding.reserveType = reserveType as TodoReserveType
         binding.todoReserveContent = requireNotNull(todoReserveContent)
-        binding.switchBtnTodoEdit.isChecked = todoReserveContent.pushStatus.checked
+        binding.switchBtnTodoEdit.isChecked = requireNotNull(todoReserveContent).pushStatus.checked
         initDatePicker()
         initHourPicker()
         initMinutePicker()

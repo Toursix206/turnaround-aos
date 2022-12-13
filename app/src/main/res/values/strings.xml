@@ -168,14 +168,16 @@
     <string name="bottom_sheet_todo_start_btn_true">활동 시작하기!</string>
     <string name="bottom_sheet_todo_start_btn_false">활동 시간이 아니지만 바로 시작하기!</string>
 
-    <!-- Bottom Sheet To-do Edit -->
-    <string name="bottom_sheet_todo_edit_title">활동을 언제 시작할까요?</string>
-    <string name="bottom_sheet_todo_edit_data">날짜</string>
-    <string name="bottom_sheet_todo_edit_date_desc">2주보다 먼 미래에는 예약이 불가능 해요</string>
-    <string name="bottom_sheet_todo_edit_alarm">알림을 알려드릴까요?</string>
-    <string name="bottom_sheet_todo_edit_duration">소요 시간</string>
-    <string name="bottom_sheet_todo_edit_btn">예약 완료</string>
-    <string name="bottom_sheet_todo_colon">:</string>
+    <!-- TodoReserveBottomSheet -->
+    <string name="bottom_sheet_todo_reserve_title">활동을 언제 시작할까요?</string>
+    <string name="bottom_sheet_todo_reserve_edit_title">활동을 언제로 변경할까요?</string>
+    <string name="bottom_sheet_todo_reserve_data">날짜</string>
+    <string name="bottom_sheet_todo_reserve_date_desc">2주보다 먼 미래에는 예약이 불가능 해요</string>
+    <string name="bottom_sheet_todo_reserve_alarm">알림을 알려드릴까요?</string>
+    <string name="bottom_sheet_todo_reserve_edit_alarm">활동 시간 알람</string>
+    <string name="bottom_sheet_todo_reserve_duration">소요 시간</string>
+    <string name="bottom_sheet_todo_reserve_btn">예약 완료</string>
+    <string name="bottom_sheet_todo_reserve_colon">:</string>
 
     <!-- My -->
     <string name="my_title">마이페이지</string>
