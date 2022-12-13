@@ -27,16 +27,12 @@ class ActivityDataSource @Inject constructor(
     suspend fun getTodoGuide(todoId: Int): BaseResponse<TodoGuideResponse> =
         activityService.getTodoGuide(todoId)
 
-    suspend fun postReserveTodo(activityId: Int, pushStatus: PushStatusType, startAtDate: String, startAtTime: String): NoDataResponse =
+    suspend fun postReserveTodo(activityId: Int, pushStatus: PushStatusType, startAt: String): NoDataResponse =
         activityService.postReserveTodo(
             PostReserveTodoRequest(
                 activityId = activityId,
                 pushStatus = pushStatus,
-                startAt = "$startAtDate$TIME_SEPARATION$startAtTime"
+                startAt = startAt
             )
         )
-
-    companion object {
-        const val TIME_SEPARATION = "T"
-    }
 }

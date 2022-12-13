@@ -15,5 +15,5 @@ interface ActivityRepository {
 
     suspend fun getTodoGuide(todoId: Int): Result<TodoGuide>
 
-    suspend fun postReserveTodo(activityId: Int, pushStatus: PushStatusType, startAtDate: String, startAtTime: String): Result<Boolean>
+    suspend fun postReserveTodo(activityId: Int, pushStatus: PushStatusType, startAt: String): Result<Boolean>
 }

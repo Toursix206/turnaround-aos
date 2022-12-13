@@ -9,8 +9,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.android.turnaround.R
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.databinding.BottomSheetTodoEditBinding
+import org.android.turnaround.domain.entity.PushStatusType
 import org.android.turnaround.presentation.todoeventedit.TodoEventEditViewModel
-import org.android.turnaround.util.dialog.DialogBtnClickListener
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -100,33 +100,37 @@ class TodoReserveBottomSheet : BottomSheetDialogFragment() {
     private fun initConfirmClickListener() {
         binding.btnTodoEdit.setOnClickListener {
             when (reserveType) {
-                TodoReserveType.CREATE_MODE -> {}
-                TodoReserveType.EDIT_MODE -> {
-                    arguments?.getParcelable<DialogBtnClickListener>(CONFIRM_ACTION)?.onConfirmClick()
-                        ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
-                    editTodo()
+                TodoReserveType.CREATE_MODE -> {
+                    arguments?.getParcelable<TodoReserveBtnClickListener>(CONFIRM_ACTION)?.onConfirmClick(
+                        pushStatus = if (binding.switchBtnTodoEdit.isChecked) PushStatusType.ON else PushStatusType.OFF,
+                        startAt = getStartAt()
+                    ) ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
                 }
+                TodoReserveType.EDIT_MODE -> editTodo()
             }
             dismiss()
         }
     }
 
     private fun editTodo() {
+        val isCheckedAlarm = binding.switchBtnTodoEdit.isChecked
+        val pushStatus = if (isCheckedAlarm) "ON" else "OFF"
+        val body = TodoEditRequest(
+            pushStatus = pushStatus,
+            startAt = getStartAt()
+        )
+        viewModel.putTodo(requireNotNull(todoReserveContent).id, body)
+    }
+
+    private fun getStartAt(): String {
         val date = dateList[binding.pickerTodoEditDate.value].replace(" ", "").split("/")
         val min = minList[binding.pickerTodoEditMinute.value]
         val ampm = ampmeList[binding.pickerTodoEditAmpm.value]
         val h = if (ampm == "PM") binding.pickerTodoEditHour.value + 12 else binding.pickerTodoEditHour.value
         val hour = if (h < 10) "0$h" else h
         val year = Calendar.getInstance().get(Calendar.YEAR)
-        val startAt = "$year-${date[0]}-${date[1]}T$hour:$min:00"
 
-        val isCheckedAlarm = binding.switchBtnTodoEdit.isChecked
-        val pushStatus = if (isCheckedAlarm) "ON" else "OFF"
-        val body = TodoEditRequest(
-            pushStatus = pushStatus,
-            startAt = startAt
-        )
-        viewModel.putTodo(requireNotNull(todoReserveContent).id, body)
+        return "$year-${date[0]}-${date[1]}T$hour:$min:00"
     }
 
     companion object {

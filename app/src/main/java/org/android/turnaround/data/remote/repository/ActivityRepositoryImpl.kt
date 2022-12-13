@@ -38,15 +38,13 @@ class ActivityRepositoryImpl @Inject constructor(
     override suspend fun postReserveTodo(
         activityId: Int,
         pushStatus: PushStatusType,
-        startAtDate: String,
-        startAtTime: String
+        startAt: String
     ): Result<Boolean> =
         kotlin.runCatching {
             activityDataSource.postReserveTodo(
                 activityId = activityId,
                 pushStatus = pushStatus,
-                startAtDate = startAtDate,
-                startAtTime = startAtTime
+                startAt = startAt
             )
         }.map { response -> response.success }
 }

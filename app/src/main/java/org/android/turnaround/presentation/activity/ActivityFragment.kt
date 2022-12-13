@@ -11,6 +11,7 @@ import org.android.turnaround.databinding.FragmentActivityBinding
 import org.android.turnaround.presentation.activity.paging.ActivityPagingAdapter
 import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.bottom_sheet.TodoReserveBottomSheet
+import org.android.turnaround.util.bottom_sheet.TodoReserveBtnClickListener
 import org.android.turnaround.util.bottom_sheet.TodoReserveContent
 import org.android.turnaround.util.bottom_sheet.TodoReserveType
 import org.android.turnaround.util.extension.repeatOnStarted
@@ -36,6 +37,18 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
             arguments = Bundle().apply {
                 putSerializable(TodoReserveBottomSheet.RESERVE_TYPE, TodoReserveType.CREATE_MODE)
                 putParcelable(TodoReserveBottomSheet.RESERVE_CONTENT, todoReserveContent)
+                putParcelable(
+                    TodoReserveBottomSheet.CONFIRM_ACTION,
+                    TodoReserveBtnClickListener(
+                        clickAction = { pushStatus, startAt ->
+                            viewModel.postReserveTodo(
+                                activityId = todoReserveContent.id,
+                                pushStatus = pushStatus,
+                                startAt = startAt
+                            )
+                        }
+                    )
+                )
             }
         }.show(parentFragmentManager, TodoReserveBottomSheet.BOTTOM_SHEET_RESERVE)
     }
