@@ -71,7 +71,6 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
             viewModel.reserveTodoUiEvent.collect { uiEvent ->
                 if (uiEvent == UiEvent.SUCCESS) {
                     ToastMessageUtil.showPurpleToast(requireContext(), getString(R.string.activity_reserve_toast_msg), false, Gravity.TOP)
-
                 }
             }
         }

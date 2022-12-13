@@ -11,7 +11,6 @@ import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.TodoStartBottomSheet
 import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
 import org.android.turnaround.presentation.todoeventedit.TodoEventEditActivity
-import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
 
