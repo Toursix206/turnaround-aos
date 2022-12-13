@@ -30,7 +30,7 @@ class ActivityRepositoryImpl @Inject constructor(
             }
         ).flow
 
-    override suspend fun getTodoGuide(activityId: Int): Result<TodoGuide> =
-        kotlin.runCatching { activityDataSource.getTodoGuide(activityId) }
+    override suspend fun getTodoGuide(todoId: Int): Result<TodoGuide> =
+        kotlin.runCatching { activityDataSource.getTodoGuide(todoId) }
             .map { response -> response.data.toTodoGuide() }
 }

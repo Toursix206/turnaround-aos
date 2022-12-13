@@ -21,6 +21,6 @@ class ActivityDataSource @Inject constructor(
             size = size
         )
 
-    suspend fun getTodoGuide(activityId: Int): BaseResponse<TodoGuideResponse> =
-        activityService.getTodoGuide(activityId)
+    suspend fun getTodoGuide(todoId: Int): BaseResponse<TodoGuideResponse> =
+        activityService.getTodoGuide(todoId)
 }

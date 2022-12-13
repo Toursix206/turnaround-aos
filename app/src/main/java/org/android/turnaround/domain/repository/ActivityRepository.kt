@@ -12,5 +12,5 @@ interface ActivityRepository {
         size: Int
     ): Flow<PagingData<ActivityContent>>
 
-    suspend fun getTodoGuide(activityId: Int): Result<TodoGuide>
+    suspend fun getTodoGuide(todoId: Int): Result<TodoGuide>
 }

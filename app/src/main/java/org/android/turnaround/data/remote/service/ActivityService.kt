@@ -19,8 +19,8 @@ interface ActivityService {
         @Query("sort") sort: Array<String> = arrayOf("createdAt", "DESC")
     ): BaseResponse<ActivityResponse>
 
-    @GET("/v1/activity/{activityId}/guide")
+    @GET("/v1/todo/{todoId}/guide")
     suspend fun getTodoGuide(
-        @Path("activityId") activityId: Int
+        @Path("todoId") todoId: Int
     ): BaseResponse<TodoGuideResponse>
 }
