@@ -1,10 +1,13 @@
 package org.android.turnaround.data.remote.datasource
 
+import org.android.turnaround.data.remote.entity.request.PostReserveTodoRequest
 import org.android.turnaround.data.remote.entity.response.ActivityResponse
 import org.android.turnaround.data.remote.entity.response.BaseResponse
+import org.android.turnaround.data.remote.entity.response.NoDataResponse
 import org.android.turnaround.data.remote.entity.response.TodoGuideResponse
 import org.android.turnaround.data.remote.service.ActivityService
 import org.android.turnaround.domain.entity.ActivityCategory
+import org.android.turnaround.domain.entity.PushStatusType
 import javax.inject.Inject
 
 class ActivityDataSource @Inject constructor(
@@ -21,6 +24,15 @@ class ActivityDataSource @Inject constructor(
             size = size
         )
 
-    suspend fun getTodoGuide(activityId: Int): BaseResponse<TodoGuideResponse> =
-        activityService.getTodoGuide(activityId)
+    suspend fun getTodoGuide(todoId: Int): BaseResponse<TodoGuideResponse> =
+        activityService.getTodoGuide(todoId)
+
+    suspend fun postReserveTodo(activityId: Int, pushStatus: PushStatusType, startAt: String): NoDataResponse =
+        activityService.postReserveTodo(
+            PostReserveTodoRequest(
+                activityId = activityId,
+                pushStatus = pushStatus,
+                startAt = startAt
+            )
+        )
 }

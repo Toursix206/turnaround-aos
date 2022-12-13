@@ -5,13 +5,19 @@
 
     <data>
 
+        <import type="org.android.turnaround.util.bottom_sheet.TodoReserveType" />
+
         <variable
             name="vm"
             type="org.android.turnaround.presentation.todoeventedit.TodoEventEditViewModel" />
 
         <variable
-            name="todo"
-            type="org.android.turnaround.domain.entity.Todo" />
+            name="reserveType"
+            type="org.android.turnaround.util.bottom_sheet.TodoReserveType" />
+
+        <variable
+            name="todoReserveContent"
+            type="org.android.turnaround.util.bottom_sheet.TodoReserveContent" />
 
     </data>
 
@@ -37,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
             android:layout_marginTop="32dp"
-            android:text="@string/bottom_sheet_todo_edit_title"
+            android:text="@{reserveType == TodoReserveType.CREATE_MODE ? @string/bottom_sheet_todo_reserve_title : @string/bottom_sheet_todo_reserve_edit_title}"
             android:textAppearance="@style/sub_headline_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/bottom_sheet_todo_edit_data"
+            android:text="@string/bottom_sheet_todo_reserve_data"
             android:textAppearance="@style/caption_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="@id/tv_todo_edit_title"
@@ -58,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:text="@string/bottom_sheet_todo_edit_date_desc"
+            android:text="@string/bottom_sheet_todo_reserve_date_desc"
             android:textAppearance="@style/caption_regular"
             android:textColor="#ff5555"
             app:layout_constraintBottom_toBottomOf="@id/tv_todo_edit_date"
@@ -71,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="@string/bottom_sheet_todo_edit_duration"
+            android:text="@string/bottom_sheet_todo_reserve_duration"
             android:textAppearance="@style/caption_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="@id/tv_todo_edit_date"
@@ -81,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:text="@{String.valueOf(todo.duration) + '분'}"
+            android:text="@{String.valueOf(todoReserveContent.duration) + '분'}"
             android:textAppearance="@style/caption_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/tv_todo_edit_duration"
@@ -123,7 +129,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/bottom_sheet_todo_colon"
+            android:text="@string/bottom_sheet_todo_reserve_colon"
             android:textAppearance="@style/body1_bold"
             android:textColor="@color/turnaround_purple"
             app:layout_constraintBottom_toBottomOf="@id/picker_todo_edit_hour"
@@ -187,7 +193,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"
-            android:text="@string/bottom_sheet_todo_edit_alarm"
+            android:text="@{reserveType == TodoReserveType.CREATE_MODE ? @string/bottom_sheet_todo_reserve_alarm : @string/bottom_sheet_todo_reserve_edit_alarm}"
             android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/iv_todo_edit_alarm"
@@ -196,6 +202,7 @@
 
         <com.suke.widget.SwitchButton
             android:id="@+id/switch_btn_todo_edit"
+            check="@{todoReserveContent.pushStatus.checked}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="26dp"
@@ -217,9 +224,8 @@
             android:layout_marginTop="57dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/shape_gray10_rect_fill_14"
-            android:onClick="@{() -> vm.setIsCheckedBottomSheetTodoEditBtnEvent(todo.todoId)}"
             android:paddingVertical="16dp"
-            android:text="@string/bottom_sheet_todo_edit_btn"
+            android:text="@{reserveType == TodoReserveType.CREATE_MODE ? @string/bottom_sheet_todo_reserve_btn : @string/bottom_sheet_todo_reserve_edit_btn}"
             android:textAlignment="center"
             android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_white"

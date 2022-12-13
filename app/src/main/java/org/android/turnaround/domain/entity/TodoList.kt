@@ -21,7 +21,8 @@ data class Todo(
     val todoStatus: TodoType,
     val duration: Int,
     val categoryName: String,
-    val categoryImage: Int
+    val categoryImage: Int,
+    val pushStatus: PushStatusType
 ) : TodoEvent()
 
 data class TodoHeader(

@@ -1,5 +1,6 @@
 package org.android.turnaround.data.remote.entity.response
 
+import org.android.turnaround.domain.entity.PushStatusType
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoCategory
 import org.android.turnaround.domain.entity.TodoList
@@ -26,7 +27,8 @@ data class TodoListResponse(
                     todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes,
+                    pushStatus = PushStatusType.valueOf(todo.pushStatus)
                 )
             },
             nextTodosCnt = this.nextTodosCnt,
@@ -39,7 +41,8 @@ data class TodoListResponse(
                     todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes,
+                    pushStatus = PushStatusType.valueOf(todo.pushStatus)
                 )
             },
             successTodosCnt = this.successTodosCnt,
@@ -52,7 +55,8 @@ data class TodoListResponse(
                     todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes,
+                    pushStatus = PushStatusType.valueOf(todo.pushStatus)
                 )
             },
             thisWeekTodosCnt = this.thisWeekTodosCnt,
@@ -65,9 +69,20 @@ data class TodoListResponse(
                     todoStatus = TodoType.valueOf(todo.todoStatus),
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
-                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                    categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes,
+                    pushStatus = PushStatusType.valueOf(todo.pushStatus)
                 )
             },
             todayTodosCnt = this.todayTodosCnt
         )
 }
+
+data class TodoEntity(
+    val activityCategory: String,
+    val activityName: String,
+    val leftTime: String,
+    val todoId: Int,
+    val todoStatus: String,
+    val duration: Int,
+    val pushStatus: String
+)

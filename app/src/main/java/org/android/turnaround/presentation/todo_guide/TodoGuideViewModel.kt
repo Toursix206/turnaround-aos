@@ -40,9 +40,9 @@ class TodoGuideViewModel @Inject constructor(
         }
     }
 
-    fun getTodoGuide(activityId: Int) {
+    fun getTodoGuide(todoId: Int) {
         viewModelScope.launch {
-            activityRepository.getTodoGuide(activityId)
+            activityRepository.getTodoGuide(todoId)
                 .onSuccess { response ->
                     _activityName.value = response.name
                     _guides.value = response.guides

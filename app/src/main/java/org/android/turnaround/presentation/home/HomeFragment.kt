@@ -35,7 +35,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }
     }
 
-    private fun initHomeAdapter(todosCnt: Int, todos: List<Todo>) {
+    private fun initHomeAdapter(todosCnt: Int, todos: List<HomeTodo>) {
         with(binding.vpHomeTodo) {
             adapter = TodoAdapter(viewModel).apply {
                 if (todosCnt > 0) submitHomeActivityList(todos)

@@ -7,11 +7,13 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoEventEditBinding
-import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.EventObserver
-import org.android.turnaround.util.TurnAroundToast
+import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.bottom_sheet.TodoReserveBottomSheet
+import org.android.turnaround.util.bottom_sheet.TodoReserveContent
+import org.android.turnaround.util.bottom_sheet.TodoReserveType
 import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
@@ -19,7 +21,6 @@ import org.android.turnaround.util.dialog.WarningType
 @AndroidEntryPoint
 class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.layout.activity_todo_event_edit) {
     private val viewModel by viewModels<TodoEventEditViewModel>()
-    lateinit var editBottomSheet: TodoEditBottomSheet
     private var deletedTodoId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,27 +84,39 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
         viewModel.isClickedEditBtnEvent.observe(
             this,
             EventObserver {
-                showTodoEditBottomSheet(it)
+                showTodoEditBottomSheet()
             }
         )
     }
 
     private fun initEditTodoObserver() {
-        viewModel.editTodo.observe(this) {
-            editBottomSheet.dismiss()
-            TurnAroundToast.showToast(this, it as String, gravity = Gravity.TOP)
+        viewModel.editTodo.observe(this) { editTodo ->
+            ToastMessageUtil.showPurpleToast(this, editTodo, false, gravity = Gravity.TOP)
+            viewModel.getTodoList()
         }
     }
 
     private fun initEditTodoFailObserver() {
-        viewModel.editTodoFail.observe(this) {
-            TurnAroundToast.showToast(this, it as String, textColor = R.color.turnaround_alert, gravity = Gravity.TOP)
+        viewModel.editTodoFail.observe(this) { editTodoFail ->
+            ToastMessageUtil.showPurpleToast(this, editTodoFail, true, gravity = Gravity.TOP)
         }
     }
 
-    private fun showTodoEditBottomSheet(todo: Todo) {
-        editBottomSheet = TodoEditBottomSheet(viewModel, todo)
-        editBottomSheet.show(supportFragmentManager, this.javaClass.name)
+    private fun showTodoEditBottomSheet() {
+        val todoReserveContent = requireNotNull(viewModel.isClickedEditBtnEvent.value).peekContent()
+        TodoReserveBottomSheet().apply {
+            arguments = Bundle().apply {
+                putSerializable(TodoReserveBottomSheet.RESERVE_TYPE, TodoReserveType.EDIT_MODE)
+                putParcelable(
+                    TodoReserveBottomSheet.RESERVE_CONTENT,
+                    TodoReserveContent(
+                        id = todoReserveContent.todoId,
+                        duration = todoReserveContent.duration,
+                        pushStatus = todoReserveContent.pushStatus
+                    )
+                )
+            }
+        }.show(supportFragmentManager, TodoReserveBottomSheet.BOTTOM_SHEET_RESERVE)
     }
 
     private fun initBackBtnClickListener() {

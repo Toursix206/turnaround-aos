@@ -1,11 +1,15 @@
 package org.android.turnaround.data.remote.service
 
+import org.android.turnaround.data.remote.entity.request.PostReserveTodoRequest
 import org.android.turnaround.data.remote.entity.response.ActivityResponse
 import org.android.turnaround.data.remote.entity.response.BaseResponse
+import org.android.turnaround.data.remote.entity.response.NoDataResponse
 import org.android.turnaround.data.remote.entity.response.TodoGuideResponse
 import org.android.turnaround.domain.entity.ActivityCategory
 import org.android.turnaround.domain.entity.ActivityType
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -19,8 +23,13 @@ interface ActivityService {
         @Query("sort") sort: Array<String> = arrayOf("createdAt", "DESC")
     ): BaseResponse<ActivityResponse>
 
-    @GET("/v1/activity/{activityId}/guide")
+    @GET("/v1/todo/{todoId}/guide")
     suspend fun getTodoGuide(
-        @Path("activityId") activityId: Int
+        @Path("todoId") todoId: Int
     ): BaseResponse<TodoGuideResponse>
+
+    @POST("/v1/todo")
+    suspend fun postReserveTodo(
+        @Body body: PostReserveTodoRequest
+    ): NoDataResponse
 }

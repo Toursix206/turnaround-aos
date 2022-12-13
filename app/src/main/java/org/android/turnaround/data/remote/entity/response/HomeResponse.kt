@@ -1,7 +1,7 @@
 package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.Home
-import org.android.turnaround.domain.entity.Todo
+import org.android.turnaround.domain.entity.HomeTodo
 import org.android.turnaround.domain.entity.TodoCategory
 import org.android.turnaround.domain.entity.TodoType
 
@@ -11,7 +11,7 @@ data class HomeResponse(
     val broom: Int,
     val cleanScore: Int,
     val todosCnt: Int,
-    val todos: List<TodoEntity>
+    val todos: List<HomeTodoEntity>
 ) {
     fun toHome(): Home =
         Home(
@@ -21,7 +21,7 @@ data class HomeResponse(
             cleanScore = this.cleanScore,
             todosCnt = this.todosCnt,
             todos = this.todos.map { todo ->
-                Todo(
+                HomeTodo(
                     activityCategory = todo.activityCategory,
                     activityName = todo.activityName,
                     leftTime = todo.leftTime,
@@ -34,3 +34,12 @@ data class HomeResponse(
             }
         )
 }
+
+data class HomeTodoEntity(
+    val activityCategory: String,
+    val activityName: String,
+    val leftTime: String,
+    val todoId: Int,
+    val todoStatus: String,
+    val duration: Int
+)
