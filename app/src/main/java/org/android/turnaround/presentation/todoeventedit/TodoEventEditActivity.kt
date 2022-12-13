@@ -9,7 +9,7 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoEventEditBinding
 import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
 import org.android.turnaround.util.EventObserver
-import org.android.turnaround.util.TurnAroundToast
+import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.bottom_sheet.TodoReserveBottomSheet
 import org.android.turnaround.util.bottom_sheet.TodoReserveContent
@@ -21,7 +21,6 @@ import org.android.turnaround.util.dialog.WarningType
 @AndroidEntryPoint
 class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.layout.activity_todo_event_edit) {
     private val viewModel by viewModels<TodoEventEditViewModel>()
-    lateinit var editBottomSheet: TodoReserveBottomSheet
     private var deletedTodoId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,15 +90,15 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
     }
 
     private fun initEditTodoObserver() {
-        viewModel.editTodo.observe(this) {
-            editBottomSheet.dismiss()
-            TurnAroundToast.showToast(this, it as String, gravity = Gravity.TOP)
+        viewModel.editTodo.observe(this) { editTodo ->
+            ToastMessageUtil.showPurpleToast(this, editTodo, false, gravity = Gravity.TOP)
+            viewModel.getTodoList()
         }
     }
 
     private fun initEditTodoFailObserver() {
-        viewModel.editTodoFail.observe(this) {
-            TurnAroundToast.showToast(this, it as String, textColor = R.color.turnaround_alert, gravity = Gravity.TOP)
+        viewModel.editTodoFail.observe(this) { editTodoFail ->
+            ToastMessageUtil.showPurpleToast(this, editTodoFail, true, gravity = Gravity.TOP)
         }
     }
 

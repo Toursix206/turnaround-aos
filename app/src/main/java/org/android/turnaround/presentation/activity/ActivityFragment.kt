@@ -1,6 +1,7 @@
 package org.android.turnaround.presentation.activity
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.paging.PagingData
@@ -69,7 +70,8 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
         repeatOnStarted {
             viewModel.reserveTodoUiEvent.collect { uiEvent ->
                 if (uiEvent == UiEvent.SUCCESS) {
-                    ToastMessageUtil.showTopPurpleToast(requireContext(), getString(R.string.activity_reserve_toast_msg), false)
+                    ToastMessageUtil.showPurpleToast(requireContext(), getString(R.string.activity_reserve_toast_msg), false, Gravity.TOP)
+
                 }
             }
         }
