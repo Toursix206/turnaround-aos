@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import org.android.turnaround.domain.entity.ActivityCategory
 import org.android.turnaround.domain.entity.ActivityContent
+import org.android.turnaround.domain.entity.PushStatusType
 import org.android.turnaround.domain.entity.TodoGuide
 
 interface ActivityRepository {
@@ -13,4 +14,6 @@ interface ActivityRepository {
     ): Flow<PagingData<ActivityContent>>
 
     suspend fun getTodoGuide(todoId: Int): Result<TodoGuide>
+
+    suspend fun postReserveTodo(activityId: Int, pushStatus: PushStatusType, startAtDate: String, startAtTime: String): Result<Boolean>
 }

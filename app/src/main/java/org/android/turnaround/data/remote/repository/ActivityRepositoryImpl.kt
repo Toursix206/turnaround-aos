@@ -8,6 +8,7 @@ import org.android.turnaround.data.remote.datasource.ActivityDataSource
 import org.android.turnaround.data.remote.pagingsource.ActivityPagingSource
 import org.android.turnaround.domain.entity.ActivityCategory
 import org.android.turnaround.domain.entity.ActivityContent
+import org.android.turnaround.domain.entity.PushStatusType
 import org.android.turnaround.domain.entity.TodoGuide
 import org.android.turnaround.domain.repository.ActivityRepository
 import javax.inject.Inject
@@ -33,4 +34,19 @@ class ActivityRepositoryImpl @Inject constructor(
     override suspend fun getTodoGuide(todoId: Int): Result<TodoGuide> =
         kotlin.runCatching { activityDataSource.getTodoGuide(todoId) }
             .map { response -> response.data.toTodoGuide() }
+
+    override suspend fun postReserveTodo(
+        activityId: Int,
+        pushStatus: PushStatusType,
+        startAtDate: String,
+        startAtTime: String
+    ): Result<Boolean> =
+        kotlin.runCatching {
+            activityDataSource.postReserveTodo(
+                activityId = activityId,
+                pushStatus = pushStatus,
+                startAtDate = startAtDate,
+                startAtTime = startAtTime
+            )
+        }.map { response -> response.success }
 }
