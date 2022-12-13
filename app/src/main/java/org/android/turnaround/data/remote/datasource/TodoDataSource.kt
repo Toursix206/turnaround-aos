@@ -11,5 +11,6 @@ class TodoDataSource @Inject constructor(
     suspend fun getTodoDetail(todoId: Int) = todoService.getTodoDetail(todoId)
     suspend fun deleteTodo(todoId: Int) = todoService.deleteTodo(todoId)
     suspend fun putTodo(todoId: Int, body: TodoEditRequest) = todoService.putTodo(todoId, body)
+    suspend fun putTodoReward(todoId: Int) = todoService.putTodoReward(todoId)
     suspend fun putNotificationOff() = todoService.putNotificationOff()
 }

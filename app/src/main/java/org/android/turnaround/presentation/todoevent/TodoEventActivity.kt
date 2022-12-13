@@ -29,10 +29,10 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
         initTodoListObserver()
-        initIsClickedBlackItemEventObserver()
         initTodoDetailObserver()
+        initTodoRewardObserver()
         initTodoAlarmOffObserver()
-        initOpenTodoEventEventEditClickListener()
+        initTodoEventEditClickListener()
         initBackBtnClickListener()
     }
 
@@ -47,13 +47,10 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         }
     }
 
-    private fun initIsClickedBlackItemEventObserver() {
-        viewModel.isClickedBlackItemEvent.observe(
-            this,
-            EventObserver {
-                viewModel.getTodoDetail(it)
-            }
-        )
+    private fun initTodoRewardObserver() {
+        viewModel.todoReward.observe(this) {
+            showTodoDoneDialog(it.broom)
+        }
     }
 
     private fun initTodoDetailObserver() {
@@ -68,11 +65,7 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         }
     }
 
-    private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
-        TodoStartBottomSheet(todoDetail).show(supportFragmentManager, this.javaClass.name)
-    }
-
-    private fun initOpenTodoEventEventEditClickListener() {
+    private fun initTodoEventEditClickListener() {
         binding.ivTodoEventSetting.setOnClickListener {
             todoEventEditResultLauncher.launch(Intent(this, TodoEventEditActivity::class.java))
         }
@@ -82,6 +75,20 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         binding.ivTodoEventBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
+        TodoStartBottomSheet(todoDetail).show(supportFragmentManager, this.javaClass.name)
+    }
+
+    private fun showTodoDoneDialog(broomCount: Int) {
+        TodoDoneDialogFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(
+                    TodoDoneDialogFragment.BROOM_COUNT, broomCount
+                )
+            }
+        }.show(supportFragmentManager, TodoDoneDialogFragment.DIALOG_TODO_DONE)
     }
 
     private fun refresh() {
