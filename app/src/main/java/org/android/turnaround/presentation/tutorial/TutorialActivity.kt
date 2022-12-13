@@ -15,12 +15,12 @@ import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.
 import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.NOT_USER
 import org.android.turnaround.presentation.tutorial.TutorialViewModel.Companion.NOT_VALID_SOCIAL_TOKEN
 import org.android.turnaround.presentation.tutorial.apdater.TutorialAdapter
+import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
 import org.android.turnaround.util.extension.repeatOnStarted
-import org.android.turnaround.util.showToast
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -89,7 +89,7 @@ class TutorialActivity : BindingActivity<ActivityTutorialBinding>(R.layout.activ
                 } else {
                     when (viewModel.failLoginStatusCode) {
                         NOT_VALID_SOCIAL_TOKEN -> {
-                            showToast(getString(R.string.not_valid_social_token_error))
+                            ToastMessageUtil.showToast(this@TutorialActivity, getString(R.string.not_valid_social_token_error))
                         }
                         NOT_USER -> {
                             startActivity(Intent(this, SignUpActivity::class.java))

@@ -12,8 +12,8 @@ import org.android.turnaround.presentation.home.TodoStartBottomSheet
 import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
 import org.android.turnaround.presentation.todoeventedit.TodoEventEditActivity
 import org.android.turnaround.util.EventObserver
+import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
-import org.android.turnaround.util.showToast
 
 @AndroidEntryPoint
 class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.activity_todo_event) {
@@ -64,7 +64,7 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
 
     private fun initTodoAlarmOffObserver() {
         viewModel.alarmOff.observe(this) {
-            applicationContext.showToast(it as String)
+            ToastMessageUtil.showToast(this@TodoEventActivity, it as String)
         }
     }
 

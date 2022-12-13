@@ -154,6 +154,7 @@
     <string name="activity_type_free">FREE</string>
     <string name="activity_type_kit">KIT</string>
     <string name="activity_brush">활동 후 빗자루 리워드</string>
+    <string name="activity_reserve_toast_msg">⏰활동을 예약했어요!</string>
 
     <!-- Bottom Sheet To-do Start -->
     <string name="bottom_sheet_todo_start_category_img_desc">활동 상세 카테고리 이미지</string>
@@ -177,6 +178,7 @@
     <string name="bottom_sheet_todo_reserve_edit_alarm">활동 시간 알람</string>
     <string name="bottom_sheet_todo_reserve_duration">소요 시간</string>
     <string name="bottom_sheet_todo_reserve_btn">예약 완료</string>
+    <string name="bottom_sheet_todo_reserve_edit_btn">예약 변경 완료</string>
     <string name="bottom_sheet_todo_reserve_colon">:</string>
 
     <!-- My -->

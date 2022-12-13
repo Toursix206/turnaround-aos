@@ -225,7 +225,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/shape_gray10_rect_fill_14"
             android:paddingVertical="16dp"
-            android:text="@string/bottom_sheet_todo_reserve_btn"
+            android:text="@{reserveType == TodoReserveType.CREATE_MODE ? @string/bottom_sheet_todo_reserve_btn : @string/bottom_sheet_todo_reserve_edit_btn}"
             android:textAlignment="center"
             android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_white"

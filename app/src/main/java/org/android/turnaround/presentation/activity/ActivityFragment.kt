@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.collectLatest
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentActivityBinding
 import org.android.turnaround.presentation.activity.paging.ActivityPagingAdapter
+import org.android.turnaround.util.ToastMessageUtil
+import org.android.turnaround.util.UiEvent
 import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.bottom_sheet.TodoReserveBottomSheet
 import org.android.turnaround.util.bottom_sheet.TodoReserveBtnClickListener
@@ -26,6 +28,7 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
         binding.vm = viewModel
         initActivityAdapter()
         initCategoryCollector()
+        initReserveTodoUiEventCollector()
     }
 
     private fun initActivityAdapter() {
@@ -58,6 +61,16 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
             viewModel.category.collect {
                 activityAdapter.submitData(lifecycle, PagingData.empty())
                 collectActivityList()
+            }
+        }
+    }
+
+    private fun initReserveTodoUiEventCollector() {
+        repeatOnStarted {
+            viewModel.reserveTodoUiEvent.collect { uiEvent ->
+                if (uiEvent == UiEvent.SUCCESS) {
+                    ToastMessageUtil.showTopPurpleToast(requireContext(), getString(R.string.activity_reserve_toast_msg), false)
+                }
             }
         }
     }
