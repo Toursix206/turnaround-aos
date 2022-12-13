@@ -19,6 +19,11 @@
         <item name="android:background">@drawable/shape_white_rect_fill_24</item>
     </style>
 
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
     <style name="NumberPickerStyle">
         <item name="android:fontFamily">@font/pretendard_family</item>
         <item name="android:textStyle">bold</item>
