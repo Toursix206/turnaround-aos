@@ -14,18 +14,8 @@
         android:background="@color/turnaround_gray_1"
         tools:context=".presentation.todoevent.TodoEventActivity">
 
-        <ImageView
-            android:id="@+id/tv_todo_event_edit_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/todo_event_img_back_desc"
-            android:padding="16dp"
-            android:src="@drawable/ic_todo_event_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/iv_todo_event_edit_tool_bar_title"
+            android:id="@+id/tv_todo_event_edit_tool_bar_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
@@ -34,6 +24,16 @@
             android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_todo_event_edit_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo_event_img_back_desc"
+            android:padding="16dp"
+            android:src="@drawable/ic_todo_event_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_todo_event_edit_tool_bar_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_event_edit_tool_bar_title"
             tools:listitem="@layout/item_todo_event_white" />
 
 

@@ -7,7 +7,10 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoEventEditBinding
-import org.android.turnaround.presentation.todoeventedit.adapter.TodoEventEditAdapter
+import org.android.turnaround.domain.entity.TodoEvent
+import org.android.turnaround.domain.entity.TodoHeader
+import org.android.turnaround.domain.entity.TodoList
+import org.android.turnaround.presentation.todoeventedit.adapter.TodoEditAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
@@ -21,7 +24,6 @@ import org.android.turnaround.util.dialog.WarningType
 @AndroidEntryPoint
 class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.layout.activity_todo_event_edit) {
     private val viewModel by viewModels<TodoEventEditViewModel>()
-    private var deletedTodoId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +41,35 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
 
     private fun initTodoListObserver() {
         viewModel.todoList.observe(this) {
-            binding.rvTodoEventEdit.adapter = TodoEventEditAdapter(
-                context = applicationContext,
+            binding.rvTodoEventEdit.adapter = TodoEditAdapter(
                 viewModel = viewModel
             ).apply {
-                submitTodoEventEditList(it)
+                submitList(getTodoList(it))
             }
         }
+    }
+
+    private fun getTodoList(list: TodoList): MutableList<TodoEvent> {
+        val data = mutableListOf<TodoEvent>()
+        // 오늘의 활동
+        if (list.todayTodosCnt > 0) {
+            val header = TodoHeader(getString(R.string.todo_event_todo_today), list.todayTodosCnt)
+            data.add(header)
+            data.addAll(list.todayTodos)
+        }
+        // 이번주 활동
+        if (list.thisWeekTodosCnt > 0) {
+            val header = TodoHeader(getString(R.string.todo_event_todo_this_week), list.thisWeekTodosCnt)
+            data.add(header)
+            data.addAll(list.thisWeekTodos)
+        }
+        // 다음 활동
+        if (list.nextTodosCnt > 0) {
+            val header = TodoHeader(getString(R.string.todo_event_todo_next), list.nextTodosCnt)
+            data.add(header)
+            data.addAll(list.nextTodos)
+        }
+        return data
     }
 
     private fun initIsCheckedDeleteBtnEventObserver() {
@@ -63,7 +87,6 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
                             DialogBtnClickListener(
                                 id = todoId,
                                 clickActionWithId = { id ->
-                                    deletedTodoId = id
                                     viewModel.deleteTodo(id)
                                 }
                             )
@@ -76,7 +99,7 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
 
     private fun initDeleteTodoObserver() {
         viewModel.deleteTodo.observe(this) {
-            (binding.rvTodoEventEdit.adapter as TodoEventEditAdapter).deleteTodoItem(deletedTodoId)
+            viewModel.getTodoList()
         }
     }
 
@@ -120,7 +143,7 @@ class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.la
     }
 
     private fun initBackBtnClickListener() {
-        binding.ivTodoEventEditToolBarTitle.setOnClickListener {
+        binding.ivTodoEventEditBack.setOnClickListener {
             setResult(RESULT_OK, intent)
             finish()
         }
