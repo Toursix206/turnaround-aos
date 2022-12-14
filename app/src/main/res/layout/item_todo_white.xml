@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="vm"
+            type="org.android.turnaround.presentation.home.HomeViewModel" />
+
+        <variable
             name="todo"
             type="org.android.turnaround.domain.entity.HomeTodo" />
     </data>
@@ -14,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
-        android:background="@drawable/shape_white_rect_fill_16_with_shadow">
+        android:background="@drawable/shape_white_rect_fill_16_with_shadow"
+        android:onClick="@{() -> vm.setBlackTodoId(todo.todoId)}">
 
         <View
             android:id="@+id/view_todo_white"
@@ -47,8 +52,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{todo.activityName}"
-            app:layout_constraintEnd_toStartOf="@id/iv_todo"
             android:textAppearance="@style/body1_semi_bold"
+            app:layout_constraintEnd_toStartOf="@id/iv_todo"
             app:layout_constraintStart_toStartOf="@id/tv_todo_category"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_category"
             tools:text="밀린 이불 빨래빨래빨래빨래빨래빨래빨래빨래빨래빨래빨래빨래빨래" />

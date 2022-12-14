@@ -38,7 +38,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private fun initHomeAdapter(todosCnt: Int, todos: List<HomeTodo>) {
         with(binding.vpHomeTodo) {
             adapter = TodoAdapter(viewModel).apply {
-                if (todosCnt > 0) submitHomeActivityList(todos)
+                if (todosCnt > 0) submitTodoList(todos)
                 val pageMargin = resources.getDimension(R.dimen.vp_home_page_margin)
                 val pagerOffset = resources.getDimension(R.dimen.vp_home_pager_offset)
                 setShowSideItems(pageMargin, pagerOffset)

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.android.turnaround.databinding.ItemTodoBlackBinding
-import org.android.turnaround.databinding.ItemTodoPurpleBinding
 import org.android.turnaround.databinding.ItemTodoWhiteBinding
 import org.android.turnaround.domain.entity.HomeTodo
 import org.android.turnaround.domain.entity.TodoType
@@ -20,7 +19,6 @@ class TodoAdapter(
 
         return when (viewType) {
             VIEW_TYPE_TODO_BLACK -> TodoBlackViewHolder(ItemTodoBlackBinding.inflate(inflater, parent, false))
-            VIEW_TYPE_TODO_PURPLE -> TodoPurpleViewHolder(ItemTodoPurpleBinding.inflate(inflater, parent, false))
             else -> TodoWhiteViewHolder(ItemTodoWhiteBinding.inflate(inflater, parent, false))
         }
     }
@@ -35,10 +33,6 @@ class TodoAdapter(
                 val item = todoList[position]
                 holder.bind(item)
             }
-            is TodoPurpleViewHolder -> {
-                val item = todoList[position]
-                holder.bind(item)
-            }
         }
     }
 
@@ -48,11 +42,11 @@ class TodoAdapter(
         return when (todoList[position].todoStatus) {
             TodoType.WHITE -> VIEW_TYPE_TODO_WHITE
             TodoType.BLACK -> VIEW_TYPE_TODO_BLACK
-            TodoType.PURPLE -> VIEW_TYPE_TODO_PURPLE
+            else -> VIEW_TYPE_TODO_WHITE
         }
     }
 
-    fun submitHomeActivityList(items: List<HomeTodo>) {
+    fun submitTodoList(items: List<HomeTodo>) {
         todoList.addAll(items)
         notifyItemRangeInserted(items.size, items.size)
     }
@@ -60,6 +54,7 @@ class TodoAdapter(
     inner class TodoWhiteViewHolder(private val binding: ItemTodoWhiteBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: HomeTodo) {
             binding.todo = todo
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }
@@ -72,16 +67,8 @@ class TodoAdapter(
         }
     }
 
-    inner class TodoPurpleViewHolder(private val binding: ItemTodoPurpleBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(todo: HomeTodo) {
-            binding.todo = todo
-            binding.executePendingBindings()
-        }
-    }
-
     companion object {
         const val VIEW_TYPE_TODO_WHITE = 1
         const val VIEW_TYPE_TODO_BLACK = 2
-        const val VIEW_TYPE_TODO_PURPLE = 3
     }
 }

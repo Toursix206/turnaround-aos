@@ -2,6 +2,7 @@ package org.android.turnaround.data.remote.entity.response
 
 import org.android.turnaround.domain.entity.TodoCategory
 import org.android.turnaround.domain.entity.TodoDetail
+import org.android.turnaround.domain.entity.TodoPushType
 
 data class TodoDetailResponse(
     val activityId: Int,
@@ -9,6 +10,7 @@ data class TodoDetailResponse(
     val category: String,
     val name: String,
     val point: Int,
+    val pushStatus: String,
     val rewardItem: String?,
     val type: String,
     val leftTime: String,
@@ -21,6 +23,7 @@ data class TodoDetailResponse(
             category = this.category,
             name = this.name,
             point = this.point,
+            pushStatus = TodoPushType.valueOf(this.pushStatus),
             rewardItem = this.rewardItem,
             type = this.type,
             categoryName = TodoCategory.valueOf(this.category).title,

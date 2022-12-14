@@ -96,35 +96,27 @@
             app:layout_constraintTop_toTopOf="@id/tv_todo_edit_duration"
             tools:text="30분" />
 
-        <com.shawnlin.numberpicker.NumberPicker
+        <NumberPicker
             android:id="@+id/picker_todo_edit_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginTop="41dp"
+            android:selectionDividerHeight="0.5dp"
+            android:theme="@style/NumberPickerStyle"
             app:layout_constraintEnd_toStartOf="@id/picker_todo_edit_hour"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_duration"
-            app:np_dividerColor="@color/turnaround_gray_4"
-            app:np_dividerThickness="0.5dp"
-            app:np_selectedTextColor="@color/turnaround_purple"
-            app:np_selectedTextSize="16sp"
-            app:np_textColor="@color/turnaround_gray_5"
-            app:np_textSize="16sp" />
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_duration" />
 
-        <com.shawnlin.numberpicker.NumberPicker
+        <NumberPicker
             android:id="@+id/picker_todo_edit_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:selectionDividerHeight="0.5dp"
+            android:theme="@style/NumberPickerStyle"
             app:layout_constraintBottom_toBottomOf="@id/picker_todo_edit_date"
             app:layout_constraintEnd_toStartOf="@id/picker_todo_edit_minute"
-            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_date"
-            app:np_dividerColor="@color/turnaround_gray_4"
-            app:np_dividerThickness="0.5dp"
-            app:np_selectedTextColor="@color/turnaround_purple"
-            app:np_selectedTextSize="16sp"
-            app:np_textColor="@color/turnaround_gray_5"
-            app:np_textSize="16sp" />
+            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_date" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -137,34 +129,26 @@
             app:layout_constraintStart_toEndOf="@id/picker_todo_edit_hour"
             app:layout_constraintTop_toTopOf="@id/picker_todo_edit_hour" />
 
-        <com.shawnlin.numberpicker.NumberPicker
+        <NumberPicker
             android:id="@+id/picker_todo_edit_minute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:selectionDividerHeight="0.5dp"
+            android:theme="@style/NumberPickerStyle"
             app:layout_constraintBottom_toBottomOf="@id/picker_todo_edit_hour"
             app:layout_constraintEnd_toStartOf="@id/picker_todo_edit_ampm"
-            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_hour"
-            app:np_dividerColor="@color/turnaround_gray_4"
-            app:np_dividerThickness="0.5dp"
-            app:np_selectedTextColor="@color/turnaround_purple"
-            app:np_selectedTextSize="16sp"
-            app:np_textColor="@color/turnaround_gray_5"
-            app:np_textSize="16sp" />
+            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_hour" />
 
-        <com.shawnlin.numberpicker.NumberPicker
+        <NumberPicker
             android:id="@+id/picker_todo_edit_ampm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="36dp"
+            android:selectionDividerHeight="0.5dp"
+            android:theme="@style/NumberPickerStyle"
             app:layout_constraintBottom_toBottomOf="@id/picker_todo_edit_minute"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_minute"
-            app:np_dividerColor="@color/turnaround_gray_4"
-            app:np_dividerThickness="0.5dp"
-            app:np_selectedTextColor="@color/turnaround_purple"
-            app:np_selectedTextSize="16sp"
-            app:np_textColor="@color/turnaround_gray_5"
-            app:np_textSize="16sp" />
+            app:layout_constraintTop_toTopOf="@id/picker_todo_edit_minute" />
 
         <View
             android:id="@+id/view_todo_edit_divider"
