@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.android.turnaround.domain.repository.HomeRepository
-import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.domain.entity.Home
 import org.android.turnaround.domain.entity.TodoDetail
+import org.android.turnaround.domain.repository.HomeRepository
+import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.util.Event
 import timber.log.Timber
 import javax.inject.Inject
@@ -33,10 +35,10 @@ class HomeViewModel @Inject constructor(
     val todoDetail: LiveData<Event<TodoDetail>> = _todoDetail
 
     init {
-        getHome()
+        getHomeInfo()
     }
 
-    private fun getHome() = viewModelScope.launch {
+    private fun getHomeInfo() = viewModelScope.launch {
         homeRepository.getHome()
             .onSuccess {
                 _home.value = it

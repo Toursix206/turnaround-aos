@@ -11,9 +11,8 @@ import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.TodoStartBottomSheet
 import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
 import org.android.turnaround.presentation.todoeventedit.TodoEventEditActivity
-import org.android.turnaround.util.EventObserver
+import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
-import org.android.turnaround.util.showToast
 
 @AndroidEntryPoint
 class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.activity_todo_event) {
@@ -29,10 +28,10 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
         initTodoListObserver()
-        initIsClickedBlackItemEventObserver()
         initTodoDetailObserver()
+        initTodoRewardObserver()
         initTodoAlarmOffObserver()
-        initOpenTodoEventEventEditClickListener()
+        initTodoEventEditClickListener()
         initBackBtnClickListener()
     }
 
@@ -47,13 +46,10 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         }
     }
 
-    private fun initIsClickedBlackItemEventObserver() {
-        viewModel.isClickedBlackItemEvent.observe(
-            this,
-            EventObserver {
-                viewModel.getTodoDetail(it)
-            }
-        )
+    private fun initTodoRewardObserver() {
+        viewModel.todoReward.observe(this) {
+            showTodoDoneDialog(it.broom)
+        }
     }
 
     private fun initTodoDetailObserver() {
@@ -64,15 +60,11 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
 
     private fun initTodoAlarmOffObserver() {
         viewModel.alarmOff.observe(this) {
-            applicationContext.showToast(it as String)
+            ToastMessageUtil.showToast(this@TodoEventActivity, it as String)
         }
     }
 
-    private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
-        TodoStartBottomSheet(todoDetail).show(supportFragmentManager, this.javaClass.name)
-    }
-
-    private fun initOpenTodoEventEventEditClickListener() {
+    private fun initTodoEventEditClickListener() {
         binding.ivTodoEventSetting.setOnClickListener {
             todoEventEditResultLauncher.launch(Intent(this, TodoEventEditActivity::class.java))
         }
@@ -82,6 +74,20 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
         binding.ivTodoEventBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
+        TodoStartBottomSheet(todoDetail).show(supportFragmentManager, this.javaClass.name)
+    }
+
+    private fun showTodoDoneDialog(broomCount: Int) {
+        TodoDoneDialogFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(
+                    TodoDoneDialogFragment.BROOM_COUNT, broomCount
+                )
+            }
+        }.show(supportFragmentManager, TodoDoneDialogFragment.DIALOG_TODO_DONE)
     }
 
     private fun refresh() {

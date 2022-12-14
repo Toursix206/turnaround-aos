@@ -10,10 +10,6 @@
         <variable
             name="content"
             type="String" />
-
-        <variable
-            name="textColor"
-            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +25,6 @@
             android:text="@{content}"
             android:textAlignment="center"
             android:textAppearance="@style/body2_semi_bold"
-            android:textColor="@{ContextCompat.getColor(context, textColor)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

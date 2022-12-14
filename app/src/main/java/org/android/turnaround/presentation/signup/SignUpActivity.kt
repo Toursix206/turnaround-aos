@@ -10,6 +10,9 @@ import org.android.turnaround.databinding.ActivitySignUpBinding
 import org.android.turnaround.presentation.main.MainActivity
 import org.android.turnaround.util.KeyBoardUtil
 import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.dialog.DialogBtnClickListener
+import org.android.turnaround.util.dialog.WarningDialogFragment
+import org.android.turnaround.util.dialog.WarningType
 import org.android.turnaround.util.extension.repeatOnStarted
 
 @AndroidEntryPoint
@@ -22,6 +25,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         initEditTextClearFocus()
         initNicknameChangeListener()
         initIsSuccessSignUpCollector()
+        initIsSuccessPutSettingCollector()
     }
 
     private fun initEditTextClearFocus() {
@@ -44,6 +48,31 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     private fun initIsSuccessSignUpCollector() {
         repeatOnStarted {
             viewModel.isSuccessSignUp.collect { isSuccess ->
+                if (isSuccess) {
+                    WarningDialogFragment().apply {
+                        arguments = Bundle().apply {
+                            putSerializable(
+                                WarningDialogFragment.WARNING_TYPE,
+                                WarningType.WARNING_NOTIFICATION
+                            )
+                            putParcelable(
+                                WarningDialogFragment.CONFIRM_ACTION,
+                                DialogBtnClickListener(clickAction = { viewModel.putSetting(true) })
+                            )
+                            putParcelable(
+                                WarningDialogFragment.CANCEL_ACTION,
+                                DialogBtnClickListener(clickAction = { viewModel.putSetting(false) })
+                            )
+                        }
+                    }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
+                }
+            }
+        }
+    }
+
+    private fun initIsSuccessPutSettingCollector() {
+        repeatOnStarted {
+            viewModel.isSuccessPutSetting.collect { isSuccess ->
                 if (isSuccess) {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()

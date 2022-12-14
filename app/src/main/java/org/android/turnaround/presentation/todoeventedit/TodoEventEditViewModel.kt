@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
-import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoList
+import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.util.Event
 import retrofit2.HttpException
 import timber.log.Timber
@@ -24,9 +24,6 @@ class TodoEventEditViewModel @Inject constructor(
 
     private val _isClickedEditBtnEvent = MutableLiveData<Event<Todo>>()
     val isClickedEditBtnEvent: LiveData<Event<Todo>> = _isClickedEditBtnEvent
-
-    private val _isClickedBottomSheetTodoEditBtnEvent = MutableLiveData<Event<Int>>()
-    val isClickedBottomSheetTodoEditBtnEvent: LiveData<Event<Int>> = _isClickedBottomSheetTodoEditBtnEvent
 
     private val _todoList = MutableLiveData<TodoList>()
     val todoList: LiveData<TodoList> = _todoList
@@ -59,10 +56,6 @@ class TodoEventEditViewModel @Inject constructor(
 
     fun setIsCheckedEditBtnEvent(todo: Todo) {
         _isClickedEditBtnEvent.value = Event(todo)
-    }
-
-    fun setIsCheckedBottomSheetTodoEditBtnEvent(todoId: Int) {
-        _isClickedBottomSheetTodoEditBtnEvent.value = Event(todoId)
     }
 
     fun deleteTodo(todoId: Int) = viewModelScope.launch {

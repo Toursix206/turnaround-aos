@@ -11,6 +11,7 @@
     <color name="turnaround_black">#000000</color>
     <color name="turnaround_white">#FFFFFF</color>
     <color name="turnaround_alert">#FF5555</color>
+    <color name="turnaround_toast_red">#FFB2B2</color>
     <color name="turnaround_approve">#377BFF</color>
     <color name="turnaround_gray_1">#f8f8fa</color>
     <color name="turnaround_gray_2">#f2f2f7</color>

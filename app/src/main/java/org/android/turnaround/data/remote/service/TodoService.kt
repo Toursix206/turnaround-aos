@@ -17,6 +17,8 @@ interface TodoService {
     suspend fun putTodo(@Path("todoId") todoId: Int, @Body body: TodoEditRequest): BaseResponse<String>
     @DELETE("/v1/todo/{todoId}")
     suspend fun deleteTodo(@Path("todoId") todoId: Int): BaseResponse<String>
+    @PUT("/v1/todo/{todoId}/reward")
+    suspend fun putTodoReward(@Path("todoId") todoId: Int): BaseResponse<TodoRewardResponse>
     @PUT("/v1/todos/notification/off")
     suspend fun putNotificationOff(): BaseResponse<String>
 }

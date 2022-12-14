@@ -11,7 +11,7 @@
 
         <variable
             name="todo"
-            type="org.android.turnaround.domain.entity.Todo" />
+            type="org.android.turnaround.domain.entity.HomeTodo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

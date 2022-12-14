@@ -3,6 +3,8 @@ package org.android.turnaround.di
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Handler
+import android.os.Looper
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -20,7 +22,7 @@ import org.android.turnaround.data.remote.repository.RefreshRepositoryImpl.Compa
 import org.android.turnaround.data.remote.repository.RefreshRepositoryImpl.Companion.EXPIRED_TOKEN
 import org.android.turnaround.domain.repository.RefreshRepository
 import org.android.turnaround.presentation.intro.IntroActivity
-import org.android.turnaround.util.showToast
+import org.android.turnaround.util.ToastMessageUtil
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -84,10 +86,17 @@ object RetrofitModule {
                                                 clear()
                                                 commit()
                                             }
-                                            context.showToast(context.getString(R.string.refresh_error))
-                                            context.startActivity(
-                                                Intent(context, IntroActivity::class.java).apply {
-                                                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                            Handler(Looper.getMainLooper()).post(
+                                                Runnable {
+                                                    ToastMessageUtil.showToast(
+                                                        context,
+                                                        context.getString(R.string.refresh_error)
+                                                    )
+                                                    context.startActivity(
+                                                        Intent(context, IntroActivity::class.java).apply {
+                                                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                                        }
+                                                    )
                                                 }
                                             )
                                         }

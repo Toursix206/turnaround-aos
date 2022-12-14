@@ -8,7 +8,7 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoGuideBinding
 import org.android.turnaround.presentation.todo_guide.adapter.TodoGuideAdapter
 import org.android.turnaround.util.binding.BindingActivity
-import org.android.turnaround.util.dialog.ConfirmClickListener
+import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
 import org.android.turnaround.util.extension.repeatOnStarted
@@ -47,7 +47,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
                         )
                         putParcelable(
                             WarningDialogFragment.CONFIRM_ACTION,
-                            ConfirmClickListener(confirmAction = { finish() })
+                            DialogBtnClickListener(clickAction = { finish() })
                         )
                     }
                 }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)

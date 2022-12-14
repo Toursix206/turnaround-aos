@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.android.turnaround.databinding.ItemTodoBlackBinding
 import org.android.turnaround.databinding.ItemTodoWhiteBinding
-import org.android.turnaround.domain.entity.*
+import org.android.turnaround.domain.entity.HomeTodo
+import org.android.turnaround.domain.entity.TodoType
 import org.android.turnaround.presentation.home.HomeViewModel
 
 class TodoAdapter(
     private val viewModel: HomeViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val todoList = mutableListOf<Todo>()
+    private val todoList = mutableListOf<HomeTodo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -45,13 +46,13 @@ class TodoAdapter(
         }
     }
 
-    fun submitTodoList(items: List<Todo>) {
+    fun submitTodoList(items: List<HomeTodo>) {
         todoList.addAll(items)
         notifyItemRangeInserted(items.size, items.size)
     }
 
     inner class TodoWhiteViewHolder(private val binding: ItemTodoWhiteBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(todo: Todo) {
+        fun bind(todo: HomeTodo) {
             binding.todo = todo
             binding.vm = viewModel
             binding.executePendingBindings()
@@ -59,7 +60,7 @@ class TodoAdapter(
     }
 
     inner class TodoBlackViewHolder(private val binding: ItemTodoBlackBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(todo: Todo) {
+        fun bind(todo: HomeTodo) {
             binding.todo = todo
             binding.vm = viewModel
             binding.executePendingBindings()
