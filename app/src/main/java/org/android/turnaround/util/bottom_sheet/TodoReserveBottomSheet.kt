@@ -10,7 +10,7 @@ import org.android.turnaround.R
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.databinding.BottomSheetTodoEditBinding
 import org.android.turnaround.domain.entity.PushStatusType
-import org.android.turnaround.presentation.todoeventedit.TodoEventEditViewModel
+import org.android.turnaround.presentation.todo_edit.TodoEditViewModel
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -19,7 +19,7 @@ import java.util.Date
 class TodoReserveBottomSheet : BottomSheetDialogFragment() {
     val binding get() = _binding ?: error(getString(R.string.binding_error))
     private var _binding: BottomSheetTodoEditBinding? = null
-    private val viewModel by activityViewModels<TodoEventEditViewModel>()
+    private val viewModel by activityViewModels<TodoEditViewModel>()
     private val reserveType
         get() = arguments?.get(RESERVE_TYPE)
             ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))

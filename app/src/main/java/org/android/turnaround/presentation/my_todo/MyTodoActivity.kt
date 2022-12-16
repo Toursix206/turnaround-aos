@@ -10,7 +10,7 @@ import org.android.turnaround.databinding.ActivityMyTodoBinding
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.TodoStartBottomSheet
 import org.android.turnaround.presentation.my_todo.adaprer.MyTodoAdapter
-import org.android.turnaround.presentation.todoeventedit.TodoEventEditActivity
+import org.android.turnaround.presentation.todo_edit.TodoEditActivity
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
 
@@ -66,7 +66,7 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
 
     private fun initTodoEventEditClickListener() {
         binding.ivTodoEventSetting.setOnClickListener {
-            todoEventEditResultLauncher.launch(Intent(this, TodoEventEditActivity::class.java))
+            todoEventEditResultLauncher.launch(Intent(this, TodoEditActivity::class.java))
         }
     }
 

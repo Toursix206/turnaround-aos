@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.todoeventedit
+package org.android.turnaround.presentation.todo_edit
 
 import android.os.Bundle
 import android.view.Gravity
@@ -6,11 +6,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
-import org.android.turnaround.databinding.ActivityTodoEventEditBinding
+import org.android.turnaround.databinding.ActivityTodoEditBinding
 import org.android.turnaround.domain.entity.TodoEvent
 import org.android.turnaround.domain.entity.TodoHeader
 import org.android.turnaround.domain.entity.TodoList
-import org.android.turnaround.presentation.todoeventedit.adapter.TodoEditAdapter
+import org.android.turnaround.presentation.todo_edit.adapter.TodoEditAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
@@ -22,8 +22,8 @@ import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
 
 @AndroidEntryPoint
-class TodoEventEditActivity : BindingActivity<ActivityTodoEventEditBinding>(R.layout.activity_todo_event_edit) {
-    private val viewModel by viewModels<TodoEventEditViewModel>()
+class TodoEditActivity : BindingActivity<ActivityTodoEditBinding>(R.layout.activity_todo_edit) {
+    private val viewModel by viewModels<TodoEditViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

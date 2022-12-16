@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.todoeventedit
+package org.android.turnaround.presentation.todo_edit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +16,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class TodoEventEditViewModel @Inject constructor(
+class TodoEditViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
     private val _isClickedDeleteBtnEvent = MutableLiveData<Event<Int>>()
