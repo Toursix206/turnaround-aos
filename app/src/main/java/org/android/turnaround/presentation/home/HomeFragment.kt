@@ -11,7 +11,7 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentHomeBinding
 import org.android.turnaround.domain.entity.*
 import org.android.turnaround.presentation.home.adapter.TodoAdapter
-import org.android.turnaround.presentation.todoevent.TodoEventActivity
+import org.android.turnaround.presentation.my_todo.MyTodoActivity
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.binding.BindingFragment
 
@@ -66,7 +66,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initTodoEventEventClickListener() {
         binding.tvHomeShowMore.setOnClickListener {
-            startActivity(Intent(requireActivity(), TodoEventActivity::class.java))
+            startActivity(Intent(requireActivity(), MyTodoActivity::class.java))
         }
     }
 

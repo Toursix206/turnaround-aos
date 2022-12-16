@@ -9,14 +9,14 @@
 
         <variable
             name="vm"
-            type="org.android.turnaround.presentation.todoevent.TodoEventViewModel" />
+            type="org.android.turnaround.presentation.my_todo.MyTodoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/turnaround_gray_1"
-        tools:context=".presentation.todoevent.TodoEventActivity">
+        tools:context=".presentation.my_todo.MyTodoActivity">
 
         <ImageView
             android:id="@+id/iv_todo_event_back"
@@ -129,7 +129,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_event_tool_bar_title"
-            tools:listitem="@layout/item_todo_event_white" />
+            tools:listitem="@layout/item_my_todo_white" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

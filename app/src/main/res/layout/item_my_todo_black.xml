@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="org.android.turnaround.presentation.todoevent.TodoEventViewModel" />
+            type="org.android.turnaround.presentation.my_todo.MyTodoViewModel" />
 
         <variable
             name="todo"

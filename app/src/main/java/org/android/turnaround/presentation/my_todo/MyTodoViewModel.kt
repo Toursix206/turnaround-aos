@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.todoevent
+package org.android.turnaround.presentation.my_todo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +16,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class TodoEventViewModel @Inject constructor(
+class MyTodoViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
     private val _isTodoExist = MutableStateFlow(false)

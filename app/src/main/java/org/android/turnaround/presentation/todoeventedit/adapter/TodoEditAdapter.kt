@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.android.turnaround.databinding.ItemTodoEventBlackEditBinding
-import org.android.turnaround.databinding.ItemTodoEventHeaderBinding
+import org.android.turnaround.databinding.ItemTodoHeaderBinding
 import org.android.turnaround.databinding.ItemTodoEventWhiteEditBinding
 import org.android.turnaround.domain.entity.*
 import org.android.turnaround.presentation.todoeventedit.TodoEventEditViewModel
@@ -15,7 +15,7 @@ class TodoEditAdapter(
     private val viewModel: TodoEventEditViewModel
 ) : ListAdapter<TodoEvent, RecyclerView.ViewHolder>(todoDiffUtil) {
 
-    inner class TodoEvenHeaderViewHolder(private val binding: ItemTodoEventHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodoEvenHeaderViewHolder(private val binding: ItemTodoHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(header: TodoHeader) {
             binding.header = header
             binding.executePendingBindings()
@@ -41,7 +41,7 @@ class TodoEditAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            VIEW_TYPE_TODO_EDIT_HEADER -> TodoEvenHeaderViewHolder(ItemTodoEventHeaderBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_TODO_EDIT_HEADER -> TodoEvenHeaderViewHolder(ItemTodoHeaderBinding.inflate(inflater, parent, false))
             VIEW_TYPE_TODO_EDIT_BLACK -> TodoEventBlackEditViewHolder(ItemTodoEventBlackEditBinding.inflate(inflater, parent, false))
             else -> TodoEventWhiteEditViewHolder(ItemTodoEventWhiteEditBinding.inflate(inflater, parent, false))
         }

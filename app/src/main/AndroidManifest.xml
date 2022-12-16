@@ -36,7 +36,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".presentation.todoevent.TodoEventActivity"
+            android:name=".presentation.my_todo.MyTodoActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />

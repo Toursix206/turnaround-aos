@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.todoevent
+package org.android.turnaround.presentation.my_todo
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,17 +6,17 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
-import org.android.turnaround.databinding.ActivityTodoEventBinding
+import org.android.turnaround.databinding.ActivityMyTodoBinding
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.TodoStartBottomSheet
-import org.android.turnaround.presentation.todoevent.adaprer.TodoEventAdapter
+import org.android.turnaround.presentation.my_todo.adaprer.MyTodoAdapter
 import org.android.turnaround.presentation.todoeventedit.TodoEventEditActivity
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
 
 @AndroidEntryPoint
-class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.activity_todo_event) {
-    private val viewModel by viewModels<TodoEventViewModel>()
+class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_my_todo) {
+    private val viewModel by viewModels<MyTodoViewModel>()
 
     private val todoEventEditResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
@@ -37,7 +37,7 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
 
     private fun initTodoListObserver() {
         viewModel.todoList.observe(this) {
-            binding.rvTodoEvent.adapter = TodoEventAdapter(
+            binding.rvTodoEvent.adapter = MyTodoAdapter(
                 context = applicationContext,
                 viewModel = viewModel
             ).apply {
@@ -60,7 +60,7 @@ class TodoEventActivity : BindingActivity<ActivityTodoEventBinding>(R.layout.act
 
     private fun initTodoAlarmOffObserver() {
         viewModel.alarmOff.observe(this) {
-            ToastMessageUtil.showToast(this@TodoEventActivity, it as String)
+            ToastMessageUtil.showToast(this@MyTodoActivity, it as String)
         }
     }
 
