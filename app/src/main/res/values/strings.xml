@@ -181,7 +181,8 @@
     <string name="bottom_sheet_todo_reserve_edit_btn">활동 변경 완료</string>
     <string name="bottom_sheet_todo_reserve_colon">:</string>
     <string name="todo_reserve_toast_msg_cannot_delete">수정/삭제 할 수 없는 일정입니다.</string>
-    <string name="todo_reserve_toast_msg_success">⏰ 활동을 예약했어요!</string>패
+    <string name="todo_reserve_toast_msg_success">⏰ 활동을 예약했어요!</string>
+    <string name="todo_reserve_edit_toast_msg_success">🙂 활동이 변경되었어요!</string>
     <string name="todo_reserve_toast_msg_invalid_date">😥 예약 실패! 2주 뒤로는 예약을 못해요</string>
     <string name="todo_reserve_toast_msg_duplicate">😕 예약된 다른 활동과 겹치는 일정이에요!</string>
 
