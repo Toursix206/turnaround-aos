@@ -155,7 +155,6 @@
     <string name="activity_type_free">FREE</string>
     <string name="activity_type_kit">KIT</string>
     <string name="activity_brush">활동 후 빗자루 리워드</string>
-    <string name="activity_reserve_toast_msg">⏰활동을 예약했어요!</string>
 
     <!-- Bottom Sheet To-do Start -->
     <string name="bottom_sheet_todo_start_category_img_desc">활동 상세 카테고리 이미지</string>
@@ -181,6 +180,10 @@
     <string name="bottom_sheet_todo_reserve_btn">활동 예약 완료</string>
     <string name="bottom_sheet_todo_reserve_edit_btn">활동 변경 완료</string>
     <string name="bottom_sheet_todo_reserve_colon">:</string>
+    <string name="todo_reserve_toast_msg_cannot_delete">수정/삭제 할 수 없는 일정입니다.</string>
+    <string name="todo_reserve_toast_msg_success">⏰ 활동을 예약했어요!</string>패
+    <string name="todo_reserve_toast_msg_invalid_date">😥 예약 실패! 2주 뒤로는 예약을 못해요</string>
+    <string name="todo_reserve_toast_msg_duplicate">😕 예약된 다른 활동과 겹치는 일정이에요!</string>
 
     <!-- My -->
     <string name="my_title">마이페이지</string>
