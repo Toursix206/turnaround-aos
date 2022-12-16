@@ -60,7 +60,7 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
 
     private fun initTodoAlarmOffObserver() {
         viewModel.alarmOff.observe(this) {
-            ToastMessageUtil.showToast(this@MyTodoActivity, it as String)
+            ToastMessageUtil.showGrayToast(this@MyTodoActivity, it as String)
         }
     }
 
