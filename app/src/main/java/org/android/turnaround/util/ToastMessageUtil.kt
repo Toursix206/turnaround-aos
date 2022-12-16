@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import org.android.turnaround.R
+import org.android.turnaround.databinding.ToastTurnaroundGrayBinding
 import org.android.turnaround.databinding.ToastTurnaroundPurpleBinding
 
 object ToastMessageUtil {
@@ -39,6 +40,26 @@ object ToastMessageUtil {
                 Gravity.TOP -> setGravity(Gravity.TOP + Gravity.FILL_HORIZONTAL, 0, 28.toPx())
                 Gravity.FILL_HORIZONTAL -> setGravity(Gravity.FILL_HORIZONTAL, 0, 0)
             }
+            duration = Toast.LENGTH_SHORT
+            view = binding.root
+        }
+
+        requireNotNull(toast).show()
+    }
+
+    fun showGrayToast(
+        context: Context,
+        content: String
+    ) {
+        toast?.cancel()
+
+        val inflater = LayoutInflater.from(context)
+        val binding: ToastTurnaroundGrayBinding =
+            DataBindingUtil.inflate(inflater, R.layout.toast_turnaround_gray, null, false)
+        binding.content = content
+
+        toast = Toast(context).apply {
+            setGravity(Gravity.BOTTOM + Gravity.FILL_HORIZONTAL, 0, 28.toPx())
             duration = Toast.LENGTH_SHORT
             view = binding.root
         }

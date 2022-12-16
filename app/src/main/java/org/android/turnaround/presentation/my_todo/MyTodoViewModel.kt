@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.todoevent
+package org.android.turnaround.presentation.my_todo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +16,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class TodoEventViewModel @Inject constructor(
+class MyTodoViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
     private val _isTodoExist = MutableStateFlow(false)
@@ -64,12 +64,12 @@ class TodoEventViewModel @Inject constructor(
     fun putNotificationOff() = viewModelScope.launch {
         todoRepository.putNotificationOff()
             .onSuccess {
-                _alarmOff.value = "모든 알람을 껐습니다."
+                _alarmOff.value = "\uD83D\uDE42 예약된 모든 활동의 알람을 받지 않아요 "
             }.onFailure { throwable ->
                 Timber.d(throwable.message)
                 if (throwable is HttpException) {
                     when (throwable.code()) {
-                        DUPLICATE_ALARM_OFF -> _alarmOff.value = "이미 모든 활동에 대한 알림이 꺼져있습니다."
+                        DUPLICATE_ALARM_OFF -> _alarmOff.value = "\uD83D\uDE42 예약된 모든 활동의 알람을 받지 않아요 "
                     }
                 }
             }

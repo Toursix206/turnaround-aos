@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.todoevent.adaprer
+package org.android.turnaround.presentation.my_todo.adaprer
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import org.android.turnaround.R
 import org.android.turnaround.databinding.*
 import org.android.turnaround.domain.entity.*
-import org.android.turnaround.presentation.todoevent.TodoEventViewModel
+import org.android.turnaround.presentation.my_todo.MyTodoViewModel
 
-class TodoEventAdapter(
+class MyTodoAdapter(
     private val context: Context,
-    private val viewModel: TodoEventViewModel
+    private val viewModel: MyTodoViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val todoEventList = mutableListOf<TodoEvent>()
@@ -20,10 +20,10 @@ class TodoEventAdapter(
         val inflater = LayoutInflater.from(parent.context)
 
         return when (viewType) {
-            VIEW_TYPE_TODO_HEADER -> TodoEvenHeaderViewHolder(ItemTodoEventHeaderBinding.inflate(inflater, parent, false))
-            VIEW_TYPE_TODO_BLACK -> TodoEventBlackViewHolder(ItemTodoEventBlackBinding.inflate(inflater, parent, false))
-            VIEW_TYPE_TODO_PURPLE -> TodoEventPurpleViewHolder(ItemTodoEventPurpleBinding.inflate(inflater, parent, false))
-            else -> TodoEventWhiteViewHolder(ItemTodoEventWhiteBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_TODO_HEADER -> TodoEvenHeaderViewHolder(ItemTodoHeaderBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_TODO_BLACK -> TodoEventBlackViewHolder(ItemMyTodoBlackBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_TODO_PURPLE -> TodoEventPurpleViewHolder(ItemMyTodoPurpleBinding.inflate(inflater, parent, false))
+            else -> TodoEventWhiteViewHolder(ItemMyTodoWhiteBinding.inflate(inflater, parent, false))
         }
     }
 
@@ -93,14 +93,14 @@ class TodoEventAdapter(
         notifyItemRangeInserted(todoEventList.size, data.size)
     }
 
-    inner class TodoEvenHeaderViewHolder(private val binding: ItemTodoEventHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodoEvenHeaderViewHolder(private val binding: ItemTodoHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(header: TodoHeader) {
             binding.header = header
             binding.executePendingBindings()
         }
     }
 
-    inner class TodoEventWhiteViewHolder(private val binding: ItemTodoEventWhiteBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodoEventWhiteViewHolder(private val binding: ItemMyTodoWhiteBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
             binding.vm = viewModel
@@ -108,7 +108,7 @@ class TodoEventAdapter(
         }
     }
 
-    inner class TodoEventBlackViewHolder(private val binding: ItemTodoEventBlackBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodoEventBlackViewHolder(private val binding: ItemMyTodoBlackBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
             binding.vm = viewModel
@@ -116,7 +116,7 @@ class TodoEventAdapter(
         }
     }
 
-    inner class TodoEventPurpleViewHolder(private val binding: ItemTodoEventPurpleBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodoEventPurpleViewHolder(private val binding: ItemMyTodoPurpleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
             binding.executePendingBindings()

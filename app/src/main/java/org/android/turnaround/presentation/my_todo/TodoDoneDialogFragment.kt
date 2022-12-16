@@ -1,4 +1,4 @@
-package org.android.turnaround.presentation.todoevent
+package org.android.turnaround.presentation.my_todo
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
