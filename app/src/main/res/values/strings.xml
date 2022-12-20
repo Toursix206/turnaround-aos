@@ -88,6 +88,7 @@
     <string name="home_num_format">0%d</string>
     <string name="home_broom_count">개</string>
     <string name="home_score_count">점</string>
+    <string name="home_room_background_img_desc">방 그림자</string>
     <string name="home_room_desc">작은방</string>
     <string name="home_view_more">더보기</string>
     <string name="home_todo_count">나의 활동(%d)</string>
