@@ -34,11 +34,7 @@ class HomeViewModel @Inject constructor(
     private val _todoDetail = MutableLiveData<Event<TodoDetail>>()
     val todoDetail: LiveData<Event<TodoDetail>> = _todoDetail
 
-    init {
-        getHomeInfo()
-    }
-
-    private fun getHomeInfo() = viewModelScope.launch {
+    fun getHomeInfo() = viewModelScope.launch {
         homeRepository.getHome()
             .onSuccess {
                 _home.value = it
