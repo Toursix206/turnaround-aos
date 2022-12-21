@@ -22,8 +22,8 @@ class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository,
     private val todoRepository: TodoRepository
 ) : ViewModel() {
-    private val _isTodayTodoExist = MutableStateFlow(false)
-    val isTodayTodoExist: StateFlow<Boolean> = _isTodayTodoExist.asStateFlow()
+    private val _isTodayTodoExist = MutableLiveData<Boolean>()
+    val isTodayTodoExist: LiveData<Boolean> = _isTodayTodoExist
 
     private val _isClickedBlackItemEvent = MutableLiveData<Event<Int>>()
     val isClickedBlackItemEvent: LiveData<Event<Int>> = _isClickedBlackItemEvent
@@ -39,9 +39,7 @@ class HomeViewModel @Inject constructor(
             .onSuccess {
                 _home.value = it
 
-                if ((it.todosCnt) <= 0) {
-                    _isTodayTodoExist.value = true
-                }
+                _isTodayTodoExist.value = (it.todosCnt) <= 0
             }.onFailure {
                 Timber.d(it.message)
             }
