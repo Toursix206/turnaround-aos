@@ -2,6 +2,7 @@ package org.android.turnaround.presentation.my_todo
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +19,7 @@ import org.android.turnaround.util.binding.BindingActivity
 class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_my_todo) {
     private val viewModel by viewModels<MyTodoViewModel>()
 
-    private val todoEventEditResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private val todoEditResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             refresh()
         }
@@ -33,6 +34,8 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
         initTodoAlarmOffObserver()
         initTodoEventEditClickListener()
         initBackBtnClickListener()
+
+        this.onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun initTodoListObserver() {
@@ -66,12 +69,13 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
 
     private fun initTodoEventEditClickListener() {
         binding.ivTodoEventSetting.setOnClickListener {
-            todoEventEditResultLauncher.launch(Intent(this, TodoEditActivity::class.java))
+            todoEditResultLauncher.launch(Intent(this, TodoEditActivity::class.java))
         }
     }
 
     private fun initBackBtnClickListener() {
         binding.ivTodoEventBack.setOnClickListener {
+            setResult(RESULT_OK, intent)
             finish()
         }
     }
@@ -92,5 +96,12 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
 
     private fun refresh() {
         viewModel.getTodoList()
+    }
+
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            setResult(RESULT_OK, intent)
+            finish()
+        }
     }
 }

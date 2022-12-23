@@ -153,6 +153,21 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
+            android:id="@+id/iv_home_background_shadow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/home_room_background_img_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_roomtaverse_background_shadow"
+            app:layout_constraintBottom_toBottomOf="@id/iv_home_room"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_home_room" />
+
+
+        <ImageView
             android:id="@+id/iv_home_room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

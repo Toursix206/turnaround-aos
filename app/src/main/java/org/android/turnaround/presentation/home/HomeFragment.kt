@@ -3,6 +3,8 @@ package org.android.turnaround.presentation.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -19,10 +21,17 @@ import org.android.turnaround.util.binding.BindingFragment
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel by viewModels<HomeViewModel>()
 
+    private val myTodoResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            refresh()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.vm = viewModel
+        viewModel.getHomeInfo()
         initHomeObserver()
         initIsClickedBlackItemEventObserver()
         initTodoDetailObserver()
@@ -66,12 +75,16 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initTodoEventEventClickListener() {
         binding.tvHomeShowMore.setOnClickListener {
-            startActivity(Intent(requireActivity(), MyTodoActivity::class.java))
+            myTodoResultLauncher.launch(Intent(requireActivity(), MyTodoActivity::class.java))
         }
     }
 
     private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
         TodoStartBottomSheet(todoDetail).show(parentFragmentManager, this.javaClass.name)
+    }
+
+    private fun refresh() {
+        viewModel.getHomeInfo()
     }
 
     private fun ViewPager2.setShowSideItems(pageMarginPx: Float, offsetPx: Float) {
