@@ -10,10 +10,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.android.turnaround.domain.repository.RoomRepository
 import org.android.turnaround.domain.entity.Furniture
 import org.android.turnaround.domain.entity.FurnitureType
 import org.android.turnaround.domain.entity.RoomInfo
+import org.android.turnaround.domain.repository.RoomRepository
+import org.android.turnaround.util.UiEvent
+import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -53,6 +55,9 @@ class RoomViewModel @Inject constructor(
 
     private val _roomInfo = MutableStateFlow(RoomInfo())
     val roomInfo: StateFlow<RoomInfo> = _roomInfo.asStateFlow()
+
+    private val _useBrushEvent = MutableSharedFlow<UiEvent>()
+    val useBrushEvent: SharedFlow<UiEvent> = _useBrushEvent.asSharedFlow()
 
     fun resetIsSuccessGetRoomInfo() {
         _isSuccessGetRoomInfo.value = false
@@ -117,12 +122,25 @@ class RoomViewModel @Inject constructor(
 
     fun putFurnitureClean(furnitureId: Int) {
         viewModelScope.launch {
+            _useBrushEvent.emit(UiEvent.LOADING)
             roomRepository.putFurnitureClean(furnitureId)
                 .onSuccess { response ->
                     initFurnitureInfo(response.furnitureList)
                     _roomInfo.value = response
+                    _useBrushEvent.emit(UiEvent.SUCCESS)
                 }
-                .onFailure { Timber.d(it.message.toString()) }
+                .onFailure { throwable ->
+                    Timber.d(throwable.message.toString())
+                    if (throwable is HttpException) {
+                        when (throwable.code()) {
+                            ZERO_BRUSH -> _useBrushEvent.emit(UiEvent.ERROR)
+                        }
+                    }
+                }
         }
+    }
+
+    companion object {
+        const val ZERO_BRUSH = 403
     }
 }

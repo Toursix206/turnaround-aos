@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentRoomBinding
+import org.android.turnaround.util.ToastMessageUtil
+import org.android.turnaround.util.UiEvent
 import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.extension.repeatOnStarted
 
@@ -34,6 +36,7 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         initCleanAnimator()
         initClickedAssetsCollector()
         initCleanLevelCollector()
+        initUseBrushEventCollector()
     }
 
     override fun onDestroyView() {
@@ -207,6 +210,18 @@ class RoomFragment : BindingFragment<FragmentRoomBinding>(R.layout.fragment_room
         repeatOnStarted {
             viewModel.table.collect {
                 if (viewModel.isSuccessGetRoomInfo.value) tableCleanFadeOutAnimator?.start()
+            }
+        }
+    }
+
+    private fun initUseBrushEventCollector() {
+        repeatOnStarted {
+            viewModel.useBrushEvent.collect { uiEvent ->
+                when (uiEvent) {
+                    UiEvent.SUCCESS -> ToastMessageUtil.showGrayToast(requireContext(), getString(R.string.room_use_brush_success_toast))
+                    UiEvent.ERROR -> ToastMessageUtil.showGrayToast(requireContext(), getString(R.string.room_use_brush_error_toast))
+                    UiEvent.LOADING -> {}
+                }
             }
         }
     }

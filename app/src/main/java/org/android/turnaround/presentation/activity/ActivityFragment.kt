@@ -91,8 +91,7 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
                     UiEvent.ERROR -> {
                         showReserveErrorToast()
                     }
-                    UiEvent.LOADING -> {
-                    }
+                    UiEvent.LOADING -> {}
                 }
             }
         }

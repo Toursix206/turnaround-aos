@@ -132,6 +132,8 @@
     <string name="room_small_bedroom">작은 취침 공간</string>
     <string name="room_furniture_count">%d개</string>
     <string name="room_level">Lv.%d</string>
+    <string name="room_use_brush_error_toast">😅 빗자루를 다썼어요. 활동해 볼까요?</string>
+    <string name="room_use_brush_success_toast">😆 빗자루를 사용해 가구를 청소했어요.</string>
 
     <!-- Activity -->
     <string name="activity_title">생산적 활동</string>

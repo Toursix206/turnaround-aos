@@ -35,10 +35,6 @@ class ActivityViewModel @Inject constructor(
     var reserveErrorCode: Int = 0
         private set
 
-    fun isErrorDuplicateReserve(): Boolean = reserveErrorCode == ERROR_DUPLICATE_RESERVE
-
-    fun isErrorInvalidReserveDate(): Boolean = reserveErrorCode == ERROR_INVALID_RESERVE_DATE
-
     fun initCategory(category: ActivityCategory?) {
         _category.value = category
     }
