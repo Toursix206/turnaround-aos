@@ -22,7 +22,7 @@ class TodoRepositoryImpl @Inject constructor(
         kotlin.runCatching {
             todoDataSource.getTodoDetail(todoId)
         }.map { response ->
-            response.data.toTodoDetail()
+            response.data.toTodoDetail(todoId)
         }
 
     override suspend fun deleteTodo(todoId: Int): Result<String> =
@@ -40,4 +40,8 @@ class TodoRepositoryImpl @Inject constructor(
     override suspend fun putNotificationOff(): Result<String> =
         kotlin.runCatching { todoDataSource.putNotificationOff() }
             .map { response -> response.data }
+
+    override suspend fun getTodoStartAble(todoId: Int): Result<Boolean> =
+        kotlin.runCatching { todoDataSource.getTodoStartAble(todoId) }
+            .map { response -> response.success }
 }

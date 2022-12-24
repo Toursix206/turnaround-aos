@@ -8,7 +8,7 @@ import org.android.turnaround.databinding.ItemActivityBinding
 import org.android.turnaround.domain.entity.ActivityContent
 import org.android.turnaround.domain.entity.PushStatusType
 import org.android.turnaround.util.ItemDiffCallback
-import org.android.turnaround.util.bottom_sheet.TodoReserveContent
+import org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveContent
 
 class ActivityPagingAdapter(
     private val showReserveBottomSheet: (TodoReserveContent) -> Unit

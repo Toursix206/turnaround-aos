@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="org.android.turnaround.util.bottom_sheet.TodoReserveType" />
+        <import type="org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveType" />
 
         <variable
             name="vm"
@@ -13,11 +13,11 @@
 
         <variable
             name="reserveType"
-            type="org.android.turnaround.util.bottom_sheet.TodoReserveType" />
+            type="org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveType" />
 
         <variable
             name="todoReserveContent"
-            type="org.android.turnaround.util.bottom_sheet.TodoReserveContent" />
+            type="org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveContent" />
 
     </data>
 

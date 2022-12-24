@@ -1,6 +1,11 @@
 package org.android.turnaround.domain.entity
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class TodoDetail(
+    val todoId: Int,
     val activityId: Int,
     val broom: Int,
     val category: String,
@@ -13,4 +18,4 @@ data class TodoDetail(
     val categoryImage: Int,
     val leftTime: String,
     val isAfterStartAt: Boolean
-)
+) : Parcelable

@@ -15,10 +15,10 @@ import org.android.turnaround.presentation.activity.paging.ActivityPagingAdapter
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.UiEvent
 import org.android.turnaround.util.binding.BindingFragment
-import org.android.turnaround.util.bottom_sheet.TodoReserveBottomSheet
-import org.android.turnaround.util.bottom_sheet.TodoReserveBtnClickListener
-import org.android.turnaround.util.bottom_sheet.TodoReserveContent
-import org.android.turnaround.util.bottom_sheet.TodoReserveType
+import org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveBottomSheet
+import org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveBtnClickListener
+import org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveContent
+import org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveType
 import org.android.turnaround.util.extension.repeatOnStarted
 
 @AndroidEntryPoint

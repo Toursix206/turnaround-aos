@@ -17,9 +17,9 @@ import org.android.turnaround.presentation.todo_edit.adapter.TodoEditAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
-import org.android.turnaround.util.bottom_sheet.TodoReserveBottomSheet
-import org.android.turnaround.util.bottom_sheet.TodoReserveContent
-import org.android.turnaround.util.bottom_sheet.TodoReserveType
+import org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveBottomSheet
+import org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveContent
+import org.android.turnaround.util.bottom_sheet.todo_reserve.TodoReserveType
 import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType

@@ -21,7 +21,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
-        viewModel.getTodoGuide(1)
+        viewModel.getTodoGuide(intent.getIntExtra(TODO_GUIDE_TODO_ID, -1))
         initGuideImgViewPager()
         initCloseBtnClickListener()
         initCloseToolTipBtnClickListener()
@@ -77,5 +77,9 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
                 binding.vpTodoGuide.currentItem = step - 1
             }
         }
+    }
+
+    companion object {
+        const val TODO_GUIDE_TODO_ID = "todoGuideTodoId"
     }
 }
