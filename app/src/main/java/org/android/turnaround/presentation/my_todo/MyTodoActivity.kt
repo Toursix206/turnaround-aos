@@ -14,6 +14,8 @@ import org.android.turnaround.presentation.main.MainActivity
 import org.android.turnaround.presentation.main.MainActivity.Companion.MOVE_TO_ACTIVITY_TAB
 import org.android.turnaround.presentation.my_todo.adaprer.MyTodoAdapter
 import org.android.turnaround.presentation.todo_edit.TodoEditActivity
+import org.android.turnaround.presentation.todo_guide.TodoGuideActivity
+import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.TODO_GUIDE_TODO_ID
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.UiEvent
 import org.android.turnaround.util.binding.BindingActivity
@@ -82,7 +84,12 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
             viewModel.todoStartAbleEvent.collect { uiEvent ->
                 when (uiEvent) {
                     UiEvent.SUCCESS -> {
-                        ToastMessageUtil.showPurpleToast(this, "시작할 수 있어!!", false, Gravity.TOP)
+                        todoStartBottomSheet.dismiss()
+                        startActivity(
+                            Intent(this, TodoGuideActivity::class.java).apply {
+                                putExtra(TODO_GUIDE_TODO_ID, requireNotNull(viewModel.todoDetail.value).todoId)
+                            }
+                        )
                     }
                     UiEvent.ERROR -> {
                         ToastMessageUtil.showPurpleToast(this, getString(R.string.todo_reserve_toast_msg_duplicate), true, Gravity.TOP)
