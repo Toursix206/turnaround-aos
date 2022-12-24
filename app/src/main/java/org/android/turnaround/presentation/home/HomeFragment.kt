@@ -2,6 +2,7 @@ package org.android.turnaround.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -15,13 +16,20 @@ import org.android.turnaround.domain.entity.HomeTodo
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.adapter.TodoAdapter
 import org.android.turnaround.presentation.my_todo.MyTodoActivity
+import org.android.turnaround.presentation.todo_guide.TodoGuideActivity
+import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.TODO_GUIDE_TODO_ID
 import org.android.turnaround.util.EventObserver
+import org.android.turnaround.util.ToastMessageUtil
+import org.android.turnaround.util.UiEvent
 import org.android.turnaround.util.binding.BindingFragment
 import org.android.turnaround.util.bottom_sheet.todo_start.TodoStartBottomSheet
+import org.android.turnaround.util.dialog.DialogBtnClickListener
+import org.android.turnaround.util.extension.repeatOnStarted
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel by viewModels<HomeViewModel>()
+    private var todoStartBottomSheet = TodoStartBottomSheet()
 
     private val myTodoResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
@@ -37,6 +45,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         initHomeObserver()
         initIsClickedBlackItemEventObserver()
         initTodoDetailObserver()
+        initStartTodoAbleEventCollector()
         initTodoEventEventClickListener()
     }
 
@@ -75,6 +84,32 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         )
     }
 
+    private fun initStartTodoAbleEventCollector() {
+        repeatOnStarted {
+            viewModel.todoStartAbleEvent.collect { uiEvent ->
+                when (uiEvent) {
+                    UiEvent.SUCCESS -> {
+                        todoStartBottomSheet.dismiss()
+                        startActivity(
+                            Intent(requireContext(), TodoGuideActivity::class.java).apply {
+                                putExtra(TODO_GUIDE_TODO_ID, requireNotNull(viewModel.todoDetail.value).peekContent().todoId)
+                            }
+                        )
+                    }
+                    UiEvent.ERROR -> {
+                        ToastMessageUtil.showPurpleToast(
+                            requireContext(),
+                            getString(R.string.todo_reserve_toast_msg_duplicate),
+                            true,
+                            Gravity.TOP
+                        )
+                    }
+                    UiEvent.LOADING -> {}
+                }
+            }
+        }
+    }
+
     private fun initTodoEventEventClickListener() {
         binding.tvHomeShowMore.setOnClickListener {
             myTodoResultLauncher.launch(Intent(requireActivity(), MyTodoActivity::class.java))
@@ -82,11 +117,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
-        TodoStartBottomSheet().apply {
+        todoStartBottomSheet.apply {
             arguments = Bundle().apply {
                 putParcelable(TodoStartBottomSheet.TODO_START_CONTENT, todoDetail)
+                putParcelable(
+                    TodoStartBottomSheet.CONFIRM_ACTION,
+                    DialogBtnClickListener(id = todoDetail.todoId, clickActionWithId = { id -> viewModel.getTodoStartAble(id) })
+                )
             }
-        }.show(parentFragmentManager, this.javaClass.name)
+        }.show(parentFragmentManager, TodoStartBottomSheet.BOTTOM_SHEET_TODO_START)
     }
 
     private fun refresh() {
