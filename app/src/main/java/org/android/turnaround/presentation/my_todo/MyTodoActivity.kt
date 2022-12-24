@@ -9,14 +9,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityMyTodoBinding
 import org.android.turnaround.domain.entity.TodoDetail
-import org.android.turnaround.presentation.home.TodoStartBottomSheet
-import org.android.turnaround.presentation.home.TodoStartBottomSheet.Companion.TODO_START_CONTENT
 import org.android.turnaround.presentation.main.MainActivity
 import org.android.turnaround.presentation.main.MainActivity.Companion.MOVE_TO_ACTIVITY_TAB
 import org.android.turnaround.presentation.my_todo.adaprer.MyTodoAdapter
 import org.android.turnaround.presentation.todo_edit.TodoEditActivity
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.bottom_sheet.todo_start.TodoStartBottomSheet
+import org.android.turnaround.util.bottom_sheet.todo_start.TodoStartBottomSheet.Companion.TODO_START_CONTENT
 
 @AndroidEntryPoint
 class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_my_todo) {
