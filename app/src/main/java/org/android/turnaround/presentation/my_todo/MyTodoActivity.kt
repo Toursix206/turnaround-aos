@@ -2,6 +2,7 @@ package org.android.turnaround.presentation.my_todo
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -14,13 +15,18 @@ import org.android.turnaround.presentation.main.MainActivity.Companion.MOVE_TO_A
 import org.android.turnaround.presentation.my_todo.adaprer.MyTodoAdapter
 import org.android.turnaround.presentation.todo_edit.TodoEditActivity
 import org.android.turnaround.util.ToastMessageUtil
+import org.android.turnaround.util.UiEvent
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.bottom_sheet.todo_start.TodoStartBottomSheet
+import org.android.turnaround.util.bottom_sheet.todo_start.TodoStartBottomSheet.Companion.BOTTOM_SHEET_TODO_START
 import org.android.turnaround.util.bottom_sheet.todo_start.TodoStartBottomSheet.Companion.TODO_START_CONTENT
+import org.android.turnaround.util.dialog.DialogBtnClickListener
+import org.android.turnaround.util.extension.repeatOnStarted
 
 @AndroidEntryPoint
 class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_my_todo) {
     private val viewModel by viewModels<MyTodoViewModel>()
+    private var todoStartBottomSheet = TodoStartBottomSheet()
 
     private val todoEditResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
@@ -35,6 +41,7 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
         initTodoDetailObserver()
         initTodoRewardObserver()
         initTodoAlarmOffObserver()
+        initStartTodoAbleEventCollector()
         initTodoEventEditClickListener()
         initBackBtnClickListener()
         initGoActivityListener()
@@ -70,6 +77,22 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
         }
     }
 
+    private fun initStartTodoAbleEventCollector() {
+        repeatOnStarted {
+            viewModel.todoStartAbleEvent.collect { uiEvent ->
+                when (uiEvent) {
+                    UiEvent.SUCCESS -> {
+                        ToastMessageUtil.showPurpleToast(this, "시작할 수 있어!!", false, Gravity.TOP)
+                    }
+                    UiEvent.ERROR -> {
+                        ToastMessageUtil.showPurpleToast(this, getString(R.string.todo_reserve_toast_msg_duplicate), true, Gravity.TOP)
+                    }
+                    UiEvent.LOADING -> {}
+                }
+            }
+        }
+    }
+
     private fun initTodoEventEditClickListener() {
         binding.ivTodoEventSetting.setOnClickListener {
             todoEditResultLauncher.launch(Intent(this, TodoEditActivity::class.java))
@@ -95,11 +118,15 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
     }
 
     private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
-        TodoStartBottomSheet().apply {
+        todoStartBottomSheet.apply {
             arguments = Bundle().apply {
                 putParcelable(TODO_START_CONTENT, todoDetail)
+                putParcelable(
+                    TodoStartBottomSheet.CONFIRM_ACTION,
+                    DialogBtnClickListener(id = todoDetail.todoId, clickActionWithId = { id -> viewModel.getTodoStartAble(id) })
+                )
             }
-        }.show(supportFragmentManager, this.javaClass.name)
+        }.show(supportFragmentManager, BOTTOM_SHEET_TODO_START)
     }
 
     private fun showTodoDoneDialog(broomCount: Int) {

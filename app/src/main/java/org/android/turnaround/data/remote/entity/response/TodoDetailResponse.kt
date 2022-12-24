@@ -16,8 +16,9 @@ data class TodoDetailResponse(
     val leftTime: String,
     val isAfterStartAt: Boolean
 ) {
-    fun toTodoDetail(): TodoDetail =
+    fun toTodoDetail(todoId: Int): TodoDetail =
         TodoDetail(
+            todoId = todoId,
             activityId = this.activityId,
             broom = this.broom,
             category = this.category,

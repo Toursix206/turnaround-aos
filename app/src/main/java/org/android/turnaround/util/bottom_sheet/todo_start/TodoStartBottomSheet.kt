@@ -8,6 +8,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.android.turnaround.R
 import org.android.turnaround.databinding.BottomSheetTodoStartBinding
 import org.android.turnaround.domain.entity.TodoDetail
+import org.android.turnaround.util.dialog.DialogBtnClickListener
+import timber.log.Timber
 
 class TodoStartBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetTodoStartBinding? = null
@@ -30,7 +32,8 @@ class TodoStartBottomSheet : BottomSheetDialogFragment() {
 
     private fun initBtnTodoStartClickListener() {
         binding.btnTodoStart.setOnClickListener {
-            dismiss()
+            arguments?.getParcelable<DialogBtnClickListener>(CONFIRM_ACTION)?.onConfirmClick()
+                ?: Timber.e(getString(R.string.null_point_exception_warning_dialog_argument))
         }
     }
 

@@ -5,12 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.android.turnaround.domain.repository.TodoRepository
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.domain.entity.TodoList
 import org.android.turnaround.domain.entity.TodoReward
+import org.android.turnaround.domain.repository.TodoRepository
+import org.android.turnaround.util.UiEvent
 import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
@@ -33,6 +39,9 @@ class MyTodoViewModel @Inject constructor(
 
     private val _todoReward = MutableLiveData<TodoReward>()
     val todoReward: LiveData<TodoReward> = _todoReward
+
+    private val _todoStartAbleEvent = MutableSharedFlow<UiEvent>()
+    val todoStartAbleEvent: SharedFlow<UiEvent> = _todoStartAbleEvent.asSharedFlow()
 
     init {
         getTodoList()
@@ -69,7 +78,7 @@ class MyTodoViewModel @Inject constructor(
                 Timber.d(throwable.message)
                 if (throwable is HttpException) {
                     when (throwable.code()) {
-                        DUPLICATE_ALARM_OFF -> _alarmOff.value = "\uD83D\uDE42 예약된 모든 활동의 알람을 받지 않아요 "
+                        ERROR_DUPLICATE_ALARM_OFF -> _alarmOff.value = "\uD83D\uDE42 예약된 모든 활동의 알람을 받지 않아요 "
                     }
                 }
             }
@@ -84,7 +93,25 @@ class MyTodoViewModel @Inject constructor(
             }
     }
 
+    fun getTodoStartAble(todoId: Int) {
+        viewModelScope.launch {
+            _todoStartAbleEvent.emit(UiEvent.LOADING)
+            todoRepository.getTodoStartAble(todoId)
+                .onSuccess {
+                    _todoStartAbleEvent.emit(UiEvent.SUCCESS)
+                }
+                .onFailure { throwable ->
+                    if (throwable is HttpException) {
+                        if (throwable.code() == ERROR_DUPLICATE_TODO) {
+                            _todoStartAbleEvent.emit(UiEvent.ERROR)
+                        }
+                    }
+                }
+        }
+    }
+
     companion object {
-        const val DUPLICATE_ALARM_OFF = 409
+        const val ERROR_DUPLICATE_ALARM_OFF = 409
+        const val ERROR_DUPLICATE_TODO = 409
     }
 }

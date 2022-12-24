@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TodoDetail(
+    val todoId: Int,
     val activityId: Int,
     val broom: Int,
     val category: String,
