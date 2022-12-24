@@ -18,6 +18,7 @@ import org.android.turnaround.domain.entity.ActivityContent
 import org.android.turnaround.domain.entity.PushStatusType
 import org.android.turnaround.domain.repository.ActivityRepository
 import org.android.turnaround.util.UiEvent
+import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -30,6 +31,9 @@ class ActivityViewModel @Inject constructor(
 
     private val _reserveTodoUiEvent = MutableSharedFlow<UiEvent>()
     val reserveTodoUiEvent: SharedFlow<UiEvent> = _reserveTodoUiEvent.asSharedFlow()
+
+    var reserveErrorCode: Int = 0
+        private set
 
     fun initCategory(category: ActivityCategory?) {
         _category.value = category
@@ -50,14 +54,19 @@ class ActivityViewModel @Inject constructor(
                 if (response) {
                     _reserveTodoUiEvent.emit(UiEvent.SUCCESS)
                 }
-            }.onFailure {
+            }.onFailure { throwable ->
+                Timber.e(throwable.message.toString())
+                if (throwable is HttpException) {
+                    reserveErrorCode = throwable.code()
+                }
                 _reserveTodoUiEvent.emit(UiEvent.ERROR)
-                Timber.e(it.message.toString())
             }
         }
     }
 
     companion object {
         const val ACTIVITY_LIST_SIZE = 10
+        const val ERROR_DUPLICATE_RESERVE = 409
+        const val ERROR_INVALID_RESERVE_DATE = 400
     }
 }

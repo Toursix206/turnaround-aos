@@ -31,11 +31,11 @@ class TodoEditViewModel @Inject constructor(
     private val _deleteTodo = MutableLiveData<String>()
     val deleteTodo: LiveData<String> = _deleteTodo
 
-    private val _editTodo = MutableLiveData<String>()
-    val editTodo: LiveData<String> = _editTodo
+    private val _isEditTodoSuccess = MutableLiveData<Boolean>()
+    val isEditTodoSuccess: LiveData<Boolean> = _isEditTodoSuccess
 
-    private val _editTodoFail = MutableLiveData<String>()
-    val editTodoFail: LiveData<String> = _editTodoFail
+    private val _editTodoErrorCode = MutableLiveData<Int>()
+    val editTodoErrorCode: LiveData<Int> = _editTodoErrorCode
 
     init {
         getTodoList()
@@ -70,28 +70,18 @@ class TodoEditViewModel @Inject constructor(
     fun putTodo(todoId: Int, body: TodoEditRequest) = viewModelScope.launch {
         todoRepository.putTodo(todoId, body)
             .onSuccess {
-                _editTodo.value = "\uD83D\uDE42 활동이 변경되었어요!"
+                _isEditTodoSuccess.value = true
             }.onFailure { throwable ->
                 Timber.d(throwable.message)
                 if (throwable is HttpException) {
-                    when (throwable.code()) {
-                        ERROR_START_AT -> _editTodoFail.value = "\uD83D\uDE15 정책에 위배되는 예약 시간입니다."
-                        ERROR_TOKEN_EXPIRATION -> _editTodoFail.value = "토큰이 만료되었습니다. 다시 로그인 해주세요."
-                        ERROR_CANNOT_DELETE -> _editTodoFail.value = "수정/삭제 할 수 없는 일정입니다."
-                        ERROR_NO_EXIST -> _editTodoFail.value = "탈퇴했거나 존재하지 않는 유저입니다.\n존재하지 않는 todo 입니다."
-                        ERROR_DUPLICATE_TODO -> _editTodoFail.value = "\uD83D\uDE15다른 활동과 겹치는 일정이에요!"
-                        ERROR_SERVER -> _editTodoFail.value = "예상치 못한 서버 에러가 발생하였습니다."
-                    }
+                    _editTodoErrorCode.value = throwable.code()
                 }
             }
     }
 
     companion object {
-        const val ERROR_START_AT = 400
-        const val ERROR_TOKEN_EXPIRATION = 401
+        const val ERROR_INVALID_TODO_DATE = 400
         const val ERROR_CANNOT_DELETE = 403
-        const val ERROR_NO_EXIST = 404
         const val ERROR_DUPLICATE_TODO = 409
-        const val ERROR_SERVER = 500
     }
 }

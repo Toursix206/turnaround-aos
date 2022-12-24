@@ -10,6 +10,9 @@ import org.android.turnaround.databinding.ActivityTodoEditBinding
 import org.android.turnaround.domain.entity.TodoEvent
 import org.android.turnaround.domain.entity.TodoHeader
 import org.android.turnaround.domain.entity.TodoList
+import org.android.turnaround.presentation.todo_edit.TodoEditViewModel.Companion.ERROR_CANNOT_DELETE
+import org.android.turnaround.presentation.todo_edit.TodoEditViewModel.Companion.ERROR_DUPLICATE_TODO
+import org.android.turnaround.presentation.todo_edit.TodoEditViewModel.Companion.ERROR_INVALID_TODO_DATE
 import org.android.turnaround.presentation.todo_edit.adapter.TodoEditAdapter
 import org.android.turnaround.util.EventObserver
 import org.android.turnaround.util.ToastMessageUtil
@@ -113,15 +116,29 @@ class TodoEditActivity : BindingActivity<ActivityTodoEditBinding>(R.layout.activ
     }
 
     private fun initEditTodoObserver() {
-        viewModel.editTodo.observe(this) { editTodo ->
-            ToastMessageUtil.showPurpleToast(this, editTodo, false, gravity = Gravity.TOP)
-            viewModel.getTodoList()
+        viewModel.isEditTodoSuccess.observe(this) { isSuccess ->
+            if (isSuccess) {
+                ToastMessageUtil.showPurpleToast(
+                    this, getString(R.string.todo_reserve_edit_toast_msg_success), false, Gravity.TOP
+                )
+                viewModel.getTodoList()
+            }
         }
     }
 
     private fun initEditTodoFailObserver() {
-        viewModel.editTodoFail.observe(this) { editTodoFail ->
-            ToastMessageUtil.showPurpleToast(this, editTodoFail, true, gravity = Gravity.TOP)
+        viewModel.editTodoErrorCode.observe(this) { editTodoErrorCode ->
+            when (editTodoErrorCode) {
+                ERROR_INVALID_TODO_DATE -> ToastMessageUtil.showPurpleToast(
+                    this, getString(R.string.todo_reserve_toast_msg_invalid_date), true, Gravity.TOP
+                )
+                ERROR_CANNOT_DELETE -> ToastMessageUtil.showPurpleToast(
+                    this, getString(R.string.todo_reserve_toast_msg_cannot_delete), true, Gravity.TOP
+                )
+                ERROR_DUPLICATE_TODO -> ToastMessageUtil.showPurpleToast(
+                    this, getString(R.string.todo_reserve_toast_msg_duplicate), true, Gravity.TOP
+                )
+            }
         }
     }
 

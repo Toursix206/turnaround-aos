@@ -9,6 +9,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentActivityBinding
+import org.android.turnaround.presentation.activity.ActivityViewModel.Companion.ERROR_DUPLICATE_RESERVE
+import org.android.turnaround.presentation.activity.ActivityViewModel.Companion.ERROR_INVALID_RESERVE_DATE
 import org.android.turnaround.presentation.activity.paging.ActivityPagingAdapter
 import org.android.turnaround.util.ToastMessageUtil
 import org.android.turnaround.util.UiEvent
@@ -57,6 +59,14 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
         }.show(parentFragmentManager, TodoReserveBottomSheet.BOTTOM_SHEET_RESERVE)
     }
 
+    private fun collectActivityList() {
+        repeatOnStarted {
+            viewModel.getActivities().collectLatest { activities ->
+                activityAdapter.submitData(activities)
+            }
+        }
+    }
+
     private fun initCategoryCollector() {
         repeatOnStarted {
             viewModel.category.collect {
@@ -69,18 +79,32 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
     private fun initReserveTodoUiEventCollector() {
         repeatOnStarted {
             viewModel.reserveTodoUiEvent.collect { uiEvent ->
-                if (uiEvent == UiEvent.SUCCESS) {
-                    ToastMessageUtil.showPurpleToast(requireContext(), getString(R.string.activity_reserve_toast_msg), false, Gravity.TOP)
+                when (uiEvent) {
+                    UiEvent.SUCCESS -> {
+                        ToastMessageUtil.showPurpleToast(
+                            requireContext(),
+                            getString(R.string.todo_reserve_toast_msg_success),
+                            false,
+                            Gravity.TOP
+                        )
+                    }
+                    UiEvent.ERROR -> {
+                        showReserveErrorToast()
+                    }
+                    UiEvent.LOADING -> {}
                 }
             }
         }
     }
 
-    private fun collectActivityList() {
-        repeatOnStarted {
-            viewModel.getActivities().collectLatest { activities ->
-                activityAdapter.submitData(activities)
-            }
+    private fun showReserveErrorToast() {
+        when (viewModel.reserveErrorCode) {
+            ERROR_DUPLICATE_RESERVE -> ToastMessageUtil.showPurpleToast(
+                requireContext(), getString(R.string.todo_reserve_toast_msg_duplicate), true, Gravity.TOP
+            )
+            ERROR_INVALID_RESERVE_DATE -> ToastMessageUtil.showPurpleToast(
+                requireContext(), getString(R.string.todo_reserve_toast_msg_invalid_date), true, Gravity.TOP
+            )
         }
     }
 }
