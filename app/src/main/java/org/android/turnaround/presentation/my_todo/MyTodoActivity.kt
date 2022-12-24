@@ -10,6 +10,7 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityMyTodoBinding
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.TodoStartBottomSheet
+import org.android.turnaround.presentation.home.TodoStartBottomSheet.Companion.TODO_START_CONTENT
 import org.android.turnaround.presentation.main.MainActivity
 import org.android.turnaround.presentation.main.MainActivity.Companion.MOVE_TO_ACTIVITY_TAB
 import org.android.turnaround.presentation.my_todo.adaprer.MyTodoAdapter
@@ -94,7 +95,11 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
     }
 
     private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
-        TodoStartBottomSheet(todoDetail).show(supportFragmentManager, this.javaClass.name)
+        TodoStartBottomSheet().apply {
+            arguments = Bundle().apply {
+                putParcelable(TODO_START_CONTENT, todoDetail)
+            }
+        }.show(supportFragmentManager, this.javaClass.name)
     }
 
     private fun showTodoDoneDialog(broomCount: Int) {

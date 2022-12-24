@@ -9,7 +9,7 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.BottomSheetTodoStartBinding
 import org.android.turnaround.domain.entity.TodoDetail
 
-class TodoStartBottomSheet(val todoDetail: TodoDetail) : BottomSheetDialogFragment() {
+class TodoStartBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetTodoStartBinding? = null
     val binding get() = _binding ?: error(getString(R.string.binding_error))
 
@@ -24,7 +24,7 @@ class TodoStartBottomSheet(val todoDetail: TodoDetail) : BottomSheetDialogFragme
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.todoDetail = todoDetail
+        binding.todoDetail = requireNotNull(arguments?.getParcelable<TodoDetail>(TODO_START_CONTENT))
         initBtnTodoStartClickListener()
     }
 
@@ -32,5 +32,11 @@ class TodoStartBottomSheet(val todoDetail: TodoDetail) : BottomSheetDialogFragme
         binding.btnTodoStart.setOnClickListener {
             dismiss()
         }
+    }
+
+    companion object {
+        const val BOTTOM_SHEET_TODO_START = "bottomSheetTodoStart"
+        const val TODO_START_CONTENT = "todoStartContent"
+        const val CONFIRM_ACTION = "confirmAction"
     }
 }

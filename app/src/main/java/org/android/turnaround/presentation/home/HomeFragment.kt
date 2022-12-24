@@ -11,7 +11,8 @@ import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.FragmentHomeBinding
-import org.android.turnaround.domain.entity.*
+import org.android.turnaround.domain.entity.HomeTodo
+import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.adapter.TodoAdapter
 import org.android.turnaround.presentation.my_todo.MyTodoActivity
 import org.android.turnaround.util.EventObserver
@@ -80,7 +81,11 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun showTodoStartBottomSheet(todoDetail: TodoDetail) {
-        TodoStartBottomSheet(todoDetail).show(parentFragmentManager, this.javaClass.name)
+        TodoStartBottomSheet().apply {
+            arguments = Bundle().apply {
+                putParcelable(TodoStartBottomSheet.TODO_START_CONTENT, todoDetail)
+            }
+        }.show(parentFragmentManager, this.javaClass.name)
     }
 
     private fun refresh() {
