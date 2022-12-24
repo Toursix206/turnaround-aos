@@ -10,6 +10,8 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityMyTodoBinding
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.TodoStartBottomSheet
+import org.android.turnaround.presentation.main.MainActivity
+import org.android.turnaround.presentation.main.MainActivity.Companion.MOVE_TO_ACTIVITY_TAB
 import org.android.turnaround.presentation.my_todo.adaprer.MyTodoAdapter
 import org.android.turnaround.presentation.todo_edit.TodoEditActivity
 import org.android.turnaround.util.ToastMessageUtil
@@ -34,7 +36,7 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
         initTodoAlarmOffObserver()
         initTodoEventEditClickListener()
         initBackBtnClickListener()
-
+        initGoActivityListener()
         this.onBackPressedDispatcher.addCallback(this, callback)
     }
 
@@ -77,6 +79,17 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
         binding.ivTodoEventBack.setOnClickListener {
             setResult(RESULT_OK, intent)
             finish()
+        }
+    }
+
+    private fun initGoActivityListener() {
+        binding.btnTodoEventGoActivity.setOnClickListener {
+            startActivity(
+                Intent(this, MainActivity::class.java).apply {
+                    putExtra(MOVE_TO_ACTIVITY_TAB, true)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                }
+            )
         }
     }
 

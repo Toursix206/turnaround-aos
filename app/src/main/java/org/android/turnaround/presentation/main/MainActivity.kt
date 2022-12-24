@@ -14,6 +14,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBottomNavigationView()
+        getExtras()
+    }
+
+    private fun getExtras() {
+        if (intent.getBooleanExtra(MOVE_TO_ACTIVITY_TAB, false)) moveToActivityFragment()
     }
 
     private fun initBottomNavigationView() {
@@ -25,5 +30,13 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fc_main) as NavHostFragment
         return navHostFragment.navController
+    }
+
+    private fun moveToActivityFragment() {
+        binding.botNavMain.selectedItemId = R.id.activityFragment
+    }
+
+    companion object {
+        const val MOVE_TO_ACTIVITY_TAB = "moveToActivityTab"
     }
 }
