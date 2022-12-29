@@ -1,5 +1,6 @@
 package org.android.turnaround.util.binding
 
+import android.net.Uri
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -25,6 +26,17 @@ object BindingAdapters {
                 .placeholder(R.color.turnaround_gray_7)
                 .error(R.color.turnaround_gray_7)
                 .into(this)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["imgUri", "isCrop"], requireAll = false)
+    fun ImageView.initImageFromUri(imgUri: String?, isCrop: Boolean?) {
+        isCrop?.let {
+            clipToOutline = it
+        }
+        imgUri?.let {
+            setImageURI(Uri.parse(it))
         }
     }
 
