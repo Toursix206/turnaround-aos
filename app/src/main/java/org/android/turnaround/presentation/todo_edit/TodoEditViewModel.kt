@@ -4,9 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
+import org.android.turnaround.data.remote.entity.response.NoDataResponse
 import org.android.turnaround.domain.entity.Todo
 import org.android.turnaround.domain.entity.TodoList
 import org.android.turnaround.domain.repository.TodoRepository
@@ -36,6 +39,9 @@ class TodoEditViewModel @Inject constructor(
 
     private val _editTodoErrorCode = MutableLiveData<Int>()
     val editTodoErrorCode: LiveData<Int> = _editTodoErrorCode
+
+    var editTodoErrorMessage: String = ""
+        private set
 
     init {
         getTodoList()
@@ -67,17 +73,20 @@ class TodoEditViewModel @Inject constructor(
             }
     }
 
-    fun putTodo(todoId: Int, body: TodoEditRequest) = viewModelScope.launch {
-        todoRepository.putTodo(todoId, body)
-            .onSuccess {
-                _isEditTodoSuccess.value = true
-            }.onFailure { throwable ->
-                Timber.d(throwable.message)
-                if (throwable is HttpException) {
-                    _editTodoErrorCode.value = throwable.code()
+    fun putTodo(todoId: Int, body: TodoEditRequest) =
+        viewModelScope.launch(Dispatchers.IO) { // onFailure 의 string()을 위해서 CoroutineContext 설정
+            todoRepository.putTodo(todoId, body)
+                .onSuccess {
+                    _isEditTodoSuccess.postValue(true)
+                }.onFailure { throwable ->
+                    Timber.d(throwable.message)
+                    if (throwable is HttpException) {
+                        val errorBodyJson = throwable.response()?.errorBody()?.string()!!.trimIndent()
+                        editTodoErrorMessage = Gson().fromJson(errorBodyJson, NoDataResponse::class.java).message
+                        _editTodoErrorCode.postValue(throwable.code())
+                    }
                 }
-            }
-    }
+        }
 
     companion object {
         const val ERROR_INVALID_TODO_DATE = 400

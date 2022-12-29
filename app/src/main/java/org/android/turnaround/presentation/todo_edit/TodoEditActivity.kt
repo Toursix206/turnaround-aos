@@ -130,7 +130,7 @@ class TodoEditActivity : BindingActivity<ActivityTodoEditBinding>(R.layout.activ
         viewModel.editTodoErrorCode.observe(this) { editTodoErrorCode ->
             when (editTodoErrorCode) {
                 ERROR_INVALID_TODO_DATE -> ToastMessageUtil.showPurpleToast(
-                    this, getString(R.string.todo_reserve_toast_msg_invalid_date), true, Gravity.TOP
+                    this, viewModel.editTodoErrorMessage, true, Gravity.TOP
                 )
                 ERROR_CANNOT_DELETE -> ToastMessageUtil.showPurpleToast(
                     this, getString(R.string.todo_reserve_toast_msg_cannot_delete), true, Gravity.TOP

@@ -103,7 +103,7 @@ class ActivityFragment : BindingFragment<FragmentActivityBinding>(R.layout.fragm
                 requireContext(), getString(R.string.todo_reserve_toast_msg_duplicate), true, Gravity.TOP
             )
             ERROR_INVALID_RESERVE_DATE -> ToastMessageUtil.showPurpleToast(
-                requireContext(), getString(R.string.todo_reserve_toast_msg_invalid_date), true, Gravity.TOP
+                requireContext(), viewModel.reserveErrorMessage, true, Gravity.TOP
             )
         }
     }
