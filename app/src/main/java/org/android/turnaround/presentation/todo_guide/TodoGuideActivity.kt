@@ -1,7 +1,6 @@
 package org.android.turnaround.presentation.todo_guide
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -10,13 +9,14 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoGuideBinding
 import org.android.turnaround.presentation.todo_certificate.TodoCertificateActivity
 import org.android.turnaround.presentation.todo_guide.adapter.TodoGuideAdapter
 import org.android.turnaround.util.binding.BindingActivity
+import org.android.turnaround.util.checkCameraPermission
+import org.android.turnaround.util.checkCameraPermissionUnderQ
 import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
@@ -96,7 +96,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
     private fun initDoneBtnClickListener() {
         binding.btnTodoGuideDone.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                if (checkCameraPermission()) {
+                if (checkCameraPermission(this)) {
                     takePicture()
                 } else {
                     ActivityCompat.requestPermissions(
@@ -106,7 +106,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
                     )
                 }
             } else {
-                if (checkCameraPermissionUnderQ()) {
+                if (checkCameraPermissionUnderQ(this)) {
                     takePicture()
                 } else {
                     ActivityCompat.requestPermissions(
@@ -122,15 +122,6 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
         }
     }
 
-    private fun checkCameraPermission() =
-        ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-
-    private fun checkCameraPermissionUnderQ() =
-        checkCameraPermission() && ContextCompat.checkSelfPermission(
-            this,
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-
     private fun takePicture() {
         try {
             imgUri = getImgUri(contentResolver)
@@ -140,7 +131,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
                 fromCameraActivityLauncher.launch(it)
             }
         } catch (e: NullPointerException) {
-            Timber.tag("ProfileBottomSheet").e("ImgUri Null 에러")
+            Timber.e(getString(R.string.null_img_uri))
         }
     }
 
