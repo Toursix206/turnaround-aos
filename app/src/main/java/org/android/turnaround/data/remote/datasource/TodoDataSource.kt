@@ -1,8 +1,10 @@
 package org.android.turnaround.data.remote.datasource
 
+import okhttp3.MultipartBody
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.data.remote.entity.response.BaseResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
+import org.android.turnaround.data.remote.entity.response.TodoCertificateResponse
 import org.android.turnaround.data.remote.entity.response.TodoDetailResponse
 import org.android.turnaround.data.remote.entity.response.TodoListResponse
 import org.android.turnaround.data.remote.entity.response.TodoRewardResponse
@@ -19,4 +21,6 @@ class TodoDataSource @Inject constructor(
     suspend fun putTodoReward(todoId: Int): BaseResponse<TodoRewardResponse> = todoService.putTodoReward(todoId)
     suspend fun putNotificationOff(): BaseResponse<String> = todoService.putNotificationOff()
     suspend fun getTodoStartAble(todoId: Int): NoDataResponse = todoService.getTodoStartAble(todoId)
+    suspend fun postTodoCertificate(todoId: Int, image: MultipartBody.Part): BaseResponse<TodoCertificateResponse> =
+        todoService.postTodoCertificate(todoId, image)
 }

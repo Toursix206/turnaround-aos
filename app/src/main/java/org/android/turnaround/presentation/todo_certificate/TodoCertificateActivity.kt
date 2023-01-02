@@ -9,6 +9,7 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
+import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoCertificateBinding
 import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.IMG_URI
@@ -23,6 +24,7 @@ import org.android.turnaround.util.getPathFromUri
 import timber.log.Timber
 import java.io.File
 
+@AndroidEntryPoint
 class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(R.layout.activity_todo_certificate) {
     private val viewModel by viewModels<TodoCertificateViewModel>()
     private var imgUri: Uri? = null

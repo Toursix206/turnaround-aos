@@ -1,15 +1,19 @@
 package org.android.turnaround.data.remote.service
 
+import okhttp3.MultipartBody
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.data.remote.entity.response.BaseResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
+import org.android.turnaround.data.remote.entity.response.TodoCertificateResponse
 import org.android.turnaround.data.remote.entity.response.TodoDetailResponse
 import org.android.turnaround.data.remote.entity.response.TodoListResponse
 import org.android.turnaround.data.remote.entity.response.TodoRewardResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface TodoService {
@@ -44,4 +48,10 @@ interface TodoService {
     suspend fun getTodoStartAble(
         @Path("todoId") todoId: Int
     ): NoDataResponse
+
+    @POST("/v1/todo/{todoId}/done")
+    suspend fun postTodoCertificate(
+        @Path("todoId") todoId: Int,
+        @Part image: MultipartBody.Part
+    ): BaseResponse<TodoCertificateResponse>
 }
