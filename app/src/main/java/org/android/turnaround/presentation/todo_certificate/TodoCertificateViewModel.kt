@@ -15,8 +15,15 @@ import javax.inject.Inject
 class TodoCertificateViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
+    var todoId = -1
+        private set
+
     private val _imgUri = MutableStateFlow(Uri.EMPTY)
     val imgUri: StateFlow<Uri?> = _imgUri.asStateFlow()
+
+    fun initTodoId(todoId: Int) {
+        this.todoId = todoId
+    }
 
     fun initImgUri(uri: Uri?) {
         _imgUri.value = uri

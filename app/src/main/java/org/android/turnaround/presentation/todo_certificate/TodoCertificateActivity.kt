@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoCertificateBinding
+import org.android.turnaround.presentation.todo_guide.TodoGuideActivity
 import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.IMG_URI
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.checkCameraPermission
@@ -42,6 +43,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
+        viewModel.initTodoId(intent.getIntExtra(TodoGuideActivity.TODO_GUIDE_TODO_ID, -1))
         intent.getStringExtra(IMG_URI)?.let { uri ->
             viewModel.initImgUri(Uri.parse(uri))
         }

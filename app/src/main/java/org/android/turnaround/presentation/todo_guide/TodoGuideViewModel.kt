@@ -16,6 +16,9 @@ import javax.inject.Inject
 class TodoGuideViewModel @Inject constructor(
     private val activityRepository: ActivityRepository
 ) : ViewModel() {
+    var todoId = -1
+        private set
+
     private val _isDoingTodo = MutableStateFlow(false)
     val isDoingTodo: StateFlow<Boolean> = _isDoingTodo.asStateFlow()
 
@@ -27,6 +30,10 @@ class TodoGuideViewModel @Inject constructor(
 
     private val _guides = MutableStateFlow<List<Guide>>(emptyList())
     val guides: StateFlow<List<Guide>> = _guides.asStateFlow()
+
+    fun initTodoId(todoId: Int) {
+        this.todoId = todoId
+    }
 
     fun initIsDoingTodo(isDoing: Boolean) {
         _isDoingTodo.value = isDoing
@@ -40,7 +47,7 @@ class TodoGuideViewModel @Inject constructor(
         }
     }
 
-    fun getTodoGuide(todoId: Int) {
+    fun getTodoGuide() {
         viewModelScope.launch {
             activityRepository.getTodoGuide(todoId)
                 .onSuccess { response ->

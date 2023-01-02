@@ -40,6 +40,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
                 startActivity(
                     Intent(this, TodoCertificateActivity::class.java).apply {
                         putExtra(IMG_URI, uri.toString())
+                        putExtra(TODO_GUIDE_TODO_ID, viewModel.todoId)
                     }
                 )
                 finish()
@@ -53,7 +54,8 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
             imgUri = it.getParcelable(IMG_URI)
         }
         binding.vm = viewModel
-        viewModel.getTodoGuide(intent.getIntExtra(TODO_GUIDE_TODO_ID, -1))
+        viewModel.initTodoId(intent.getIntExtra(TODO_GUIDE_TODO_ID, -1))
+        viewModel.getTodoGuide()
         initGuideImgViewPager()
         initCloseBtnClickListener()
         initCloseToolTipBtnClickListener()
