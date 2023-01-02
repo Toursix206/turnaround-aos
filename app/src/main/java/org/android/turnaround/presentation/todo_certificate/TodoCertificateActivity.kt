@@ -47,6 +47,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
         savedInstanceState?.let {
             imgUri = it.getParcelable(NEW_IMG_URI)
         }
+        initCloseBtnClickListener()
         initCloseToolTipBtnClickListener()
         initTakePhotoAgainBtnClickListener()
     }
@@ -54,6 +55,23 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable(NEW_IMG_URI, imgUri)
+    }
+
+    private fun initCloseBtnClickListener() {
+        binding.btnTodoCertificateClose.setOnClickListener {
+            WarningDialogFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(
+                        WarningDialogFragment.WARNING_TYPE,
+                        WarningType.WARNING_CANCEL_ACTIVITY
+                    )
+                    putParcelable(
+                        WarningDialogFragment.CONFIRM_ACTION,
+                        DialogBtnClickListener(clickAction = { finish() })
+                    )
+                }
+            }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
+        }
     }
 
     private fun initCloseToolTipBtnClickListener() {
