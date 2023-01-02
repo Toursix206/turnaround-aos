@@ -5,11 +5,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoCertificateBinding
-import org.android.turnaround.presentation.todo_guide.TodoGuideActivity
+import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.IMG_URI
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.checkCameraPermission
 import org.android.turnaround.util.checkCameraPermissionUnderQ
@@ -22,6 +24,7 @@ import timber.log.Timber
 import java.io.File
 
 class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(R.layout.activity_todo_certificate) {
+    private val viewModel by viewModels<TodoCertificateViewModel>()
     private var imgUri: Uri? = null
     private val fromCameraActivityLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -29,15 +32,34 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
         imgUri?.let { uri ->
             Thread.sleep(700)
             if (File(getPathFromUri(this, uri)).exists()) {
-                binding.imgUri = uri.toString()
+                viewModel.initImgUri(uri)
             }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.imgUri = intent.getStringExtra(TodoGuideActivity.IMG_URI)
+        binding.vm = viewModel
+        intent.getStringExtra(IMG_URI)?.let { uri ->
+            viewModel.initImgUri(Uri.parse(uri))
+        }
+        intent.removeExtra(IMG_URI)
+        savedInstanceState?.let {
+            imgUri = it.getParcelable(NEW_IMG_URI)
+        }
+        initCloseToolTipBtnClickListener()
         initTakePhotoAgainBtnClickListener()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(NEW_IMG_URI, imgUri)
+    }
+
+    private fun initCloseToolTipBtnClickListener() {
+        binding.btnTodoCertificateCloseToolTip.setOnClickListener {
+            binding.layoutTodoCertificateToolTip.visibility = View.GONE
+        }
     }
 
     private fun initTakePhotoAgainBtnClickListener() {
@@ -65,7 +87,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(android.Manifest.permission.CAMERA),
-                    TodoGuideActivity.REQUEST_CAMERA_PERMISSION
+                    REQUEST_CAMERA_PERMISSION
                 )
             }
         } else {
@@ -78,7 +100,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
                         android.Manifest.permission.CAMERA,
                         android.Manifest.permission.WRITE_EXTERNAL_STORAGE
                     ),
-                    TodoGuideActivity.REQUEST_CAMERA_PERMISSION_UNDER_Q
+                    REQUEST_CAMERA_PERMISSION_UNDER_Q
                 )
             }
         }
@@ -95,5 +117,11 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
         } catch (e: NullPointerException) {
             Timber.e(getString(R.string.null_img_uri))
         }
+    }
+
+    companion object {
+        const val NEW_IMG_URI = "imgUri"
+        const val REQUEST_CAMERA_PERMISSION = 1
+        const val REQUEST_CAMERA_PERMISSION_UNDER_Q = 2
     }
 }

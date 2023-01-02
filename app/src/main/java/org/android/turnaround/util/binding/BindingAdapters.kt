@@ -31,12 +31,12 @@ object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter(value = ["imgUri", "isCrop"], requireAll = false)
-    fun ImageView.initImageFromUri(imgUri: String?, isCrop: Boolean?) {
+    fun ImageView.initImageFromUri(imgUri: Uri?, isCrop: Boolean?) {
         isCrop?.let {
             clipToOutline = it
         }
         imgUri?.let {
-            setImageURI(Uri.parse(it))
+            setImageURI(it)
         }
     }
 

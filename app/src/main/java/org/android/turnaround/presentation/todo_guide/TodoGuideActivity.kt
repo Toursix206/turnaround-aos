@@ -49,6 +49,9 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        savedInstanceState?.let {
+            imgUri = it.getParcelable(IMG_URI)
+        }
         binding.vm = viewModel
         viewModel.getTodoGuide(intent.getIntExtra(TODO_GUIDE_TODO_ID, -1))
         initGuideImgViewPager()
@@ -57,6 +60,11 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
         initDoneBtnClickListener()
         initGuidesCollector()
         initCurrentStepCollector()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(IMG_URI, imgUri)
     }
 
     private fun initGuideImgViewPager() {
@@ -154,7 +162,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
     companion object {
         const val TODO_GUIDE_TODO_ID = "todoGuideTodoId"
         const val IMG_URI = "imageUri"
-        const val REQUEST_CAMERA_PERMISSION = 2
-        const val REQUEST_CAMERA_PERMISSION_UNDER_Q = 3
+        const val REQUEST_CAMERA_PERMISSION = 1
+        const val REQUEST_CAMERA_PERMISSION_UNDER_Q = 2
     }
 }

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="imgUri"
-            type="String" />
+            name="vm"
+            type="org.android.turnaround.presentation.todo_certificate.TodoCertificateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,7 +135,7 @@
 
         <ImageView
             android:id="@+id/iv_todo_certificate"
-            imgUri="@{imgUri}"
+            imgUri="@{vm.imgUri}"
             isCrop="@{true}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
