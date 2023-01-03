@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -75,23 +76,26 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
     }
 
     private fun initCloseBtnClickListener() {
-        binding.btnTodoCertificateClose.setOnClickListener {
-            WarningDialogFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(
-                        WarningDialogFragment.WARNING_TYPE,
-                        WarningType.WARNING_CANCEL_ACTIVITY
-                    )
-                    putParcelable(
-                        WarningDialogFragment.CONFIRM_ACTION,
-                        DialogBtnClickListener(clickAction = {
-                            deleteImgFromCamera()
-                            finish()
-                        })
-                    )
-                }
-            }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
-        }
+        binding.btnTodoCertificateClose.setOnClickListener { cancelActivity() }
+        onBackPressedDispatcher.addCallback { cancelActivity() }
+    }
+
+    private fun cancelActivity() {
+        WarningDialogFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(
+                    WarningDialogFragment.WARNING_TYPE,
+                    WarningType.WARNING_CANCEL_ACTIVITY
+                )
+                putParcelable(
+                    WarningDialogFragment.CONFIRM_ACTION,
+                    DialogBtnClickListener(clickAction = {
+                        deleteImgFromCamera()
+                        finish()
+                    })
+                )
+            }
+        }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
     }
 
     private fun initCloseToolTipBtnClickListener() {
