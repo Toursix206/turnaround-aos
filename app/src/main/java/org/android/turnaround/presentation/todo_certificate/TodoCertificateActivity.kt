@@ -163,7 +163,6 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
                 deleteImgFromCamera()
                 startActivity(
                     Intent(this, TodoReviewActivity::class.java).apply {
-                        putExtra(CERTIFICATE_IMG_URI, viewModel.imgUri.toString())
                         putExtra(REVIEW_ID, id)
                     }
                 )

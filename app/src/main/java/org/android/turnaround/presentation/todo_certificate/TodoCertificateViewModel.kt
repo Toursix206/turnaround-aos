@@ -20,8 +20,7 @@ import javax.inject.Inject
 class TodoCertificateViewModel @Inject constructor(
     private val todoRepository: TodoRepository
 ) : ViewModel() {
-    var todoId = -1
-        private set
+    private var todoId = -1
 
     private val _imgUriList = mutableListOf<Uri?>()
     val imgUriList get() = _imgUriList
