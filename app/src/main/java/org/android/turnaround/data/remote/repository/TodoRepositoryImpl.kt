@@ -3,7 +3,7 @@ package org.android.turnaround.data.remote.repository
 import okhttp3.MultipartBody
 import org.android.turnaround.data.remote.datasource.TodoDataSource
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
-import org.android.turnaround.domain.entity.NotWrittenReview
+import org.android.turnaround.domain.entity.Review
 import org.android.turnaround.domain.entity.TodoCertificate
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.domain.entity.TodoList
@@ -52,7 +52,7 @@ class TodoRepositoryImpl @Inject constructor(
         kotlin.runCatching { todoDataSource.postTodoCertificate(todoId, image) }
             .map { response -> response.data.toTodoCertificate() }
 
-    override suspend fun getNotWrittenReview(doneReviewId: Int): Result<NotWrittenReview> =
+    override suspend fun getNotWrittenReview(doneReviewId: Int): Result<Review> =
         kotlin.runCatching { todoDataSource.getNotWrittenReview(doneReviewId) }
-            .map { response -> response.data.toNotWrittenReview() }
+            .map { response -> response.data.toReview() }
 }

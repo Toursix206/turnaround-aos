@@ -1,6 +1,7 @@
 package org.android.turnaround.domain.entity
 
-data class NotWrittenReview(
+data class Review(
+    val content: String = "",
     val imageUrl: String = "",
     val name: String = "",
     val doneDate: String = "",

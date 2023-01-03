@@ -150,7 +150,7 @@
             android:gravity="start"
             android:hint="@string/todo_review_hint"
             android:importantForAutofill="no"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:maxLength="500"
             android:paddingHorizontal="14dp"
             android:paddingTop="10dp"

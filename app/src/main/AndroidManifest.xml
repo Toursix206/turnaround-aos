@@ -25,8 +25,14 @@
         tools:targetApi="31">
         <activity
             android:name=".presentation.todo_review.TodoReviewActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="true"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.todo_certificate.TodoCertificateActivity"
             android:configChanges="orientation"
@@ -65,11 +71,7 @@
             android:name=".presentation.intro.IntroActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.main.MainActivity"

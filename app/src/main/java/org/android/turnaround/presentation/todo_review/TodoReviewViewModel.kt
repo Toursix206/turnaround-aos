@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.android.turnaround.domain.entity.NotWrittenReview
+import org.android.turnaround.domain.entity.Review
 import org.android.turnaround.domain.repository.TodoRepository
 import timber.log.Timber
 import javax.inject.Inject
@@ -20,8 +20,8 @@ class TodoReviewViewModel @Inject constructor(
     val reviewContent = MutableStateFlow(EMPTY_CONTENT)
     val reviewRating = MutableStateFlow(DEFAULT_RATING)
 
-    private val _review = MutableStateFlow(NotWrittenReview())
-    val review: StateFlow<NotWrittenReview> = _review.asStateFlow()
+    private val _review = MutableStateFlow(Review())
+    val review: StateFlow<Review> = _review.asStateFlow()
 
     fun initDoneReviewId(doneReviewId: Int) {
         this.doneReviewId = doneReviewId
@@ -32,6 +32,7 @@ class TodoReviewViewModel @Inject constructor(
             todoRepository.getNotWrittenReview(doneReviewId)
                 .onSuccess { response ->
                     _review.value = response
+                    reviewContent.value = response.content
                     reviewRating.value = response.rating.score.toFloat()
                 }
                 .onFailure { Timber.d(it.message.toString()) }
