@@ -43,10 +43,6 @@ class MyTodoViewModel @Inject constructor(
     private val _todoStartAbleEvent = MutableSharedFlow<UiEvent>()
     val todoStartAbleEvent: SharedFlow<UiEvent> = _todoStartAbleEvent.asSharedFlow()
 
-    init {
-        getTodoList()
-    }
-
     fun getTodoList() = viewModelScope.launch {
         todoRepository.getTodoList()
             .onSuccess {

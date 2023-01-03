@@ -2,7 +2,6 @@ package org.android.turnaround.presentation.todo_edit
 
 import android.os.Bundle
 import android.view.Gravity
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
@@ -30,7 +29,6 @@ class TodoEditActivity : BindingActivity<ActivityTodoEditBinding>(R.layout.activ
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initTodoListObserver()
         initIsCheckedDeleteBtnEventObserver()
         initDeleteTodoObserver()
@@ -38,8 +36,6 @@ class TodoEditActivity : BindingActivity<ActivityTodoEditBinding>(R.layout.activ
         initBackBtnClickListener()
         initEditTodoObserver()
         initEditTodoFailObserver()
-
-        this.onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun initTodoListObserver() {
@@ -161,14 +157,6 @@ class TodoEditActivity : BindingActivity<ActivityTodoEditBinding>(R.layout.activ
 
     private fun initBackBtnClickListener() {
         binding.ivTodoEventEditBack.setOnClickListener {
-            setResult(RESULT_OK, intent)
-            finish()
-        }
-    }
-
-    private val callback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            setResult(RESULT_OK, intent)
             finish()
         }
     }

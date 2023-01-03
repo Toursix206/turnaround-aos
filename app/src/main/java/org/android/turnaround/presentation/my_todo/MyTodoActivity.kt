@@ -3,8 +3,6 @@ package org.android.turnaround.presentation.my_todo
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
@@ -30,12 +28,6 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
     private val viewModel by viewModels<MyTodoViewModel>()
     private var todoStartBottomSheet = TodoStartBottomSheet()
 
-    private val todoEditResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            refresh()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
@@ -47,7 +39,11 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
         initTodoEventEditClickListener()
         initBackBtnClickListener()
         initGoActivityListener()
-        this.onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getTodoList()
     }
 
     private fun initTodoListObserver() {
@@ -102,13 +98,12 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
 
     private fun initTodoEventEditClickListener() {
         binding.ivTodoEventSetting.setOnClickListener {
-            todoEditResultLauncher.launch(Intent(this, TodoEditActivity::class.java))
+            startActivity(Intent(this, TodoEditActivity::class.java))
         }
     }
 
     private fun initBackBtnClickListener() {
         binding.ivTodoEventBack.setOnClickListener {
-            setResult(RESULT_OK, intent)
             finish()
         }
     }
@@ -144,16 +139,5 @@ class MyTodoActivity : BindingActivity<ActivityMyTodoBinding>(R.layout.activity_
                 )
             }
         }.show(supportFragmentManager, TodoDoneDialogFragment.DIALOG_TODO_DONE)
-    }
-
-    private fun refresh() {
-        viewModel.getTodoList()
-    }
-
-    private val callback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            setResult(RESULT_OK, intent)
-            finish()
-        }
     }
 }
