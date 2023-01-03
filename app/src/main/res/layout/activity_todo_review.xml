@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.todo_review.TodoReviewViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -39,7 +39,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
             if (File(getPathFromUri(this, uri)).exists()) {
                 startActivity(
                     Intent(this, TodoCertificateActivity::class.java).apply {
-                        putExtra(IMG_URI, uri.toString())
+                        putExtra(GUIDE_IMG_URI, uri.toString())
                         putExtra(TODO_GUIDE_TODO_ID, viewModel.todoId)
                     }
                 )
@@ -51,7 +51,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         savedInstanceState?.let {
-            imgUri = it.getParcelable(IMG_URI)
+            imgUri = it.getParcelable(GUIDE_IMG_URI)
         }
         binding.vm = viewModel
         viewModel.initTodoId(intent.getIntExtra(TODO_GUIDE_TODO_ID, -1))
@@ -66,7 +66,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(IMG_URI, imgUri)
+        outState.putParcelable(GUIDE_IMG_URI, imgUri)
     }
 
     private fun initGuideImgViewPager() {
@@ -163,7 +163,7 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
 
     companion object {
         const val TODO_GUIDE_TODO_ID = "todoGuideTodoId"
-        const val IMG_URI = "imageUri"
+        const val GUIDE_IMG_URI = "guideImgUri"
         const val REQUEST_CAMERA_PERMISSION = 1
         const val REQUEST_CAMERA_PERMISSION_UNDER_Q = 2
     }

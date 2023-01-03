@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoCertificateBinding
 import org.android.turnaround.presentation.todo_guide.TodoGuideActivity
-import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.IMG_URI
+import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.GUIDE_IMG_URI
 import org.android.turnaround.presentation.todo_review.TodoReviewActivity
 import org.android.turnaround.presentation.todo_review.TodoReviewActivity.Companion.REVIEW_ID
 import org.android.turnaround.util.MultiPartResolver
@@ -51,12 +51,12 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
         viewModel.initTodoId(intent.getIntExtra(TodoGuideActivity.TODO_GUIDE_TODO_ID, -1))
-        intent.getStringExtra(IMG_URI)?.let { uri ->
-            initImg(Uri.parse(uri))
+        intent.apply {
+            getStringExtra(GUIDE_IMG_URI)?.let { uri -> initImg(Uri.parse(uri)) }
+            removeExtra(GUIDE_IMG_URI)
         }
-        intent.removeExtra(IMG_URI)
         savedInstanceState?.let {
-            imgUri = it.getParcelable(NEW_IMG_URI)
+            imgUri = it.getParcelable(CERTIFICATE_IMG_URI)
         }
         initCloseBtnClickListener()
         initCloseToolTipBtnClickListener()
@@ -66,7 +66,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable(NEW_IMG_URI, imgUri)
+        outState.putParcelable(CERTIFICATE_IMG_URI, imgUri)
     }
 
     private fun initImg(uri: Uri) {
@@ -163,6 +163,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
                 deleteImgFromCamera()
                 startActivity(
                     Intent(this, TodoReviewActivity::class.java).apply {
+                        putExtra(CERTIFICATE_IMG_URI, viewModel.imgUri.toString())
                         putExtra(REVIEW_ID, id)
                     }
                 )
@@ -178,7 +179,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
     }
 
     companion object {
-        const val NEW_IMG_URI = "imgUri"
+        const val CERTIFICATE_IMG_URI = "certificateImgUri"
         const val REQUEST_CAMERA_PERMISSION = 1
         const val REQUEST_CAMERA_PERMISSION_UNDER_Q = 2
     }
