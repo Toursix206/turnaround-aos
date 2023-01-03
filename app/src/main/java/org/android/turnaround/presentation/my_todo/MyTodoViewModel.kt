@@ -52,7 +52,7 @@ class MyTodoViewModel @Inject constructor(
             .onSuccess {
                 _todoList.value = it
 
-                if (it.todayTodosCnt + it.thisWeekTodosCnt + it.nextTodosCnt + it.nextTodosCnt <= 0) {
+                if (it.todayTodosCnt + it.thisWeekTodosCnt + it.nextTodosCnt + it.successTodosCnt <= 0) {
                     _isTodoExist.value = true
                 }
             }
