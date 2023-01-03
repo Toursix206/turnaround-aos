@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -77,23 +78,26 @@ class TodoGuideActivity : BindingActivity<ActivityTodoGuideBinding>(R.layout.act
     }
 
     private fun initCloseBtnClickListener() {
-        binding.btnTodoGuideClose.setOnClickListener {
-            if (viewModel.isDoingTodo.value || viewModel.currentStep.value == viewModel.guides.value.size) {
-                WarningDialogFragment().apply {
-                    arguments = Bundle().apply {
-                        putSerializable(
-                            WarningDialogFragment.WARNING_TYPE,
-                            WarningType.WARNING_CANCEL_ACTIVITY
-                        )
-                        putParcelable(
-                            WarningDialogFragment.CONFIRM_ACTION,
-                            DialogBtnClickListener(clickAction = { finish() })
-                        )
-                    }
-                }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
-            } else {
-                finish()
-            }
+        binding.btnTodoGuideClose.setOnClickListener { cancelActivity() }
+        onBackPressedDispatcher.addCallback { cancelActivity() }
+    }
+
+    private fun cancelActivity() {
+        if (viewModel.isDoingTodo.value || viewModel.currentStep.value == viewModel.guides.value.size) {
+            WarningDialogFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(
+                        WarningDialogFragment.WARNING_TYPE,
+                        WarningType.WARNING_CANCEL_ACTIVITY
+                    )
+                    putParcelable(
+                        WarningDialogFragment.CONFIRM_ACTION,
+                        DialogBtnClickListener(clickAction = { finish() })
+                    )
+                }
+            }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
+        } else {
+            finish()
         }
     }
 
