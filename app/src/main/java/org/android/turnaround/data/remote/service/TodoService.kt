@@ -1,6 +1,7 @@
 package org.android.turnaround.data.remote.service
 
 import okhttp3.MultipartBody
+import org.android.turnaround.data.remote.entity.request.ReviewRequest
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.data.remote.entity.response.BaseResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
@@ -62,4 +63,10 @@ interface TodoService {
     suspend fun getNotWrittenReview(
         @Path("doneReviewId") doneReviewId: Int
     ): BaseResponse<NotWrittenReviewResponse>
+
+    @POST("/v1/todo/done/review/{doneReviewId}")
+    suspend fun postReview(
+        @Path("doneReviewId") doneReviewId: Int,
+        @Body body: ReviewRequest
+    ): NoDataResponse
 }

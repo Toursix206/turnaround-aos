@@ -55,4 +55,8 @@ class TodoRepositoryImpl @Inject constructor(
     override suspend fun getNotWrittenReview(doneReviewId: Int): Result<Review> =
         kotlin.runCatching { todoDataSource.getNotWrittenReview(doneReviewId) }
             .map { response -> response.data.toReview() }
+
+    override suspend fun postReview(doneReviewId: Int, content: String, rating: Int): Result<Boolean> =
+        kotlin.runCatching { todoDataSource.postReview(doneReviewId, content, rating) }
+            .map { response -> response.success }
 }

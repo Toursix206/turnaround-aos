@@ -18,4 +18,5 @@ interface TodoRepository {
     suspend fun getTodoStartAble(todoId: Int): Result<Boolean>
     suspend fun postTodoCertificate(todoId: Int, image: MultipartBody.Part): Result<TodoCertificate>
     suspend fun getNotWrittenReview(doneReviewId: Int): Result<Review>
+    suspend fun postReview(doneReviewId: Int, content: String, rating: Int): Result<Boolean>
 }

@@ -1,6 +1,7 @@
 package org.android.turnaround.data.remote.datasource
 
 import okhttp3.MultipartBody
+import org.android.turnaround.data.remote.entity.request.ReviewRequest
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.data.remote.entity.response.BaseResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
@@ -41,4 +42,7 @@ class TodoDataSource @Inject constructor(
 
     suspend fun getNotWrittenReview(doneReviewId: Int): BaseResponse<NotWrittenReviewResponse> =
         todoService.getNotWrittenReview(doneReviewId)
+
+    suspend fun postReview(doneReviewId: Int, content: String, rating: Int): NoDataResponse =
+        todoService.postReview(doneReviewId, ReviewRequest(content = content, rating = rating))
 }
