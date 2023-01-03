@@ -84,7 +84,10 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
                     )
                     putParcelable(
                         WarningDialogFragment.CONFIRM_ACTION,
-                        DialogBtnClickListener(clickAction = { finish() })
+                        DialogBtnClickListener(clickAction = {
+                            deleteImgFromCamera()
+                            finish()
+                        })
                     )
                 }
             }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
@@ -157,6 +160,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
     private fun initDoneReviewIdCollector() {
         repeatOnStarted {
             viewModel.doneReviewId.collect { id ->
+                deleteImgFromCamera()
                 startActivity(
                     Intent(this, TodoReviewActivity::class.java).apply {
                         putExtra(REVIEW_ID, id)
@@ -164,6 +168,12 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
                 )
                 finish()
             }
+        }
+    }
+
+    private fun deleteImgFromCamera() {
+        viewModel.imgUriList.forEach { uri ->
+            uri?.let { contentResolver.delete(it, null, null) }
         }
     }
 

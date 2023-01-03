@@ -23,6 +23,9 @@ class TodoCertificateViewModel @Inject constructor(
     var todoId = -1
         private set
 
+    private val _imgUriList = mutableListOf<Uri?>()
+    val imgUriList get() = _imgUriList
+
     private val _imgUri = MutableStateFlow(Uri.EMPTY)
     val imgUri: StateFlow<Uri?> = _imgUri.asStateFlow()
 
@@ -36,6 +39,7 @@ class TodoCertificateViewModel @Inject constructor(
     }
 
     fun initImgUri(uri: Uri?) {
+        _imgUriList.add(uri)
         _imgUri.value = uri
     }
 
