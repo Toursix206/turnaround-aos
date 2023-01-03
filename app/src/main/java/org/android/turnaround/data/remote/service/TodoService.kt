@@ -11,6 +11,7 @@ import org.android.turnaround.data.remote.entity.response.TodoRewardResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
@@ -49,6 +50,7 @@ interface TodoService {
         @Path("todoId") todoId: Int
     ): NoDataResponse
 
+    @Multipart
     @POST("/v1/todo/{todoId}/done")
     suspend fun postTodoCertificate(
         @Path("todoId") todoId: Int,

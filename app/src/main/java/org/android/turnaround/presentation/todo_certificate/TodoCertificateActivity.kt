@@ -14,19 +14,26 @@ import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoCertificateBinding
 import org.android.turnaround.presentation.todo_guide.TodoGuideActivity
 import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.IMG_URI
+import org.android.turnaround.presentation.todo_review.TodoReviewActivity
+import org.android.turnaround.presentation.todo_review.TodoReviewActivity.Companion.REVIEW_ID
+import org.android.turnaround.util.MultiPartResolver
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.checkCameraPermission
 import org.android.turnaround.util.checkCameraPermissionUnderQ
 import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
+import org.android.turnaround.util.extension.repeatOnStarted
 import org.android.turnaround.util.getImgUri
 import org.android.turnaround.util.getPathFromUri
 import timber.log.Timber
 import java.io.File
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(R.layout.activity_todo_certificate) {
+    @Inject
+    lateinit var multiPartResolver: MultiPartResolver
     private val viewModel by viewModels<TodoCertificateViewModel>()
     private var imgUri: Uri? = null
     private val fromCameraActivityLauncher = registerForActivityResult(
@@ -35,7 +42,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
         imgUri?.let { uri ->
             Thread.sleep(700)
             if (File(getPathFromUri(this, uri)).exists()) {
-                viewModel.initImgUri(uri)
+                initImg(uri)
             }
         }
     }
@@ -45,7 +52,7 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
         binding.vm = viewModel
         viewModel.initTodoId(intent.getIntExtra(TodoGuideActivity.TODO_GUIDE_TODO_ID, -1))
         intent.getStringExtra(IMG_URI)?.let { uri ->
-            viewModel.initImgUri(Uri.parse(uri))
+            initImg(Uri.parse(uri))
         }
         intent.removeExtra(IMG_URI)
         savedInstanceState?.let {
@@ -54,11 +61,17 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
         initCloseBtnClickListener()
         initCloseToolTipBtnClickListener()
         initTakePhotoAgainBtnClickListener()
+        initDoneReviewIdCollector()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable(NEW_IMG_URI, imgUri)
+    }
+
+    private fun initImg(uri: Uri) {
+        viewModel.initImgUri(uri)
+        viewModel.initImgMultiPart(multiPartResolver.createImgMultiPart(uri))
     }
 
     private fun initCloseBtnClickListener() {
@@ -138,6 +151,19 @@ class TodoCertificateActivity : BindingActivity<ActivityTodoCertificateBinding>(
             }
         } catch (e: NullPointerException) {
             Timber.e(getString(R.string.null_img_uri))
+        }
+    }
+
+    private fun initDoneReviewIdCollector() {
+        repeatOnStarted {
+            viewModel.doneReviewId.collect { id ->
+                startActivity(
+                    Intent(this, TodoReviewActivity::class.java).apply {
+                        putExtra(REVIEW_ID, id)
+                    }
+                )
+                finish()
+            }
         }
     }
 

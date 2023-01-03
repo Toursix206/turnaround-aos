@@ -64,6 +64,7 @@
             android:backgroundTint="@color/turnaround_gray_10"
             android:insetTop="0dp"
             android:insetBottom="0dp"
+            android:onClick="@{()->vm.postTodoCertificate()}"
             android:paddingVertical="16dp"
             android:stateListAnimator="@null"
             android:text="@string/todo_certificate_done"

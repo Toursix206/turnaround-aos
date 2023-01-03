@@ -9,4 +9,8 @@ class TodoReviewActivity : BindingActivity<ActivityTodoReviewBinding>(R.layout.a
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
+    companion object {
+        const val REVIEW_ID = "reviewId"
+    }
 }

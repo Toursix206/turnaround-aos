@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 fun getImgUri(contentResolver: ContentResolver): Uri? {
-    val folderName = "Spark"
+    val folderName = "TurnAround"
     val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
     val picturePath = "${Environment.DIRECTORY_PICTURES}${File.separator}$folderName"
     val contentValues = ContentValues().apply {
