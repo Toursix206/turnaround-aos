@@ -41,14 +41,6 @@ data class WarningDialogContent(
             confirm = context.getString(R.string.warning_skip_review_confirm)
         )
 
-    fun getWarningCancelReview(context: Context): WarningDialogContent =
-        WarningDialogContent(
-            title = context.getString(R.string.warning_cancel_review_title),
-            desc = context.getString(R.string.warning_cancel_review_desc),
-            cancel = context.getString(R.string.warning_cancel_review_cancel),
-            confirm = context.getString(R.string.warning_cancel_review_confirm)
-        )
-
     fun getWarningWithdraw(context: Context): WarningDialogContent =
         WarningDialogContent(
             title = context.getString(R.string.warning_withdraw_title),
