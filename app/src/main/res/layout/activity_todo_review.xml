@@ -184,6 +184,7 @@
             android:enabled="@{vm.reviewContent.length > 10 ? true : false}"
             android:insetTop="0dp"
             android:insetBottom="0dp"
+            android:onClick="@{()->vm.postReview()}"
             android:paddingVertical="16dp"
             android:stateListAnimator="@null"
             android:text="@string/todo_review_done"

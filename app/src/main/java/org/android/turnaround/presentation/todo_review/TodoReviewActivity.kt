@@ -7,10 +7,12 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
 import org.android.turnaround.databinding.ActivityTodoReviewBinding
+import org.android.turnaround.util.UiEvent
 import org.android.turnaround.util.binding.BindingActivity
 import org.android.turnaround.util.dialog.DialogBtnClickListener
 import org.android.turnaround.util.dialog.WarningDialogFragment
 import org.android.turnaround.util.dialog.WarningType
+import org.android.turnaround.util.extension.repeatOnStarted
 
 @AndroidEntryPoint
 class TodoReviewActivity : BindingActivity<ActivityTodoReviewBinding>(R.layout.activity_todo_review) {
@@ -23,6 +25,7 @@ class TodoReviewActivity : BindingActivity<ActivityTodoReviewBinding>(R.layout.a
         viewModel.getNotWrittenReview()
         initCloseToolTipBtnClickListener()
         initSkipReviewBtnClickListener()
+        initPostReviewEventCollector()
     }
 
     private fun initCloseToolTipBtnClickListener() {
@@ -49,6 +52,17 @@ class TodoReviewActivity : BindingActivity<ActivityTodoReviewBinding>(R.layout.a
                 )
             }
         }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
+    }
+
+    private fun initPostReviewEventCollector() {
+        repeatOnStarted {
+            viewModel.postReviewEvent.collect { uiEvent ->
+                when (uiEvent) {
+                    UiEvent.SUCCESS -> finish()
+                    UiEvent.ERROR, UiEvent.LOADING -> {}
+                }
+            }
+        }
     }
 
     companion object {
