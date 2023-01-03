@@ -39,7 +39,7 @@ object RetrofitModule {
     private const val HEADER_VERSION = "TurnaroundVersion"
     private const val OS_TYPE = "AOS"
     private const val BEARER = "Bearer "
-    private const val NETWORK_ERROR = 500
+    private const val SERVER_ERROR = 500
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
@@ -65,7 +65,7 @@ object RetrofitModule {
                     .build()
             )
             when (response.code) {
-                NETWORK_ERROR -> {
+                SERVER_ERROR -> {
                     Handler(Looper.getMainLooper()).post(
                         Runnable {
                             ToastMessageUtil.showToast(

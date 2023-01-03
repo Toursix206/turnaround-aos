@@ -5,8 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.android.turnaround.R
-import org.android.turnaround.databinding.*
-import org.android.turnaround.domain.entity.*
+import org.android.turnaround.databinding.ItemMyTodoBlackBinding
+import org.android.turnaround.databinding.ItemMyTodoPurpleBinding
+import org.android.turnaround.databinding.ItemMyTodoWhiteBinding
+import org.android.turnaround.databinding.ItemTodoHeaderBinding
+import org.android.turnaround.domain.entity.Todo
+import org.android.turnaround.domain.entity.TodoEvent
+import org.android.turnaround.domain.entity.TodoHeader
+import org.android.turnaround.domain.entity.TodoList
+import org.android.turnaround.domain.entity.TodoType
 import org.android.turnaround.presentation.my_todo.MyTodoViewModel
 
 class MyTodoAdapter(
@@ -119,6 +126,7 @@ class MyTodoAdapter(
     inner class TodoEventPurpleViewHolder(private val binding: ItemMyTodoPurpleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(todo: Todo) {
             binding.todo = todo
+            binding.vm = viewModel
             binding.executePendingBindings()
         }
     }

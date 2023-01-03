@@ -43,16 +43,12 @@ class MyTodoViewModel @Inject constructor(
     private val _todoStartAbleEvent = MutableSharedFlow<UiEvent>()
     val todoStartAbleEvent: SharedFlow<UiEvent> = _todoStartAbleEvent.asSharedFlow()
 
-    init {
-        getTodoList()
-    }
-
     fun getTodoList() = viewModelScope.launch {
         todoRepository.getTodoList()
             .onSuccess {
                 _todoList.value = it
 
-                if (it.todayTodosCnt + it.thisWeekTodosCnt + it.nextTodosCnt + it.nextTodosCnt <= 0) {
+                if (it.todayTodosCnt + it.thisWeekTodosCnt + it.nextTodosCnt + it.successTodosCnt <= 0) {
                     _isTodoExist.value = true
                 }
             }

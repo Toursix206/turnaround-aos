@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -31,22 +29,19 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private val viewModel by viewModels<HomeViewModel>()
     private var todoStartBottomSheet = TodoStartBottomSheet()
 
-    private val myTodoResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            refresh()
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.vm = viewModel
-        viewModel.getHomeInfo()
         initHomeObserver()
         initIsClickedBlackItemEventObserver()
         initTodoDetailObserver()
         initStartTodoAbleEventCollector()
         initTodoEventEventClickListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getHomeInfo()
     }
 
     private fun initHomeObserver() {
@@ -112,7 +107,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initTodoEventEventClickListener() {
         binding.tvHomeShowMore.setOnClickListener {
-            myTodoResultLauncher.launch(Intent(requireActivity(), MyTodoActivity::class.java))
+            startActivity(Intent(requireActivity(), MyTodoActivity::class.java))
         }
     }
 
@@ -126,10 +121,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 )
             }
         }.show(parentFragmentManager, TodoStartBottomSheet.BOTTOM_SHEET_TODO_START)
-    }
-
-    private fun refresh() {
-        viewModel.getHomeInfo()
     }
 
     private fun ViewPager2.setShowSideItems(pageMarginPx: Float, offsetPx: Float) {
