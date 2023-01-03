@@ -4,6 +4,7 @@ import okhttp3.MultipartBody
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.data.remote.entity.response.BaseResponse
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
+import org.android.turnaround.data.remote.entity.response.NotWrittenReviewResponse
 import org.android.turnaround.data.remote.entity.response.TodoCertificateResponse
 import org.android.turnaround.data.remote.entity.response.TodoDetailResponse
 import org.android.turnaround.data.remote.entity.response.TodoListResponse
@@ -56,4 +57,9 @@ interface TodoService {
         @Path("todoId") todoId: Int,
         @Part image: MultipartBody.Part
     ): BaseResponse<TodoCertificateResponse>
+
+    @GET("/v1/todo/done/review/{doneReviewId}")
+    suspend fun getNotWrittenReview(
+        @Path("doneReviewId") doneReviewId: Int
+    ): BaseResponse<NotWrittenReviewResponse>
 }
