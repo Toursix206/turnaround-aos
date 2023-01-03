@@ -2,6 +2,7 @@ package org.android.turnaround.presentation.todo_review
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.android.turnaround.R
@@ -31,20 +32,23 @@ class TodoReviewActivity : BindingActivity<ActivityTodoReviewBinding>(R.layout.a
     }
 
     private fun initSkipReviewBtnClickListener() {
-        binding.tvTodoReviewSkip.setOnClickListener {
-            WarningDialogFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(
-                        WarningDialogFragment.WARNING_TYPE,
-                        WarningType.WARNING_SKIP_REVIEW
-                    )
-                    putParcelable(
-                        WarningDialogFragment.CONFIRM_ACTION,
-                        DialogBtnClickListener(clickAction = { finish() })
-                    )
-                }
-            }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
-        }
+        binding.tvTodoReviewSkip.setOnClickListener { skipReview() }
+        onBackPressedDispatcher.addCallback { skipReview() }
+    }
+
+    private fun skipReview() {
+        WarningDialogFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(
+                    WarningDialogFragment.WARNING_TYPE,
+                    WarningType.WARNING_SKIP_REVIEW
+                )
+                putParcelable(
+                    WarningDialogFragment.CONFIRM_ACTION,
+                    DialogBtnClickListener(clickAction = { finish() })
+                )
+            }
+        }.show(supportFragmentManager, WarningDialogFragment.DIALOG_WARNING)
     }
 
     companion object {
