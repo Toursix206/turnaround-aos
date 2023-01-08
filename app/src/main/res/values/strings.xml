@@ -19,7 +19,7 @@
     <string name="null_point_exception_warning_dialog_argument">"WarningDialogFragment에 필요한 arguments에 안들어옴"</string>
 
     <string name="warning_delete_activity_title">진짜 활동을 삭제할까요?</string>
-    <string name="warning_delete_activity_desc">실패한 활동으로 기록되지는 않아요</string>
+    <string name="warning_delete_activity_desc">실패한 활동으로 기록되지는 않아요.</string>
     <string name="warning_delete_activity_cancel">아니요</string>
     <string name="warning_delete_activity_confirm">네! 삭제할게요</string>
 
@@ -38,22 +38,17 @@
     <string name="warning_skip_review_cancel">아니요</string>
     <string name="warning_skip_review_confirm">네</string>
 
-    <string name="warning_cancel_review_title">작성 취소</string>
-    <string name="warning_cancel_review_desc">작성 중인 내용이 삭제돼요.\n리뷰 작성을 취소하실 건가요?</string>
-    <string name="warning_cancel_review_cancel">아니요</string>
-    <string name="warning_cancel_review_confirm">네</string>
-
     <string name="warning_withdraw_title">정말 떠나실려구요?</string>
-    <string name="warning_withdraw_desc">방타버스와 함께 성장한\n당신의 생산적인 삶을 응원합니다</string>
+    <string name="warning_withdraw_desc">방타버스와 함께 성장한\n당신의 생산적인 삶을 응원합니다.</string>
     <string name="warning_withdraw_cancel">네, 떠날게요</string>
     <string name="warning_withdraw_confirm">아니요</string>
 
     <string name="warning_notification_title">활동 알람을 보내드릴까요?</string>
-    <string name="warning_notification_desc">활동 알람은 언제든지\n[내정보 -> 설정]에서 변경가능해요</string>
+    <string name="warning_notification_desc">활동 알람은 언제든지\n[내정보 -> 설정]에서 변경가능해요.</string>
     <string name="warning_notification_cancel">아니요</string>
     <string name="warning_notification_confirm">네! 동의할래요</string>
 
-    <string name="warning_duplicate_login_title">다른 기기에서 로그인 중이에요</string>
+    <string name="warning_duplicate_login_title">다른 기기에서 로그인 중이에요.</string>
     <string name="warning_duplicate_login_desc">다른 기기에서 로그아웃 하고\n현재 기기에서 로그인 할까요?</string>
     <string name="warning_duplicate_login_cancel">아니요</string>
     <string name="warning_duplicate_login_confirm">네</string>
@@ -189,7 +184,6 @@
     <string name="todo_reserve_toast_msg_cannot_delete">수정/삭제 할 수 없는 일정입니다.</string>
     <string name="todo_reserve_toast_msg_success">⏰ 활동을 예약했어요!</string>
     <string name="todo_reserve_edit_toast_msg_success">🙂 활동이 변경되었어요!</string>
-    <string name="todo_reserve_toast_msg_invalid_date">😥 예약 실패! 2주 뒤로는 예약을 못해요</string>
     <string name="todo_reserve_toast_msg_duplicate">😕 예약된 다른 활동과 겹치는 일정이에요!</string>
 
     <!-- My -->
