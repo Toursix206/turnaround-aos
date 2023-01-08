@@ -163,6 +163,7 @@
                 android:paddingHorizontal="9dp"
                 android:paddingVertical="2dp"
                 android:text="@string/room_small_bedroom"
+                android:textColor="@color/turnaround_gray_9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_room_wall" />

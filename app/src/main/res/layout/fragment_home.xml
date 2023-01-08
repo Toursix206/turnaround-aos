@@ -27,6 +27,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="57dp"
             android:text="@{@string/home_nickname(vm.home.nickname)}"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="턴어라운드 님" />
@@ -155,7 +156,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_home_roomtaverse"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <ImageView
                 android:id="@+id/iv_home_background_shadow"
@@ -233,6 +236,7 @@
                 android:paddingHorizontal="9dp"
                 android:paddingVertical="2dp"
                 android:text="@string/room_small_bedroom"
+                android:textColor="@color/turnaround_gray_9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_home_wall" />
@@ -247,6 +251,7 @@
             android:layout_marginStart="22dp"
             android:layout_marginTop="10dp"
             android:text="@{@string/home_todo_count(vm.home.todosCnt)}"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toTopOf="@id/layout_bottom_my_todo"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="나의 활동(2)" />
@@ -262,6 +267,7 @@
             android:paddingEnd="30dp"
             android:text="@string/home_view_more"
             android:textAlignment="center"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/iv_home_arrow"
             app:layout_constraintEnd_toEndOf="@id/iv_home_arrow"
             app:layout_constraintEnd_toStartOf="@id/iv_home_arrow"
@@ -326,6 +332,7 @@
                 android:layout_marginVertical="26dp"
                 android:layout_marginEnd="38dp"
                 android:text="@{@string/home_no_todo(vm.home.nickname)}"
+                android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="@id/view_todo_white"
                 app:layout_constraintEnd_toEndOf="@id/view_todo_white"
                 app:layout_constraintTop_toTopOf="@id/view_todo_white"

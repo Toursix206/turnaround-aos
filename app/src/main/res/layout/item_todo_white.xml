@@ -40,6 +40,7 @@
             android:paddingVertical="2dp"
             android:text="@{todo.categoryName}"
             android:textAlignment="center"
+            android:textColor="@color/turnaround_gray_9"
             app:layout_constraintStart_toStartOf="@id/view_todo_white"
             app:layout_constraintTop_toTopOf="@id/view_todo_white"
             tools:text="침대" />
@@ -53,6 +54,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{todo.activityName}"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toStartOf="@id/iv_todo"
             app:layout_constraintStart_toStartOf="@id/tv_todo_category"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_category"
@@ -65,6 +67,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="12dp"
             android:text="@{todo.leftTime}"
+            android:textColor="@color/turnaround_gray_9"
             app:layout_constraintBottom_toBottomOf="@id/view_todo_white"
             app:layout_constraintStart_toStartOf="@id/tv_todo_title"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_title"

@@ -92,6 +92,7 @@
             android:layout_marginTop="28dp"
             android:text="@string/todo_event_no_todo"
             android:textAlignment="center"
+            android:textColor="@color/turnaround_gray_10"
             android:visibility="@{vm.isTodoExist ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

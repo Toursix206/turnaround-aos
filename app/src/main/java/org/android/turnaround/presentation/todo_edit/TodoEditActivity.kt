@@ -26,12 +26,10 @@ import org.android.turnaround.util.dialog.WarningType
 @AndroidEntryPoint
 class TodoEditActivity : BindingActivity<ActivityTodoEditBinding>(R.layout.activity_todo_edit) {
     private val viewModel by viewModels<TodoEditViewModel>()
-    private val todoEditAdapter by lazy { TodoEditAdapter(viewModel) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
-        initRvTodoEdit()
         initTodoListObserver()
         initIsCheckedDeleteBtnEventObserver()
         initDeleteTodoObserver()
@@ -41,13 +39,9 @@ class TodoEditActivity : BindingActivity<ActivityTodoEditBinding>(R.layout.activ
         initEditTodoFailObserver()
     }
 
-    private fun initRvTodoEdit() {
-        binding.rvTodoEdit.adapter = todoEditAdapter
-    }
-
     private fun initTodoListObserver() {
         viewModel.todoList.observe(this) { todoList ->
-            todoEditAdapter.submitList(getTodoListWithHeader(todoList))
+            binding.rvTodoEdit.adapter = TodoEditAdapter(viewModel).also { it.submitList(getTodoListWithHeader(todoList)) }
         }
     }
 
