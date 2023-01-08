@@ -37,13 +37,12 @@
             android:id="@+id/vp_tutorial"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="18dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/dots_tutorial"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.53"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.33" />
+            app:layout_constraintTop_toBottomOf="@id/tv_tutorial_skip" />
 
         <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
             android:id="@+id/dots_tutorial"
@@ -55,9 +54,11 @@
             app:dotsSize="8dp"
             app:dotsSpacing="8dp"
             app:dotsWidthFactor="2.5"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/vp_tutorial"
             app:layout_constraintStart_toStartOf="@id/vp_tutorial"
-            app:layout_constraintTop_toBottomOf="@id/vp_tutorial"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.72"
             app:progressMode="true"
             app:selectedDotColor="@color/turnaround_gray_dot" />
 
@@ -72,8 +73,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dots_tutorial"
-            app:layout_constraintVertical_bias="0.45" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85" />
 
         <ImageButton
             android:id="@+id/btn_tutorial_next"
@@ -87,8 +88,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dots_tutorial"
-            app:layout_constraintVertical_bias="0.45" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
