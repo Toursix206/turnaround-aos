@@ -364,6 +364,7 @@
                 app:layout_constraintStart_toEndOf="@id/tv_room_brush_count"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- 추후 기능 생기면 visibility 풀기 -->
             <ImageView
                 android:id="@+id/iv_room_brush_arrow"
                 android:layout_width="wrap_content"
@@ -371,6 +372,7 @@
                 android:layout_marginEnd="12dp"
                 android:contentDescription="@string/room_brush_img_desc"
                 android:src="@drawable/ic_arrow_right"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -425,6 +427,7 @@
                 app:layout_constraintStart_toEndOf="@id/tv_room_score"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- 추후 기능 생기면 visibility 풀기 -->
             <ImageView
                 android:id="@+id/iv_room_score_arrow"
                 android:layout_width="wrap_content"
@@ -432,6 +435,7 @@
                 android:layout_marginEnd="12dp"
                 android:contentDescription="@string/room_score_img_desc"
                 android:src="@drawable/ic_arrow_right"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
