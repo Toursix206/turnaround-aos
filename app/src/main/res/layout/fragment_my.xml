@@ -127,14 +127,14 @@
             app:layout_constraintTop_toBottomOf="@id/tv_my_point" />
 
         <TextView
-            android:id="@+id/tv_my_inquiry"
+            android:id="@+id/tv_my_customer_center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/turnaround_white"
             android:paddingVertical="20dp"
             android:paddingStart="56dp"
-            android:text="@string/my_inquiry"
+            android:text="@string/my_customer_center"
             android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
@@ -142,16 +142,16 @@
             app:layout_constraintTop_toBottomOf="@id/tv_my_point" />
 
         <ImageView
-            android:id="@+id/iv_my_inquiry"
+            android:id="@+id/iv_my_customer_center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/my_point_img_desc"
             android:paddingHorizontal="22dp"
             android:paddingVertical="20dp"
             android:src="@drawable/ic_my_mail"
-            app:layout_constraintBottom_toBottomOf="@id/tv_my_inquiry"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_customer_center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_my_inquiry" />
+            app:layout_constraintTop_toTopOf="@id/tv_my_customer_center" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -159,9 +159,9 @@
             android:layout_marginEnd="22dp"
             android:contentDescription="@string/my_right_arrow_img_desc"
             android:src="@drawable/ic_my_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@id/tv_my_inquiry"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_customer_center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_my_inquiry" />
+            app:layout_constraintTop_toTopOf="@id/tv_my_customer_center" />
 
         <TextView
             android:id="@+id/tv_my_review"
@@ -175,7 +175,7 @@
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_inquiry" />
+            app:layout_constraintTop_toBottomOf="@id/tv_my_customer_center" />
 
         <ImageView
             android:id="@+id/iv_my_review"

@@ -20,6 +20,7 @@ class MyFragment : BindingFragment<FragmentMyBinding>(R.layout.fragment_my) {
         binding.vm = viewModel
         initStartSettingBtnClickListener()
         initReviewClickListener()
+        initCustomerCenterClickListener()
     }
 
     private fun initStartSettingBtnClickListener() {
@@ -32,6 +33,14 @@ class MyFragment : BindingFragment<FragmentMyBinding>(R.layout.fragment_my) {
         binding.tvMyReview.setOnClickListener {
             startActivity(
                 Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.market_url)))
+            )
+        }
+    }
+
+    private fun initCustomerCenterClickListener() {
+        binding.tvMyCustomerCenter.setOnClickListener {
+            startActivity(
+                Intent(Intent.ACTION_VIEW, Uri.parse("http://pf.kakao.com/_xjQBRxj/chat"))
             )
         }
     }
