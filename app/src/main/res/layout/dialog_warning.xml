@@ -20,12 +20,12 @@
 
         <TextView
             android:id="@+id/tv_warning_title"
+            style="@style/sub_headline_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:gravity="center_horizontal"
             android:text="@{warning.title}"
-            android:textAppearance="@style/sub_headline_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,13 +34,13 @@
 
         <TextView
             android:id="@+id/tv_warning_desc"
+            style="@style/body2_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
             android:gravity="center_horizontal"
             android:text="@{warning.desc}"
-            android:textAppearance="@style/body2_regular"
             android:textColor="@color/turnaround_gray_9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +49,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_warning_cancel"
+            style="@style/body2_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -59,7 +60,6 @@
             android:paddingVertical="14dp"
             android:stateListAnimator="@null"
             android:text="@{warning.cancel}"
-            android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:cornerRadius="10dp"
             app:layout_constraintEnd_toStartOf="@id/btn_warning_confirm"
@@ -69,6 +69,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_warning_confirm"
+            style="@style/body2_semi_bold"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="10dp"
@@ -79,7 +80,6 @@
             android:paddingVertical="14dp"
             android:stateListAnimator="@null"
             android:text="@{warning.confirm}"
-            android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/turnaround_white"
             app:cornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="@id/btn_warning_cancel"

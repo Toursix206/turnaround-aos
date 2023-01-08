@@ -21,18 +21,20 @@
 
         <TextView
             android:id="@+id/tv_home_nickname"
+            style="@style/sub_headline_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginTop="57dp"
             android:text="@{@string/home_nickname(vm.home.nickname)}"
-            android:textAppearance="@style/sub_headline_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="턴어라운드 님" />
 
         <TextView
             android:id="@+id/tv_home_level"
+            style="@style/body2_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -40,7 +42,6 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="2dp"
             android:text="@{@string/home_level(vm.home.level)}"
-            android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/tv_home_nickname"
             app:layout_constraintStart_toEndOf="@id/tv_home_nickname"
@@ -74,12 +75,12 @@
 
             <TextView
                 android:id="@+id/tv_home_broom_count"
+                style="@style/h2_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="4dp"
                 android:text="@{vm.home.broom &lt; 10 ? @string/home_num_format(vm.home.broom) : String.valueOf(vm.home.broom)}"
-                android:textAppearance="@style/h2_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_home_broom_count_text"
@@ -88,11 +89,11 @@
 
             <TextView
                 android:id="@+id/tv_home_broom_count_text"
+                style="@style/caption_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="19dp"
                 android:text="@string/home_broom_count"
-                android:textAppearance="@style/caption_regular"
                 android:textColor="@color/turnaround_gray_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -127,11 +128,11 @@
 
             <TextView
                 android:id="@+id/tv_home_score"
+                style="@style/h2_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:text="@{String.valueOf(vm.home.cleanScore)}"
-                android:textAppearance="@style/h2_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_home_score_text"
@@ -140,11 +141,11 @@
 
             <TextView
                 android:id="@+id/tv_home_score_text"
+                style="@style/caption_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="19dp"
                 android:text="@string/home_score_count"
-                android:textAppearance="@style/caption_regular"
                 android:textColor="@color/turnaround_gray_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +156,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_home_roomtaverse"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <ImageView
                 android:id="@+id/iv_home_background_shadow"
@@ -225,6 +228,7 @@
 
             <TextView
                 android:id="@+id/tv_home_tag"
+                style="@style/body2_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-10dp"
@@ -232,7 +236,7 @@
                 android:paddingHorizontal="9dp"
                 android:paddingVertical="2dp"
                 android:text="@string/room_small_bedroom"
-                android:textAppearance="@style/body2_semi_bold"
+                android:textColor="@color/turnaround_gray_9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_home_wall" />
@@ -241,18 +245,20 @@
 
         <TextView
             android:id="@+id/tv_home_my_activity_count"
+            style="@style/sub_headline_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
             android:layout_marginTop="10dp"
             android:text="@{@string/home_todo_count(vm.home.todosCnt)}"
-            android:textAppearance="@style/sub_headline_semi_bold"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toTopOf="@id/layout_bottom_my_todo"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="나의 활동(2)" />
 
         <TextView
             android:id="@+id/tv_home_show_more"
+            style="@style/body2_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="-30dp"
@@ -261,7 +267,7 @@
             android:paddingEnd="30dp"
             android:text="@string/home_view_more"
             android:textAlignment="center"
-            android:textAppearance="@style/body2_regular"
+            android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/iv_home_arrow"
             app:layout_constraintEnd_toEndOf="@id/iv_home_arrow"
             app:layout_constraintEnd_toStartOf="@id/iv_home_arrow"
@@ -320,12 +326,13 @@
                 app:layout_constraintTop_toTopOf="@id/view_todo_white" />
 
             <TextView
+                style="@style/body1_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="26dp"
                 android:layout_marginEnd="38dp"
                 android:text="@{@string/home_no_todo(vm.home.nickname)}"
-                android:textAppearance="@style/body1_semi_bold"
+                android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="@id/view_todo_white"
                 app:layout_constraintEnd_toEndOf="@id/view_todo_white"
                 app:layout_constraintTop_toTopOf="@id/view_todo_white"

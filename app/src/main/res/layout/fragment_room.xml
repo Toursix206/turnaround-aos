@@ -35,21 +35,21 @@
 
             <TextView
                 android:id="@+id/tv_room_top_info_room_type_title"
+                style="@style/body1_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/room_top_info_room_type"
-                android:textAppearance="@style/body1_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_room_top_info_room_type"
+                style="@style/body1_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@{vm.roomInfo.roomType}"
-                android:textAppearance="@style/body1_regular"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="@id/tv_room_top_info_room_type_title"
                 app:layout_constraintStart_toEndOf="@id/tv_room_top_info_room_type_title"
@@ -57,22 +57,22 @@
 
             <TextView
                 android:id="@+id/tv_room_top_info_furniture_count_title"
+                style="@style/body1_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="@string/room_top_info_furniture_count"
-                android:textAppearance="@style/body1_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_room_top_info_room_type_title" />
 
             <TextView
                 android:id="@+id/tv_room_top_info_furniture_count"
+                style="@style/body1_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@{@string/room_furniture_count(vm.roomInfo.furnitureCount)}"
-                android:textAppearance="@style/body1_regular"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="@id/tv_room_top_info_furniture_count_title"
                 app:layout_constraintStart_toEndOf="@id/tv_room_top_info_furniture_count_title"
@@ -155,6 +155,7 @@
 
             <TextView
                 android:id="@+id/tv_room_tag"
+                style="@style/body2_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-10dp"
@@ -162,7 +163,7 @@
                 android:paddingHorizontal="9dp"
                 android:paddingVertical="2dp"
                 android:text="@string/room_small_bedroom"
-                android:textAppearance="@style/body2_semi_bold"
+                android:textColor="@color/turnaround_gray_9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_room_wall" />
@@ -290,10 +291,10 @@
 
             <TextView
                 android:id="@+id/tv_room_level"
+                style="@style/body2_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{@string/room_level(vm.roomInfo.level)}"
-                android:textAppearance="@style/body2_semi_bold"
                 android:textColor="@color/turnaround_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -342,11 +343,11 @@
 
             <TextView
                 android:id="@+id/tv_room_brush_count"
+                style="@style/h2_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:text="@{String.valueOf(vm.roomInfo.broom)}"
-                android:textAppearance="@style/h2_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_room_brush"
@@ -354,11 +355,11 @@
 
             <TextView
                 android:id="@+id/tv_room_brush_count_text"
+                style="@style/caption_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/room_brush_count_text"
-                android:textAppearance="@style/caption_regular"
                 android:textColor="@color/turnaround_gray_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_room_brush_count"
@@ -405,11 +406,11 @@
 
             <TextView
                 android:id="@+id/tv_room_score"
+                style="@style/h2_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:text="@{String.valueOf(vm.roomInfo.cleanScore)}"
-                android:textAppearance="@style/h2_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/iv_room_score"
@@ -417,11 +418,11 @@
 
             <TextView
                 android:id="@+id/tv_room_brush_score_text"
+                style="@style/caption_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/room_score_text"
-                android:textAppearance="@style/caption_regular"
                 android:textColor="@color/turnaround_gray_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_room_score"

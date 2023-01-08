@@ -18,13 +18,13 @@
 
         <TextView
             android:id="@+id/tv_my_title"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/turnaround_white"
             android:paddingVertical="16dp"
             android:text="@string/my_title"
             android:textAlignment="center"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,13 +55,13 @@
             tools:src="@drawable/img_profile_character_2" />
 
         <TextView
+            style="@style/body2_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="29dp"
             android:layout_marginEnd="22dp"
             android:text="@{vm.my.nickname}"
-            android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_my_profile"
@@ -92,6 +92,7 @@
 
         <TextView
             android:id="@+id/tv_my_point"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="-12dp"
@@ -99,18 +100,17 @@
             android:background="@color/turnaround_white"
             android:paddingVertical="20dp"
             android:text="@string/my_point"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_my_point"
             app:layout_constraintTop_toBottomOf="@id/view_my_divider1" />
 
         <TextView
+            style="@style/body2_semi_bold"
             pointFormat="@{vm.my.point}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="22dp"
-            android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/tv_my_point"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,31 +127,31 @@
             app:layout_constraintTop_toBottomOf="@id/tv_my_point" />
 
         <TextView
-            android:id="@+id/tv_my_inquiry"
+            android:id="@+id/tv_my_customer_center"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/turnaround_white"
             android:paddingVertical="20dp"
             android:paddingStart="56dp"
-            android:text="@string/my_inquiry"
-            android:textAppearance="@style/body1_regular"
+            android:text="@string/my_customer_center"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_point" />
 
         <ImageView
-            android:id="@+id/iv_my_inquiry"
+            android:id="@+id/iv_my_customer_center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/my_point_img_desc"
             android:paddingHorizontal="22dp"
             android:paddingVertical="20dp"
             android:src="@drawable/ic_my_mail"
-            app:layout_constraintBottom_toBottomOf="@id/tv_my_inquiry"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_customer_center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_my_inquiry" />
+            app:layout_constraintTop_toTopOf="@id/tv_my_customer_center" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -159,23 +159,23 @@
             android:layout_marginEnd="22dp"
             android:contentDescription="@string/my_right_arrow_img_desc"
             android:src="@drawable/ic_my_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@id/tv_my_inquiry"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_customer_center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_my_inquiry" />
+            app:layout_constraintTop_toTopOf="@id/tv_my_customer_center" />
 
         <TextView
             android:id="@+id/tv_my_review"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/turnaround_white"
             android:paddingVertical="20dp"
             android:paddingStart="56dp"
             android:text="@string/my_review"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_inquiry" />
+            app:layout_constraintTop_toBottomOf="@id/tv_my_customer_center" />
 
         <ImageView
             android:id="@+id/iv_my_review"
@@ -202,13 +202,13 @@
 
         <TextView
             android:id="@+id/tv_my_setting"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/turnaround_white"
             android:paddingVertical="20dp"
             android:paddingStart="56dp"
             android:text="@string/my_setting"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

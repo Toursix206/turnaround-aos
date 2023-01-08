@@ -18,28 +18,26 @@
             android:id="@+id/iv_tutorial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="44dp"
             android:contentDescription="@string/tutorial_img_desc"
+            android:scaleType="centerCrop"
             app:imageResource="@{tutorial.img}"
             app:layout_constraintBottom_toTopOf="@id/tv_tutorial_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
             tools:src="@drawable/img_tutorial_1" />
 
         <TextView
             android:id="@+id/tv_tutorial_desc"
+            style="@style/h2_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
             android:gravity="center_horizontal"
             android:text="@{tutorial.desc}"
-            android:textAppearance="@style/h2_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_tutorial"
             tools:text="@string/tutorial_1" />
 
 

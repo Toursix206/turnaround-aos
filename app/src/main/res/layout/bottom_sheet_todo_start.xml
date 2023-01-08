@@ -43,6 +43,7 @@
 
         <TextView
             android:id="@+id/tv_todo_start_category"
+            style="@style/caption_semi_bold"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -51,7 +52,6 @@
             android:paddingVertical="2dp"
             android:text="@{todoDetail.categoryName}"
             android:textAlignment="center"
-            android:textAppearance="@style/caption_semi_bold"
             android:textColor="@color/turnaround_gray_9"
             app:layout_constraintBottom_toBottomOf="@id/iv_todo_start"
             app:layout_constraintEnd_toStartOf="@id/tv_todo_start_type"
@@ -60,6 +60,7 @@
 
         <TextView
             android:id="@+id/tv_todo_start_type"
+            style="@style/caption_semi_bold"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -68,7 +69,6 @@
             android:paddingVertical="2dp"
             android:text="@{todoDetail.type}"
             android:textAlignment="center"
-            android:textAppearance="@style/caption_semi_bold"
             android:textColor="@color/turnaround_gray_9"
             app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_category"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,11 +77,11 @@
 
         <TextView
             android:id="@+id/tv_todo_start_title"
+            style="@style/sub_headline_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@{todoDetail.name}"
-            android:textAppearance="@style/sub_headline_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="@id/iv_todo_start"
             app:layout_constraintTop_toBottomOf="@id/iv_todo_start"
@@ -100,11 +100,11 @@
 
         <TextView
             android:id="@+id/tv_todo_start_broom"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"
             android:text="@string/bottom_sheet_todo_start_broom"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/iv_todo_start_broom"
             app:layout_constraintEnd_toStartOf="@id/tv_todo_start_broom_num"
@@ -113,11 +113,11 @@
 
         <TextView
             android:id="@+id/tv_todo_start_broom_num"
+            style="@style/body1_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="19dp"
             android:text="@{`+` + String.valueOf(todoDetail.broom) + `획득`}"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_broom"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,11 +136,11 @@
 
         <TextView
             android:id="@+id/tv_todo_start_point"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"
             android:text="@string/bottom_sheet_todo_start_point"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/iv_todo_start_point"
             app:layout_constraintEnd_toStartOf="@id/tv_todo_start_broom_num"
@@ -149,11 +149,11 @@
 
         <TextView
             android:id="@+id/tv_todo_start_point_num"
+            style="@style/body1_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="19dp"
             android:text="@{`+` + String.valueOf(todoDetail.point) + `적립`}"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_point"
             app:layout_constraintEnd_toEndOf="parent"
@@ -172,11 +172,11 @@
 
         <TextView
             android:id="@+id/tv_todo_start_reward"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="6dp"
             android:text="@string/bottom_sheet_todo_start_reward"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/iv_todo_start_reward"
             app:layout_constraintEnd_toStartOf="@id/tv_todo_start_reward_num"
@@ -185,11 +185,11 @@
 
         <TextView
             android:id="@+id/tv_todo_start_reward_num"
+            style="@style/body1_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="19dp"
             android:text="@{todoDetail.type == null ? `Coming soon` : todoDetail.rewardItem}"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/tv_todo_start_reward"
             app:layout_constraintEnd_toEndOf="parent"
@@ -198,11 +198,11 @@
 
         <TextView
             android:id="@+id/tv_todo_start_time"
+            style="@style/body2_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@{todoDetail.leftTime}"
-            android:textAppearance="@style/body2_semi_bold"
             android:textColor="@color/turnaround_gray_6"
             android:visibility="@{todoDetail.isAfterStartAt ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -212,6 +212,7 @@
 
         <TextView
             android:id="@+id/btn_todo_start"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
@@ -221,7 +222,6 @@
             android:paddingVertical="16dp"
             android:text="@{todoDetail.isAfterStartAt ? @string/bottom_sheet_todo_start_btn_true : @string/bottom_sheet_todo_start_btn_false}"
             android:textAlignment="center"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

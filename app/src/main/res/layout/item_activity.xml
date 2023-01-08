@@ -32,6 +32,7 @@
 
         <TextView
             android:id="@+id/tv_activity_item_category"
+            style="@style/caption_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
@@ -40,20 +41,19 @@
             android:paddingHorizontal="13dp"
             android:paddingVertical="2dp"
             android:text="@{activity.category.categoryName}"
-            android:textAppearance="@style/caption_semi_bold"
             android:textColor="@color/turnaround_gray_9"
             app:layout_constraintStart_toEndOf="@id/iv_activity_item"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_activity_item_type"
+            style="@style/body2_bold"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="5dp"
             android:background="@drawable/shape_white_rect_gray_9_stroke_4"
             android:paddingHorizontal="4dp"
             android:text="@{activity.type.name()}"
-            android:textAppearance="@style/body2_bold"
             android:textColor="@color/turnaround_gray_9"
             app:layout_constraintBottom_toBottomOf="@id/tv_activity_item_category"
             app:layout_constraintStart_toEndOf="@id/tv_activity_item_category"
@@ -73,11 +73,11 @@
 
         <TextView
             android:id="@+id/tv_activity_item_brush_count"
+            style="@style/body1_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="18dp"
             android:text="@{String.valueOf(activity.broom)}"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_9"
             app:layout_constraintBottom_toBottomOf="@id/tv_activity_item_type"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,6 +85,7 @@
 
         <TextView
             android:id="@+id/tv_activity_item_title"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
@@ -94,7 +95,6 @@
             android:gravity="bottom"
             android:maxLines="2"
             android:text="@{activity.name}"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toTopOf="@id/tv_activity_item_desc"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,11 +103,11 @@
 
         <TextView
             android:id="@+id/tv_activity_item_desc"
+            style="@style/body2_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="19dp"
             android:text="@{activity.description}"
-            android:textAppearance="@style/body2_regular"
             android:textColor="@color/turnaround_gray_6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/tv_activity_item_title"

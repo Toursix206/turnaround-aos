@@ -16,13 +16,13 @@
 
         <TextView
             android:id="@+id/tv_setting_title"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/turnaround_white"
             android:paddingVertical="16dp"
             android:text="@string/setting_title"
             android:textAlignment="center"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,18 +40,20 @@
 
         <TextView
             android:id="@+id/tv_setting_alarm"
+            style="@style/body2_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="22dp"
             android:text="@string/setting_alarm"
-            android:textAppearance="@style/body2_semi_bold"
+            android:textColor="@color/turnaround_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_title" />
 
         <TextView
             android:id="@+id/tv_setting_alarm_item"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -59,7 +61,7 @@
             android:paddingVertical="20dp"
             android:paddingStart="22dp"
             android:text="@string/setting_alarm_item"
-            android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_alarm" />
@@ -82,17 +84,19 @@
 
         <TextView
             android:id="@+id/tv_setting_function"
+            style="@style/body2_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="22dp"
             android:text="@string/setting_function"
-            android:textAppearance="@style/body2_semi_bold"
+            android:textColor="@color/turnaround_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_alarm_item" />
 
         <TextView
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -100,7 +104,7 @@
             android:paddingVertical="20dp"
             android:paddingStart="22dp"
             android:text="@string/setting_function_item"
-            android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_function" />
@@ -117,25 +121,25 @@
 
         <TextView
             android:id="@+id/tv_setting_logout"
+            style="@style/caption_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{()->vm.postLogout()}"
             android:padding="10dp"
             android:text="@string/setting_logout"
-            android:textAppearance="@style/caption_regular"
-            android:textColor="@color/turnaround_gray_6"
+            android:textColor="@color/turnaround_gray_7"
             app:layout_constraintBottom_toBottomOf="@id/view_setting"
             app:layout_constraintEnd_toStartOf="@id/view_setting"
             app:layout_constraintTop_toTopOf="@id/view_setting" />
 
         <TextView
             android:id="@+id/tv_setting_withdrawal"
+            style="@style/caption_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/setting_withdrawal"
-            android:textAppearance="@style/caption_regular"
-            android:textColor="@color/turnaround_gray_6"
+            android:textColor="@color/turnaround_gray_7"
             app:layout_constraintBottom_toBottomOf="@id/view_setting"
             app:layout_constraintStart_toEndOf="@id/view_setting"
             app:layout_constraintTop_toTopOf="@id/view_setting" />

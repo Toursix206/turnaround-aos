@@ -38,6 +38,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_todo_guide_start"
+                style="@style/body1_semi_bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="22dp"
@@ -49,7 +50,6 @@
                 android:paddingVertical="16dp"
                 android:stateListAnimator="@null"
                 android:text="@string/todo_guide_start"
-                android:textAppearance="@style/body1_semi_bold"
                 android:textColor="@color/turnaround_white"
                 app:cornerRadius="14dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -73,13 +73,13 @@
 
             <TextView
                 android:id="@+id/tv_todo_guide_start_title"
+                style="@style/h2_bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="50dp"
                 android:gravity="center_horizontal"
                 android:text="@{vm.activityName}"
-                android:textAppearance="@style/h2_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintEnd_toEndOf="@id/iv_todo_guide_start"
                 app:layout_constraintStart_toStartOf="@id/iv_todo_guide_start"
@@ -96,6 +96,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_todo_guide_done"
+                style="@style/body1_semi_bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="22dp"
@@ -106,7 +107,6 @@
                 android:paddingVertical="16dp"
                 android:stateListAnimator="@null"
                 android:text="@string/todo_guide_done"
-                android:textAppearance="@style/body1_semi_bold"
                 android:textColor="@color/turnaround_white"
                 app:cornerRadius="14dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -130,13 +130,13 @@
 
             <TextView
                 android:id="@+id/tv_todo_guide_done_title"
+                style="@style/h2_bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="50dp"
                 android:gravity="center_horizontal"
                 android:text="@string/todo_guide_done_title"
-                android:textAppearance="@style/h2_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintEnd_toEndOf="@id/iv_todo_guide_done"
                 app:layout_constraintStart_toStartOf="@id/iv_todo_guide_done"
@@ -144,13 +144,13 @@
 
             <TextView
                 android:id="@+id/tv_todo_guide_done_desc"
+                style="@style/body1_regular"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="4dp"
                 android:gravity="center_horizontal"
                 android:text="@string/todo_guide_done_desc"
-                android:textAppearance="@style/body1_regular"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintEnd_toEndOf="@id/iv_todo_guide_done"
                 app:layout_constraintStart_toStartOf="@id/iv_todo_guide_done"
@@ -166,6 +166,7 @@
 
             <TextView
                 android:id="@+id/tv_todo_guide_step"
+                style="@style/body2_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
@@ -173,7 +174,6 @@
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="3dp"
                 android:text="@{@string/todo_guide_step(vm.currentStep)}"
-                android:textAppearance="@style/body2_semi_bold"
                 android:textColor="@color/turnaround_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -182,13 +182,13 @@
 
             <TextView
                 android:id="@+id/tv_todo_guide_title"
+                style="@style/sub_headline_bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="30dp"
                 android:gravity="center_horizontal"
                 android:text="@{vm.guides[vm.currentStep-1].title}"
-                android:textAppearance="@style/sub_headline_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -196,6 +196,7 @@
 
             <TextView
                 android:id="@+id/tv_todo_guide_desc"
+                style="@style/body2_regular"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="30dp"
@@ -203,7 +204,6 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
                 android:text="@{vm.guides[vm.currentStep-1].content}"
-                android:textAppearance="@style/body2_regular"
                 android:textColor="@color/turnaround_gray_9"
                 app:layout_constraintBottom_toTopOf="@id/pb_todo_guide"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -228,11 +228,11 @@
 
             <TextView
                 android:id="@+id/tv_todo_guide_progress"
+                style="@style/body2_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
                 android:text="@{@string/todo_guide_progress_count(vm.currentStep, vm.guides.size())}"
-                android:textAppearance="@style/body2_semi_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="@id/pb_todo_guide"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -279,12 +279,12 @@
 
                 <TextView
                     android:id="@+id/tv_todo_guide_tool_tip"
+                    style="@style/caption_semi_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:paddingVertical="5dp"
                     android:text="@string/todo_guide_tool_tip_cheer_up"
-                    android:textAppearance="@style/caption_semi_bold"
                     android:textColor="@color/turnaround_white"
                     app:layout_constraintEnd_toStartOf="@id/btn_todo_guide_close_tool_tip"
                     app:layout_constraintHorizontal_chainStyle="packed"
@@ -310,6 +310,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_todo_guide_next"
+                style="@style/body1_semi_bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="22dp"
@@ -321,7 +322,6 @@
                 android:paddingVertical="16dp"
                 android:stateListAnimator="@null"
                 android:text="@{vm.currentStep == vm.guides.size() ? @string/todo_guide_next_btn_last_text(vm.currentStep) : @string/todo_guide_next_btn_text(vm.currentStep)}"
-                android:textAppearance="@style/body1_semi_bold"
                 android:textColor="@color/turnaround_gray_10"
                 app:cornerRadius="14dp"
                 app:layout_constraintBottom_toBottomOf="parent"
