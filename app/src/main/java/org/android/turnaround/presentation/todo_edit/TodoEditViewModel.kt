@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.android.turnaround.data.remote.entity.request.TodoEditRequest
 import org.android.turnaround.data.remote.entity.response.NoDataResponse
@@ -40,6 +43,9 @@ class TodoEditViewModel @Inject constructor(
     private val _editTodoErrorCode = MutableLiveData<Int>()
     val editTodoErrorCode: LiveData<Int> = _editTodoErrorCode
 
+    private val _isTodoExist = MutableStateFlow(true)
+    val isTodoExist: StateFlow<Boolean> = _isTodoExist.asStateFlow()
+
     var editTodoErrorMessage: String = ""
         private set
 
@@ -51,6 +57,7 @@ class TodoEditViewModel @Inject constructor(
         todoRepository.getTodoList()
             .onSuccess {
                 _todoList.value = it
+                _isTodoExist.value = it.todayTodosCnt + it.thisWeekTodosCnt + it.nextTodosCnt + it.successTodosCnt > 0
             }.onFailure {
                 Timber.d(it.message)
             }

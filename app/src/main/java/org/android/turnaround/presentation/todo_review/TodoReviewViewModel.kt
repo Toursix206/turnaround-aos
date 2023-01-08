@@ -40,7 +40,7 @@ class TodoReviewViewModel @Inject constructor(
                 .onSuccess { response ->
                     _review.value = response
                     reviewContent.value = response.content
-                    reviewRating.value = response.rating.score.toFloat()
+                    reviewRating.value = response.score.toFloat()
                 }
                 .onFailure { Timber.d(it.message.toString()) }
         }

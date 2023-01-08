@@ -6,6 +6,10 @@
     <data>
 
         <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="org.android.turnaround.presentation.todo_edit.TodoEditViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,11 +19,11 @@
         tools:context=".presentation.my_todo.MyTodoActivity">
 
         <TextView
-            android:id="@+id/tv_todo_event_edit_tool_bar_title"
+            android:id="@+id/tv_todo_edit_tool_bar_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
-            android:text="@string/todo_event_edit_tool_bar_title"
+            android:text="@string/todo_edit_tool_bar_title"
             android:textAlignment="center"
             android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
@@ -28,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_todo_event_edit_back"
+            android:id="@+id/iv_todo_edit_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/todo_event_img_back_desc"
@@ -38,17 +42,31 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_todo_event_edit"
+            android:id="@+id/rv_todo_edit"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/turnaround_gray_1"
+            android:visibility="@{vm.isTodoExist ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_todo_event_edit_tool_bar_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_tool_bar_title"
             tools:listitem="@layout/item_my_todo_white" />
 
+        <TextView
+            android:id="@+id/tv_todo_edit_empty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/todo_edit_empty"
+            android:textAppearance="@style/body1_regular"
+            android:textColor="@color/turnaround_gray_6"
+            android:visibility="@{vm.isTodoExist ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todo_edit_tool_bar_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

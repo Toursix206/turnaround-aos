@@ -6,5 +6,6 @@ data class Home(
     val broom: Int,
     val cleanScore: Int,
     val todosCnt: Int,
-    val todos: List<HomeTodo>
+    val todos: List<HomeTodo>,
+    val furnitureList: List<Furniture> = emptyList()
 )

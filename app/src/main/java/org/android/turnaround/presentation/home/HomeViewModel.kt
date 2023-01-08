@@ -6,9 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.android.turnaround.domain.entity.Furniture
+import org.android.turnaround.domain.entity.FurnitureType
 import org.android.turnaround.domain.entity.Home
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.domain.repository.HomeRepository
@@ -40,12 +45,38 @@ class HomeViewModel @Inject constructor(
     private val _todoStartAbleEvent = MutableSharedFlow<UiEvent>()
     val todoStartAbleEvent: SharedFlow<UiEvent> = _todoStartAbleEvent.asSharedFlow()
 
+    private val _window = MutableStateFlow(Furniture())
+    val window: StateFlow<Furniture> = _window.asStateFlow()
+
+    private val _bed = MutableStateFlow(Furniture())
+    val bed: StateFlow<Furniture> = _bed.asStateFlow()
+
+    private val _table = MutableStateFlow(Furniture())
+    val table: StateFlow<Furniture> = _table.asStateFlow()
+
+    private fun initFurnitureInfo(furnitureList: List<Furniture>) {
+        for (furniture in furnitureList) {
+            when (furniture.furnitureName) {
+                FurnitureType.BASIC_WALL -> continue
+                FurnitureType.BASIC_WINDOW -> {
+                    _window.value = furniture
+                }
+                FurnitureType.BASIC_BED -> {
+                    _bed.value = furniture
+                }
+                FurnitureType.BASIC_TABLE -> {
+                    _table.value = furniture
+                }
+            }
+        }
+    }
+
     fun getHomeInfo() = viewModelScope.launch {
         homeRepository.getHome()
             .onSuccess {
                 _home.value = it
-
                 _isTodayTodoExist.value = (it.todosCnt) <= 0
+                initFurnitureInfo(it.furnitureList)
             }.onFailure {
                 Timber.d(it.message)
             }

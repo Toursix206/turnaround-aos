@@ -36,13 +36,3 @@ data class RoomInfoResponse(
             }
         )
 }
-
-data class FurnitureEntity(
-    @SerializedName("obtainId")
-    val furnitureId: Int,
-    @SerializedName("interiorName")
-    val furnitureName: String,
-    @SerializedName("interiorCleanLevel")
-    val furnitureCleanLevel: String,
-    val isCleanable: Boolean
-)

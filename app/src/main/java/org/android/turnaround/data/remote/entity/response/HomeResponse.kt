@@ -1,5 +1,9 @@
 package org.android.turnaround.data.remote.entity.response
 
+import com.google.gson.annotations.SerializedName
+import org.android.turnaround.domain.entity.CleanLevel
+import org.android.turnaround.domain.entity.Furniture
+import org.android.turnaround.domain.entity.FurnitureType
 import org.android.turnaround.domain.entity.Home
 import org.android.turnaround.domain.entity.HomeTodo
 import org.android.turnaround.domain.entity.TodoCategory
@@ -11,7 +15,9 @@ data class HomeResponse(
     val broom: Int,
     val cleanScore: Int,
     val todosCnt: Int,
-    val todos: List<HomeTodoEntity>
+    val todos: List<HomeTodoEntity>,
+    @SerializedName("interiors")
+    val furnitureList: List<FurnitureEntity>
 ) {
     fun toHome(): Home =
         Home(
@@ -30,6 +36,14 @@ data class HomeResponse(
                     duration = todo.duration,
                     categoryName = TodoCategory.valueOf(todo.activityCategory).title,
                     categoryImage = TodoCategory.valueOf(todo.activityCategory).imgRes
+                )
+            },
+            furnitureList = this.furnitureList.map { furniture ->
+                Furniture(
+                    furnitureCleanLevel = CleanLevel.valueOf(furniture.furnitureCleanLevel),
+                    furnitureName = FurnitureType.valueOf(furniture.furnitureName),
+                    furnitureId = furniture.furnitureId,
+                    isCleanable = furniture.isCleanable
                 )
             }
         )
