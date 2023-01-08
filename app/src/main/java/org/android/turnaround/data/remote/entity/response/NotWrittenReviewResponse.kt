@@ -1,6 +1,5 @@
 package org.android.turnaround.data.remote.entity.response
 
-import org.android.turnaround.domain.entity.Rating
 import org.android.turnaround.domain.entity.Review
 
 data class NotWrittenReviewResponse(
@@ -8,7 +7,7 @@ data class NotWrittenReviewResponse(
     val name: String,
     val doneDate: String,
     val point: Int,
-    val rating: RatingResponse,
+    val score: Int,
     val written: Boolean
 ) {
     fun toReview(): Review =
@@ -17,13 +16,7 @@ data class NotWrittenReviewResponse(
             name = this.name,
             doneDate = this.doneDate,
             point = this.point,
-            rating = Rating(
-                score = this.rating.score
-            ),
+            score = this.score,
             written = this.written
         )
 }
-
-data class RatingResponse(
-    val score: Int
-)

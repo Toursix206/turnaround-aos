@@ -6,10 +6,6 @@ data class Review(
     val name: String = "",
     val doneDate: String = "",
     val point: Int = 0,
-    val rating: Rating = Rating(),
+    val score: Int = 0,
     val written: Boolean = false
-)
-
-data class Rating(
-    val score: Int = 0
 )
