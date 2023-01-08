@@ -132,7 +132,7 @@
     <string name="room_brush_table_img_desc">방타버스 책상 빗자루</string>
     <string name="room_brush_window_img_desc">방타버스 창문 빗자루</string>
     <string name="room_brush_bed_img_desc">방타버스 침대 빗자루</string>
-    <string name="room_small_bedroom">작은 취침 공간</string>
+    <string name="room_small_bedroom">작은방</string>
     <string name="room_furniture_count">%d개</string>
     <string name="room_level">Lv.%d</string>
     <string name="room_use_brush_error_toast">😅 빗자루를 다썼어요. 활동해 볼까요?</string>

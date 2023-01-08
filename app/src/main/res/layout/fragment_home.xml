@@ -152,44 +152,92 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/iv_home_background_shadow"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-8dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/home_room_background_img_desc"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_roomtaverse_background_shadow"
-            app:layout_constraintBottom_toBottomOf="@id/iv_home_room"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_home_room" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_home_roomtaverse"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/iv_home_background_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_wall_img_desc"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_roomtaverse_background_shadow"
+                app:layout_constraintBottom_toBottomOf="@id/iv_home_wall"
+                app:layout_constraintTop_toTopOf="@id/iv_home_wall" />
 
-        <ImageView
-            android:id="@+id/iv_home_room"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-8dp"
-            android:src="@drawable/img_home_room"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_home_broom" />
+            <ImageView
+                android:id="@+id/iv_home_wall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_wall_img_desc"
+                android:src="@drawable/ic_roomtaverse_wall"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.48" />
 
-        <TextView
-            android:id="@+id/tv_home_room_indicator_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
-            android:background="@drawable/shape_gray4_rect_line_27"
-            android:paddingHorizontal="9dp"
-            android:paddingVertical="2dp"
-            android:text="@string/home_room_desc"
-            android:textAppearance="@style/body2_semi_bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_home_room" />
+            <ImageView
+                android:id="@+id/iv_home_bed"
+                cleanLevel="@{vm.bed.furnitureCleanLevel}"
+                furnitureType="@{vm.bed.furnitureName}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_bed_img_desc"
+                android:src="@drawable/ic_roomtaverse_bed_1"
+                app:layout_constraintBottom_toBottomOf="@id/iv_home_wall"
+                app:layout_constraintEnd_toEndOf="@id/iv_home_wall"
+                app:layout_constraintStart_toStartOf="@id/iv_home_wall"
+                app:layout_constraintTop_toTopOf="@id/iv_home_wall" />
+
+            <ImageView
+                android:id="@+id/iv_home_window"
+                cleanLevel="@{vm.window.furnitureCleanLevel}"
+                furnitureType="@{vm.window.furnitureName}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_window_img_desc"
+                android:src="@drawable/ic_roomtaverse_window_1"
+                app:layout_constraintBottom_toBottomOf="@id/iv_home_wall"
+                app:layout_constraintEnd_toEndOf="@id/iv_home_wall"
+                app:layout_constraintStart_toStartOf="@id/iv_home_wall"
+                app:layout_constraintTop_toTopOf="@id/iv_home_wall" />
+
+            <ImageView
+                android:id="@+id/iv_home_table"
+                cleanLevel="@{vm.table.furnitureCleanLevel}"
+                furnitureType="@{vm.table.furnitureName}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/room_table_img_desc"
+                android:src="@drawable/ic_roomtaverse_table_1"
+                app:layout_constraintBottom_toBottomOf="@id/iv_home_wall"
+                app:layout_constraintEnd_toEndOf="@id/iv_home_wall"
+                app:layout_constraintStart_toStartOf="@id/iv_home_wall"
+                app:layout_constraintTop_toTopOf="@id/iv_home_wall" />
+
+            <TextView
+                android:id="@+id/tv_home_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/shape_gray4_rect_line_27"
+                android:paddingHorizontal="9dp"
+                android:paddingVertical="2dp"
+                android:text="@string/room_small_bedroom"
+                android:textAppearance="@style/body2_semi_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_home_wall" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_home_my_activity_count"
@@ -199,8 +247,8 @@
             android:layout_marginTop="10dp"
             android:text="@{@string/home_todo_count(vm.home.todosCnt)}"
             android:textAppearance="@style/sub_headline_semi_bold"
+            app:layout_constraintBottom_toTopOf="@id/layout_bottom_my_todo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_home_room_indicator_1"
             tools:text="나의 활동(2)" />
 
         <TextView
@@ -239,10 +287,10 @@
             android:visibility="@{vm.isTodayTodoExist ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_home_my_activity_count" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_bottom_my_todo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/vp_home_page_margin_and_offset"
@@ -250,8 +298,7 @@
             android:visibility="@{vm.isTodayTodoExist ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_home_my_activity_count">
+            app:layout_constraintStart_toStartOf="parent">
 
             <View
                 android:id="@+id/view_todo_white"

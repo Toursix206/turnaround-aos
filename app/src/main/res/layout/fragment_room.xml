@@ -83,11 +83,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_room_roomtaverse"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:onClick="@{()->vm.initAllRoomFurniture()}"
-            android:visibility="@{vm.isSuccessGetRoomInfo ? View.VISIBLE : View.INVISIBLE}"
-            app:layout_constraintBottom_toTopOf="@id/layout_room_brush_count"
-            app:layout_constraintTop_toBottomOf="@id/layout_room_info">
+            android:visibility="@{vm.isSuccessGetRoomInfo ? View.VISIBLE : View.INVISIBLE}">
 
             <ImageView
                 android:id="@+id/iv_room_background_shadow"
@@ -110,7 +108,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.48" />
 
             <ImageView
                 android:id="@+id/iv_room_bed"
@@ -153,6 +152,20 @@
                 app:layout_constraintEnd_toEndOf="@id/iv_room_wall"
                 app:layout_constraintStart_toStartOf="@id/iv_room_wall"
                 app:layout_constraintTop_toTopOf="@id/iv_room_wall" />
+
+            <TextView
+                android:id="@+id/tv_room_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/shape_gray4_rect_line_27"
+                android:paddingHorizontal="9dp"
+                android:paddingVertical="2dp"
+                android:text="@string/room_small_bedroom"
+                android:textAppearance="@style/body2_semi_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_room_wall" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_room_touch"
