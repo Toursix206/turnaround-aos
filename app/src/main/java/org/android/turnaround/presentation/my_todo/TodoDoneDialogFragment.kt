@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import org.android.turnaround.R
 import org.android.turnaround.databinding.DialogTodoDoneBinding
 import org.android.turnaround.util.extension.safeLet
@@ -14,6 +15,8 @@ import org.android.turnaround.util.extension.safeLet
 class TodoDoneDialogFragment : DialogFragment() {
     private var _binding: DialogTodoDoneBinding? = null
     private val binding get() = _binding ?: error(getString(R.string.binding_error))
+
+    private val viewModel by activityViewModels<MyTodoViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +54,7 @@ class TodoDoneDialogFragment : DialogFragment() {
 
     private fun initDoneClickListener() {
         binding.btnTodoDone.setOnClickListener {
+            viewModel.getTodoList()
             dismiss()
         }
     }
