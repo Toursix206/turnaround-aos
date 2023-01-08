@@ -20,12 +20,12 @@
 
         <TextView
             android:id="@+id/tv_todo_edit_tool_bar_title"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
             android:text="@string/todo_edit_tool_bar_title"
             android:textAlignment="center"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +56,11 @@
 
         <TextView
             android:id="@+id/tv_todo_edit_empty"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/todo_edit_empty"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_6"
             android:visibility="@{vm.isTodoExist ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"

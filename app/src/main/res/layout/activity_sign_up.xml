@@ -22,12 +22,12 @@
 
         <TextView
             android:id="@+id/tv_sign_up_title"
+            style="@style/h2_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
             android:layout_marginTop="50dp"
             android:text="@string/sign_up_title"
-            android:textAppearance="@style/h2_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +35,12 @@
 
         <TextView
             android:id="@+id/tv_sign_up_profile"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
             android:layout_marginTop="30dp"
             android:text="@string/sign_up_profile"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,12 +92,12 @@
 
         <TextView
             android:id="@+id/tv_sign_up_nickname"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
             android:layout_marginTop="30dp"
             android:text="@string/sign_up_nickname"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +116,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_sign_up_nickname_check_duplicate"
+            style="@style/body2_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -129,7 +130,6 @@
             android:paddingVertical="5dp"
             android:stateListAnimator="@null"
             android:text="@string/sign_up_nickname_valid_check"
-            android:textAppearance="@style/body2_regular"
             android:textColor="@color/turnaround_white"
             android:visibility="@{vm.isNicknameValid || vm.nickname.length == 0 ? View.GONE : View.VISIBLE}"
             app:cornerRadius="33dp"
@@ -153,6 +153,7 @@
 
         <EditText
             android:id="@+id/et_sign_up_nickname"
+            style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -163,7 +164,6 @@
             android:maxLength="8"
             android:maxLines="1"
             android:text="@={vm.nickname}"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             android:textColorHint="@color/turnaround_gray_7"
             app:layout_constraintBottom_toBottomOf="@id/view_sign_up_nickname"
@@ -173,12 +173,12 @@
 
         <TextView
             android:id="@+id/tv_sign_up_exist_nickname"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="26dp"
             android:layout_marginTop="2dp"
             android:text="@string/sign_up_exist_nickname"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_alert"
             android:visibility="@{vm.isNicknameDuplicate ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -187,12 +187,12 @@
 
         <TextView
             android:id="@+id/tv_sign_up_valid_nickname"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="26dp"
             android:layout_marginTop="2dp"
             android:text="@string/sign_up_valid_nickname"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_approve"
             android:visibility="@{vm.isNicknameValid ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -201,6 +201,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_sign_up_done"
+            style="@style/body2_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
@@ -216,7 +217,6 @@
             android:paddingVertical="16dp"
             android:stateListAnimator="@null"
             android:text="@string/sign_up_done"
-            android:textAppearance="@style/body2_regular"
             android:textColor="@{vm.isNicknameValid ? @color/turnaround_white : @color/turnaround_gray_6}"
             app:cornerRadius="14dp"
             app:layout_constraintBottom_toBottomOf="parent"

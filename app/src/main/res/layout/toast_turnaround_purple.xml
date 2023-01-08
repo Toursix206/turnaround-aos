@@ -19,12 +19,12 @@
 
         <TextView
             android:id="@+id/tv_text"
+            style="@style/body2_semi_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="14dp"
             android:text="@{content}"
             android:textAlignment="center"
-            android:textAppearance="@style/body2_semi_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

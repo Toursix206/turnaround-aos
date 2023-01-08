@@ -23,6 +23,7 @@
 
         <TextView
             android:id="@+id/tv_todo_category"
+            style="@style/caption_semi_bold"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -31,7 +32,6 @@
             android:paddingVertical="2dp"
             android:text="@{todo.categoryName}"
             android:textAlignment="center"
-            android:textAppearance="@style/caption_semi_bold"
             android:textColor="@color/turnaround_gray_9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,11 +39,11 @@
 
         <TextView
             android:id="@+id/tv_todo_title"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="@{todo.activityName}"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_white"
             app:layout_constraintEnd_toStartOf="@id/iv_todo_event"
             app:layout_constraintStart_toStartOf="@id/tv_todo_category"
@@ -51,12 +51,12 @@
             tools:text="밀린 이불 빨래" />
 
         <TextView
+            style="@style/body2_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="12dp"
             android:text="지금 시작하세요!"
-            android:textAppearance="@style/body2_regular"
             android:textColor="@color/turnaround_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_todo_title"

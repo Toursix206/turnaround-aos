@@ -27,13 +27,13 @@
 
             <TextView
                 android:id="@+id/tv_activity_title"
+                style="@style/body1_semi_bold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:gravity="center_horizontal"
                 android:paddingVertical="16dp"
                 android:text="@string/activity_title"
-                android:textAppearance="@style/body1_semi_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -66,12 +66,12 @@
 
                     <TextView
                         android:id="@+id/tv_activity_category_all"
+                        style="@style/body2_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/activity_category_all"
-                        android:textAppearance="@style/body2_regular"
                         android:textColor="@color/turnaround_gray_8"
                         app:layout_constraintEnd_toEndOf="@id/btn_activity_category_all"
                         app:layout_constraintStart_toStartOf="@id/btn_activity_category_all"
@@ -92,12 +92,12 @@
 
                     <TextView
                         android:id="@+id/tv_activity_category_bed"
+                        style="@style/body2_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/activity_category_bed"
-                        android:textAppearance="@style/body2_regular"
                         android:textColor="@color/turnaround_gray_8"
                         app:layout_constraintEnd_toEndOf="@id/btn_activity_category_bed"
                         app:layout_constraintStart_toStartOf="@id/btn_activity_category_bed"
@@ -118,12 +118,12 @@
 
                     <TextView
                         android:id="@+id/tv_activity_category_washing_machine"
+                        style="@style/body2_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/activity_category_washing_machine"
-                        android:textAppearance="@style/body2_regular"
                         android:textColor="@color/turnaround_gray_8"
                         app:layout_constraintEnd_toEndOf="@id/btn_activity_category_washing_machine"
                         app:layout_constraintStart_toStartOf="@id/btn_activity_category_washing_machine"
@@ -144,12 +144,12 @@
 
                     <TextView
                         android:id="@+id/tv_activity_category_table"
+                        style="@style/body2_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/activity_category_table"
-                        android:textAppearance="@style/body2_regular"
                         android:textColor="@color/turnaround_gray_8"
                         app:layout_constraintEnd_toEndOf="@id/btn_activity_category_table"
                         app:layout_constraintStart_toStartOf="@id/btn_activity_category_table"
@@ -170,12 +170,12 @@
 
                     <TextView
                         android:id="@+id/tv_activity_category_kitchen"
+                        style="@style/body2_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/activity_category_kitchen"
-                        android:textAppearance="@style/body2_regular"
                         android:textColor="@color/turnaround_gray_8"
                         app:layout_constraintEnd_toEndOf="@id/btn_activity_category_kitchen"
                         app:layout_constraintStart_toStartOf="@id/btn_activity_category_kitchen"
@@ -196,12 +196,12 @@
 
                     <TextView
                         android:id="@+id/tv_activity_category_bathroom"
+                        style="@style/body2_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/activity_category_bathroom"
-                        android:textAppearance="@style/body2_regular"
                         android:textColor="@color/turnaround_gray_8"
                         app:layout_constraintEnd_toEndOf="@id/btn_activity_category_bathroom"
                         app:layout_constraintStart_toStartOf="@id/btn_activity_category_bathroom"
@@ -222,12 +222,12 @@
 
                     <TextView
                         android:id="@+id/tv_activity_category_etc"
+                        style="@style/body2_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/activity_category_etc"
-                        android:textAppearance="@style/body2_regular"
                         android:textColor="@color/turnaround_gray_8"
                         app:layout_constraintEnd_toEndOf="@id/btn_activity_category_etc"
                         app:layout_constraintStart_toStartOf="@id/btn_activity_category_etc"
@@ -248,12 +248,12 @@
 
                     <TextView
                         android:id="@+id/tv_activity_category_self_improvement"
+                        style="@style/body2_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/activity_category_self_improvement"
-                        android:textAppearance="@style/body2_regular"
                         android:textColor="@color/turnaround_gray_8"
                         app:layout_constraintEnd_toEndOf="@id/btn_activity_category_self_improvement"
                         app:layout_constraintStart_toStartOf="@id/btn_activity_category_self_improvement"

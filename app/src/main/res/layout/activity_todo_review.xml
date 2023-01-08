@@ -18,11 +18,11 @@
 
         <TextView
             android:id="@+id/tv_todo_review_title"
+            style="@style/body1_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/todo_review_title"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +30,11 @@
 
         <TextView
             android:id="@+id/tv_todo_review_skip"
+            style="@style/body1_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="18dp"
             android:text="@string/todo_review_skip"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_purple"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_todo_review_title" />
@@ -55,23 +55,23 @@
 
         <TextView
             android:id="@+id/tv_todo_review_date"
+            style="@style/body2_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="@{vm.review.doneDate}"
-            android:textAppearance="@style/body2_regular"
             android:textColor="@color/turnaround_gray_6"
             app:layout_constraintBottom_toBottomOf="@id/iv_todo_review"
             app:layout_constraintStart_toEndOf="@id/iv_todo_review" />
 
         <TextView
             android:id="@+id/tv_todo_review_activity_name"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="22dp"
             android:layout_marginBottom="4dp"
             android:text="@{vm.review.name}"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toTopOf="@id/tv_todo_review_date"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +80,7 @@
 
         <TextView
             android:id="@+id/tv_todo_review_rating"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -87,7 +88,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             android:text="@{@string/tv_todo_review_rating(Math.round(vm.reviewRating))}"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toStartOf="@id/rb_todo_review"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,29 +119,30 @@
 
         <TextView
             android:id="@+id/tv_todo_review_question"
+            style="@style/body1_semi_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/todo_review_question"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_todo_review" />
 
         <TextView
             android:id="@+id/tv_todo_review_question_desc"
+            style="@style/body1_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:text="@string/todo_review_question_desc"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toBottomOf="@id/tv_todo_review_question"
             app:layout_constraintStart_toEndOf="@id/tv_todo_review_question" />
 
         <EditText
             android:id="@+id/et_todo_review"
+            style="@style/body1_regular"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginHorizontal="22dp"
@@ -156,25 +157,25 @@
             android:paddingTop="10dp"
             android:paddingBottom="40dp"
             android:text="@={vm.reviewContent}"
-            android:textAppearance="@style/body1_regular"
             android:textColor="@color/turnaround_gray_10"
             android:textColorHint="@color/turnaround_gray_6"
             app:layout_constraintTop_toBottomOf="@id/tv_todo_review_question" />
 
         <TextView
             android:id="@+id/tv_todo_review_count"
+            style="@style/body2_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="14dp"
             android:layout_marginBottom="10dp"
             android:text="@{@string/todo_review_count(vm.reviewContent.length)}"
-            android:textAppearance="@style/body2_regular"
             android:textColor="@color/turnaround_gray_6"
             app:layout_constraintBottom_toBottomOf="@id/et_todo_review"
             app:layout_constraintEnd_toEndOf="@id/et_todo_review" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_todo_review_done"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
@@ -188,7 +189,6 @@
             android:paddingVertical="16dp"
             android:stateListAnimator="@null"
             android:text="@string/todo_review_done"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@{vm.reviewContent.length > 9 ? @color/turnaround_white : @color/turnaround_gray_6}"
             app:cornerRadius="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -225,12 +225,12 @@
 
             <TextView
                 android:id="@+id/tv_todo_review_tool_tip"
+                style="@style/caption_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:paddingVertical="5dp"
                 android:text="@{@string/todo_review_tool_tip(vm.review.point)}"
-                android:textAppearance="@style/caption_semi_bold"
                 android:textColor="@color/turnaround_white"
                 app:layout_constraintEnd_toStartOf="@id/btn_todo_review_close_tool_tip"
                 app:layout_constraintHorizontal_chainStyle="packed"

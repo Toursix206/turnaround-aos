@@ -30,12 +30,12 @@
 
         <TextView
             android:id="@+id/tv_todo_event_tool_bar_title"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
             android:text="@string/todo_event_tool_bar_title"
             android:textAlignment="center"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,12 +86,12 @@
 
         <TextView
             android:id="@+id/tv_todo_event_desc"
+            style="@style/body1_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="@string/todo_event_no_todo"
             android:textAlignment="center"
-            android:textAppearance="@style/body1_regular"
             android:visibility="@{vm.isTodoExist ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +99,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_todo_event_go_activity"
+            style="@style/body1_semi_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="22dp"
@@ -110,7 +111,6 @@
             android:paddingVertical="16dp"
             android:stateListAnimator="@null"
             android:text="@string/todo_event_go_activity"
-            android:textAppearance="@style/body1_semi_bold"
             android:textColor="@color/turnaround_white"
             android:visibility="@{vm.isTodoExist ? View.VISIBLE : View.INVISIBLE}"
             app:cornerRadius="14dp"
