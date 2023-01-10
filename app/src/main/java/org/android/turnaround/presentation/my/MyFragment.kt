@@ -32,7 +32,7 @@ class MyFragment : BindingFragment<FragmentMyBinding>(R.layout.fragment_my) {
     private fun initReviewClickListener() {
         binding.tvMyReview.setOnClickListener {
             startActivity(
-                Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.market_url)))
+                Intent(Intent.ACTION_VIEW, Uri.parse(requireNotNull(viewModel.my.value).storeUrl.aos))
             )
         }
     }
@@ -40,7 +40,7 @@ class MyFragment : BindingFragment<FragmentMyBinding>(R.layout.fragment_my) {
     private fun initCustomerCenterClickListener() {
         binding.tvMyCustomerCenter.setOnClickListener {
             startActivity(
-                Intent(Intent.ACTION_VIEW, Uri.parse("http://pf.kakao.com/_xjQBRxj/chat"))
+                Intent(Intent.ACTION_VIEW, Uri.parse(requireNotNull(viewModel.my.value).csUrl))
             )
         }
     }
