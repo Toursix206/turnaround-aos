@@ -19,11 +19,11 @@ class MyViewModel @Inject constructor(
     val my: LiveData<My> = _my
 
     init {
-        getUser()
+        getMyPage()
     }
 
-    private fun getUser() = viewModelScope.launch {
-        userRepository.getUser()
+    private fun getMyPage() = viewModelScope.launch {
+        userRepository.getMyPage()
             .onSuccess {
                 _my.value = it
             }.onFailure {
