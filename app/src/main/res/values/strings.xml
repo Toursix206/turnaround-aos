@@ -201,7 +201,8 @@
     <string name="setting_alarm">알림</string>
     <string name="setting_function">기능</string>
     <string name="setting_alarm_item">전체 푸시알림 동의</string>
-    <string name="setting_function_item">약관 및 개인정보 활용</string>
+    <string name="setting_policy">약관 및 개인정보 활용</string>
+    <string name="setting_opensource">오픈소스 저작권 정보</string>
     <string name="setting_withdrawal">회원탈퇴</string>
     <string name="setting_logout">로그아웃</string>
     <string name="settings_logout_toast">로그아웃되었습니다.</string>
