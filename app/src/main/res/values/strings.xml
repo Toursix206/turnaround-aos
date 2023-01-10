@@ -47,7 +47,7 @@
     <string name="warning_notification_cancel">아니요</string>
     <string name="warning_notification_confirm">네! 동의할래요</string>
 
-    <string name="warning_duplicate_login_title">다른 기기에서 로그인 중이에요.</string>
+    <string name="warning_duplicate_login_title">다른 기기에서 로그인 중이에요</string>
     <string name="warning_duplicate_login_desc">다른 기기에서 로그아웃 하고\n현재 기기에서 로그인 할까요?</string>
     <string name="warning_duplicate_login_cancel">아니요</string>
     <string name="warning_duplicate_login_confirm">네</string>
