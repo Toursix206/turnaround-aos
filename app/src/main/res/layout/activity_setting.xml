@@ -96,6 +96,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_setting_alarm_item" />
 
         <TextView
+            android:id="@+id/tv_setting_policy"
             style="@style/body1_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -103,11 +104,25 @@
             android:background="@color/turnaround_white"
             android:paddingVertical="20dp"
             android:paddingStart="22dp"
-            android:text="@string/setting_function_item"
+            android:text="@string/setting_policy"
             android:textColor="@color/turnaround_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_function" />
+
+        <TextView
+            android:id="@+id/tv_setting_open_source"
+            style="@style/body1_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/turnaround_white"
+            android:paddingVertical="20dp"
+            android:paddingStart="22dp"
+            android:text="@string/setting_opensource"
+            android:textColor="@color/turnaround_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_setting_policy" />
 
         <View
             android:id="@+id/view_setting"

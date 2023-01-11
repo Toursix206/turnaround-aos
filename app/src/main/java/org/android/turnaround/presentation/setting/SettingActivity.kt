@@ -1,6 +1,7 @@
 package org.android.turnaround.presentation.setting
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,8 @@ class SettingActivity : BindingActivity<ActivitySettingBinding>(R.layout.activit
         binding.vm = viewModel
         initSwitchBtnCheckListener()
         initBackBtnClickListener()
+        initTvPolicyClickListener()
+        initOpenSourceClickListener()
         initTvWithdrawClickListener()
         initIsSuccessLogoutCollector()
         initSuccessWithdrawCollector()
@@ -37,6 +40,22 @@ class SettingActivity : BindingActivity<ActivitySettingBinding>(R.layout.activit
     private fun initBackBtnClickListener() {
         binding.ivSettingBack.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun initTvPolicyClickListener() {
+        binding.tvSettingPolicy.setOnClickListener {
+            startActivity(
+                Intent(Intent.ACTION_VIEW, Uri.parse(requireNotNull(viewModel.setting.value).policyUrl))
+            )
+        }
+    }
+
+    private fun initOpenSourceClickListener() {
+        binding.tvSettingOpenSource.setOnClickListener {
+            startActivity(
+                Intent(Intent.ACTION_VIEW, Uri.parse(requireNotNull(viewModel.setting.value).openSourceLicenseUrl.aos))
+            )
         }
     }
 

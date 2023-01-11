@@ -9,9 +9,9 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val userDataSource: UserDataSource
 ) : UserRepository {
-    override suspend fun getUser(): Result<My> =
+    override suspend fun getMyPage(): Result<My> =
         kotlin.runCatching {
-            userDataSource.getUser()
+            userDataSource.getMyPage()
         }.map { response ->
             response.data.toMy()
         }

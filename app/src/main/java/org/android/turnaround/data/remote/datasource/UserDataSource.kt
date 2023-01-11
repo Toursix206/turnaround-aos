@@ -7,7 +7,7 @@ import javax.inject.Inject
 class UserDataSource @Inject constructor(
     private val userService: UserService
 ) {
-    suspend fun getUser() = userService.getUser()
+    suspend fun getMyPage() = userService.getMyPage()
     suspend fun getUserSetting() = userService.getUserSetting()
     suspend fun putUserSetting(isAgreeNotification: Boolean) = userService.putUserSetting(
         UserSettingRequest(
