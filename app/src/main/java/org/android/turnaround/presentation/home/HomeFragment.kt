@@ -13,6 +13,7 @@ import org.android.turnaround.databinding.FragmentHomeBinding
 import org.android.turnaround.domain.entity.HomeTodo
 import org.android.turnaround.domain.entity.TodoDetail
 import org.android.turnaround.presentation.home.adapter.TodoAdapter
+import org.android.turnaround.presentation.main.MainActivity
 import org.android.turnaround.presentation.my_todo.MyTodoActivity
 import org.android.turnaround.presentation.todo_guide.TodoGuideActivity
 import org.android.turnaround.presentation.todo_guide.TodoGuideActivity.Companion.TODO_GUIDE_TODO_ID
@@ -36,6 +37,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         initIsClickedBlackItemEventObserver()
         initTodoDetailObserver()
         initStartTodoAbleEventCollector()
+        initEmptyTodoCardClickListener()
         initTodoEventEventClickListener()
     }
 
@@ -102,6 +104,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                     UiEvent.LOADING -> {}
                 }
             }
+        }
+    }
+
+    private fun initEmptyTodoCardClickListener() {
+        binding.layoutBottomMyTodo.setOnClickListener {
+            (requireActivity() as MainActivity).moveToActivityFragment()
         }
     }
 

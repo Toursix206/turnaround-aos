@@ -32,7 +32,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         return navHostFragment.navController
     }
 
-    private fun moveToActivityFragment() {
+    fun moveToActivityFragment() {
         binding.botNavMain.selectedItemId = R.id.activityFragment
     }
 
