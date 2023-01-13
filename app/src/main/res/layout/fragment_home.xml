@@ -80,12 +80,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="4dp"
-                android:text="@{vm.home.broom &lt; 10 ? @string/home_num_format(vm.home.broom) : String.valueOf(vm.home.broom)}"
+                android:text="@{String.valueOf(vm.home.broom)}"
                 android:textColor="@color/turnaround_gray_10"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_home_broom_count_text"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="00" />
+                tools:text="0" />
 
             <TextView
                 android:id="@+id/tv_home_broom_count_text"
