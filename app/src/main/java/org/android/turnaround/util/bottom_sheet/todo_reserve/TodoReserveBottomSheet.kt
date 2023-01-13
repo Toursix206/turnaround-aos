@@ -125,7 +125,11 @@ class TodoReserveBottomSheet : BottomSheetDialogFragment() {
         val date = dateList[binding.pickerTodoEditDate.value].replace(" ", "").split("/")
         val min = minList[binding.pickerTodoEditMinute.value]
         val ampm = ampmeList[binding.pickerTodoEditAmpm.value]
-        val h = if (ampm == "PM") binding.pickerTodoEditHour.value + 12 else binding.pickerTodoEditHour.value
+        val h = if (ampm == "PM") {
+            if (binding.pickerTodoEditHour.value == 12) 12 else binding.pickerTodoEditHour.value + 12
+        } else {
+            if (binding.pickerTodoEditHour.value == 12) 0 else binding.pickerTodoEditHour.value
+        }
         val hour = if (h < 10) "0$h" else h
         val year = Calendar.getInstance().get(Calendar.YEAR)
 
