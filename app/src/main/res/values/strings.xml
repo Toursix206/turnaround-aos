@@ -88,7 +88,7 @@
     <string name="home_room_background_img_desc">방 그림자</string>
     <string name="home_room_desc">작은방</string>
     <string name="home_view_more">더보기</string>
-    <string name="home_todo_count">나의 활동(%d)</string>
+    <string name="home_todo_count">오늘의 활동(%d)</string>
     <string name="home_img_broom_desc">홈 빗자루 이미지</string>
     <string name="home_img_smile_desc">홈 점수 이미지</string>
     <string name="home_img_room_desc">홈 방 이미지</string>

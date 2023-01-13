@@ -254,7 +254,7 @@
             android:textColor="@color/turnaround_gray_10"
             app:layout_constraintBottom_toTopOf="@id/layout_bottom_my_todo"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="나의 활동(2)" />
+            tools:text="오늘의 활동(2)" />
 
         <TextView
             android:id="@+id/tv_home_show_more"
